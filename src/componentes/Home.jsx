@@ -27,11 +27,12 @@ function Home() {
 
                     </div>
                     <div className="button-container">
-                        <Button
+                    <NavLink to="/contratos"><Button
                             className="busca-contratos"
                             variant="contained"
                             startIcon={<SearchIcon />}
-                        >Buscar Contratos</Button>
+                        >Buscar Contratos</Button></NavLink>
+                        
                     </div>
                     <div className="contenedor-secundario">
                         <div className="wrap-downpage">

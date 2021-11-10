@@ -24,7 +24,7 @@ function NavBar() {
             <NavLink to="/aboutus">Quiénes Somos</NavLink>
           </li>
           <li>
-          <Button variant="contained">Regístrate</Button>
+         <NavLink to="/registro"> <Button variant="contained">Regístrate</Button> </NavLink> 
           </li>
         </ul>
       </nav>
