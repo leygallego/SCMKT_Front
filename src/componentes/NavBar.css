@@ -18,10 +18,12 @@ nav ul {
     display:grid;
     grid-template-rows: repeat(1, 5fr); 
     list-style-type: none;
-    margin: 5px;
+    margin: 0px;
     padding: 5px;
     overflow: hidden;
     color: blue;
+    /* position: fixed; */
+    margin-top: 0%;
   }
   
   .navbar span {

@@ -1,9 +1,9 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-// import NavBar from './NavBar'
 import Button from '@mui/material/Button';
 import './Home.css';
 import SearchIcon from '@mui/icons-material/Search';
+// import Footer from './Footer';
 
 
 
@@ -12,7 +12,6 @@ import SearchIcon from '@mui/icons-material/Search';
 function Home() {
     return (
         <>
-            {/* <NavBar /> */}
 
             <div className="main">
 
@@ -64,10 +63,13 @@ function Home() {
 
             <div className="divisor-home"></div>
 
+            {/* <Footer /> */}
+                    {/* Aquí empieza el footer */}
             <div className="footer-home">
                 <div className="home-izquierda">
-                    <h6>SmartContracts</h6>
+                <NavLink to="/home"> <span><h4>SmartContracts</h4></span> </NavLink>
                     <div className="logos-footer">
+                        
                         <img src="/images/facebook.png" alt="facebook logo" />
                         <img src="/images/instagram.png" alt="instagram logo" />
                         <img src="/images/linkedin.png" alt="linkedin logo" />

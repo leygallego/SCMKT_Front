@@ -1,19 +1,21 @@
 .main-contratos{
     display: grid;
-    /* grid-template-columns: repeat(1, 1fr); */
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    grid-gap: 1rem;
 }
 
 .contratos-card{
-    display: grid;
+    /* display: grid; */
     /* grid-template-rows: 100px 100px; */
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1rem;
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-gap: 1rem; */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: transparent;
     color: black;
     font-size: 18px;
     font-family: Comic Sans MS;
-    width: 25%;
+    width: 85%;
     margin-left: 5%;
     border-radius: 30px;
     padding: 10px;
