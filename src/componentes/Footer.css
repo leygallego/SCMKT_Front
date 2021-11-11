@@ -1,0 +1,25 @@
+ img{
+    width: 10px;
+    height: 10px;
+}
+.logos-footer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+    .footer-home{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: rgb(214, 250, 252);
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+.home-izquierda{
+    width: 70%;
+}
+.home-derecha{
+    width: 30%;
+    margin-left: 15%;
+}

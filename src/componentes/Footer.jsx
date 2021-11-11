@@ -2,20 +2,12 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-function AboutUs() {
+function Footer() {
     return (
-        <div>
-            <h1>Componente Quiénes Somos</h1>
-
-            <div className="about-container">
-                <img src="/images/about.png" alt="imagen about" />
-            </div>
-
-            <div className="footer-home">
+        <div className="footer-home">
                 <div className="home-izquierda">
-                <NavLink to="/home"> <span><h4>SmartContracts</h4></span> </NavLink>
+                    <h6>SmartContracts</h6>
                     <div className="logos-footer">
-                        
                         <img src="/images/facebook.png" alt="facebook logo" />
                         <img src="/images/instagram.png" alt="instagram logo" />
                         <img src="/images/linkedin.png" alt="linkedin logo" />
@@ -43,8 +35,7 @@ function AboutUs() {
 
                 </div>
             </div>
-        </div>
     )
 }
 
-export default AboutUs
+export default Footer
