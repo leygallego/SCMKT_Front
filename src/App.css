@@ -38,7 +38,7 @@
 }
 
 body{
-  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./images/FondoPF.jpeg')no-repeat center center fixed ;
+  /* background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('/images/FondoPF.jpeg')no-repeat center center fixed ; */
   /* background-size: 100%; */
   min-height: 100%;
   -webkit-background-size: cover;

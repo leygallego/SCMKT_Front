@@ -1,12 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 import Button from '@mui/material/Button';
 import './Home.css';
 import SearchIcon from '@mui/icons-material/Search';
-import '../images/azul.png';
-import '../images/assetHome.png';
-import '../images/assetHome2.png';
+
 
 
 
@@ -14,7 +12,7 @@ import '../images/assetHome2.png';
 function Home() {
     return (
         <>
-            <NavBar />
+            {/* <NavBar /> */}
 
             <div className="main">
 
@@ -29,11 +27,12 @@ function Home() {
 
                     </div>
                     <div className="button-container">
-                        <Button
+                    <NavLink to="/contratos"><Button
                             className="busca-contratos"
                             variant="contained"
                             startIcon={<SearchIcon />}
-                        >Buscar Contratos</Button>
+                        >Buscar Contratos</Button></NavLink>
+                        
                     </div>
                     <div className="contenedor-secundario">
                         <div className="wrap-downpage">
