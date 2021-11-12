@@ -8,11 +8,14 @@ function Footer() {
                 <div className="home-izquierda">
                     <h6>SmartContracts</h6>
                     <div className="logos-footer">
-                        <img src="/images/facebook.png" alt="facebook logo" />
+                    <NavLink to={{pathname:"https://www.facebook.com/"}}><img src="/images/facebook.png" alt="facebook logo" /></NavLink>
+                        <NavLink to={{pathname:"https://www.instagram.com/"}}>
                         <img src="/images/instagram.png" alt="instagram logo" />
+                        </NavLink>
+                        
+                        <NavLink to={{pathname:"https://www.linkedin.com/"}}>
                         <img src="/images/linkedin.png" alt="linkedin logo" />
-
-
+                        </NavLink>
                     </div>
                     
                 </div>
