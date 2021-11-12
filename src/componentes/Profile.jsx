@@ -11,17 +11,74 @@ function Profile() {
 
         <div className="main-perfil">
             <div className="perfil-card">
+                <h4>Bienvenido (nombre de usuario)</h4>
+
                 <div className="contratos-publicados">
                     <h5>Contratos Publicados</h5>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
                 </div>
                 <div className="contratos-borradores">
                 <h5>Borradores</h5>
+                <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
 
                 </div>
                 <div className="contratos-finalizados">
                 <h5>Contratos Finalizados</h5>
+                <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
+                    <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div>
 
                 </div>
+
+            </div>
+
+            <div className="area-perfil">
+            <img src="/images/silueta.png" alt="imagen de silueta" />
 
             </div>
 
