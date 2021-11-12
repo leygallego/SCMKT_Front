@@ -1,0 +1,48 @@
+.main-perfil{
+    display: grid;
+}
+
+.contratos-publicados{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;;
+    width: 75%;
+    margin-left: 15%;
+    margin-bottom: 1%;
+    border-radius: 30px;
+    padding: 10px;
+    height: 9em;
+}
+
+.contratos-borradores{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;;
+    width: 75%;
+    margin-left: 15%;
+    margin-bottom: 1%;
+    border-radius: 30px;
+    padding: 10px;
+    height: 9em;
+}
+
+.contratos-finalizados{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: blue;
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;;
+    width: 75%;
+    margin-left: 15%;
+    margin-bottom: 1%;
+    border-radius: 30px;
+    padding: 10px;
+    height: 9em;
+}
