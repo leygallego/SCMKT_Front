@@ -74,8 +74,8 @@
 }
 
 .area-perfil img{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     margin: 0px 0px 0px 0%;
 }
 .area-perfil{
@@ -108,5 +108,17 @@
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 12px;
+
+}
+
+.datos-personales {
+    /* display: grid; */
+    margin-top: 10%;
+    margin-left: 14%;
+    height: 35%;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    width: 75%;
 
 }

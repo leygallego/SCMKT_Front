@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Profile.css';
-
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import Button from '@mui/material/Button';
+import CreateIcon from '@mui/icons-material/Create';
 
 
 function Profile() {
@@ -79,7 +81,23 @@ function Profile() {
 
             <div className="area-perfil">
             <img src="/images/silueta.png" alt="imagen de silueta" />
-
+                
+            <Button
+                            className="busca-wallet"
+                            variant="contained"
+                            startIcon={<AccountBalanceWalletIcon />}
+                        >Wallet Address</Button>
+                    <div className="datos-personales" >
+                    <Button
+                            className="busca-datos"
+                            variant="contained"
+                            startIcon={<CreateIcon />}
+                        >Datos Personales</Button> 
+                        <h6>Fulano de tal</h6> 
+                        <h6>Wakanda</h6>
+                        <h6>fulano@gmail.com</h6>
+                        <h6>25/01/2001</h6>
+                  </div>          
             </div>
 
         </div>
