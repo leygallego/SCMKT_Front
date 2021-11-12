@@ -1,0 +1,24 @@
+.main-detalle{
+    display: grid;
+}
+
+.detalle-card{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent;
+    color: black;
+    font-size: 18px;
+    font-family: Comic Sans MS;
+    width: 75%;
+    margin-left: 15%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.detalle-card span{
+    color: blue;
+}
+
+.detalle-card Button{
+    margin-left: 2%;
+}
