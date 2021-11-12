@@ -1,5 +1,30 @@
 .main-perfil{
-    display: grid;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent;
+    color: black;
+    /* font-size: 18px; */
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    margin-left: 7%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.perfil-card{
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent; */
+    color: black;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    width: 75%;
+    margin-left: 5%;
+    margin-right: 0%;
+    border-radius: 30px;
+    padding: 10px;
 }
 
 .contratos-publicados{
@@ -7,42 +32,93 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: blue;
     color: white;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;;
-    width: 75%;
-    margin-left: 15%;
-    margin-bottom: 1%;
+    /* font-size: 12px; */
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    margin-top: 20%;
+    margin-left: 5%;
+    margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
-    height: 9em;
+    height: auto;
 }
 
 .contratos-borradores{
   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: blue;
+    background-color: rgb(74, 74, 248);
     color: white;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;;
-    width: 75%;
-    margin-left: 15%;
-    margin-bottom: 1%;
+    width: 100%;
+    margin-left: 5%;
+    margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
-    height: 9em;
+    height: auto;
 }
 
 .contratos-finalizados{
   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: blue;
+    background-color: rgb(132, 132, 247);
     color: white;
     font-size: 18px;
     font-family: 'Poppins', sans-serif;;
-    width: 75%;
-    margin-left: 15%;
-    margin-bottom: 1%;
+    width: 100%;
+    margin-left: 5%;
+    margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
-    height: 9em;
+    height: auto;
+}
+
+.area-perfil img{
+    width: 200px;
+    height: 200px;
+    margin: 0px 0px 0px 0%;
+}
+.area-perfil{
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent; */
+    color: black;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    width: 45%;
+    margin-top: 8%;
+    margin-left: 15%;
+    margin-right: 5%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.info-contrato{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+    width: 97%;
+    height: auto;
+    margin-top: 5px;
+    color: black;
+    margin-left: 1.5%;
+    margin-bottom: 2%;
+
+}
+.info-contrato h6{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
+
+}
+
+.datos-personales {
+    /* display: grid; */
+    margin-top: 10%;
+    margin-left: 14%;
+    height: 35%;
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    width: 75%;
+
 }
