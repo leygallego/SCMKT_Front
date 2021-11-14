@@ -4,9 +4,17 @@ import './Profile.css';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
+import { useSelector } from 'react-redux';
+
 
 
 function Profile() {
+
+    const usuarios = useSelector(state => state.users)
+    const contratos = useSelector(state => state.contracts)
+    console.log("Contratos", contratos);
+    console.log("Usuarios",usuarios);
+
     return (
         <>
         <div><h1>Componente Perfil</h1></div>
@@ -17,7 +25,21 @@ function Profile() {
 
                 <div className="contratos-publicados">
                     <h5>Contratos Publicados</h5>
-                    <div className="info-contrato">
+                    {contratos.map((contrato, index) =>{
+                        return(
+                            <div className="info-contrato" key={index}>
+                                <h6>{contrato.name}</h6>
+                                <h6>{contrato.value} </h6>
+                                <h6>{contrato.detail}</h6>
+                            </div>
+                        )
+                    })}
+                    {/* <div className="info-contrato">
+                        <h6>Nombre del contrato</h6>
+                        <h6>0.056489398</h6>
+                        <h6>Ver más detalles</h6>
+                    </div> */}
+                    {/* <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
                         <h6>Ver más detalles</h6>
@@ -31,12 +53,7 @@ function Profile() {
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
                         <h6>Ver más detalles</h6>
-                    </div>
-                    <div className="info-contrato">
-                        <h6>Nombre del contrato</h6>
-                        <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="contratos-borradores">
                 <h5>Borradores</h5>
@@ -97,6 +114,12 @@ function Profile() {
                         <h6>Wakanda</h6>
                         <h6>fulano@gmail.com</h6>
                         <h6>25/01/2001</h6>
+                        {/* {usuarios.map((usuario, index) =>{
+                           return (<div key={index}>
+                               <h6>{usuario.name}</h6>
+                               <p>{usuario.email}</p>
+                               </div>)
+                        })} */}
                   </div>          
             </div>
 
