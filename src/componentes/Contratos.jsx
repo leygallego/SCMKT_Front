@@ -1,12 +1,20 @@
 import React from 'react';
 import './Contratos.css';
 import { NavLink } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 
 function Contratos() {
     return (
         <>
+        <div>
         <h1>Componente Contratos</h1>
+        
+        <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+        </div>
+
+
         <div className="main-contratos">
             
             <div className="contratos-card">

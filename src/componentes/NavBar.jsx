@@ -12,10 +12,10 @@ function NavBar() {
       <nav>
         <ul>
           <li>
-            <NavLink to="/home"> <span>SmartContracts</span> </NavLink>
+            <NavLink to="/"> <span>SmartContracts</span> </NavLink>
           </li>
           <li>
-            <NavLink to="/home">Inicio</NavLink>
+            <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
             <NavLink to="/contratos">Contratos</NavLink>
@@ -24,7 +24,7 @@ function NavBar() {
             <NavLink to="/aboutus">Quiénes Somos</NavLink>
           </li>
           <li>
-         <NavLink to="/registro"> <Button variant="contained">Login</Button> </NavLink> 
+         <NavLink to="/registro"> <Button variant="contained">Sign up</Button> </NavLink> 
           </li>
         </ul>
       </nav>

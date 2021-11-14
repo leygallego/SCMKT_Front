@@ -6,8 +6,8 @@ import Contratos from './componentes/Contratos';
 import AboutUs from './componentes/AboutUs';
 import DetalleContrato from './componentes/DetalleContrato';
 import Profile from './componentes/Profile';
-
-
+import Ingreso from './componentes/Ingreso';
+import BuildContratc from './componentes/BuildConratc';
 
 
 function App() {
@@ -17,11 +17,14 @@ function App() {
       <Route  path="/" component={NavBar}></Route>
 
         <Switch>
-        <Route exact path="/home" component={Home}></Route>   
+        <Route exact path="/" component={Home}></Route>   
         <Route exact path="/contratos" component={Contratos}></Route>  
         <Route  exact path="/aboutus" component={AboutUs}></Route>  
         <Route  exact path="/detalle" component={DetalleContrato}></Route>
         <Route  exact path="/perfil" component={Profile}></Route>   
+        <Route  exact path="/registro" component={Ingreso}></Route>   
+        <Route  exact path="/creacontrato" component={BuildContratc}></Route>   
+        
    
  
         </Switch>
