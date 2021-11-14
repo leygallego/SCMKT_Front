@@ -1,4 +1,4 @@
-import { GET_CONTRACTS, GET_USERS } from "../actions";
+import { GET_CONTRACTS, GET_USERS, POST_SING_UP, SEND_LOGIN } from "../actions";
 
 
 const initialState = {
@@ -12,18 +12,23 @@ const initialState = {
         { id: 7, name: "Markos", last_name: "Roylance", username: "mroylance5", email: "mroylance5@ucsd.edu", birthday: "10/07/1991", country: "Kijini", password: "T58O2in", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAB/SURBVCjPpVFBDkBADJyKJ3mEk1d4goPPeYDgN2QtidFdFidZ0UnbZDszbbJCvEeCv4TUlVr3EKvCKmYYhau9AMIYh4oLFq8N6lYCIc6h5PzYbLyTVc8p+oaCQWu81mL8eEPzYNEnsWnP5SQA2fnsBkcSw+1AdJfqGN4hv39zB9EXSdykB4lxAAAAAElFTkSuQmCC", status: "active" },
         { id: 8, name: "Hewet", last_name: "Coneybeer", username: "hconeybeer6", email: "hconeybeer6@google.it", birthday: "11/03/1951", country: "Wangtuan", password: "9TrLMLfgIZ", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAI2SURBVDjLpVNNaBNBFP42aZNqXEw1iv0xFUpBLWmrF0v1IpKiKOohBwUvhYDgz0G8eIugYBBFD+JBpV49ekqpHoQklGBpzNb0UIwkoFarIvnT5m9mfDPJhlJTEVx4vN3Z9/28eTOaEAL/87StXYjH409rtdq5arXaRhmUVVQqFZmf+Xy+sy0JDMPYTIAnTqfTZ7dvRJlA4BzKH7ns7HRienrqDH39SZBIJI5KsMvl6nE4HEhnPkGqcy7ABSciAUZk5XK5dQtUPOV2u9XCykoJVQK/NeaIgDfDO35MtdGSQPZos9mQz+fryoxh7+CIUhcNdbnZ6zqQzIxAskgORVo3ErOUmVKX/7qOn/q7g/peCVUsCQY9+5W66UKsswcW04FJoEikMqv3/k1PYzJ7H3xVXcsWmuAG0FSfXHyMn4UaEpkwcttSOH/vtCj8yhWyxR+3Q7eMm4pAWjNPpATxhmVOa1e2XsciZpEpxeA9fBC9WwbwauG5HktGboxe6nY2W5BTsFqtdWXGV41QIPk5jJHdw2AWhuEuL5hWxahnTEIvWhoOXkciERSLRei6jo4NdjqBmiJi5OJ7YRnt2iac3HNZubx65BH6tw/J1w5F4Pf7D6RSqROhUGguGg3DbtOwq68XbncP+nZ2I1/MYmFpBsGXE4og+GIC77/Oy9eStvY2BgKBcRrrHQqPeZk+8CTa+5cxNnQIAzv24d2XN5iZj+JjOndX+9frTBsWpHSBQqcoUDyMPVi69hviC4VQKCIpUgAAAABJRU5ErkJggg==", status: "active" },
         { id: 9, name: "Jaclyn", last_name: "Bourgaize", username: "jbourgaize7", email: "jbourgaize7@ftc.gov", birthday: "07/01/1973", country: "Atbasar", password: "AFpY8KQgRc", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAACzSURBVDjL7dI9C0FxHMXx8zruG2SSUjKgXwklw2WxSB4yGC2iDFyDpwj1T1LK00jq+hduOt6AwU02w1k/deoLkvhm+APvAVRpoEpBxVEoaoX8SZDbG24AkcWTrZ3D+ubByPBCmEv5HCjfVXPrMNq/0WdpZuaaSI3U50DhomrrG/2WpqdzZWJiE7G2CyB3lPDgTHOmGR/bDHUPRLDk4kJ2ZSA9FSR7CtJQCOQF3rjxL/FHwAu8X+2ABKJChQAAAABJRU5ErkJggg==", status: "active" },
-        { id: 10, name: "Carlye", last_name: "Lelande", username: "clelande8", email: "clelande8@craigslist.org", birthday: "08/07/1998", country: "Judaydah", password: "JEJLdCpvW9M7", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFhSURBVDjLpZMxbtZAEIW/N/bP7w4aSiQuQEODEFdIAVI6KFJwgeQenAEBFQVU1CBOkAsgroDSRMof77wUa68tK5GQstqVd1fz3rw345Vt7jN6gM8/zj9k6u3lIYer8ZaoTY5dD8OOj+9fPz/tAdJ6d/TqyeNhGCR1eMIkAMIGez6bMl7z/eefE6ASXF7lfr8f9OX3P0oxY2b9lmQspkznkibTnB0/paQEEACHESI6hKhTTa7mrepegsxNDWhyadAaLIQJCQssiAA3kxuCBpKRRMhkCBlCVW8a1p1rBPYCXjKKTrNRkOvCuougkkTULA4tHRQ4IVb1aQSeCJbMJlZgTdlTqsRwt4LqddUFJms2YWPfpsBugRFTRWffEkojs4CnH6sRaLoNQbImEWlXZV7L3xRx2OmCvH745sUj0Ozd89wMMY4H+k5uBA96ff326+/LQ/Gz/3mcfQe74FNt7T2f8w1Fi68/h3owMgAAAABJRU5ErkJggg==", status:"inactive" }
-      ],
-      contracts: [
-          {id: '1a', name: "contrato a", value: 0.08379028, detail: "ver mas detalles" },
-          {id: '1a', name: "contrato b", value: 0.08379028, detail: "ver mas detalles" },
-          {id: '1a', name: "contrato c", value: 0.08379028, detail: "ver mas detalles" },
-          {id: '1a', name: "contrato d", value: 0.08379028, detail: "ver mas detalles" },
+        { id: 10, name: "Carlye", last_name: "Lelande", username: "clelande8", email: "clelande8@craigslist.org", birthday: "08/07/1998", country: "Judaydah", password: "JEJLdCpvW9M7", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFhSURBVDjLpZMxbtZAEIW/N/bP7w4aSiQuQEODEFdIAVI6KFJwgeQenAEBFQVU1CBOkAsgroDSRMof77wUa68tK5GQstqVd1fz3rw345Vt7jN6gM8/zj9k6u3lIYer8ZaoTY5dD8OOj+9fPz/tAdJ6d/TqyeNhGCR1eMIkAMIGez6bMl7z/eefE6ASXF7lfr8f9OX3P0oxY2b9lmQspkznkibTnB0/paQEEACHESI6hKhTTa7mrepegsxNDWhyadAaLIQJCQssiAA3kxuCBpKRRMhkCBlCVW8a1p1rBPYCXjKKTrNRkOvCuougkkTULA4tHRQ4IVb1aQSeCJbMJlZgTdlTqsRwt4LqddUFJms2YWPfpsBugRFTRWffEkojs4CnH6sRaLoNQbImEWlXZV7L3xRx2OmCvH745sUj0Ozd89wMMY4H+k5uBA96ff326+/LQ/Gz/3mcfQe74FNt7T2f8w1Fi68/h3owMgAAAABJRU5ErkJggg==", status: "inactive" }
+    ],
+    contracts: [
+        { id: '1a', name: "contrato a", value: 0.08379028, detail: "ver mas detalles" },
+        { id: '1a', name: "contrato b", value: 0.08379028, detail: "ver mas detalles" },
+        { id: '1a', name: "contrato c", value: 0.08379028, detail: "ver mas detalles" },
+        { id: '1a', name: "contrato d", value: 0.08379028, detail: "ver mas detalles" },
 
 
 
 
-      ]
+    ],
+    newUser: [
+        { name: 'Leyder Gallego', country: 'Afghanistan', email: 'leygallego@prueba.com', wallet: '09asdf09asdf0a9sd8fasasdf', password: 'ASDFGHJKLÑ' },
+        { name: "Eber Hernandez", country: "Comoros", email: "jaimito@hotmail.com", wallet: "dfgsdfgsdfgsdfgsdgfgsfgsfgsdg", password: "1234" }
+    ],
+    user: {}
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -33,13 +38,47 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 users: action.payload
             }
-            case GET_CONTRACTS:
+        case GET_CONTRACTS:
             return {
                 ...state,
                 users: action.payload
             }
-            
-    
+        case POST_SING_UP:
+            // console.log('POST_SING_UP', action.payload);
+            if (
+                action.payload.name === ""
+                || action.payload.country === ""
+                || action.payload.email === ""
+                || action.payload.wallet === ""
+                || action.payload.password === ""
+            ) {
+                return state;
+            }
+            return {
+                ...state,
+                newUser: [...state.newUser, action.payload]
+            }
+        case SEND_LOGIN:
+            console.log('SEND_LOGIN:::::', action.payload)
+            const { name, password } = action.payload;
+            console.log('Destructurado', name, password)
+            state.newUser.map(
+                element => {
+                    if (element.name === name && element.password === password) {
+                        console.log('Si hay login', element.name, element.password);
+                        return {
+                            ...state,
+                            user: {
+                                name,
+                                password
+                            }
+                        }
+
+                    }
+                }
+            );
+            return state;
+
         default: return state
     }
 }

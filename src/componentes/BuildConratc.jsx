@@ -58,10 +58,11 @@ export default function BuildConratc() {
                             </div>
                         <div className="inputForm"><input className="inputFormCComponent" type="text" name="checkbox" onChange={e => { handleOnChange(e) }} /></div>
                     </div>
-                    <div className="buttonFormComponent"><input className="buttonComponent" type="submit" value="Visualizar" /></div>
+                    <div className="buttonFormComponent"><input className="buttonComponent" type="button" value="Visualizar" /></div>
 
                 </form>
             </div>
+
         </div>
     )
 }

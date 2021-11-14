@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { Avatar } from '@material-ui/core';
-// importar {postRegistro} desde tu actions;
-// importar el dispatch desde donde esté;
+import { useSelector, useDispatch } from 'react-redux';
+import { postSingUp } from '../actions';
 
 import './styles/registro.css';
 
 const Registro = () => {
+
+    const nuevoUsuario = useSelector(state => state.newUser)
 
     const Countries = ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
         "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize",
@@ -39,6 +41,7 @@ const Registro = () => {
     });
 
     const inputFileRef = useRef();
+    const dispatch = useDispatch();
     const handleBtnClick = () => {
         inputFileRef.current.click();
     }
@@ -85,9 +88,9 @@ const Registro = () => {
         //     password: ""
         // });
 
-        // dispatch(postRegistro(registro));
+        dispatch(postSingUp(registro));
     }
-
+    console.log('STATE.NEWuSER', nuevoUsuario);
     return (
         <div className='registro1Component'>
             {/* <div className="twoButtonsComponent">
@@ -121,7 +124,7 @@ const Registro = () => {
                     <form onSubmit={e => { handleOnSubmit(e) }}>
                         {bool ? <div className="registro1">
                             <div className="labelInput">
-                                <div className="labelForm">Full name</div>
+                                <div className="labelForm">User name</div>
                                 <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
                             </div>
                             <div className="labelInput">

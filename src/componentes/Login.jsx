@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux';
+import { sendLogin } from '../actions';
+import { NavLink, Redirect } from 'react-router-dom';
+
 
 export default function Login() {
+
+    const usuario = useSelector(state => state.user);
+    console.log(usuario)
+
+    const dispatch = useDispatch();
 
     const [login, setLogin] = useState({
         name: "",
@@ -10,16 +19,13 @@ export default function Login() {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        // console.clear();
         if (login.name === "" || login.password === "") {
             console.log('Formulario incompleto...')
         }
-        console.log(login);
-        // setLogin({
-        //     name: "",
-        //     password: ""
-        // });
+        // dispatch(sendLogin(login));
+     <Redirect to="/perfil" />
 
-        // dispatch(postLogin(Login));
     }
 
     const handleOnChange = (e) => {
@@ -45,12 +51,12 @@ export default function Login() {
             <form onSubmit={e => { handleOnSubmit(e) }}>
                 <div>
                     <div className="labelInput">
-                        <div className="labelForm">Full name </div>
-                        <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} defaultValue={login.name} /></div>
+                        <div className="labelForm">User name </div>
+                        <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} /></div>
                     </div>
                     <div className="labelInput">
                         <div className="labelForm">Password</div>
-                        <div className="inputForm"><input className="inputFormComponent" type="password" name="password" onChange={e => { handleOnChange(e) }} defaultValue={login.email} /></div>
+                        <div className="inputForm"><input className="inputFormComponent" type="password" name="password" onChange={e => { handleOnChange(e) }} /></div>
                     </div>
                     <div className="buttonFormComponent"><input className="buttonComponent" type="submit" value="Send" /></div>
                 </div>

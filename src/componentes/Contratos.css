@@ -24,3 +24,8 @@
 .contratos-card span{
     color: blue;
 }
+
+.h1Button {
+    display: flex;
+    flex-direction: row;
+}
