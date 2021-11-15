@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import './NavBar.css';
 
+/*
+<p id="login">
+            Si ya tienes cuenta puedes entrar haciendo click <span>AQUÍ</span> 
+          </p>
+*/
 
 function NavBar() {
     return (
@@ -25,9 +30,9 @@ function NavBar() {
           </li>
           <li>
          <NavLink to="/registro"> <Button variant="contained">Sign up</Button> </NavLink>
-         <p className="login">
-            Si ya tienes cuenta puedes entrar haciendo click <NavLink to="/login" className="login link">AQUÍ</NavLink> 
-          </p>
+          </li>
+          <li>
+            <a href="/login">Login</a>
           </li>
         </ul>
       </nav>
