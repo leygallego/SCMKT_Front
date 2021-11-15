@@ -13,9 +13,9 @@ export default function Ingreso() {
         setSw(!sw)
     }
 
-    return (
-        <div className="ingresoComponent">
-           <div>
+    /*
+    
+            <div>
                 Login
                 <Switch
                     onChange={handleSwitchOnChange}
@@ -30,6 +30,13 @@ export default function Ingreso() {
                  <Registro />
                  } 
             </div>
+
+    */
+
+
+    return (
+        <div className="ingresoComponent">
+           <Registro />
         </div>
     )
 }
