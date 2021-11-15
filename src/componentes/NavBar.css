@@ -33,3 +33,12 @@ nav ul {
     font-size: 1.5em;
     font-weight: bold;
 }
+
+.login {
+  color: rgb(61, 61, 61);
+  font-size: 2;
+}
+
+.link {
+  color: blue;
+}

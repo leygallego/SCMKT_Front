@@ -24,7 +24,10 @@ function NavBar() {
             <NavLink to="/aboutus">Quiénes Somos</NavLink>
           </li>
           <li>
-         <NavLink to="/registro"> <Button variant="contained">Sign up</Button> </NavLink> 
+         <NavLink to="/registro"> <Button variant="contained">Sign up</Button> </NavLink>
+         <p className="login">
+            Si ya tienes cuenta puedes entrar haciendo click <NavLink to="/login" className="login link">AQUÍ</NavLink> 
+          </p>
           </li>
         </ul>
       </nav>
