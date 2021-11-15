@@ -30,29 +30,29 @@ function Profile() {
                             <div className="info-contrato" key={index}>
                                 <h6>{contrato.name}</h6>
                                 <h6>{contrato.value} </h6>
-                                <h6>{contrato.detail}</h6>
+                                <NavLink to="/detallecontratospub"><h6>{contrato.detail}</h6></NavLink>
                             </div>
                         )
                     })}
                     {/* <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <h6>view details</h6>
                     </div> */}
                     {/* <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <h6>view details</h6>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <h6>view details</h6>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <h6>view details</h6>
                     </div> */}
                 </div>
                 <div className="contratos-borradores">
@@ -60,17 +60,17 @@ function Profile() {
                 <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosbor"><h6>view details</h6></NavLink>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosbor"><h6>view details</h6></NavLink>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosbor"><h6>view details</h6></NavLink>
                     </div>
 
                 </div>
@@ -79,17 +79,17 @@ function Profile() {
                 <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosfin"><h6>view details</h6></NavLink>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosfin"><h6>view details</h6></NavLink>
                     </div>
                     <div className="info-contrato">
                         <h6>Nombre del contrato</h6>
                         <h6>0.056489398</h6>
-                        <h6>Ver más detalles</h6>
+                        <NavLink to="/detallecontratosfin"><h6>view details</h6></NavLink>
                     </div>
 
                 </div>

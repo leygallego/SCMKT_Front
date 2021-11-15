@@ -4,12 +4,12 @@ import Button from '@mui/material/Button';
 import { NavLink, useHistory } from 'react-router-dom';
 
 
-function DetalleContrato() {
-
+const Detallecontratopub = () => {
+    
     let history = useHistory();
 
     function handleClick() {
-        history.push("contratos");
+        history.push("perfil");
     }
 
     return (
@@ -76,5 +76,4 @@ function DetalleContrato() {
         </>
     )
 }
-
-export default DetalleContrato
+export default Detallecontratopub;
