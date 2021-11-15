@@ -6,7 +6,7 @@ import { postSingUp } from '../actions';
 import './styles/registro.css';
 
 const Registro = () => {
-
+    const baseUrl = './perfil';
     const nuevoUsuario = useSelector(state => state.newUser)
 
     const Countries = ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
@@ -79,17 +79,20 @@ const Registro = () => {
 
         ) {
             console.log('Formulario incompleto...')
-        }
-        // setRegistro({
-        //     name: "",
-        //     country: "",
-        //     email: "",
-        //     wallet: "",
-        //     password: ""
-        // });
+        } else {
+            // setRegistro({
+            //     name: "",
+            //     country: "",
+            //     email: "",
+            //     wallet: "",
+            //     password: ""
+            // });
 
-        dispatch(postSingUp(registro));
+            dispatch(postSingUp(registro));
+            window.location.href = baseUrl
+        }
     }
+
     console.log('STATE.NEWuSER', nuevoUsuario);
     return (
         <div className='registro1Component'>

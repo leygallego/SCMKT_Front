@@ -6,6 +6,7 @@ import { NavLink, Redirect } from 'react-router-dom';
 
 
 export default function Login() {
+    const baseUrl = './perfil';
 
     const usuario = useSelector(state => state.user);
     console.log(usuario)
@@ -22,10 +23,11 @@ export default function Login() {
         // console.clear();
         if (login.name === "" || login.password === "") {
             console.log('Formulario incompleto...')
+        } else {
+            // dispatch(sendLogin(login));
+            // <Redirect to="/perfil" />
+            window.location.href = baseUrl
         }
-        // dispatch(sendLogin(login));
-     <Redirect to="/perfil" />
-
     }
 
     const handleOnChange = (e) => {
@@ -37,16 +39,16 @@ export default function Login() {
 
     return (
         <div className="loginComponent">
-                            <div className="avatarContainer">
+            <div className="avatarContainer">
 
-                        <Avatar
-                            alt="Remy Sharp"
-                            src={'images/user.png'}
-                            className="avatar"
-                            style={{ width: 124, height: 124 }}
-                        />
-                </div>
-                <div><p>Login to start viewing the</p><p>available contracts</p></div>
+                <Avatar
+                    alt="Remy Sharp"
+                    src={'images/user.png'}
+                    className="avatar"
+                    style={{ width: 124, height: 124 }}
+                />
+            </div>
+            <div><p>Login to start viewing the</p><p>available contracts</p></div>
 
             <form onSubmit={e => { handleOnSubmit(e) }}>
                 <div>
