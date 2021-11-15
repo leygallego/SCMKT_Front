@@ -22,15 +22,33 @@
 .combo {
     display: flex;
     flex-direction: row;
-    /* background-color: blueviolet; */
+    justify-content: space-around;
 
 }
 
 .inputFormCComponent {
     width: 90%;
     height: 45px;
+    font-size: 24px;
+    padding: 10px;
 }
 
-.inputFormCComponentCombo {
-    width: 45%;
+
+
+.inputForm {
+    width: 100%;
+    /* background-color: yellow; */
+}
+
+.inputFormReward {
+    height: 45px;
+    width: 100%;
+    font-size: 24px;
+
+}
+
+.inputFormCoin {
+    height: 45px;
+    width: 100%;
+    font-size: 24px;
 }

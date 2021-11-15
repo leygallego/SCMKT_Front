@@ -22,3 +22,9 @@
 .detalle-card Button{
     margin-left: 2%;
 }
+
+.xButton {
+    width: 100%;
+    text-align: end;
+
+}

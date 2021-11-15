@@ -15,10 +15,10 @@ const initialState = {
         { id: 10, name: "Carlye", last_name: "Lelande", username: "clelande8", email: "clelande8@craigslist.org", birthday: "08/07/1998", country: "Judaydah", password: "JEJLdCpvW9M7", wallet: "", image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFhSURBVDjLpZMxbtZAEIW/N/bP7w4aSiQuQEODEFdIAVI6KFJwgeQenAEBFQVU1CBOkAsgroDSRMof77wUa68tK5GQstqVd1fz3rw345Vt7jN6gM8/zj9k6u3lIYer8ZaoTY5dD8OOj+9fPz/tAdJ6d/TqyeNhGCR1eMIkAMIGez6bMl7z/eefE6ASXF7lfr8f9OX3P0oxY2b9lmQspkznkibTnB0/paQEEACHESI6hKhTTa7mrepegsxNDWhyadAaLIQJCQssiAA3kxuCBpKRRMhkCBlCVW8a1p1rBPYCXjKKTrNRkOvCuougkkTULA4tHRQ4IVb1aQSeCJbMJlZgTdlTqsRwt4LqddUFJms2YWPfpsBugRFTRWffEkojs4CnH6sRaLoNQbImEWlXZV7L3xRx2OmCvH745sUj0Ozd89wMMY4H+k5uBA96ff326+/LQ/Gz/3mcfQe74FNt7T2f8w1Fi68/h3owMgAAAABJRU5ErkJggg==", status: "inactive" }
     ],
     contracts: [
-        { id: '1a', name: "contrato a", value: 0.08379028, detail: "ver mas detalles" },
-        { id: '1a', name: "contrato b", value: 0.08379028, detail: "ver mas detalles" },
-        { id: '1a', name: "contrato c", value: 0.08379028, detail: "ver mas detalles" },
-        { id: '1a', name: "contrato d", value: 0.08379028, detail: "ver mas detalles" },
+        { id: '1a', name: "A contrat", value: 0.08379028, detail: "view details" },
+        { id: '1a', name: "B contrat", value: 0.08379028, detail: "view details" },
+        { id: '1a', name: "C contrat", value: 0.08379028, detail: "view details" },
+        { id: '1a', name: "D contrat", value: 0.08379028, detail: "view details" },
 
 
 
