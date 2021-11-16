@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Avatar } from '@material-ui/core';
-import { useSelector, useDispatch } from 'react-redux';
-import { sendLogin } from '../actions';
-import { NavLink, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+// import { sendLogin } from '../actions';
+// import { NavLink, Redirect } from 'react-router-dom';
 
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
     const usuario = useSelector(state => state.user);
     console.log(usuario)
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [login, setLogin] = useState({
         name: "",
@@ -38,6 +38,7 @@ export default function Login() {
     }
 
     return (
+        <>
         <div className="loginComponent">
             <div className="avatarContainer">
 
@@ -64,5 +65,8 @@ export default function Login() {
                 </div>
             </form>
         </div>
+
+        
+        </>
     )
 }
