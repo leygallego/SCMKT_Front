@@ -1,76 +1,49 @@
 
-.main {
-    display: flex;
-    flex-direction: row;
 
+
+.area-texto{
+    background-color: transparent;
 }
-
-.area-texto {
-    width: 50%;
-}
-
-.imagen-home{
-    width: 50%;
-    height: 80%;
-   
-}
-
-.wraper-images img{
-    width: 400px;
-    height: 400px;
-}
-.texto-home{
-
-    width: 400px;
-    margin-left: 10%;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-}
-
-.texto-secundario{
-    width: 400px;
-    margin-left: 10%; 
-    font-family: 'Poppins', sans-serif;
-}
-
-.button-container{
-width: 70%;
-margin-top: 5%;
-}
-
-.busca-contratos{
-    margin-left: 1%;
-}
-
-.wrap-downpage{
-    display: grid;
-    grid-template-rows: repeat(1, 2fr);
-    width: 400px;
-    margin-left: 10%; 
-
-}
-.contenedor-secundario{
-    width: 100%;
-    height: 56%;
-    background-color: white;
-    margin-top: 5%;
-}
-.imagen-azul img{
-    width: 100%;
-    height: 100%;
-    
-
-
-}
-
 .wraper-images{
-    display: grid;
+    background-color: transparent;
 }
-.texto-motivador{
-    margin-top: 15%;
+.divisor-home{
+    background-color: black;
+}
+
+.footer-home{
+    background-color: transparent;
+}
+.main {
+    /* display: flex;
+    flex-direction: row; */
+    display: grid;
+    /* grid-template-columns: 55% 45%; */
+    /* gap: 10px; */
+    grid-template-areas: 
+    "area-texto"
+    "wraper-images"
+    "divisor-home"
+    "footer-home"
+
+    ;
+
+}
+
+@media (min-width: 600px){
+    .main {
+        background-color: transparent;
+    grid-template-columns: 40% auto;  
+    /* grid-template-rows: 70% 5% 5%;   */
+    grid-template-areas: 
+    "area-texto wraper-images"
+    "divisor-home divisor-home"
+    "footer-home footer-home"
+    }
 }
 
 .divisor-home{
+    margin-top: 0;
     width: 100%;
     height: 40px;
     background-color: black;
@@ -105,3 +78,75 @@ margin-top: 5%;
 .home-derecha ul{
     list-style: none;
 }
+
+.wraper-images img{
+    width: 400px;
+    height: 400px;
+}
+
+.imagen-azul img{
+    width: 100%;
+    height: 100%;
+}
+
+.texto-home{
+
+    width: 400px;
+    margin-left: 10%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+}
+.texto-secundario{
+    width: 400px;
+    margin-left: 10%; 
+    font-family: 'Poppins', sans-serif;
+}
+.wrap-downpage{
+    display: grid;
+    grid-template-rows: repeat(1, 2fr);
+    width: 400px;
+    margin-left: 10%; 
+
+}
+.contenedor-secundario{
+    width: 100%;
+    height: 56%;
+    background-color: white;
+    margin-top: 5%;
+}
+
+.texto-motivador{
+    margin-top: 15%;
+}
+
+/* .area-texto {
+    width: 50%;
+}
+
+
+
+
+
+
+
+
+.button-container{
+width: 70%;
+margin-top: 5%;
+}
+
+.busca-contratos{
+    margin-left: 1%;
+}
+
+
+
+
+
+.wraper-images{
+    display: grid;
+}
+
+
+
+} */
