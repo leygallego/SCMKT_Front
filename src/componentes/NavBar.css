@@ -1,47 +1,72 @@
-  nav ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  }
   
-  nav a {
-    text-decoration: none;
-    display: inline-block;
-    padding: 1rem;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    padding-top: 1.1rem;
-  }
+ .navbar{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 0px;
+      padding: 5px;
+      overflow: hidden;
+      background-color: rgb(214, 250, 252);
+      color: blue;
+      margin-top: 0%;
+      margin-bottom: 1%;
+      font-family: 'Poppins', sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+    }
 
-  .navbar{
-    display:grid;
-    grid-template-rows: repeat(1, 5fr); 
-    list-style-type: none;
-    margin: 0px;
-    padding: 5px;
-    overflow: hidden;
-    background-color: rgb(214, 250, 252);
-    color: blue;
-    /* position: fixed; */
-    margin-top: 0%;
-  }
+ 
+.navbar .links #hidden {
+  display: flex
+}
+
+  @media (min-width: 600px){
+    nav ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    nav a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 1rem;
+      margin-left: 2rem;
+      margin-right: 2rem;
+      padding-top: 1.1rem;
+    }
   
-  .navbar span {
-    color: blue;
-	/* font-family: Comic Sans MS; */
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-
-  a[href="/login"] {
-    text-align: left;
-    margin-left: 0rem;    
-  }
-
-  a[href="/registro"] {
-    margin-right: 0px;
-    padding-top: 0.7rem;
-    padding-bottom: 1rem;
+    .navbar{
+      display:grid;
+      grid-template-rows: repeat(1, 5fr); 
+      list-style-type: none;
+      margin: 0px;
+      padding: 5px;
+      overflow: hidden;
+      background-color: rgb(214, 250, 252);
+      color: blue;
+      margin-top: 0%;
+    }
+    .reorder-button{
+      display: none
+    }
+    
+    .navbar span {
+      color: blue;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+  
+    a[href="/login"] {
+      text-align: left;
+      margin-left: 0rem;    
+    }
+  
+    a[href="/registro"] {
+      margin-right: 0px;
+      padding-top: 0.7rem;
+      padding-bottom: 1rem;
+    }
   }

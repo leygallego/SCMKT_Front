@@ -1,21 +1,23 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './NavBar.css';
-
-/*
-<p id="login">
-            Si ya tienes cuenta puedes entrar haciendo click <span>AQUÍ</span> 
-          </p>
-*/
+import ReorderIcon from '@mui/icons-material/Reorder';
 
 function NavBar() {
+const [showLinks, setShowLinks] = useState(false);
+
     return (
         <div>
 
 <div className="navbar">
       <nav>
-        <ul>
+      <div className="links" id={showLinks ? "hidden" : ""}>
+      <ul>
+        {/* <button className="reorder-button" onClick={()=> setShowLinks(!showLinks)}>
+            <ReorderIcon />
+          </button> */}
+          
           <li>
             <NavLink to="/"> <span>SmartContracts</span> </NavLink>
           </li>
@@ -35,6 +37,8 @@ function NavBar() {
             <a href="/login">Login</a>
           </li>
         </ul>
+      </div>
+        
       </nav>
       </div>
              
