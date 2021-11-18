@@ -1,24 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './NavBar.css';
-import ReorderIcon from '@mui/icons-material/Reorder';
+// import ReorderIcon from '@mui/icons-material/Reorder';
 
 function NavBar() {
-const [showLinks, setShowLinks] = useState(false);
+// const [showLinks, setShowLinks] = useState(false);
 
     return (
         <div>
 
 <div className="navbar">
       <nav>
-      <div className="links" id={showLinks ? "hidden" : ""}>
+      {/* <div className="links" id={showLinks ? "hidden" : ""}> */}
+      <div className="links">
+
       <ul>
         {/* <button className="reorder-button" onClick={()=> setShowLinks(!showLinks)}>
             <ReorderIcon />
           </button> */}
           
-          <li>
+          <li className="smart" >
             <NavLink to="/"> <span>SmartContracts</span> </NavLink>
           </li>
           <li>
@@ -35,6 +37,7 @@ const [showLinks, setShowLinks] = useState(false);
           </li>
           <li>
             <a href="/login">Iniciar Sesión</a>
+
           </li>
         </ul>
       </div>
