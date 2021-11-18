@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 // import { sendLogin } from '../actions';
 // import { NavLink, Redirect } from 'react-router-dom';
-
 
 export default function Login() {
     const baseUrl = './perfil';
@@ -11,6 +10,9 @@ export default function Login() {
     const usuario = useSelector(state => state.user);
     console.log(usuario)
 
+    useEffect(() => {
+        
+    })
     // const dispatch = useDispatch();
 
     const [login, setLogin] = useState({
