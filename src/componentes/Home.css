@@ -1,19 +1,7 @@
 
+/* Dispositivos móviles */
 
 
-.area-texto{
-    background-color: transparent;
-}
-.wraper-images{
-    background-color: transparent;
-}
-.divisor-home{
-    background-color: black;
-}
-
-.footer-home{
-    background-color: transparent;
-}
 .main {
     /* display: flex;
     flex-direction: row; */
@@ -25,29 +13,76 @@
     "wraper-images"
     "divisor-home"
     "footer-home"
-
     ;
 
 }
 
-@media (min-width: 600px){
-    .main {
-        background-color: transparent;
-    grid-template-columns: 40% auto;  
-    /* grid-template-rows: 70% 5% 5%;   */
-    grid-template-areas: 
-    "area-texto wraper-images"
-    "divisor-home divisor-home"
-    "footer-home footer-home"
-    }
+.area-texto{
+    background-color: transparent;
+}
+
+.texto-home{
+
+    width: 25em;
+    margin-top: 5em;
+    margin-left: 5em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 12px;
+}
+.texto-secundario{
+    width: 20em;
+    margin-left: 3em; 
+    font-family: 'Poppins', sans-serif;
+    font-family: 10px;
+}
+
+.button-container button{
+    margin-top: 25px;
+    width: 215px;
+    height: 25px;
+}
+
+.wrap-downpage{
+    display: grid;
+    grid-template-rows: repeat(1, 2fr);
+    width: 20em;
+    margin-left: 20%; 
+    font-size: 12px;
+
+}
+.contenedor-secundario{
+    width: 100%;
+    height: 56%;
+    background-color: white;
+    margin-top: 5%;
+}
+
+.texto-motivador{
+    margin-top: 15%;
+}
+
+.wraper-images{
+    background-color: transparent;
+}
+
+.wraper-images img{
+    width: 20em;
+    height: 15em;
+}
+
+.imagen-azul img{
+    width: 100%;
+    height: 15em;
 }
 
 .divisor-home{
     margin-top: 0;
     width: 100%;
-    height: 40px;
+    height: 2em;
     background-color: black;
 }
+
 
 .logos-footer img{
     width: 30px;
@@ -79,74 +114,222 @@
     list-style: none;
 }
 
-.wraper-images img{
-    width: 400px;
-    height: 400px;
+/* Desktop > 576px ///////////////////////////////////// */
+
+@media (min-width: 576px){
+    .main {
+        background-color: transparent;
+    grid-template-columns: 40% auto;  
+    /* grid-template-rows: 70% 5% 5%;   */
+    grid-template-areas: 
+    "area-texto wraper-images"
+    "divisor-home divisor-home"
+    "footer-home footer-home"
+    }
+
+    .texto-home{
+    
+        width: 30em;
+        margin-left: 10%;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bolder;
+    }
+
+    .texto-secundario{
+        width: 25em;
+        margin-left: 11%; 
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+    }
+
+    .button-container button{
+        margin-top: 1.5625em;
+        margin-left: 20%;
+        width: 215px;
+        height: 25px;
+    }
+
+    .wrap-downpage{
+        display: grid;
+        grid-template-rows: repeat(1, 2fr);
+        width: 20em;
+        margin-left: 10%; 
+        font-size: 14px;
+    
+    }
+
+    .contenedor-secundario{
+        width: 100%;
+        height: 45%;
+        background-color: white;
+        margin-top: 4%;
+    }
+
+    .texto-motivador{
+        margin-top: 7%;
+    }
+
+   
+
+    .wraper-images img{
+        width: 300px;
+        height: 300px;
+        margin-left: 15%;
+    }
+    
+    
+    .imagen-azul img{
+        width: 100%;
+        height: 15em;
+    }
+
+
+    .divisor-home{
+        margin-top: 0;
+        width: 100%;
+        height: 2.5em;
+        background-color: black;
+    }
+    
+    .logos-footer img{
+        width: 30px;
+        height: 30px;
+    }
+    .logos-footer{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+        .footer-home{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: rgb(214, 250, 252);
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    
+    .home-izquierda{
+        width: 70%;
+    }
+    .home-derecha{
+        width: 30%;
+        margin-left: 15%;
+    }
+    
+    .home-derecha ul{
+        list-style: none;
+    }
+  
 }
 
-.imagen-azul img{
-    width: 100%;
-    height: 100%;
+/* Desktop > 992px //////////////////////////////////////// */
+
+@media (min-width: 992px){
+    .main {
+        background-color: transparent;
+    grid-template-columns: 40% auto;  
+    /* grid-template-rows: 70% 5% 5%;   */
+    grid-template-areas: 
+    "area-texto wraper-images"
+    "divisor-home divisor-home"
+    "footer-home footer-home"
+    }
+
+    .texto-home{
+    
+        width: 30em;
+        margin-left: 10%;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+    .texto-secundario{
+        width: 25em;
+        margin-left: 18%; 
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+    }
+
+    .button-container button{
+        margin-top: 1.5625em;
+        margin-left: 20%;
+        width: 315px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .wrap-downpage{
+        display: grid;
+        grid-template-rows: repeat(1, 2fr);
+        width: 25em;
+        margin-left: 10%; 
+        font-size: 16px;
+    
+    }
+
+    .contenedor-secundario{
+        width: 100%;
+        height: 45%;
+        background-color: white;
+        margin-top: 4%;
+        margin-left: 9%;
+    }
+
+    .texto-motivador{
+        margin-top: 15%;
+    }
+
+
+    .wraper-images img{
+        width: 400px;
+        height: 400px;
+        margin-left: 15%;
+    }
+    
+    .imagen-azul img{
+        width: 82%;
+        height: 100%;
+    }
+
+    .divisor-home{
+        margin-top: 0;
+        width: 100%;
+        height: 40px;
+        background-color: black;
+    }
+    
+    .logos-footer img{
+        width: 30px;
+        height: 30px;
+    }
+    .logos-footer{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+        .footer-home{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            background-color: rgb(214, 250, 252);
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    
+    .home-izquierda{
+        width: 70%;
+    }
+    .home-derecha{
+        width: 30%;
+        margin-left: 15%;
+    }
+    
+    .home-derecha ul{
+        list-style: none;
+    }
+    
+    
+    
 }
 
-.texto-home{
-
-    width: 400px;
-    margin-left: 10%;
-    font-family: 'Poppins', sans-serif;
-    font-weight: bolder;
-}
-.texto-secundario{
-    width: 400px;
-    margin-left: 10%; 
-    font-family: 'Poppins', sans-serif;
-}
-.wrap-downpage{
-    display: grid;
-    grid-template-rows: repeat(1, 2fr);
-    width: 400px;
-    margin-left: 10%; 
-
-}
-.contenedor-secundario{
-    width: 100%;
-    height: 56%;
-    background-color: white;
-    margin-top: 5%;
-}
-
-.texto-motivador{
-    margin-top: 15%;
-}
-
-/* .area-texto {
-    width: 50%;
-}
-
-
-
-
-
-
-
-
-.button-container{
-width: 70%;
-margin-top: 5%;
-}
-
-.busca-contratos{
-    margin-left: 1%;
-}
-
-
-
-
-
-.wraper-images{
-    display: grid;
-}
-
-
-
-} */
