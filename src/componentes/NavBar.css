@@ -29,6 +29,7 @@ nav a {
   color: blue;
   margin-top: 0%;
   font-size: 0.75em;
+
 }
 
 .navbar button{
@@ -55,8 +56,8 @@ a[href="/registro"] {
 }
 
 
-
   @media (min-width: 576px){
+
     nav ul {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -86,6 +87,7 @@ a[href="/registro"] {
       color: blue;
       margin-top: 0%;
       font-size: 0.9em;
+
     }
     .navbar button{
       width: 95px;
