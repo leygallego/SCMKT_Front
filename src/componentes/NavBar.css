@@ -1,28 +1,8 @@
-/*   
- .navbar{
-  display: flex;
-  flex-direction: column;
-  
-  margin: 0px;
-      padding: 0.3125rem;
-      overflow: hidden;
-      background-color: rgb(214, 250, 252);
-      color: blue;
-      margin-top: 0%;
-      margin-bottom: 1%;
-      font-family: 'Poppins', sans-serif;
-      font-weight: bold;
-      font-size: 18px;
-    }
-
- 
-.navbar .links #hidden {
-  display: flex
-} */
-
+/* dispositivos móviles */
 
 nav ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -78,7 +58,8 @@ a[href="/registro"] {
 
   @media (min-width: 600px){
     nav ul {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       list-style-type: none;
       margin: 0;
       padding: 0;
@@ -89,8 +70,8 @@ a[href="/registro"] {
       text-decoration: none;
       display: inline-block;
       padding: 1rem;
-      margin-left: 2rem;
-      margin-right: 2rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
       padding-top: 1.1rem;
     }
   
@@ -99,25 +80,26 @@ a[href="/registro"] {
       grid-template-rows: repeat(1, 5fr); 
       list-style-type: none;
       margin: 0px;
-      padding: 0.1125rem;
+      padding: 0.0125rem;
       overflow: hidden;
       background-color: rgb(214, 250, 252);
       color: blue;
       margin-top: 0%;
-      font-size: 1.2em;
+      font-size: 0.6em;
     }
     .navbar button{
-      width: 65px;
+      width: 95px;
       height: 35px;
-      font-size: 14px;
+      font-size: 12px;
     }
-    .contained{
-      width: 55px;
+
+    /* .navbar .links ul{
+      width: 105px;
     }
-    
+     */
     .navbar span {
       color: blue;
-      font-size: 2.0em;
+      font-size: 1.8em;
       font-weight: bold;
     }
   
@@ -137,7 +119,8 @@ a[href="/registro"] {
 
 @media (min-width: 900px){
   nav ul {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -166,12 +149,9 @@ a[href="/registro"] {
     font-size: 1.2em;
   }
   .navbar button{
-    width: 65px;
+    width: 115px;
     height: 35px;
     font-size: 14px;
-  }
-  .contained{
-    width: 55px;
   }
   
   .navbar span {

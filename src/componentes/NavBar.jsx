@@ -20,7 +20,7 @@ function NavBar() {
             <ReorderIcon />
           </button> */}
           
-          <li>
+          <li className="smart" >
             <NavLink to="/"> <span>SmartContracts</span> </NavLink>
           </li>
           <li>
