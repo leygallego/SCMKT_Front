@@ -62,11 +62,11 @@ export default function BuildConratc() {
                         </div>
                         <div className="inputForm"><input className="inputFormCComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} /></div>
                     </div>
-                    <div className="labelInput combo">
-                        <div className="labelForm">
+                    <div className="labelInput-combo">
+                        <div className="labelForm-archivoTest">
                             Sube tu archivo de test.js
                         </div>
-                        <div className="inputForm"><input className="" type="file" /></div>
+                        <div className="inputForm-archivo"><input className="seleccion-archivo" type="file" /></div>
                     </div>
                     <div className="labelInput">
                         <div className="labelForm">
@@ -78,7 +78,7 @@ export default function BuildConratc() {
                         <div className="labelForm">
                             Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario
                         </div>
-                        <div className="inputForm">
+                        <div className="inputForm-checkbox">
                             <Checkbox
                                 value="checkedA"
                                 size='medium'
