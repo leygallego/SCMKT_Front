@@ -1,4 +1,4 @@
-import { GET_CONTRACTS, GET_USERS, POST_SING_UP, SEND_LOGIN } from "../actions";
+import { GET_CONTRACTS, GET_USERS, POST_SING_UP, SEND_LOGIN, GET_CONTRACT_BY_ID } from "../actions";
 
 
 const initialState = {
@@ -41,8 +41,15 @@ export default function rootReducer(state = initialState, action) {
         case GET_CONTRACTS:
             return {
                 ...state,
-                users: action.payload
+                contracts: action.payload
             }
+
+        case GET_CONTRACT_BY_ID:
+            return {
+                ...state,
+                contracts: action.payload
+            }
+
         case POST_SING_UP:
             // console.log('POST_SING_UP', action.payload);
             if (

@@ -4,6 +4,8 @@ export const GET_USERS = 'GET_USERS';
 export const GET_CONTRACTS = 'GET_CONTRACTS';
 export const POST_SING_UP = 'POST_SING_UP';
 export const SEND_LOGIN = 'SEND_LOGIN';
+export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID';
+export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 
 export const sendLogin = (userLoginObject) => {
     // console.log('ACTION:::', userLoginObject);
@@ -38,5 +40,24 @@ export const getContracts = ()=>{
             type: GET_CONTRACTS,
             payload: response.data
         }))
+    }
+}
+
+//GET_CONTRACT_BY_ID
+
+export const getContractsByID = (id)=>{
+    return async dispatch => {
+        return await axios.get(`http://localhost:3001/contract/${id}`)
+        .then(response => dispatch ({
+            type: GET_CONTRACT_BY_ID,
+            payload: response.data
+        }))
+    }
+}
+
+export const removeContract = () => {
+    return {
+        type: REMOVE_CONTRACT,
+        payload: {}
     }
 }

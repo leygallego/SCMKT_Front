@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { NavLink, useHistory } from 'react-router-dom';
+import { getContractsByID, removeContract } from "../actions/index"
+import { useDispatch } from 'react-redux';
 
 
-function DetalleContrato() {
-
+function DetalleContrato(props) {
+    const { id } = props.match.params
+    let dispatch = useDispatch
     let history = useHistory();
+
+    useEffect(() => {
+        dispatch(getContractsByID(id))
+        return () => {
+            dispatch(removeContract())
+        }
+    }, [dispatch, id])
 
     function handleClick() {
         history.push("contratos");
     }
+
 
     return (
         <>
@@ -25,6 +36,10 @@ function DetalleContrato() {
                             X
                         </Button>
                     </div>
+                    <React.Fragment>
+                        <p>Estoy dentro del Fragment</p>
+
+                    </React.Fragment>
                     <h2>Nombre del Contrato</h2>
                     <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
                     <h1><span>0,000000001</span> </h1>
