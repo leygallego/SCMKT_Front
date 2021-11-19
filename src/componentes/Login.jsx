@@ -73,8 +73,7 @@ export default function Login() {
         </>
     ) */
     const { 
-        loginWithRedirect, 
-        loginWithPopup,
+        loginWithRedirect,
         logout, 
         user, 
         isAuthenticated 
@@ -85,10 +84,7 @@ export default function Login() {
                 <h1>Prueba de Auth0 </h1>
                 <ul>
                     <li>
-                        <button onClick={loginWithPopup}>Login with Popup</button>
-                    </li>
-                    <li>
-                        <button onClick={loginWithRedirect}>Login with Redirect</button>
+                        <button onClick={loginWithRedirect}>Login</button>
                     </li>
                     <li>
                         <button onClick={logout}>Logout</button>
