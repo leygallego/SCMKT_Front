@@ -44,8 +44,8 @@ export const getContracts = ()=>{
 }
 
 export const getContractsByID = (id) =>{
-    return function (dispatch) {
-        return axios.get(`https://scmkt.herokuapp.com/contract/${id}`)
+    return async dispatch => {
+        return await axios.get(`https://scmkt.herokuapp.com/contract/${id}`)
         .then(response => dispatch ({
             type: GET_CONTRACT_BY_ID,
             payload: response.data
