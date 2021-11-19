@@ -7,7 +7,6 @@ const initialState = {
     user: {},
     contract: {},
     verified: false
-    
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -31,18 +30,21 @@ export default function rootReducer(state = initialState, action) {
 
         case POST_SING_UP:
             // console.log('POST_SING_UP', action.payload);
-            if (
-                action.payload.name === ""
-                || action.payload.country === ""
-                || action.payload.email === ""
-                || action.payload.wallet === ""
-                || action.payload.password === ""
-            ) {
-                return state;
-            }
-            return {
-                ...state,
-                newUser: [...state.newUser, action.payload]
+            // if (
+            //     action.userRegisterObject.username === ""
+            //     || action.userRegisterObject.country === ""
+            //     || action.userRegisterObject.email === ""
+            //     || action.userRegisterObject.wallet === ""
+            //     || action.userRegisterObject.password === ""
+            // ) {
+            //     return state;
+            // }
+            // return {
+            //     ...state,
+            //     newUser: [...state.newUser, action.userRegisterObject]
+            // }
+            return{
+                ...state
             }
         case SEND_LOGIN:
             console.log('SEND_LOGIN:::::', action.payload)

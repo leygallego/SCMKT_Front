@@ -17,11 +17,33 @@ export const sendLogin = (userLoginObject) => {
 
 export const postSingUp = (userRegisterObject) => {
     console.log('ACTION:::', userRegisterObject)
-    return {
-        type: POST_SING_UP,
-        payload: userRegisterObject
+    return async(dispatch) =>{
+        dispatch({
+            type:POST_SING_UP
+        });
+        await axios.put('https://scmkt.herokuapp.com/user/newuser', userRegisterObject)
+        .then((response)=>{
+            console.log("registrado correctamente", response);
+        })
+        .catch(error => {
+            console.log("No se registró" , error);
+        })
     }
+    
 }
+// export function createActivities(payload){
+//     return async (dispatch)=>{
+//         dispatch({
+//             type: CREATE_ACTIVITIES,
+//         });
+//         await axios.post('http://localhost:3001/activities/add', payload)
+//         .then((response)=>{
+//             console.log("registrado correctamente");
+//             console.log(response);
+//         })
+//     }
+
+// }
 
 export const getUsers = ()=>{
     return async dispatch => {

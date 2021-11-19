@@ -6,8 +6,9 @@ import { postSingUp } from '../actions';
 import './styles/registro.css';
 
 const Registro = () => {
-    const baseUrl = './perfil';
+    // const baseUrl = './perfil';
     const nuevoUsuario = useSelector(state => state.newUser)
+    console.log("nuevo usuario", nuevoUsuario);
 
     const Countries = ["", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia",
         "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize",
@@ -33,7 +34,7 @@ const Registro = () => {
     const [bool, setBool] = useState(true);
     const [avatarImage, setAvatarImage] = useState("images/user.png");
     const [registro, setRegistro] = useState({
-        name: "",
+        username: "",
         country: "",
         email: "",
         wallet: "",
@@ -73,23 +74,27 @@ const Registro = () => {
         e.preventDefault();
         console.log(registro)
         if (
-            registro.name === "" || registro.country === ""
+            registro.username === "" || registro.country === ""
             || registro.email === "" || registro.wallet === ""
             || registro.password === ""
 
         ) {
             console.log('Formulario incompleto...')
         } else {
-            // setRegistro({
-            //     name: "",
-            //     country: "",
-            //     email: "",
-            //     wallet: "",
-            //     password: ""
-            // });
-
             dispatch(postSingUp(registro));
-            window.location.href = baseUrl
+            console.log("el registro", registro);
+            
+            setRegistro({
+                username: "",
+                country: "",
+                email: "",
+                wallet: "",
+                password: ""
+            });
+            alert("Enviado correctamente")
+
+            
+            // window.location.href = baseUrl
         }
     }
 
@@ -120,7 +125,7 @@ const Registro = () => {
                         />
                     </form>
                 </div>
-                <div><p>Create your account to start viewing the</p><p>available contracts</p></div>
+                <div><p>Cree su cuenta para empezar a ver</p><p>los contratos disponibles</p></div>
                 <div>
 
 
@@ -128,7 +133,7 @@ const Registro = () => {
                         {bool ? <div className="registro1">
                             <div className="labelInput">
                                 <div className="labelForm">User name</div>
-                                <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
+                                <div className="inputForm"><input className="inputFormComponent" type="text" name="username" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
                             </div>
                             <div className="labelInput">
                                 <div className="labelForm">Country</div>
