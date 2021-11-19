@@ -35,7 +35,7 @@ export const getUsers = ()=>{
 
 export const getContracts = ()=>{
     return async dispatch => {
-        return await axios.get("http://localhost:3001/user")
+        return await axios.get("http://scmkt.herokuapp.com/contract")
         .then(response => dispatch ({
             type: GET_CONTRACTS,
             payload: response.data

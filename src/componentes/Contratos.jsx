@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Contratos.css';
-import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
+import { getContracts } from "../actions/index"
+import { useDispatch, useSelector } from 'react-redux';
+import ContractCard from './ContractCard';
 
 
 
 function Contratos() {
+    let dispatch = useDispatch()
+    const { contracts } = useSelector(state => state)
+    
+    console.log(contracts)
+
+    useEffect(() => {
+        dispatch(getContracts())
+    }, [dispatch])
+
     return (
         <>
         <div>
@@ -13,49 +25,13 @@ function Contratos() {
         
         <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
         </div>
-
-
         <div className="main-contratos">
+        {
+            contracts.length > 0 && contracts.map((c)=>{
+                return <ContractCard id={c.id} conditions={c.conditions}/>
+            })
             
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                
-            <h1><span>0,000000001</span> </h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink> 
-            <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-            <div className="contratos-card">
-            <NavLink to="/detalle"><h2>Nombre Contrato</h2></NavLink>                 <h1><span>0,000000001</span></h1>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            </div>
-
+        }
         </div>
         <div className="footer-home">
                 <div className="home-izquierda">
