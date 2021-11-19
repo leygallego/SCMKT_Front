@@ -29,6 +29,7 @@ function DetalleContrato(props) {
 
     return (
         <>
+            <div><h1>Detalle Contrato</h1></div>
             <div className="main-detalle">
 
                 <div className="detalle-card">

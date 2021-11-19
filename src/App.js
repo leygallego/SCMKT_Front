@@ -24,16 +24,16 @@ function App() {
         <Switch>
         <Route exact path="/" component={Home}></Route>   
         <Route exact path="/contratos" component={Contratos}></Route>  
-        <Route  exact path="/aboutus" component={AboutUs}></Route>  
-        <Route  exact path="/detalle/:id" render={({match})=> <DetalleContrato id={match.params.id} />}></Route>
-        <Route  exact path="/detalleview" component={DetalleView}></Route>
-        <Route  exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
-        <Route  exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
-        <Route  exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
-        <Route  exact path="/perfil" component={Profile}></Route>   
-        <Route  exact path="/registro" component={Ingreso}></Route>
-        <Route  exact path="/login" component={IngresoUser}></Route>   
-        <Route  exact path="/creacontrato" component={BuildContratc}></Route>   
+        <Route exact path="/aboutus" component={AboutUs}></Route>  
+        <Route exact path="/detalle/:id" render={({match})=> <DetalleContrato id={match.params.id} />}></Route>
+        <Route exact path="/detalleview" component={DetalleView}></Route>
+        <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
+        <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
+        <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
+        <Route exact path="/perfil" component={Profile}></Route>   
+        <Route exact path="/registro" component={Ingreso}></Route>
+        <Route exact path="/login" component={IngresoUser}></Route>   
+        <Route exact path="/creacontrato" component={BuildContratc}></Route>   
         
         
  
