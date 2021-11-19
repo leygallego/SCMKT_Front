@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 // import { sendLogin } from '../actions';
 // import { NavLink, Redirect } from 'react-router-dom';
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Login() {
-    const baseUrl = './perfil';
+/*     // const baseUrl = './perfil';
 
     const usuario = useSelector(state => state.user);
     console.log(usuario)
 
+    useEffect(() => {
+        
+    })
     // const dispatch = useDispatch();
 
     const [login, setLogin] = useState({
@@ -68,5 +71,39 @@ export default function Login() {
 
         
         </>
-    )
+    ) */
+    const { 
+        loginWithRedirect, 
+        loginWithPopup,
+        logout, 
+        user, 
+        isAuthenticated 
+    } = useAuth0();
+    return (
+        <>
+            <div className="loginComponent">
+                <h1>Prueba de Auth0 </h1>
+                <ul>
+                    <li>
+                        <button onClick={loginWithPopup}>Login with Popup</button>
+                    </li>
+                    <li>
+                        <button onClick={loginWithRedirect}>Login with Redirect</button>
+                    </li>
+                    <li>
+                        <button onClick={logout}>Logout</button>
+                    </li>
+                </ul>
+                <h3>User is {isAuthenticated? "Logged in" : "Not logged"}</h3>
+
+                {isAuthenticated && (
+                <pre style={{ textAlign: "start"}}>
+                    {JSON.stringify(user, null, 2)}
+                </pre>
+                )}
+            </div>
+        </>
+    );
+
+
 }
