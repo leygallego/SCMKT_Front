@@ -43,11 +43,9 @@ export const getContracts = ()=>{
     }
 }
 
-//GET_CONTRACT_BY_ID
-
-export const getContractsByID = (id)=>{
-    return async dispatch => {
-        return await axios.get(`http://localhost:3001/contract/${id}`)
+export const getContractsByID = (id) =>{
+    return function (dispatch) {
+        return axios.get(`http://localhost:3001/contract/${id}`)
         .then(response => dispatch ({
             type: GET_CONTRACT_BY_ID,
             payload: response.data

@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { getContractsByID, removeContract } from "../actions/index"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function DetalleContrato(props) {
-    const { id } = props.match.params
-    let dispatch = useDispatch
-    let history = useHistory();
+    const { id } = useParams()
+    let dispatch = useDispatch()
+    let history = useHistory()
+    const contractDetail = useSelector(state => state.contract)
+    
+    
+    console.log(contractDetail)
 
     useEffect(() => {
         dispatch(getContractsByID(id))
@@ -21,11 +25,10 @@ function DetalleContrato(props) {
     function handleClick() {
         history.push("contratos");
     }
-
+    
 
     return (
         <>
-            <div><h1>Detalle Contrato</h1></div>
             <div className="main-detalle">
 
                 <div className="detalle-card">
@@ -36,13 +39,12 @@ function DetalleContrato(props) {
                             X
                         </Button>
                     </div>
-                    <React.Fragment>
-                        <p>Estoy dentro del Fragment</p>
-
+                    <React.Fragment>                        
+                        <h2>{contractDetail.conditions.name}</h2>
+                        <p>{contractDetail.conditions.shortdescription}</p>
+                        <h1><span>{contractDetail.conditions.amount}</span> </h1>
                     </React.Fragment>
-                    <h2>Nombre del Contrato</h2>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    <h1><span>0,000000001</span> </h1>
+                    
                     <Button
                         className="aceptar-contratos"
                         variant="contained"
