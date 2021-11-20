@@ -23,7 +23,7 @@ function DetalleContrato(props) {
     }, [dispatch, id])
 
     function handleClick() {
-        history.push("contratos");
+        history.push("/contratos");
     }
     
 
