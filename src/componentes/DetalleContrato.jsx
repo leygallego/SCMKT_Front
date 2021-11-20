@@ -23,7 +23,7 @@ function DetalleContrato(props) {
     }, [dispatch, id])
 
     function handleClick() {
-        history.push("contratos");
+        history.push("/contratos");
     }
     
 
@@ -42,6 +42,7 @@ function DetalleContrato(props) {
                 </div>
                 <h2>{contract.conditions.name}</h2>
                 <p>{contract.conditions.shortdescription}</p>
+                <p>{contract.conditions.longdescription}</p>
                 <h1><span>{contract.conditions.amount}</span> </h1>
                 
                 <Button
