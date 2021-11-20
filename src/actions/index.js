@@ -6,6 +6,7 @@ export const POST_SING_UP = 'POST_SING_UP';
 export const SEND_LOGIN = 'SEND_LOGIN';
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID';
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
+export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 
 export const sendLogin = (userLoginObject) => {
     // console.log('ACTION:::', userLoginObject);
@@ -73,6 +74,21 @@ export const getContractsByID = (id) =>{
             payload: response.data
         }))
     }
+}
+
+export function createContract(contract){
+    return (dispatch) => {
+      try {
+        axios.put(`https://scmkt.herokuapp.com/contract/new`, contract)
+            .then(() => {
+                return dispatch({
+                    type: CREATE_CONTRACT
+                })
+            })
+      } catch (error) {
+        console.log(error)
+    }
+  }
 }
 
 export const removeContract = () => {
