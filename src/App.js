@@ -9,7 +9,7 @@ import DetalleView from './componentes/DetalleView';
 import Profile from './componentes/Profile';
 import Ingreso from './componentes/Ingreso';
 import IngresoUser from './componentes/IngresoUser';
-import BuildContratc from './componentes/BuildConratc';
+import BuildContract from './componentes/BuildConract';
 import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
@@ -33,7 +33,7 @@ function App() {
         <Route exact path="/perfil" component={Profile}></Route>   
         <Route exact path="/registro" component={Ingreso}></Route>
         <Route exact path="/login" component={IngresoUser}></Route>   
-        <Route exact path="/creacontrato" component={BuildContratc}></Route>   
+        <Route exact path="/creacontrato" component={BuildContract}></Route>   
         
         
  
