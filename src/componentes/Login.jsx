@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Avatar } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+//import React, { useEffect, useState } from 'react';
+//import { Avatar } from '@material-ui/core';
+//import { useSelector } from 'react-redux';
 // import { sendLogin } from '../actions';
 // import { NavLink, Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 export default function Login() {
 /*     // const baseUrl = './perfil';
@@ -82,7 +83,12 @@ export default function Login() {
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
-        console.log(token);
+        const response = await axios.get('http://localhost:3001/user/login', {
+            headers: {
+                Authorization: `Bearer ${token}`
+        }});
+        console.log(response);
+
     }
 
     return (
