@@ -30,14 +30,13 @@ function NavBar() {
             <NavLink to="/contratos">Contratos</NavLink>
           </li>
           <li>
+            <a href="/login">Iniciar Sesión</a>
+          </li>
+          <li>
             <NavLink to="/aboutus">Quiénes Somos</NavLink>
           </li>
           <li>
          <NavLink to="/registro"> <Button variant="contained">Registrarse</Button> </NavLink>
-          </li>
-          <li>
-            <a href="/login">Iniciar Sesión</a>
-
           </li>
         </ul>
       </div>

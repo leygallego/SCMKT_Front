@@ -76,8 +76,15 @@ export default function Login() {
         loginWithRedirect,
         logout, 
         user, 
-        isAuthenticated 
+        isAuthenticated, 
+        getAccessTokenSilently,
     } = useAuth0();
+
+    async function callProtectedApi() {
+        const token = await getAccessTokenSilently();
+        console.log(token);
+    }
+
     return (
         <>
             <div className="loginComponent">
@@ -91,6 +98,11 @@ export default function Login() {
                     </li>
                 </ul>
                 <h3>User is {isAuthenticated? "Logged in" : "Not logged"}</h3>
+
+                <ul>
+                    <li><button onClick={callProtectedApi}>Call protected API</button></li>
+                    <li><button>Call API</button></li>
+                </ul>
 
                 {isAuthenticated && (
                 <pre style={{ textAlign: "start"}}>
