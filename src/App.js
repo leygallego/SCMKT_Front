@@ -14,9 +14,12 @@ import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
 import Footer from './componentes/Footer';
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 function App() {
+
+  const { isAuthenticated } = useAuth0()
+
   return (
     <div className="App">
       <Router>
@@ -31,13 +34,17 @@ function App() {
         <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
         <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
         <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
-        <Route exact path="/perfil" component={Profile}></Route>   
+        {
+          isAuthenticated? (
+            <Route exact path="/perfil" component={Profile}></Route>
+          )
+          :(
+            <Route exact path="/perfil" component={Ingreso}></Route>
+          )
+        }
         <Route exact path="/registro" component={Ingreso}></Route>
         <Route exact path="/login" component={IngresoUser}></Route>   
         <Route exact path="/creacontrato" component={BuildContract}></Route>   
-        
-        
- 
         </Switch>
      
         <Footer />

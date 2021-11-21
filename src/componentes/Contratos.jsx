@@ -5,12 +5,14 @@ import { NavLink } from 'react-router-dom';
 import { getContracts } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import ContractCard from './ContractCard';
+import { useAuth0 } from '@auth0/auth0-react'
 
 
 
 function Contratos() {
     let dispatch = useDispatch()
     const { contracts } = useSelector(state => state)
+    const { isAuthenticated } = useAuth0()
     
     console.log(contracts)
 
@@ -22,8 +24,21 @@ function Contratos() {
         <>
         <div>
         <h1>Componente Contratos</h1>
+        {
+            isAuthenticated?
+            (
+                <div>
+                    <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+                </div>
+            )
+            :(
+                <div>
+                    <NavLink to="/login"><Button variant="contained">Crear Contrato</Button></NavLink>
+                </div>
+            )
+
+        }
         
-        <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
         </div>
         <div className="main-contratos">
         {
