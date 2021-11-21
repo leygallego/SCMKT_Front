@@ -37,14 +37,14 @@ function NavBar() {
           <li>
             <NavLink to="/contratos">Contratos</NavLink>
           </li>
-          <li>
-            <NavLink to="/perfil">Perfil</NavLink>
-          </li>
           { 
             isAuthenticated ? 
             (
               <div>
                 <ul>
+                    <li>
+                      <NavLink to="/perfil">Perfil</NavLink>
+                    </li>
                     <li>
                         <button onClick={logout}>Logout</button>
                     </li>

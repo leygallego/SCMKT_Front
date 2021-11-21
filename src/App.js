@@ -40,7 +40,7 @@ function App() {
             <Route exact path="/perfil" component={Profile}></Route>
           )
           :(
-            <Route exact path="/perfil" component={Ingreso}></Route>
+            <Route exact path="/perfil" component={IngresoUser}></Route>
           )
         }
         <Route exact path="/registro" component={Ingreso}></Route>
