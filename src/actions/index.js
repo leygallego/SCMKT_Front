@@ -6,10 +6,20 @@ export const POST_SING_UP = 'POST_SING_UP';
 export const SEND_LOGIN = 'SEND_LOGIN';
 
 export const sendLogin = (userLoginObject) => {
-    // console.log('ACTION:::', userLoginObject);
-    return {
-        type: SEND_LOGIN,
-        payload: userLoginObject
+    console.log('ACTION:::', userLoginObject);
+    return async dispatch => {
+        return await axios.get("http://localhost:3001/user/login", {
+            headers: {
+                authorization: `Bearer ${userLoginObject}`
+            },
+            body: {
+                data: 12345
+            }
+        })
+        .then(response => dispatch({
+            type: SEND_LOGIN,
+            payload: response.data
+        }))
     }
 }
 
@@ -21,22 +31,22 @@ export const postSingUp = (userRegisterObject) => {
     }
 }
 
-export const getUsers = ()=>{
+export const getUsers = () => {
     return async dispatch => {
         return await axios.get("http://localhost:3001/user")
-        .then(response => dispatch ({
-            type: GET_USERS,
-            payload: response.data
-        }))
+            .then(response => dispatch({
+                type: GET_USERS,
+                payload: response.data
+            }))
     }
 }
 
-export const getContracts = ()=>{
+export const getContracts = () => {
     return async dispatch => {
         return await axios.get("http://localhost:3001/user")
-        .then(response => dispatch ({
-            type: GET_CONTRACTS,
-            payload: response.data
-        }))
+            .then(response => dispatch({
+                type: GET_CONTRACTS,
+                payload: response.data
+            }))
     }
 }
