@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import './NavBar.css';
 // import ReorderIcon from '@mui/icons-material/Reorder';
 
@@ -32,9 +32,7 @@ function NavBar() {
           <li>
             <a href="/login">Iniciar Sesión</a>
           </li>
-          <li>
-            <NavLink to="/aboutus">Quiénes Somos</NavLink>
-          </li>
+
           <li>
          <NavLink to="/registro"> <Button variant="contained">Registrarse</Button> </NavLink>
           </li>
