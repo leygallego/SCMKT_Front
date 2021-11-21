@@ -9,10 +9,20 @@ export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 
 export const sendLogin = (userLoginObject) => {
-    // console.log('ACTION:::', userLoginObject);
-    return {
-        type: SEND_LOGIN,
-        payload: userLoginObject
+    console.log('ACTION:::', userLoginObject);
+    return async dispatch => {
+        return await axios.get("http://localhost:3001/user/login", {
+            headers: {
+                authorization: `Bearer ${userLoginObject}`
+            },
+            body: {
+                data: 12345
+            }
+        })
+        .then(response => dispatch({
+            type: SEND_LOGIN,
+            payload: response.data
+        }))
     }
 }
 
@@ -46,18 +56,19 @@ export const postSingUp = (userRegisterObject) => {
 
 // }
 
-export const getUsers = ()=>{
+export const getUsers = () => {
     return async dispatch => {
         return await axios.get("http://localhost:3001/user")
-        .then(response => dispatch ({
-            type: GET_USERS,
-            payload: response.data
-        }))
+            .then(response => dispatch({
+                type: GET_USERS,
+                payload: response.data
+            }))
     }
 }
 
-export const getContracts = ()=>{
+export const getContracts = () => {
     return async dispatch => {
+
         return await axios.get("http://scmkt.herokuapp.com/contract")
         .then(response => dispatch ({
             type: GET_CONTRACTS,

@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
-import { Avatar } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+//import React, { useEffect, useState } from 'react';
+//import { Avatar } from '@material-ui/core';
+//import { useSelector } from 'react-redux';
 // import { sendLogin } from '../actions';
 // import { NavLink, Redirect } from 'react-router-dom';
-
+import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { sendLogin } from '../actions';
 
 export default function Login() {
-    const baseUrl = './perfil';
+/*     // const baseUrl = './perfil';
 
     const usuario = useSelector(state => state.user);
     console.log(usuario)
 
+    useEffect(() => {
+        
+    })
     // const dispatch = useDispatch();
 
     const [login, setLogin] = useState({
@@ -68,5 +74,55 @@ export default function Login() {
 
         
         </>
-    )
+    ) */
+    const { 
+        loginWithRedirect,
+        logout, 
+        user, 
+        isAuthenticated, 
+        getAccessTokenSilently,
+    } = useAuth0();
+
+    const dispatch = useDispatch();
+    
+    async function callProtectedApi() {
+        const token = await getAccessTokenSilently();
+        dispatch(sendLogin(token))
+        // const response = await axios.get('http://localhost:3001/user/login', {
+        //     headers: {
+        //         Authorization: `Bearer ${token}`
+        // }});
+        // console.log(response);
+
+    }
+
+    return (
+        <>
+            <div className="loginComponent">
+                <h1>Prueba de Auth0 </h1>
+                <ul>
+                    <li>
+                        <button onClick={loginWithRedirect}>Login</button>
+                    </li>
+                    <li>
+                        <button onClick={logout}>Logout</button>
+                    </li>
+                </ul>
+                <h3>User is {isAuthenticated? "Logged in" : "Not logged"}</h3>
+
+                <ul>
+                    <li><button onClick={callProtectedApi}>Call protected API</button></li>
+                    <li><button>Call API</button></li>
+                </ul>
+
+                {isAuthenticated && (
+                <pre style={{ textAlign: "start"}}>
+                    {JSON.stringify(user, null, 2)}
+                </pre>
+                )}
+            </div>
+        </>
+    );
+
+
 }
