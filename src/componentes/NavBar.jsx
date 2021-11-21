@@ -1,11 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import './NavBar.css';
 // import ReorderIcon from '@mui/icons-material/Reorder';
+import { useAuth0 } from "@auth0/auth0-react"
 
 function NavBar() {
 // const [showLinks, setShowLinks] = useState(false);
+
+  const { 
+    loginWithRedirect,
+    logout, 
+    isAuthenticated
+    } = useAuth0()
+
 
     return (
         <div>
@@ -29,16 +37,34 @@ function NavBar() {
           <li>
             <NavLink to="/contratos">Contratos</NavLink>
           </li>
-          <li>
-            <a href="/login">Iniciar Sesión</a>
-          </li>
+          { 
+            isAuthenticated ? 
+            (
+              <div>
+                <ul>
+                    <li>
+                        <button onClick={logout}>Logout</button>
+                    </li>
+                </ul>
+              </div>
+            )
+            :(
+              <div>
+                <ul>
+                  <li>
+                    <button onClick={loginWithRedirect} >Iniciar Sesión</button>
+                  </li>
 
-          <li>
-         <NavLink to="/registro"> <Button variant="contained">Registrarse</Button> </NavLink>
-          </li>
+                  <li>
+                    <NavLink to="/registro"> <Button variant="contained">Registrarse</Button> </NavLink>
+                  </li>
+                </ul>
+              </div>
+            )
+          }
         </ul>
-      </div>
         
+      </div>
       </nav>
       </div>
              
