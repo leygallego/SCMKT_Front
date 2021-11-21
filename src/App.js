@@ -13,9 +13,8 @@ import BuildContract from './componentes/BuildConract';
 import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
+import Footer from './componentes/Footer';
 import { useAuth0 } from '@auth0/auth0-react'
-
-
 
 function App() {
 
@@ -47,6 +46,8 @@ function App() {
         <Route exact path="/login" component={IngresoUser}></Route>   
         <Route exact path="/creacontrato" component={BuildContract}></Route>   
         </Switch>
+     
+        <Footer />
       </Router>
     </div>
   );
