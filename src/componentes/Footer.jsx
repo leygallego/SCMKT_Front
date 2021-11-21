@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 function Footer() {
+    const { isAuthenticated } = useAuth0()
+
     return (
         <div className="footer-home">
                 <div className="home-izquierda">
@@ -30,10 +32,23 @@ function Footer() {
                         <li>
                             <NavLink to="/aboutus">Quiénes Somos</NavLink>
                         </li>
-
-                        <li>
-                            <NavLink to="/registro">Regístrate</NavLink>
-                        </li>
+                        {
+                            isAuthenticated? (
+                                <div>
+                                    <li>
+                                        <NavLink to="/perfil">Mi Cuenta</NavLink>
+                                    </li>
+                                </div>
+                            )
+                            :(
+                                <div>
+                                    <li>
+                                        <NavLink to="/registro">Regístrate</NavLink>
+                                    </li>
+                                </div>
+                            )
+                        }
+                        
                     </ul>
 
                 </div>

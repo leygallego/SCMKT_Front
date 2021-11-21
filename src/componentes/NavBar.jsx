@@ -37,6 +37,9 @@ function NavBar() {
           <li>
             <NavLink to="/contratos">Contratos</NavLink>
           </li>
+          <li>
+            <NavLink to="/perfil">Perfil</NavLink>
+          </li>
           { 
             isAuthenticated ? 
             (
