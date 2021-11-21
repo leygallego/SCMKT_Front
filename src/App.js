@@ -13,6 +13,7 @@ import BuildContract from './componentes/BuildConract';
 import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
+import Footer from './componentes/Footer';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
  
         </Switch>
      
-
+        <Footer />
       </Router>
     </div>
   );
