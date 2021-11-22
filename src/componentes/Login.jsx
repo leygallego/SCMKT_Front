@@ -4,9 +4,9 @@
 // import { sendLogin } from '../actions';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { sendLogin } from '../actions';
+//import axios from 'axios';
+//import { useDispatch } from 'react-redux';
+//import { sendLogin } from '../actions';
 
 export default function Login() {
     /*     // const baseUrl = './perfil';
@@ -77,23 +77,12 @@ export default function Login() {
         ) */
     const {
         loginWithRedirect,
-        logout,
+        //logout,
         user,
         isAuthenticated,
-        getAccessTokenSilently,
     } = useAuth0();
 
-    const dispatch = useDispatch();
 
-    async function callProtectedApi() {
-        const token = await getAccessTokenSilently();
-        dispatch(sendLogin(token))
-        const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
-            headers: {
-                Authorization: `Bearer ${token}`
-        }});
-
-    }
     console.log(user)
     return (
         <>
@@ -113,10 +102,10 @@ export default function Login() {
 
                 {/* <h3>User is {isAuthenticated ? "Logged in" : "Not logged"}</h3> */}
 
-                {<ul>
+                {/*<ul>
                     <li><button onClick={callProtectedApi}>Call protected API</button></li>
                     <li><button>Call API</button></li>
-                </ul>}
+                </ul>*/}
 
                 {isAuthenticated && (
                     <pre style={{ textAlign: "start" }}>

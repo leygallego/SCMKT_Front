@@ -70,7 +70,7 @@ export const getUsers = () => {
 }
 
 export const getUserByID = (id) =>{
-    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,7}')
+    let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,7}')
     if(id === regex){
         id = axios.get(`https://scmkt.herokuapp.com/user/auth/${id}`)
     }
