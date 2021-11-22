@@ -32,7 +32,6 @@ function Profile() {
             Authorization: `Bearer ${token}`
             }
         });
-        //Push al state.user
     }
 
     dispatch(callProtectedApi)
