@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Auth0Provider } from '@auth0/auth0-react'
 
+//"http://localhost:3000/perfil" || "https://henryfront.surge.sh/perfil"
+
 ReactDOM.render(
   <Provider store={store}>
     <Auth0Provider
