@@ -115,13 +115,13 @@ export const removeContract = () => {
     }
 }
 
-export const editUser = (id) => {
+export const editUser = (id, user) => {
     console.log('ACTION EDIT USER:::', id)
     return async(dispatch) =>{
         dispatch({
             type:EDIT_USER
         });
-        await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, id)
+        await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
         .then((response)=>{
             console.log("registrado correctamente", response);
         })

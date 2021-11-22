@@ -5,7 +5,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { postSingUp } from '../actions';
+import { editUser } from '../actions';
 import { sendLogin } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react"
 import axios from 'axios';
@@ -129,7 +129,7 @@ function Profile() {
         ) {
             console.log('Formulario incompleto...')
         } else {
-            dispatch(postSingUp(registro));
+            dispatch(editUser(user.id, registro));
             console.log("el registro", registro);
             
             setRegistro({
@@ -226,10 +226,9 @@ function Profile() {
                         >Datos Personales</Button> 
                         {
                             edicionPerfil ? <div>
-                        <h6>Fulano de tal</h6> 
-                        <h6>Wakanda</h6>
-                        <h6>fulano@gmail.com</h6>
-                        <h6>25/01/2001</h6>
+                        <h6>{user.name}</h6> 
+                        <h6>{user.country}</h6>
+                        <h6>{user.email}</h6>
                             </div> : 
                             <form onSubmit={e => { handleOnSubmit(e) }}>
                             <div className="registro1">

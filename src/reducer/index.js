@@ -79,12 +79,11 @@ export default function rootReducer(state = initialState, action) {
                 user: action.payload
             };
 
-            case EDIT_USER:
-                console.log("reducer", action.id);
-                return{
-                    ...state,
-                    user : action.id
-                }
+            // case EDIT_USER:
+            //     return{
+            //         ...state,
+            //         user : action.user
+            //     }
 
         default: return state
     }
