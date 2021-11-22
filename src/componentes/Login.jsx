@@ -4,7 +4,7 @@
 // import { sendLogin } from '../actions';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-// import axios from 'axios';
+import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { sendLogin } from '../actions';
 
@@ -88,11 +88,10 @@ export default function Login() {
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
         dispatch(sendLogin(token))
-        // const response = await axios.get('http://localhost:3001/user/login', {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        // }});
-        // console.log(response);
+        const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+            headers: {
+                Authorization: `Bearer ${token}`
+        }});
 
     }
     console.log(user)
@@ -114,16 +113,16 @@ export default function Login() {
 
                 {/* <h3>User is {isAuthenticated ? "Logged in" : "Not logged"}</h3> */}
 
-                {/* <ul>
+                {<ul>
                     <li><button onClick={callProtectedApi}>Call protected API</button></li>
                     <li><button>Call API</button></li>
-                </ul> */}
+                </ul>}
 
-                {/* {isAuthenticated && (
+                {isAuthenticated && (
                     <pre style={{ textAlign: "start" }}>
                         {JSON.stringify(user, null, 2)}
                     </pre>
-                )} */}
+                )}
 
                 {/* {console.log(user.nickname)} */}
                 {/* <div>{user.email}</div> */}

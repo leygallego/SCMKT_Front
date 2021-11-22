@@ -54,26 +54,30 @@ export default function rootReducer(state = initialState, action) {
                 ...state
             }
         case SEND_LOGIN:
-            console.log('SEND_LOGIN:::::', action.payload)
-            const { name, password } = action.payload;
-            console.log('Destructurado', name, password)
-            state.newUser.map(
-                element => {
-                    if (element.name === name && element.password === password) {
-                        console.log('Si hay login', element.name, element.password);
-                        return {
-                            ...state,
-                            user: {
-                                name,
-                                password
-                            }
-                        }
+            //console.log('Este es el payload: ', action.payload)
+            //console.log('SEND_LOGIN:::::', action.payload)
+            //const { name, password } = action.payload;
+            //console.log('Destructurado', name, password)
+            // state.newUser.map(
+            //     element => {
+            //         if (element.name === name && element.password === password) {
+            //             console.log('Si hay login', element.name, element.password);
+            //             return {
+            //                 ...state,
+            //                 user: {
+            //                     name,
+            //                     password
+            //                 }
+            //             }
 
-                    }
-                    return null;
-                }
-            );
-            return state;
+            //         }
+            //         return null;
+            //     }
+            // );
+            return {
+                ...state,
+                user: action.payload
+            };
 
         default: return state
     }
