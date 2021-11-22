@@ -43,7 +43,7 @@ function App() {
           )
         }
         {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
-        {/*<Route exact path="/login" component={IngresoUser}></Route> */}   
+        <Route exact path="/login" component={Home}></Route>
         <Route exact path="/creacontrato" component={BuildContract}></Route>   
         </Switch>
      
