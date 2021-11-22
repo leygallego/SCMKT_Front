@@ -20,10 +20,12 @@ export const sendLogin = (userLoginObject) => {
                 data: 12345
             }
         })
-        .then(response => dispatch({
+        .then(response => {
+            dispatch({
             type: SEND_LOGIN,
             payload: response.data
-        }))
+            })
+        })
     }
 }
 
