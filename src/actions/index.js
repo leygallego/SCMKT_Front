@@ -11,7 +11,7 @@ export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const sendLogin = (userLoginObject) => {
     console.log('ACTION:::', userLoginObject);
     return async dispatch => {
-        return await axios.get("http://localhost:3001/user/login", {
+        return await axios.get('https://scmkt.herokuapp.com/user/login', {
             headers: {
                 authorization: `Bearer ${userLoginObject}`
             },
