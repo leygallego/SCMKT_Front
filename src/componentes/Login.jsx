@@ -2,7 +2,7 @@
 //import { Avatar } from '@material-ui/core';
 //import { useSelector } from 'react-redux';
 // import { sendLogin } from '../actions';
-// import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 // import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -95,7 +95,7 @@ export default function Login() {
         // console.log(response);
 
     }
-console.log(user)
+    console.log(user)
     return (
         <>
             <div className="loginComponent">
@@ -119,17 +119,20 @@ console.log(user)
                     <li><button>Call API</button></li>
                 </ul> */}
 
-                {isAuthenticated && (
+                {/* {isAuthenticated && (
                     <pre style={{ textAlign: "start" }}>
                         {JSON.stringify(user, null, 2)}
                     </pre>
-                )}
+                )} */}
 
-                {/* {console.log(user.nickname)}
-                <div>{user.nickname}</div>
-                { 
-                    isAuthenticated ? console.log('autenticado') : console.log("no autenticado") 
-                } */}
+                {/* {console.log(user.nickname)} */}
+                {/* <div>{user.email}</div> */}
+                {
+                    isAuthenticated ?  
+                    <div>
+                    <NavLink to="/login"></NavLink>
+                </div>
+                : console.log("no autenticado")}
             </div>
         </>
     );
