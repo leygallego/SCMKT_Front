@@ -4,6 +4,9 @@ import { NavLink } from 'react-router-dom';
 import './NavBar.css';
 // import ReorderIcon from '@mui/icons-material/Reorder';
 import { useAuth0 } from "@auth0/auth0-react"
+// import axios from 'axios';
+// import { useDispatch} from 'react-redux';
+// import { sendLogin } from '../actions';
 
 function NavBar() {
   // const [showLinks, setShowLinks] = useState(false);
@@ -11,9 +14,10 @@ function NavBar() {
   const {
     loginWithRedirect,
     logout,
-    isAuthenticated
-  } = useAuth0()
-
+    //user,
+    isAuthenticated,
+    //getAccessTokenSilently,
+  } = useAuth0();
 
   return (
     <div>

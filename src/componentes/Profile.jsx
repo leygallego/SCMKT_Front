@@ -6,6 +6,10 @@ import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
 import { postSingUp } from '../actions';
+import { sendLogin } from '../actions';
+import { useAuth0 } from "@auth0/auth0-react"
+import axios from 'axios';
+
 
 
 
@@ -14,7 +18,24 @@ function Profile() {
 
     const usuarios = useSelector(state => state.users)
     const contratos = useSelector(state => state.contracts)
+    const user = useSelector(state => state.user)
     const dispatch = useDispatch();
+    const {
+        getAccessTokenSilently,
+      } = useAuth0();
+    
+    async function callProtectedApi() {
+    const token = await getAccessTokenSilently();
+    dispatch(sendLogin(token))
+    const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+        headers: {
+            Authorization: `Bearer ${token}`
+            }
+        });
+    }
+
+    dispatch(callProtectedApi)
+    
 
     
 
@@ -103,7 +124,7 @@ function Profile() {
 
         <div className="main-perfil">
             <div className="perfil-card">
-                <h4>Bienvenido (nombre de usuario)</h4>
+                <h4>Bienvenido (nombre de usuario) {user.name}</h4>
 
                 <div className="contratos-publicados">
                     <h5>Contratos Publicados</h5>
