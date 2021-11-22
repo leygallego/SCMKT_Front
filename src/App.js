@@ -8,7 +8,7 @@ import DetalleContrato from './componentes/DetalleContrato';
 import DetalleView from './componentes/DetalleView';
 import Profile from './componentes/Profile';
 // import Ingreso from './componentes/Ingreso';
-import IngresoUser from './componentes/IngresoUser';
+//import IngresoUser from './componentes/IngresoUser';
 import BuildContract from './componentes/BuildConract';
 import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
@@ -43,7 +43,7 @@ function App() {
           )
         }
         {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
-        <Route exact path="/login" component={IngresoUser}></Route>   
+        <Route exact path="/login" component={Home}></Route>
         <Route exact path="/creacontrato" component={BuildContract}></Route>   
         </Switch>
      

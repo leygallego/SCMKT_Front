@@ -12,7 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 function Contratos() {
     let dispatch = useDispatch()
     const { contracts } = useSelector(state => state)
-    const { isAuthenticated } = useAuth0()
+    const { isAuthenticated, loginWithRedirect } = useAuth0()
     
     console.log(contracts)
 
@@ -33,7 +33,7 @@ function Contratos() {
             )
             :(
                 <div>
-                    <NavLink to="/login"><Button variant="contained">Crear Contrato</Button></NavLink>
+                    <Button variant="contained" onClick={loginWithRedirect}>Crear Contrato</Button>
                 </div>
             )
 
