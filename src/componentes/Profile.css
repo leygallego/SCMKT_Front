@@ -114,11 +114,24 @@
 .datos-personales {
     /* display: grid; */
     margin-top: 10%;
-    margin-left: 14%;
-    height: 35%;
+    margin-left: 10%;
+    height: auto;
+    width: auto;
     background-color: black;
     color: white;
     border-radius: 30px;
     width: 75%;
 
+}
+
+/* .datos-personales button{
+    background-color: yellow;
+} */
+
+.botonEditar{
+    background-color: rgb(132, 132, 247);
+    border-radius: 10px;
+    color: white;
+    width: 70px;
+    margin-bottom: 20px;
 }

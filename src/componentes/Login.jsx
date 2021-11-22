@@ -83,6 +83,18 @@ export default function Login() {
     } = useAuth0();
 
 
+
+    async function callProtectedApi() {
+        const token = await getAccessTokenSilently();
+        dispatch(sendLogin(token))
+        const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+            headers: {
+                Authorization: `Bearer ${token}`
+        }});
+        console.log("objeto::::", response.data);
+
+    }
+
     console.log(user)
     return (
         <>

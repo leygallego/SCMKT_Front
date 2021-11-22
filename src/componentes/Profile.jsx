@@ -39,6 +39,36 @@ function Profile() {
 
     
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     console.log("Contratos", contratos);
     console.log("Usuarios",usuarios);
 
@@ -64,13 +94,12 @@ function Profile() {
     "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
 
     const [edicionPerfil, setEdicionPerfil] = useState(true)
-    const [bool, setBool] = useState(true);
+    // const [bool, setBool] = useState(true);
     const [registro, setRegistro] = useState({
-        username: "",
+        name: "",
+        last_name: "",
         country: "",
-        email: "",
-        wallet: "",
-        password: ""
+        wallet: ""
     });
 
     const handleOnChange = (e) => {
@@ -86,17 +115,16 @@ function Profile() {
         setEdicionPerfil(false)
     }
 
-    const handleOnClick = () => {
-        setBool(false)
-    }
+    // const handleOnClick = () => {
+    //     setBool(false)
+    // }
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log(registro)
+        console.log("submit",registro)
         if (
-            registro.username === "" || registro.country === ""
-            || registro.email === "" || registro.wallet === ""
-            || registro.password === ""
+            registro.name === "" || registro.last_name === ""
+            || registro.country === "" || registro.wallet === ""
 
         ) {
             console.log('Formulario incompleto...')
@@ -105,16 +133,13 @@ function Profile() {
             console.log("el registro", registro);
             
             setRegistro({
-                username: "",
+                name: "",
+                last_name: "",
                 country: "",
-                email: "",
-                wallet: "",
-                password: ""
+                wallet: ""
             });
             alert("Enviado correctamente")
 
-            
-            // window.location.href = baseUrl
         }
     }
 
@@ -207,10 +232,14 @@ function Profile() {
                         <h6>25/01/2001</h6>
                             </div> : 
                             <form onSubmit={e => { handleOnSubmit(e) }}>
-                            {bool ? <div className="registro1">
+                            <div className="registro1">
                                 <div className="labelInput">
-                                    <div className="labelForm">User name</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="username" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
+                                    <div className="labelForm">Nombre</div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
+                                </div>
+                                <div className="labelInput">
+                                    <div className="labelForm">Apellido</div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="last_name" onChange={e => { handleOnChange(e) }} defaultValue={registro.last_name} /></div>
                                 </div>
                                 <div className="labelInput">
                                     <div className="labelForm">Country</div>
@@ -226,27 +255,12 @@ function Profile() {
                                         </select></div>
                                 </div>
                                 <div className="labelInput">
-                                    <div className="labelForm">Email</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="email" name="email" onChange={e => { handleOnChange(e) }} defaultValue={registro.email} /></div>
+                                    <div className="labelForm">Wallet</div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} defaultValue={registro.wallet} /></div>
                                 </div>
-                                <div className="buttonFormComponent"><input className="buttonComponent" type="button" value="Next" onClick={handleOnClick} /></div>
+                                <div className="buttonFormComponent"><input className="botonEditar" type="submit" value="Editar" /></div>
                             </div>
-                                : <div className="registro2">
-                                    <div className="labelInput">
-                                        <div className="labelForm">Wallet address</div>
-                                        <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} defaultValue={registro.wallet} /></div>
-                                    </div>
-                                    <div className="labelInput">
-                                        <div className="labelForm">Password</div>
-                                        <div className="inputForm"><input className="inputFormComponent" type="password" name="password" onChange={e => { handleOnChange(e) }} defaultValue={registro.password} /></div>
-    
-                                    </div>
-                                    <div className="labelInput">
-                                        <div className="labelForm">Confirm your password</div>
-                                        <div className="inputForm"><input className="inputFormComponent" type="password" /></div>
-                                    </div>
-                                    <div className="buttonFormComponent"><input className="buttonComponent" type="submit" value="Send" /></div>
-                                </div>}
+                                
                         </form>
                         }
                         
@@ -267,7 +281,7 @@ function Profile() {
 
 
 
-<div className="footer-home">
+{/* <div className="footer-home">
                 <div className="home-izquierda">
                 <NavLink to="/home"> <span><h4>SmartContracts</h4></span> </NavLink>                    <div className="logos-footer">
                 <NavLink to={{pathname:"https://www.facebook.com/"}}><img src="/images/facebook.png" alt="facebook logo" /></NavLink>
@@ -301,7 +315,7 @@ function Profile() {
                     </ul>
 
                 </div>
-            </div>
+            </div> */}
 
         
         </>
