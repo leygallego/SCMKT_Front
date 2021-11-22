@@ -1,4 +1,4 @@
-import { GET_CONTRACTS, GET_USERS, GET_USER_BY_ID, POST_SING_UP, SEND_LOGIN, GET_CONTRACT_BY_ID } from "../actions";
+import { GET_CONTRACTS, GET_USERS, GET_USER_BY_ID, POST_SING_UP, SEND_LOGIN, GET_CONTRACT_BY_ID, EDIT_USER } from "../actions";
 
 
 const initialState = {
@@ -78,6 +78,13 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 user: action.payload
             };
+
+            case EDIT_USER:
+                console.log("reducer", action.id);
+                return{
+                    ...state,
+                    user : action.id
+                }
 
         default: return state
     }

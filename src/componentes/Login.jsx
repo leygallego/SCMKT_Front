@@ -92,6 +92,7 @@ export default function Login() {
             headers: {
                 Authorization: `Bearer ${token}`
         }});
+        console.log("objeto::::", response.data);
 
     }
     console.log(user)

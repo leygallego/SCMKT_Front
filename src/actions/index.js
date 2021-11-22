@@ -8,6 +8,7 @@ export const SEND_LOGIN = 'SEND_LOGIN';
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID';
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
+export const EDIT_USER = 'EDIT_USER'
 
 export const sendLogin = (userLoginObject) => {
     console.log('ACTION:::', userLoginObject);
@@ -45,19 +46,7 @@ export const postSingUp = (userRegisterObject) => {
     }
     
 }
-// export function createActivities(payload){
-//     return async (dispatch)=>{
-//         dispatch({
-//             type: CREATE_ACTIVITIES,
-//         });
-//         await axios.post('http://localhost:3001/activities/add', payload)
-//         .then((response)=>{
-//             console.log("registrado correctamente");
-//             console.log(response);
-//         })
-//     }
 
-// }
 
 export const getUsers = () => {
     return async dispatch => {
@@ -124,4 +113,21 @@ export const removeContract = () => {
         type: REMOVE_CONTRACT,
         payload: {}
     }
+}
+
+export const editUser = (id) => {
+    console.log('ACTION EDIT USER:::', id)
+    return async(dispatch) =>{
+        dispatch({
+            type:EDIT_USER
+        });
+        await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, id)
+        .then((response)=>{
+            console.log("registrado correctamente", response);
+        })
+        .catch(error => {
+            console.log("No se registró" , error);
+        })
+    }
+    
 }
