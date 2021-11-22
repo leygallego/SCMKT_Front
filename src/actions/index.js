@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_USERS = 'GET_USERS';
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_CONTRACTS = 'GET_CONTRACTS';
 export const POST_SING_UP = 'POST_SING_UP';
 export const SEND_LOGIN = 'SEND_LOGIN';
@@ -11,7 +12,7 @@ export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const sendLogin = (userLoginObject) => {
     console.log('ACTION:::', userLoginObject);
     return async dispatch => {
-        return await axios.get("http://localhost:3001/user/login", {
+        return await axios.get('https://scmkt.herokuapp.com/user/login', {
             headers: {
                 authorization: `Bearer ${userLoginObject}`
             },
@@ -63,6 +64,20 @@ export const getUsers = () => {
                 type: GET_USERS,
                 payload: response.data
             }))
+    }
+}
+
+export const getUserByID = (id) =>{
+    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,7}')
+    if(id === regex){
+        id = axios.get(`https://scmkt.herokuapp.com/user/auth/${id}`)
+    }
+    return async dispatch => {
+        return await axios.get(`https://scmkt.herokuapp.com/user/${id}`)
+        .then(response => dispatch ({
+            type: GET_USER_BY_ID,
+            payload: response.data
+        }))
     }
 }
 
