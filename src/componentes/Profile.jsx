@@ -282,10 +282,15 @@ function Profile() {
                                             }
                                         </select></div>
                                 </div>
-                                <div className="labelInput">
-                                    <div className="labelForm">Wallet</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet}  /></div>
-                                </div>
+                                {
+                                    
+                                    user.wallet != null ? <div></div>
+                                : <div className="labelInput">
+                                <div className="labelForm">Wallet</div>
+                                <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet}  /></div>
+                            </div>
+                                }
+                                
                                 <div className="buttonFormComponent"><input className="botonEditar" type="submit" value="Editar" /></div>
                             </div>
                                 
