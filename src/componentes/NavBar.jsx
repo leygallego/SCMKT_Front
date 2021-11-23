@@ -49,10 +49,12 @@ function NavBar() {
                           <NavLink to="/perfil">Perfil</NavLink>
                         </li>
 
-
+                        <div className="logout-button">
                         <li>
-                          <button onClick={logout}>Logout</button>
+                          <button className="logout-button" onClick={logout}>Logout</button>
                         </li>
+                        </div>
+                       
 
 
 
@@ -61,7 +63,7 @@ function NavBar() {
                     </div>
                   )
                   : (
-                    <div>
+                    <div className="login-button">
                       <ul>
                         <li>
                           <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>

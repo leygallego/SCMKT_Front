@@ -19,6 +19,8 @@ function Profile() {
     const usuarios = useSelector(state => state.users)
     const contratos = useSelector(state => state.contracts)
     const user = useSelector(state => state.user)
+
+    console.log("USUARIO====", user);
     const dispatch = useDispatch();
     const {
         getAccessTokenSilently,
@@ -112,7 +114,8 @@ function Profile() {
 
 
     const handleEdition = ()=>{
-        setEdicionPerfil(false)
+        setEdicionPerfil(edicionPerfil => !edicionPerfil)
+        
     }
 
     // const handleOnClick = () => {
@@ -122,14 +125,8 @@ function Profile() {
     const handleOnSubmit = (e) => {
         e.preventDefault();
         console.log("submit",registro)
-        if (
-            registro.name === "" || registro.last_name === ""
-            || registro.country === "" || registro.wallet === ""
 
-        ) {
-            console.log('Formulario incompleto...')
-        } else {
-            dispatch(editUser(user.id, registro));
+        dispatch(editUser(user.id, registro));
             console.log("el registro", registro);
             
             setRegistro({
@@ -140,7 +137,25 @@ function Profile() {
             });
             alert("Enviado correctamente")
 
-        }
+        // if (
+        //     registro.name === "" || registro.last_name === ""
+        //     || registro.country === "" || registro.wallet === ""
+
+        // ) {
+        //     console.log('Formulario incompleto...')
+        // } else {
+        //     dispatch(editUser(user.id, registro));
+        //     console.log("el registro", registro);
+            
+        //     setRegistro({
+        //         name: "",
+        //         last_name: "",
+        //         country: "",
+        //         wallet: ""
+        //     });
+        //     alert("Enviado correctamente")
+
+        // }
     }
 
     return (
@@ -149,7 +164,7 @@ function Profile() {
 
         <div className="main-perfil">
             <div className="perfil-card">
-                <h4>Bienvenido (nombre de usuario) {user.name}</h4>
+                <h4>Bienvenido {user.name}</h4>
 
                 <div className="contratos-publicados">
                     <h5>Contratos Publicados</h5>
@@ -214,7 +229,7 @@ function Profile() {
                             className="busca-wallet"
                             variant="contained"
                             startIcon={<AccountBalanceWalletIcon />}
-                        >Wallet Address</Button>
+                        >Dirección de Wallet</Button>
                     <div className="datos-personales" >
 
 
@@ -226,24 +241,38 @@ function Profile() {
                         >Datos Personales</Button> 
                         {
                             edicionPerfil ? <div>
-                        <h6>{user.name}</h6> 
-                        <h6>{user.country}</h6>
-                        <h6>{user.email}</h6>
+                        <h6>Nombre: {user.name} {user.last_name}</h6> 
+                        <h6>Usuario: {user.username}</h6>
+                        <h6>Email: {user.email}</h6>
+                        <h6>Nº Wallet: {user.wallet}</h6>
+                        <h6>País Residencia: {user.country}</h6>
+                        
+                        
+
+
                             </div> : 
                             <form onSubmit={e => { handleOnSubmit(e) }}>
                             <div className="registro1">
                                 <div className="labelInput">
                                     <div className="labelForm">Nombre</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} defaultValue={registro.name} /></div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} placeholder={user.name}  /></div>
                                 </div>
                                 <div className="labelInput">
                                     <div className="labelForm">Apellido</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="last_name" onChange={e => { handleOnChange(e) }} defaultValue={registro.last_name} /></div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="last_name" onChange={e => { handleOnChange(e) }} placeholder={user.last_name} /></div>
                                 </div>
+                                {/* <div className="labelInput">
+                                    <div className="labelForm">Nombre de usuario</div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="username" onChange={e => { handleOnChange(e) }} placeholder={user.username} /></div>
+                                </div> */}
+                                {/* <div className="labelInput">
+                                    <div className="labelForm">Email</div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="email" onChange={e => { handleOnChange(e) }} placeholder={user.email} /></div>
+                                </div> */}
                                 <div className="labelInput">
-                                    <div className="labelForm">Country</div>
+                                    <div className="labelForm">País</div>
                                     <div>
-                                        <select className="inputFormComponent" name="country" onChange={e => { handleOnChange(e) }} defaultValue={registro.country} >
+                                        <select className="inputFormComponent" name="country" onChange={e => { handleOnChange(e) }} defaultValue={user.country}  >
                                             {
                                                 Countries.map((element, index) => {
                                                     return (
@@ -255,7 +284,7 @@ function Profile() {
                                 </div>
                                 <div className="labelInput">
                                     <div className="labelForm">Wallet</div>
-                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} defaultValue={registro.wallet} /></div>
+                                    <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet}  /></div>
                                 </div>
                                 <div className="buttonFormComponent"><input className="botonEditar" type="submit" value="Editar" /></div>
                             </div>
