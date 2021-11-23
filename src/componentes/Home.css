@@ -241,7 +241,7 @@
         width: 30em;
         margin-left: 10%;
         font-family: 'Poppins', sans-serif;
-        font-weight: bolder;
+        font-weight: bold;
         font-size: 16px;
     }
     .texto-secundario{
@@ -299,35 +299,7 @@
         background-color: black;
     }
     
-    .logos-footer img{
-        width: 30px;
-        height: 30px;
-    }
-    .logos-footer{
-        display: flex;
-        justify-content: space-evenly;
-    }
     
-        .footer-home{
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            background-color: #FFFFFF;
-            font-family: 'Poppins', sans-serif;
-            font-weight: bold;
-            font-size: 15px;
-        }
-    
-    .home-izquierda{
-        width: 70%;
-    }
-    .home-derecha{
-        width: 30%;
-        margin-left: 15%;
-    }
-    
-    .home-derecha ul{
-        list-style: none;
-    }
     
     
     

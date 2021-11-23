@@ -2,7 +2,7 @@
 
 nav ul {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -43,7 +43,30 @@ nav a {
   font-size: 12px;
   font-weight: bold;
 }
+.login-button{
+  margin-left: 0%;
+  width: 50%;
+  height: 100%;
+}
+.login-button button{
+  width: 105px;
+  height: 55;
+  margin-top: 8%;
+  margin-left: 5%;
+  border-radius: 30px;
+} 
 
+.logout-button{
+  width: 100%;
+}
+.logout-button button{
+  width: 50px;
+  height: 20px;
+  margin-top: 8%;
+  border-radius: 10px;
+  background-color: #0078E7;
+  color: white;
+} 
 a[href="/login"] {
   text-align: left;
   margin-left: 0rem;    
@@ -60,7 +83,7 @@ a[href="/registro"] {
 
     nav ul {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       list-style-type: none;
       margin: 0;
       padding: 0;
@@ -104,6 +127,26 @@ a[href="/registro"] {
       font-size: 1.8em;
       font-weight: bold;
     }
+    .login-button{
+      width: 100%;
+    }
+    .login-button button{
+      width: 145px;
+      margin-top: 8%;
+      margin-left: 25%;
+      border-radius: 30px;
+    } 
+
+    .logout-button{
+      width: 100%;
+    }
+    .logout-button button{
+      width: 125px;
+      margin-top: 8%;
+      border-radius: 30px;
+      background-color: #0078E7;
+      color: white;
+    } 
   
     a[href="/login"] {
       text-align: left;
@@ -122,7 +165,7 @@ a[href="/registro"] {
 @media (min-width: 992px){
   nav ul {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -161,6 +204,26 @@ a[href="/registro"] {
     font-size: 2.0em;
     font-weight: bold;
   }
+
+  .login-button{
+    width: 100%;
+  }
+  .login-button button{
+    width: 195px;
+    margin-top: 8%;
+    border-radius: 30px;
+  } 
+
+  .logout-button{
+    width: 100%;
+  }
+  .logout-button button{
+    width: 155px;
+    margin-top: 8%;
+    border-radius: 30px;
+    background-color: #0078E7;
+    color: white;
+  } 
 
   a[href="/login"] {
     text-align: left;
