@@ -12,7 +12,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 function Contratos() {
     let dispatch = useDispatch()
     const { contracts, page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
-    const { isAuthenticated, loginWithRedirect } = useAuth0()
+    const { isAuthenticated, /*loginWithRedirect*/ loginWithPopup } = useAuth0()
     
     console.log(contracts)
 
@@ -38,7 +38,7 @@ function Contratos() {
             )
             :(
                 <div>
-                    <Button variant="contained" onClick={loginWithRedirect}>Crear Contrato</Button>
+                    <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
                 </div>
             )
 
