@@ -6,7 +6,8 @@ const initialState = {
     contracts: [],
     user: {},
     contract: {},
-    verified: false
+    verified: false,
+    page: 1
 }
 
 export default function rootReducer(state = initialState, action) {
