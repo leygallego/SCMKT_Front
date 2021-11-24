@@ -1,4 +1,4 @@
-import { GET_CONTRACTS, GET_USERS, GET_USER_BY_ID, POST_SING_UP, SEND_LOGIN, GET_CONTRACT_BY_ID, EDIT_USER } from "../actions";
+import { GET_CONTRACTS, GET_USERS, GET_USER_BY_ID, POST_SING_UP, SEND_LOGIN, GET_CONTRACT_BY_ID } from "../actions";
 
 
 const initialState = {

@@ -139,3 +139,7 @@
 .avatarInput {
     display: none;
 }
+
+.imageCircle {
+    border-radius: 50px;
+}
