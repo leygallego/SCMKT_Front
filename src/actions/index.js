@@ -9,6 +9,7 @@ export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID';
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const EDIT_USER = 'EDIT_USER'
+export const SET_PAGE = 'SET_PAGE'
 
 export const sendLogin = (userLoginObject) => {
     console.log('ACTION:::', userLoginObject);
@@ -72,14 +73,36 @@ export const getUserByID = (id) =>{
     }
 }
 
-export const getContracts = () => {
-    return async dispatch => {
+/* 
 
-        return await axios.get("http://scmkt.herokuapp.com/contract")
-        .then(response => dispatch ({
-            type: GET_CONTRACTS,
+export function getCountries({ page, orderByName, orderByPop, filterByAct, name }){
+    return async (dispatch)=>{
+      try {
+        const response = await axios.get(`http://localhost:3001/countries?page=${page ? page : 1}&orderByName=${orderByName ? orderByName : ""}&orderByPop=${orderByPop ? orderByPop : ""}&filterByAct=${filterByAct ? filterByAct : ""}&name=${name ? name : ""}`)
+        return dispatch({
+            type: GET_ALL_COUNTRIES,
             payload: response.data
-        }))
+        })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+*/
+
+
+export function getContracts ({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
+    return async (dispatch) => {
+        try{
+            const response = await axios.get(`http://scmkt.herokuapp.com/contract?page=${page ? page : 1}&name=${name ? name : ''}&author=${author ? author : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            return dispatch({
+                type: GET_CONTRACTS,
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
@@ -131,3 +154,10 @@ export const editUser = (id, user) => {
     }
     
 }
+
+export const setPage = (page) => {
+    return {
+        type: SET_PAGE,
+        payload: page
+    }
+  }
