@@ -57,6 +57,7 @@ function Profile() {
                             ...registro,
                             image: url
                         })
+                        console.log("Imagen subida exitosamente...");
                     })
             }
         )
