@@ -1,15 +1,23 @@
 import axios from 'axios';
 
-export const GET_USERS = 'GET_USERS';
+export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
-export const GET_CONTRACTS = 'GET_CONTRACTS';
-export const POST_SING_UP = 'POST_SING_UP';
-export const SEND_LOGIN = 'SEND_LOGIN';
-export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID';
+export const GET_CONTRACTS = 'GET_CONTRACTS'
+export const POST_SING_UP = 'POST_SING_UP'
+export const SEND_LOGIN = 'SEND_LOGIN'
+export const EDIT_USER = 'EDIT_USER'
+export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID'
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
-export const EDIT_USER = 'EDIT_USER'
+export const SET_FILTER_DURATIONH = 'SET_FILTER_DURATIONH'
+export const SET_FILTER_DURATIONL = 'SET_FILTER_DURATIONL'
+export const SET_FILTER_CATEGORY = 'SET_FILTER_CATEGORY'
+export const SET_FILTER_STATE = 'SET_FILTER_STATE'
+export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
+export const SET_AUTHOR = 'SET_AUTHOR'
+export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
+
 
 export const sendLogin = (userLoginObject) => {
     console.log('ACTION:::', userLoginObject);
@@ -72,25 +80,6 @@ export const getUserByID = (id) =>{
         }))
     }
 }
-
-/* 
-
-export function getCountries({ page, orderByName, orderByPop, filterByAct, name }){
-    return async (dispatch)=>{
-      try {
-        const response = await axios.get(`http://localhost:3001/countries?page=${page ? page : 1}&orderByName=${orderByName ? orderByName : ""}&orderByPop=${orderByPop ? orderByPop : ""}&filterByAct=${filterByAct ? filterByAct : ""}&name=${name ? name : ""}`)
-        return dispatch({
-            type: GET_ALL_COUNTRIES,
-            payload: response.data
-        })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
-*/
-
 
 export function getContracts ({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
@@ -160,4 +149,53 @@ export const setPage = (page) => {
         type: SET_PAGE,
         payload: page
     }
-  }
+}
+
+export const setName = (name) => {
+    return {
+        type: SET_NAME,
+        payload: name
+    }
+}
+
+export const setFilterType = (filterType) => {
+    return {
+        type: SET_FILTER_TYPE,
+        payload: filterType
+    }
+}
+
+export const setFilterCategory = (filterCategory) => {
+    return {
+        type: SET_FILTER_CATEGORY,
+        payload: filterCategory
+    }
+}
+
+export const setFilterDurationH = (filterDurationH) => {
+    return {
+        type: SET_FILTER_DURATIONH,
+        payload: filterDurationH
+    }
+}
+
+export const setFilterDurationL = (filterDurationL) => {
+    return {
+        type: SET_FILTER_DURATIONL,
+        payload: filterDurationL
+    }
+}
+
+export const setFilterState = (filterState) => {
+    return {
+        type: SET_FILTER_STATE,
+        payload: filterState
+    }
+}
+
+export const setAuthor = (author) => {
+    return {
+        type: SET_AUTHOR,
+        payload: author
+    }
+}
