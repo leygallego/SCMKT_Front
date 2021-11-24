@@ -1,8 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getStorage } from 'firebase/storage';
-// require('dotenv').config();
-
-console.log(process.env.REACT_APP_APIKEY);
+require('dotenv').config();
 
 const firebaseConfig = {
     apiKey: "AIzaSyDS2_dlr3yeMOYlvstxLelsm9jtUcKf1H8",
