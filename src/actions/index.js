@@ -20,7 +20,7 @@ export const SET_PAGE = 'SET_PAGE'
 
 
 export const sendLogin = (userLoginObject) => {
-    console.log('ACTION:::', userLoginObject);
+    //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         return await axios.get('https://scmkt.herokuapp.com/user/login', {
             headers: {
@@ -40,7 +40,7 @@ export const sendLogin = (userLoginObject) => {
 }
 
 export const postSingUp = (userRegisterObject) => {
-    console.log('ACTION:::', userRegisterObject)
+    //console.log('ACTION:::', userRegisterObject)
     return async(dispatch) =>{
         dispatch({
             type:POST_SING_UP

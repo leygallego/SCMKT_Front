@@ -4,7 +4,8 @@ import Button from '@mui/material/Button';
 import { NavLink } from 'react-router-dom';
 import { getContracts, setPage } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
-import ContractCard from './ContractCard';
+import ContractCard from './ContractCard'
+import SearchBar from './SearchBar';
 import { useAuth0 } from '@auth0/auth0-react'
 
 
@@ -17,7 +18,7 @@ function Contratos() {
     console.log(contracts)
 
     useEffect(() => {
-        dispatch(getContracts({}))
+        dispatch(getContracts({ filterState: 'pending' }))
     }, [dispatch])
 
     const changePage = (page) => {
@@ -28,7 +29,10 @@ function Contratos() {
     return (
         <>
         <div>
-        <h1>Componente Contratos</h1>
+            <h1>Componente Contratos</h1>
+        <div>
+            <SearchBar />
+        </div>
         {
             isAuthenticated?
             (
