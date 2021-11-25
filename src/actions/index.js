@@ -22,20 +22,25 @@ export const SET_PAGE = 'SET_PAGE'
 export const sendLogin = (userLoginObject) => {
     //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
-        return await axios.get('https://scmkt.herokuapp.com/user/login', {
+        try {
+           return await axios.get('https://scmkt.herokuapp.com/user/login', {
             headers: {
                 authorization: `Bearer ${userLoginObject}`
             },
             body: {
                 data: 12345
-            }
-        })
-        .then(response => {
-            dispatch({
-            type: SEND_LOGIN,
-            payload: response.data
+                }
             })
-        })
+            .then(response => {
+                dispatch({
+                type: SEND_LOGIN,
+                payload: response.data
+                })
+            }) 
+        } catch(error) {
+            console.log('Error en la action ',error)
+        }
+        
     }
 }
 
