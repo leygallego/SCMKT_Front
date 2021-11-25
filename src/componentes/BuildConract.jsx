@@ -125,7 +125,10 @@ export function BuildConract() {
                     status: 'unpublished',
                     ownerId: user.id
                 })
-                window.location.replace(`http://localhost:3000/contract/`)
+                Swal.fire('Saved!', '', 'success')
+                    .then((result) => {
+                        window.location.replace(`https://scmkt.herokuapp.com/contract/`)
+                    })
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info')
             }
