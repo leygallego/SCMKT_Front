@@ -45,19 +45,12 @@ const Detalleview = () => {
             <div className="footer-home">
                 <div className="home-izquierda">
                     <NavLink to="/home"> <span><h4>SmartContracts</h4></span> </NavLink>                    <div className="logos-footer">
-                        <NavLink to={{ pathname: "https://www.facebook.com/" }}><img src="/images/facebook.png" alt="facebook logo" /></NavLink>
-                        <NavLink to={{ pathname: "https://www.instagram.com/" }}>
-                            <img src="/images/instagram.png" alt="instagram logo" />
-                        </NavLink>
-
-                        <NavLink to={{ pathname: "https://www.linkedin.com/" }}>
-                            <img src="/images/linkedin.png" alt="linkedin logo" />
-                        </NavLink>
-
-
+                        <a href="https://facebook.com" target='_blank' rel='noopener noreferrer'><img src="/images/facebook.png" alt="facebook logo" /></a>
+                        <a href="https://instagram.com" target='_blank' rel='noopener noreferrer'><img src="/images/instagram.png" alt="instagram logo" /></a>
+                        <a href="https://linkedin.com" target='_blank' rel='noopener noreferrer'><img src="/images/linkedin.png" alt="linkedin logo" /></a>
                     </div>
-
                 </div>
+
                 <div className="home-derecha">
                     <ul>
                         <li>

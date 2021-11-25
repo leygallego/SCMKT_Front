@@ -16,7 +16,6 @@ import {
     SET_PAGE
 } from "../actions";
 
-
 const initialState = {
     users: [],
     contracts: [],

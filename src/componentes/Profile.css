@@ -135,3 +135,11 @@
     width: 70px;
     margin-bottom: 20px;
 }
+
+.avatarInput {
+    display: none;
+}
+
+.imageCircle {
+    border-radius: 50%;
+}
