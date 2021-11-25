@@ -77,13 +77,18 @@ function Profile() {
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
-        dispatch(sendLogin(token))
-        // const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
-        await axios.get('https://scmkt.herokuapp.com/user/login', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        try {
+            dispatch(sendLogin(token))
+            // const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+            // await axios.get('https://scmkt.herokuapp.com/user/login', {
+            // headers: {
+            //     Authorization: `Bearer ${token}`
+            //     }
+            // });
+        } catch(error) {
+            console.log('Error en el perfil ', error)
+        }
+        
     }
 
     dispatch(callProtectedApi)
