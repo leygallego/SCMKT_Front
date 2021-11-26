@@ -17,6 +17,7 @@ export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
+export const STOP_USER = 'STOP_USER'
 
 
 export const sendLogin = (userLoginObject) => {
@@ -204,3 +205,10 @@ export const setAuthor = (author) => {
         payload: author
     }
 }
+
+export const stopUser = () => {
+    return {
+        type: STOP_USER,
+        payload: {}
+    }
+  }
