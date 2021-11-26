@@ -17,7 +17,7 @@ export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
-
+export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 
 export const sendLogin = (userLoginObject) => {
     //console.log('ACTION:::', userLoginObject);
@@ -107,6 +107,13 @@ export const getContractsByID = (id) =>{
             type: GET_CONTRACT_BY_ID,
             payload: response.data
         }))
+    }
+}
+
+export const getContractsPreview = (data) =>{
+    return {
+        type: PREVIEW_CONTRACT,
+        payload: data
     }
 }
 

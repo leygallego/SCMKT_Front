@@ -5,6 +5,7 @@ import {
     POST_SING_UP,
     SEND_LOGIN,
     GET_CONTRACT_BY_ID,
+    PREVIEW_CONTRACT,
     EDIT_USER,
     SET_FILTER_DURATIONH,
     SET_FILTER_DURATIONL,
@@ -45,7 +46,7 @@ export default function rootReducer(state = initialState, action) {
                 contracts: action.payload
             }
 
-        case GET_CONTRACT_BY_ID:
+        case GET_CONTRACT_BY_ID, PREVIEW_CONTRACT:
             return {
                 ...state,
                 contract: action.payload

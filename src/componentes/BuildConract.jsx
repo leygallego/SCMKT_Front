@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUsers, createContract } from '../actions/index';
 import './styles/buildContract.css';
 import Swal from 'sweetalert2';
+import DetalleContrato from './DetalleContrato';
+import { useModal } from 'react-hooks-use-modal';
 
 export function BuildConract() {
     const dispatch = useDispatch()
@@ -27,6 +29,10 @@ export function BuildConract() {
     })
 
     const [errors, setErrors] = useState({});
+    const [Modal, open, close, isOpen] = useModal('root', {
+        preventScroll: true,
+        closeOnOverlayClick: false
+    });
 
     useEffect(() => {
         dispatch(getUsers({}))
@@ -39,13 +45,6 @@ export function BuildConract() {
         } else {
             setErrors({ ...errors, [elem]: "" });
         }
-
-        // if (!input.name) errors.name = 'El contrato debe tener un nombre'
-        // if (!input.shortdescription) errors.shortdescription = 'Por favor describe el problema que quieres resolver'
-        // if (!input.longdescription) errors.longdescription = 'Por favor profundiza en el alcance e impacto del problema que quieres resolver'
-        // if (!input.amount || input.amount === "" || isNaN(input.amount)) errors.amount = 'El monto minimo de la recompensa es 0.00000001'
-        // if (!input.coin) errors.coin = 'Por favor elige una moneda del listado antes de continuar'
-        // if (!input.c1 && !input.c2) errors.condition = 'Por favor sube al menos un archivo antes de continuar'
 
         console.log('Error', errors)
         console.log('Input', input)
@@ -79,60 +78,62 @@ export function BuildConract() {
     const handleOnSubmit = (e) => {
         e.preventDefault()
 
-        let nweC = {
-            wallet1: 'user.wallet',
-            wallet2: '',
-            conditions: {
-                name: input.name,
-                shortdescription: input.shortdescription,
-                longdescription: input.longdescription,
-                amount: input.amount,
-                coin: input.coin,
-                condition: {
-                    c1: '',
-                    c2: ''
-                }
-            },
-            status: 'unpublished',
-            ownerId: "e5e0dfd8-9669-4a71-b81c-053770a6be27" //user.id
-        }
+        // let nweC = {
+        //     wallet1: 'user.wallet',
+        //     wallet2: '',
+        //     conditions: {
+        //         name: input.name,
+        //         shortdescription: input.shortdescription,
+        //         longdescription: input.longdescription,
+        //         amount: input.amount,
+        //         coin: input.coin,
+        //         condition: {
+        //             c1: '',
+        //             c2: ''
+        //         }
+        //     },
+        //     status: 'unpublished',
+        //     ownerId: "e5e0dfd8-9669-4a71-b81c-053770a6be27" //user.id
+        // }
 
-        Swal.fire({
-            title: 'Do you want to save the changes?',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Save',
-            denyButtonText: `Don't save`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                dispatch(createContract(nweC))
-                setInput({
-                    id: '',
-                    wallet1: '',
-                    wallet2: '',
-                    conditions: {
-                        name: '',
-                        shortdescription: '',
-                        longdescription: '',
-                        amount: '0.00000001',
-                        coin: '',
-                        condition: {
-                            c1: '',
-                            c2: ''
-                        }
-                    },
-                    status: 'unpublished',
-                    ownerId: user.id
-                })
-                Swal.fire('Saved!', '', 'success')
-                    .then((result) => {
-                        window.location.replace(`https://scmkt.herokuapp.com/contract/`)
-                    })
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
-        })
+        // Swal.fire({
+        //     title: 'Do you want to save the changes?',
+        //     showDenyButton: true,
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Save',
+        //     denyButtonText: `Don't save`,
+        // }).then((result) => {
+        //     /* Read more about isConfirmed, isDenied below */
+        //     if (result.isConfirmed) {
+
+
+        //         dispatch(createContract(nweC))
+        //         setInput({
+        //             id: '',
+        //             wallet1: '',
+        //             wallet2: '',
+        //             conditions: {
+        //                 name: '',
+        //                 shortdescription: '',
+        //                 longdescription: '',
+        //                 amount: '0.00000001',
+        //                 coin: '',
+        //                 condition: {
+        //                     c1: '',
+        //                     c2: ''
+        //                 }
+        //             },
+        //             status: 'unpublished',
+        //             ownerId: user.id
+        //         })
+        //         Swal.fire('Saved!', '', 'success')
+        //             .then((result) => {
+        //                 window.location.replace(`https://scmkt.herokuapp.com/contract/`)
+        //             })
+        //     } else if (result.isDenied) {
+        //         Swal.fire('Changes are not saved', '', 'info')
+        //     }
+        // })
     }
 
     return (
@@ -182,7 +183,13 @@ export function BuildConract() {
 
                         <div className="labelInput">
                             <div className="labelForm">Describe tu problema en pocas palabras</div>
-                            <div className="inputForm"><input className="inputFormCComponent" type="text" name="shortdescription" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm">
+                                <input
+                                    className="inputFormCComponent"
+                                    type="text" name="shortdescription"
+                                    onChange={e => { handleInputChange(e) }}
+                                />
+                            </div>
                         </div>
 
                         <div className="labelInput">
@@ -195,7 +202,7 @@ export function BuildConract() {
                                     type="text"
                                     name="longdescription"
                                     onChange={e => { handleInputChange(e) }}
-                                    onBlur={(e) => validate(e.target.name)}
+                                // onBlur={(e) => validate(e.target.name)}
                                 />
                             </div>
                         </div>
@@ -234,7 +241,7 @@ export function BuildConract() {
                             type='submit'
                             className="acept-contract"
                             variant="contained"
-                            onClick={handleOnSubmit}
+                            onClick={open} //{handleOnSubmit}
                             disabled={
                                 input.name === "" ||
                                     input.shortdescription === "" ||
@@ -242,10 +249,19 @@ export function BuildConract() {
                                     input.amount === "" ||
                                     input.coin === "" ||
                                     !checked
-                                    ? true
+                                    ? false
                                     : false
                             }
                         >Add Contract</Button>
+                        <Modal>
+                            <div>
+                                <DetalleContrato
+                                id={null}
+                                isPreview="Y"
+                                dataPreview={input}
+                                />
+                            </div>
+                        </Modal>
                     </form>
                 </div>
 
