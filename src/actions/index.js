@@ -17,11 +17,10 @@ export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
+export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 export const STOP_USER = 'STOP_USER'
 
-
 export const sendLogin = (userLoginObject) => {
-    //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         try {
             console.log(window.sessionStorage.getItem('user'))
@@ -44,8 +43,7 @@ export const sendLogin = (userLoginObject) => {
                 })
         } catch(error) {
             console.log('Error en la action ',error)
-        }
-        
+        }        
     }
 }
 
@@ -69,7 +67,7 @@ export const postSingUp = (userRegisterObject) => {
 
 export const getUsers = () => {
     return async dispatch => {
-        return await axios.get("http://localhost:3001/user")
+        return await axios.get("https://scmkt.herokuapp.com/user")
             .then(response => dispatch({
                 type: GET_USERS,
                 payload: response.data
@@ -128,6 +126,13 @@ export function createContract(contract){
         console.log(error)
     }
   }
+}
+
+export const getContractsPreview = (data) => {
+    return {
+        type: PREVIEW_CONTRACT,
+        payload: data
+    }
 }
 
 export const removeContract = () => {
