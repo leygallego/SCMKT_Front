@@ -24,18 +24,22 @@ export const sendLogin = (userLoginObject) => {
     //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         try {
-           return await axios.get('https://scmkt.herokuapp.com/user/login', {
-            headers: {
-                authorization: `Bearer ${userLoginObject}`
-            },
-            body: {
-                data: 12345
-                }
-            })
+            if (window.sessionStorage.getItem('user') === null) {
+                const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+                    headers: {
+                        authorization: `Bearer ${userLoginObject}`
+                    },
+                    body: {
+                        data: 12345
+                        }
+                    });
+                window.sessionStorage.setItem('user', JSON.stringify(response.data));
+            }
+            return window.sessionStorage.getItem('user')
             .then(response => {
                 dispatch({
                 type: SEND_LOGIN,
-                payload: response.data
+                payload: JSON.parse(response.data)
                 })
             }) 
         } catch(error) {
