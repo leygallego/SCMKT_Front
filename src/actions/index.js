@@ -18,13 +18,14 @@ export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
 export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
+export const STOP_USER = 'STOP_USER'
 
 export const sendLogin = (userLoginObject) => {
-    //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         try {
-            console.log('action', window.sessionStorage.getItem('user'))
+            console.log(window.sessionStorage.getItem('user'))
             if (window.sessionStorage.getItem('user') === null) {
+                
                 const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
                     headers: {
                         authorization: `Bearer ${userLoginObject}`
@@ -35,14 +36,14 @@ export const sendLogin = (userLoginObject) => {
                     });
                 window.sessionStorage.setItem('user', JSON.stringify(response.data));
             }
+            console.log(window.sessionStorage.getItem('user'))
             return dispatch({
                 type: SEND_LOGIN,
                 payload: JSON.parse(window.sessionStorage.getItem('user'))
                 })
         } catch(error) {
             console.log('Error en la action ',error)
-        }
-        
+        }        
     }
 }
 
@@ -147,6 +148,7 @@ export const editUser = (id, user) => {
         dispatch({
             type:EDIT_USER
         });
+        await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
         .then((response)=>{
             console.log("registrado correctamente", response);
@@ -213,3 +215,10 @@ export const setAuthor = (author) => {
         payload: author
     }
 }
+
+export const stopUser = () => {
+    return {
+        type: STOP_USER,
+        payload: {}
+    }
+  }

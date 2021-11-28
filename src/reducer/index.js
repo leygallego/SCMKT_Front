@@ -103,11 +103,11 @@ export default function rootReducer(state = initialState, action) {
                 user: action.payload
             };
 
-        // case EDIT_USER:
-        //     return{
-        //         ...state,
-        //         user : action.user
-        //}
+            //case EDIT_USER:
+            //     return{
+            //         ...state,
+            //         user : action.payload
+            //};
 
         case SET_FILTER_DURATIONH:
             return {
