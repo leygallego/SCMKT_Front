@@ -17,26 +17,28 @@ export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
-
+export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 
 export const sendLogin = (userLoginObject) => {
     //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         try {
-           return await axios.get('https://scmkt.herokuapp.com/user/login', {
-            headers: {
-                authorization: `Bearer ${userLoginObject}`
-            },
-            body: {
-                data: 12345
-                }
-            })
-            .then(response => {
-                dispatch({
+            console.log('action', window.sessionStorage.getItem('user'))
+            if (window.sessionStorage.getItem('user') === null) {
+                const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+                    headers: {
+                        authorization: `Bearer ${userLoginObject}`
+                    },
+                    body: {
+                        data: 12345
+                        }
+                    });
+                window.sessionStorage.setItem('user', JSON.stringify(response.data));
+            }
+            return dispatch({
                 type: SEND_LOGIN,
-                payload: response.data
+                payload: JSON.parse(window.sessionStorage.getItem('user'))
                 })
-            }) 
         } catch(error) {
             console.log('Error en la action ',error)
         }
@@ -64,7 +66,7 @@ export const postSingUp = (userRegisterObject) => {
 
 export const getUsers = () => {
     return async dispatch => {
-        return await axios.get("http://localhost:3001/user")
+        return await axios.get("https://scmkt.herokuapp.com/user")
             .then(response => dispatch({
                 type: GET_USERS,
                 payload: response.data
@@ -123,6 +125,13 @@ export function createContract(contract){
         console.log(error)
     }
   }
+}
+
+export const getContractsPreview = (data) => {
+    return {
+        type: PREVIEW_CONTRACT,
+        payload: data
+    }
 }
 
 export const removeContract = () => {

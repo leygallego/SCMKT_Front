@@ -30,7 +30,6 @@ function App() {
         <Route exact path="/contratos" component={Contratos}></Route>  
         <Route exact path="/aboutus" component={AboutUs}></Route>  
         <Route exact path="/detalle/:id" render={({match})=> <DetalleContrato id={match.params.id} />}></Route>
-        <Route exact path="/detalleview" component={DetalleView}></Route>
         <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
         <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
         <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>

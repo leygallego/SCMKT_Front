@@ -1,10 +1,11 @@
-import { 
+import {
     GET_CONTRACTS,
     GET_USERS,
     GET_USER_BY_ID,
     POST_SING_UP,
     SEND_LOGIN,
     GET_CONTRACT_BY_ID,
+    PREVIEW_CONTRACT,
     EDIT_USER,
     SET_FILTER_DURATIONH,
     SET_FILTER_DURATIONL,
@@ -21,6 +22,7 @@ const initialState = {
     contracts: [],
     user: {},
     contract: {},
+    preview: {},
     verified: false,
     page: 1
 }
@@ -51,6 +53,12 @@ export default function rootReducer(state = initialState, action) {
                 contract: action.payload
             }
 
+        case PREVIEW_CONTRACT:
+            return {
+                ...state,
+                preview: action.payload
+            }
+
         case POST_SING_UP:
             // console.log('POST_SING_UP', action.payload);
             // if (
@@ -66,7 +74,7 @@ export default function rootReducer(state = initialState, action) {
             //     ...state,
             //     newUser: [...state.newUser, action.userRegisterObject]
             // }
-            return{
+            return {
                 ...state
             }
         case SEND_LOGIN:
@@ -95,55 +103,55 @@ export default function rootReducer(state = initialState, action) {
                 user: action.payload
             };
 
-            // case EDIT_USER:
-            //     return{
-            //         ...state,
-            //         user : action.user
-            //}
+        // case EDIT_USER:
+        //     return{
+        //         ...state,
+        //         user : action.user
+        //}
 
-            case SET_FILTER_DURATIONH:
+        case SET_FILTER_DURATIONH:
             return {
                 ...state,
                 filterDurationH: action.payload
             }
 
-            case SET_FILTER_DURATIONL:
+        case SET_FILTER_DURATIONL:
             return {
                 ...state,
                 filterDurationL: action.payload
             }
 
-            case SET_FILTER_CATEGORY:
+        case SET_FILTER_CATEGORY:
             return {
                 ...state,
                 filterCategory: action.payload
             }
 
-            case SET_FILTER_STATE:
+        case SET_FILTER_STATE:
             return {
                 ...state,
                 filterState: action.payload
             }
 
-            case SET_FILTER_TYPE:
+        case SET_FILTER_TYPE:
             return {
                 ...state,
                 filterType: action.payload
             }
 
-            case SET_AUTHOR:
+        case SET_AUTHOR:
             return {
                 ...state,
                 author: action.payload
             }
 
-            case SET_NAME:
+        case SET_NAME:
             return {
                 ...state,
                 name: action.payload
             }
 
-            case SET_PAGE:
+        case SET_PAGE:
             return {
                 ...state,
                 page: action.payload
