@@ -24,7 +24,9 @@ export const sendLogin = (userLoginObject) => {
     //console.log('ACTION:::', userLoginObject);
     return async dispatch => {
         try {
+            console.log(window.sessionStorage.getItem('user'))
             if (window.sessionStorage.getItem('user') === null) {
+                
                 const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
                     headers: {
                         authorization: `Bearer ${userLoginObject}`
@@ -35,13 +37,11 @@ export const sendLogin = (userLoginObject) => {
                     });
                 window.sessionStorage.setItem('user', JSON.stringify(response.data));
             }
-            return window.sessionStorage.getItem('user')
-            .then(response => {
-                dispatch({
+            console.log(window.sessionStorage.getItem('user'))
+            return dispatch({
                 type: SEND_LOGIN,
-                payload: JSON.parse(response.data)
+                payload: JSON.parse(window.sessionStorage.getItem('user'))
                 })
-            }) 
         } catch(error) {
             console.log('Error en la action ',error)
         }
@@ -143,6 +143,7 @@ export const editUser = (id, user) => {
         dispatch({
             type:EDIT_USER
         });
+        await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
         .then((response)=>{
             console.log("registrado correctamente", response);
