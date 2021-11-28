@@ -249,7 +249,7 @@ export function BuildConract() {
                                     input.amount === "" ||
                                     input.coin === "" ||
                                     !checked
-                                    ? false
+                                    ? true
                                     : false
                             }
                         >Add Contract</Button>
