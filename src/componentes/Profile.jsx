@@ -7,7 +7,7 @@ import { storage } from '../firebase';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin } from '../actions';
+import { editUser, sendLogin, stopUser, getContracts } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react"
 import axios from 'axios';
 import Countries from './countries';
@@ -26,6 +26,7 @@ function Profile() {
     const [avatarImage, setAvatarImage] = useState("/images/silueta.png");
     const inputFileRef = useRef();
     const uploadButton = useRef();
+    const dispatch = useDispatch();
     const handleBtnClick = () => {
         inputFileRef.current.click();
         uploadButton.current.click();
@@ -65,12 +66,16 @@ function Profile() {
 
     // const usuarios = useSelector(state => state.users)
     // const contratos = useSelector(state => state.contracts)
-    const user = useSelector(state => state.user)
+    const {user} = useSelector(state => state)
     useEffect(() => {
+        dispatch(getContracts('', '', '', '', '', '', '', ''))
+        dispatch(callProtectedApi)
         setUserHook(user);
-    }, [user])
+        
+    }, [dispatch])
+
+    //console.log(user)
     
-    const dispatch = useDispatch();
     const {
         getAccessTokenSilently,
     } = useAuth0();
@@ -91,7 +96,7 @@ function Profile() {
         
     }
 
-    dispatch(callProtectedApi)
+    //dispatch(callProtectedApi)
 
     const [edicionPerfil, setEdicionPerfil] = useState(true)
     // const [bool, setBool] = useState(true);
