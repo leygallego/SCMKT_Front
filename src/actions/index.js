@@ -19,6 +19,20 @@ export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
 export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 export const STOP_USER = 'STOP_USER'
+export const CONTRATOS = 'CONTRATOS'
+
+export const contratos = () => {
+    return async (dispatch) => {
+        
+            const response = await axios.get("http://scmkt.herokuapp.com/contract")
+            console.log('RESPONSE::::', response);
+            return dispatch({
+                type: CONTRATOS,
+                payload: response.data
+            })
+        
+    }
+}
 
 export const sendLogin = (userLoginObject) => {
     return async dispatch => {
