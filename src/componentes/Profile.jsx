@@ -137,11 +137,11 @@ console.log('SOy User',user)
         //console.log("submit", registro)
 
         const registro2 = {...user,
-            name: `${registro.name !== '' ? registro.name : user.name}`,
-            last_name: `${registro.last_name !== '' ? registro.last_name : user.last_name}`,
-            country: `${registro.country !== '' ? registro.country : user.country}`,
-            wallet: `${registro.wallet !== '' ? registro.wallet : user.wallet}`,
-            image: `${registro.image !== '' ? registro.image : user.image}`
+            name: `${registro['name']? registro.name : user.name}`,
+            last_name: `${registro['last_name']? registro.last_name : user.last_name}`,
+            country: `${registro['country']? registro.country : user.country}`,
+            wallet: `${registro['wallet']? registro.wallet : user.wallet}`,
+            image: `${registro['image']? registro.image : user.image}`
          }
         dispatch(editUser(user.id, registro2));
         console.log("Soy el Nuevo Registro", registro);
