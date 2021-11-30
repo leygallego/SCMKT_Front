@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers, createContract } from '../actions/index';
 import './styles/buildContract.css';
@@ -39,6 +40,7 @@ export function BuildConract() {
     }, [dispatch]);
 
     function validate(elem) {
+        console.log('elemmmm', elem)
         if (input[elem] === '') {
             let inputName = elem.charAt(0).toUpperCase() + elem.slice(1)
             setErrors({ ...errors, [elem]: `The ${inputName} field is required` });
@@ -139,9 +141,11 @@ export function BuildConract() {
             <div className="contractComponent">
                 <div className="contractForm">
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
-                    <form onSubmit={handleOnSubmit}>
+                    <form className='contractForm-form' onSubmit={handleOnSubmit}>
+                        <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
+                        {/* <br/><br/> */}
                         <div className="labelInput">
-                            <div className="labelForm">Smart contract name </div>
+                            <div className="labelForm-buildContract">Nombre del Contrato</div>
                             <div className="inputForm">
                                 <input
                                     className="inputFormCComponent"
@@ -155,7 +159,7 @@ export function BuildConract() {
 
                         <div className='combo'>
                             <div>
-                                <div className="labelForm">Reward</div>
+                                <div className="labelForm-buildContract">Recompensa</div>
                                 <div className="inputForm">
                                     <input
                                         className="inputFormReward"
@@ -168,7 +172,7 @@ export function BuildConract() {
                                 </div>
                             </div>
                             <div>
-                                <div className="labelForm">Coin</div>
+                                <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
                                     <select className="inputFormCoin" name="coin">
@@ -180,20 +184,29 @@ export function BuildConract() {
                         </div>
 
                         <div className="labelInput">
-                            <div className="labelForm">Describe tu problema en pocas palabras</div>
-                            <div className="inputForm"><input className="inputFormCComponent" type="text" name="shortdescription" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="labelForm-buildContract">Describe tu problema en pocas palabras</div>
+                            <div className="inputForm">
+                                <textarea
+                                    className="inputFormCComponent"
+                                    type="text"
+                                    name="shortdescription"
+                                    onChange={e => { handleInputChange(e) }}
+                                    rows="2"
+                                /></div>
                         </div>
 
                         <div className="labelInput">
-                            <div className="labelForm">
+                            <div className="labelForm-buildContract">
                                 Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
                             </div>
                             <div className="inputForm">
-                                <input
+                                <textarea
                                     className="inputFormCComponent"
                                     type="text"
                                     name="longdescription"
                                     onChange={e => { handleInputChange(e) }}
+                                    rows="5"
+                                // maxlength="15000"
                                 // onBlur={(e) => validate(e.target.name)}
                                 />
                             </div>
@@ -206,15 +219,15 @@ export function BuildConract() {
                             <div className="inputForm-archivo"><input className="seleccion-archivo" type="file" /></div>
                         </div>
 
-                        <div className="labelInput">
+                        {/* <div className="labelInput">
                             <div className="labelForm">
                                 Confirma tu contraseña
                             </div>
                             <div className="inputForm"><input className="inputFormCComponent" type="password" name="password" onChange={e => { handleInputChange(e) }} /></div>
-                        </div>
+                        </div> */}
 
-                        <div className="labelInput">
-                            <div className="labelForm">
+                        {/* <div className="labelInput">
+                            <div className="labelForm-buildContract terms">
                                 Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario
                             </div>
                             <div className="inputForm-checkbox">
@@ -227,12 +240,36 @@ export function BuildConract() {
                                     onChange={() => setChecked(!checked)}
                                 />
                             </div>
-                        </div>
+                        </div> */}
 
-                        <Button
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={checked}
+                                    // value={checked}
+                                    size='medium'
+                                    inputProps={{ 'aria-label': 'Checkbox A' }}
+                                    color="default"
+                                    onChange={() => setChecked(!checked)}
+                                />
+                            }
+                            label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
+                        />
+
+                        <h1></h1>
+                        <button
                             type='submit'
-                            className="acept-contract"
-                            variant="contained"
+                            className={
+                                input.name === "" ||
+                                    input.shortdescription === "" ||
+                                    input.longdescription === "" ||
+                                    input.amount === "" ||
+                                    input.coin === "" ||
+                                    !checked
+                                    ? "acept-contract acept-contract-disable"
+                                    : "acept-contract"
+                            }
+                            // variant="outlined"
                             onClick={open}
                             disabled={
                                 input.name === "" ||
@@ -244,8 +281,8 @@ export function BuildConract() {
                                     ? true
                                     : false
                             }
-                        >Preview</Button>
-                        <div className={isOpen? '': ''} visible={isOpen}>
+                        >Previsualizar</button>
+                        <div className={isOpen ? '' : ''} visible={isOpen}>
                             <Modal
                                 visible={modalIsOpen}>
                                 <div className='modal-overlay'>
