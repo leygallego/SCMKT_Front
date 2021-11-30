@@ -24,7 +24,7 @@ export const CONTRATOS = 'CONTRATOS'
 export const contratos = () => {
     return async (dispatch) => {
         
-            const response = await axios.get("http://scmkt.herokuapp.com/contract")
+            const response = await axios.get("https://scmkt.herokuapp.com/contract")
             console.log('RESPONSE::::', response);
             return dispatch({
                 type: CONTRATOS,
