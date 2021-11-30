@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './componentes/NavBar';
 import Home from './componentes/Home';
 import Contratos from './componentes/Contratos';
+import Chat from './componentes/Chat';
 import AboutUs from './componentes/AboutUs';
 import DetalleContrato from './componentes/DetalleContrato';
 import DetalleView from './componentes/DetalleView';
@@ -26,7 +27,8 @@ function App() {
       <Route  path="/" component={NavBar}></Route>
 
         <Switch>
-        <Route exact path="/" component={Home}></Route>   
+        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/chat" component={Chat}></Route>
         <Route exact path="/contratos" component={Contratos}></Route>  
         <Route exact path="/aboutus" component={AboutUs}></Route>  
         <Route exact path="/detalle/:id" render={({match})=> <DetalleContrato id={match.params.id} />}></Route>

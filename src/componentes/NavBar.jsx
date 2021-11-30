@@ -54,7 +54,9 @@ function NavBar() {
                           <button className="logout-button" onClick={logout}>Logout</button>
                         </li>
                         </div>
-                       
+                        <li>
+                          <NavLink to="/chat">Chat</NavLink>
+                        </li>
 
 
 
