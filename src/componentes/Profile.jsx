@@ -154,13 +154,13 @@ console.log('SOy User',user)
     let o = [];
 
     c.map(element => {
-        if (element.status === "pending") {
+        if (element.status === "published" || element.status === "taken") {
             p.push(element);
         }
-        if (element.status === "done") {
+        if (element.status === "unpublished") {
             d.push(element);
         }
-        if (element.status === "otro") {
+        if (element.status === "complete") {
             o.push(element);
         }
         return (<></>)
