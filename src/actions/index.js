@@ -157,10 +157,11 @@ export const removeContract = () => {
 }
 
 export const editUser = (id, user) => {
-    console.log('ACTION EDIT USER:::', id)
+    console.log('ACTION EDIT USER:::', id, user)
     return async(dispatch) =>{
         dispatch({
-            type:EDIT_USER
+            type:EDIT_USER,
+            payload: user
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
