@@ -149,10 +149,11 @@ export const getContractsPreview = (data) => {
     }
 }
 
-export const removeContract = () => {
+export const removeContract = (borrar) => {
+    
     return {
         type: REMOVE_CONTRACT,
-        payload: {}
+        payload: borrar
     }
 }
 

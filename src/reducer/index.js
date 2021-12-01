@@ -7,6 +7,7 @@ import {
     SEND_LOGIN,
     GET_CONTRACT_BY_ID,
     PREVIEW_CONTRACT,
+    REMOVE_CONTRACT,
     EDIT_USER,
     SET_FILTER_DURATIONH,
     SET_FILTER_DURATIONL,
@@ -65,6 +66,24 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 preview: action.payload
+            }
+        case REMOVE_CONTRACT:
+            const ids = action.payload;
+
+            state.contratos.map(elementContract => {
+                console.log('elementContract', elementContract.id)
+                ids.map((element) => {
+                    console.log('element', element)
+                    if (element === elementContract.id) {
+                        console.log('es igual')
+                        elementContract.status = "deleted"
+                    } else {console.log('no es igual')}
+                })
+            })
+
+
+            return {
+                ...state
             }
 
         case POST_SING_UP:
