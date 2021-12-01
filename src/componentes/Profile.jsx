@@ -342,4 +342,6 @@ function Profile() {
     )
 }
 
-export default Profile
+export default withAuthenticationRequired(Profile, {
+    onRedirecting: () => <Home />,
+  });
