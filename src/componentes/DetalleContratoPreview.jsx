@@ -87,23 +87,25 @@ function DetalleContratoPreview(props) {
             <p>{contract.longdescription}</p>
             <h1><span>{contract.amount}</span> </h1>
 
-            <Button
-              className="aceptar-contratos"
-              variant="contained"
-              onClick={onClose}
-            >Edit</Button>
+            <div className='group-button-preview'>
+              <Button
+                className="aceptar-contratos"
+                variant="contained"
+                onClick={onClose}
+              >Editar</Button>
 
-            <Button
-              className="aceptar-contratos"
-              variant="contained"
-              onClick={handleOnSubmitPublished}
-            >To post</Button>
+              <Button
+                className="aceptar-contratos"
+                variant="contained"
+                onClick={handleOnSubmitPublished}
+              >Publicar</Button>
 
-            <Button
-              className="aceptar-contratos"
-              variant="contained"
-              onClick={handleOnSubmit}
-            >Save Draft </Button>
+              <Button
+                className="aceptar-contratos"
+                variant="contained"
+                onClick={handleOnSubmit}
+              >Guardar Borrador</Button>
+            </div>
 
           </div>
           // :

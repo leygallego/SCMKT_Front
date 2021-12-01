@@ -1,31 +1,37 @@
-.main-contratos{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    grid-gap: 1rem;
+.main-contratos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  grid-gap: 1rem;
 }
 
-.contratos-card{
-    /* display: grid; */
-    /* grid-template-rows: 100px 100px; */
-    /* grid-template-columns: repeat(2, 1fr); */
-    /* grid-gap: 1rem; */
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: transparent;
-    color: black;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-    width: 85%;
-    margin-left: 5%;
-    border-radius: 30px;
-    padding: 10px;
+.contratos-card {
+  /* display: grid; */
+  /* grid-template-rows: 100px 100px; */
+  /* grid-template-columns: repeat(2, 1fr); */
+  /* grid-gap: 1rem; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  width: 85%;
+  margin-left: 5%;
+  border-radius: 30px;
+  padding: 10px;
 }
 
-.contratos-card span{
-    color: blue;
+.contratos-card span {
+  color: blue;
 }
 
 .h1Button {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination-style {
+  display: flex;
+  justify-content: center;
+  padding: 5px 0px;
 }

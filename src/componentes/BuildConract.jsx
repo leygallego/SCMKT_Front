@@ -15,7 +15,7 @@ export function BuildConract() {
     const [checked, setChecked] = useState(false);
     const [input, setInput] = useState({
         id: '',
-        wallet1: '',
+        wallet1: user.wallet,
         wallet2: '',
         name: '',
         shortdescription: '',
