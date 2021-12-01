@@ -9,7 +9,6 @@ import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
 import { editUser, sendLogin, stopUser, getContracts, contratos } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react"
-import axios from 'axios';
 import Countries from './countries';
 
 
@@ -17,23 +16,24 @@ import Countries from './countries';
 
 function Profile() {
 
-    // const [pendingContracts, setPendingContracts] = useState([]);
-    // const [doneContracts, setDoneContracts] = useState([]);
-    // const [otroContracts, setOtroContracts] = useState([]);
-    // const usuarios = useSelector(state => state.users)
+
+    let p = [];
+    let d = [];
+    let o = [];
     const c = useSelector(state => state.contratos)
     const { user } = useSelector(state => state)
-    // console.log('CONTRATOS::::::', contratosData);
-
-    // const [progress, setProgress] = useState(0);
     const [userHook, setUserHook] = useState();
+    const [edicionPerfil, setEdicionPerfil] = useState(true)
+    const [registro, setRegistro] = useState({});
     const [avatarImage, setAvatarImage] = useState("/images/silueta.png");
+
     const inputFileRef = useRef();
     const uploadButton = useRef();
+
     const dispatch = useDispatch();
+
     const handleBtnClick = () => {
         inputFileRef.current.click();
-        uploadButton.current.click();
     }
 
     const formHandler = (e) => {
@@ -44,41 +44,54 @@ function Profile() {
     }
 
     const uploadFiles = (file) => {
-
         if (!file) return;
         const storageRef = refStorage(storage, `/files/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
-        uploadTask.on("state_changed", (snapshot) => {
-            // const prog = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            // setProgress(prog);
-        },
+        uploadTask.on("state_changed", (snapshot) => { },
             (err) => console.log(err),
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        setAvatarImage(url)
+                        setAvatarImage(url);
+
                         setRegistro({
                             ...registro,
                             image: url
                         })
                         console.log("Imagen subida exitosamente...");
+                        setTimeout(() => {
+                            console.log("refrescar")
+                            const registro2 = {
+                                ...user,
+                                name: `${registro['name'] ? registro.name : user.name}`,
+                                last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
+                                country: `${registro['country'] ? registro.country : user.country}`,
+                                wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
+                                image: `${registro['image'] ? registro.image : user.image}`
+                            }
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                            dispatch(editUser(user.id, registro2));
+                        }, 1500);
+                        user.image = url;
                     })
             }
         )
     };
-
-
 
     useEffect(() => {
         // dispatch(getContracts('', '', '', '', '', '', '', ''))
         dispatch(contratos())
         dispatch(callProtectedApi)
         setUserHook(user);
-console.log('SOy User',user)
+        //console.log('SOy User', user)
     }, [dispatch])
-
-    //console.log(user)
 
     const {
         getAccessTokenSilently,
@@ -88,70 +101,38 @@ console.log('SOy User',user)
         const token = await getAccessTokenSilently();
         try {
             dispatch(sendLogin(token))
-            // const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
-            // await axios.get('https://scmkt.herokuapp.com/user/login', {
-            // headers: {
-            //     Authorization: `Bearer ${token}`
-            //     }
-            // });
         } catch (error) {
             console.log('Error en el perfil ', error)
         }
-
     }
 
-    //dispatch(callProtectedApi)
-
-    const [edicionPerfil, setEdicionPerfil] = useState(true)
-    // const [bool, setBool] = useState(true);
-    const [registro, setRegistro] = useState({
-        // name: "",
-        // last_name: "",
-        // country: "",
-        // wallet: "",
-        // image: ""
-    });
-
-    //const [registro, setRegistro] = useState(user);
-
     const handleOnChange = (e) => {
-        console.log('Me Inicio (registro)', registro)
+        //console.log('Me Inicio (registro)', registro)
         setRegistro({
             ...registro,
             [e.target.name]: e.target.value
         })
-        console.log('Me modifico (registro)', registro)
+        //console.log('Me modifico (registro)', registro)
     }
 
     const handleEdition = () => {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
-
     }
-
-    // const handleOnClick = () => {
-    //     setBool(false)
-    // }
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        //console.log("submit", registro)
-
-        const registro2 = {...user,
-            name: `${registro['name']? registro.name : user.name}`,
-            last_name: `${registro['last_name']? registro.last_name : user.last_name}`,
-            country: `${registro['country']? registro.country : user.country}`,
-            wallet: `${registro['wallet']? registro.wallet : user.wallet}`,
-            image: `${registro['image']? registro.image : user.image}`
-         }
+        const registro2 = {
+            ...user,
+            name: `${registro['name'] ? registro.name : user.name}`,
+            last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
+            country: `${registro['country'] ? registro.country : user.country}`,
+            wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
+            image: `${registro['image'] ? registro.image : user.image}`
+        }
         dispatch(editUser(user.id, registro2));
-        console.log("Soy el Nuevo Registro", registro);
+        //console.log("Soy el Nuevo Registro", registro);
         handleEdition();
-        // setRegistro(user);
     }
-
-    let p = [];
-    let d = [];
-    let o = [];
 
     c.map(element => {
         if (element.status === "published" || element.status === "taken") {
@@ -166,10 +147,22 @@ console.log('SOy User',user)
         return (<></>)
     })
 
-    // console.log("USER:::::::::::", user.image);
-    // console.log('USERHOOK', userHook.image);
+    function handelFileChange(e) {
+        console.log("Cambiò la imagen");
+        uploadButton.current.click();
+        const registro2 = {
+            ...user,
+            name: `${registro['name'] ? registro.name : user.name}`,
+            last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
+            country: `${registro['country'] ? registro.country : user.country}`,
+            wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
+            image: `${registro['image'] ? registro.image : user.image}`
+        }
+        dispatch(editUser(user.id, registro2));
+        //console.log("Soy el Nuevo Registro", registro);
+        handleEdition();
 
-
+    }
 
     return (
         <>
@@ -224,19 +217,13 @@ console.log('SOy User',user)
                 <div className="area-perfil">
 
                     <div className="imageCircle">
-                        {user.image ? <img className="imageCircle" src={user.image} alt="imagen de silueta" /> : <></>}
-
-
-
-
-
+                        {user.image ? <img className="imageCircle" src={user.image} alt="imagen de silueta" /> : <img className="imageCircle" src={avatarImage} alt="imagen de silueta" />}
                         <input type="button" onClick={handleBtnClick} value="v/" />
-
                     </div>
 
                     <form onSubmit={formHandler}>
-                        {/* <input className="avatarInput" type="file" ref={inputFileRef} onChange={(e) => { handelFileChange(e) }} /> */}
-                        <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef} />
+                        <input className="avatarInput" type="file" ref={inputFileRef} onChange={(e) => { handelFileChange(e) }} />
+                        {/* <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef} /> */}
                         <button className="avatarInput" type='submit' ref={uploadButton}>Upload</button>
                     </form>
 
@@ -285,7 +272,6 @@ console.log('SOy User',user)
                                             </select></div>
                                     </div>
                                     {
-
                                         user.wallet === null || user.wallet === 'undefined' || user.wallet?.length <= 0 ? <div className="labelInput">
                                             <div className="labelForm">Wallet</div>
                                             <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet} /></div>
