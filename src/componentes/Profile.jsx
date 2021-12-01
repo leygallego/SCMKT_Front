@@ -7,7 +7,7 @@ import { storage } from '../firebase';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, stopUser, getContracts, contratos } from '../actions';
+import { editUser, sendLogin, stopUser, getContracts, contratos, sendNotification } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react"
 import axios from 'axios';
 import Countries from './countries';
@@ -132,6 +132,18 @@ console.log('SOy User',user)
     //     setBool(false)
     // }
 
+    const sendmail = {
+        to: user.email,
+        subject: 'Edición de datos',
+        text: `${user.name} acabas de editar tus datos personales `,
+        html: <strong>`${user.name} acabas de editar tus datos personales`</strong>
+
+    }
+
+    const [error, setError] = useState(null);
+    const [sent, setSent] = useState(false);
+
+
     const handleOnSubmit = (e) => {
         e.preventDefault();
         //console.log("submit", registro)
@@ -146,7 +158,12 @@ console.log('SOy User',user)
         dispatch(editUser(user.id, registro2));
         console.log("Soy el Nuevo Registro", registro);
         handleEdition();
-        // setRegistro(user);
+
+        dispatch(sendNotification(sendmail))
+        console.log("profile dispatch",sendmail);
+          
+
+
     }
 
     let p = [];

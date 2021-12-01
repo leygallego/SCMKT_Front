@@ -19,7 +19,8 @@ export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
 export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 export const STOP_USER = 'STOP_USER'
-export const CONTRATOS = 'CONTRATOS'
+export const CONTRATOS = 'CONTRATOS';
+export const SEND_NOTIFICATION = 'SEND_NOTIFICATION'
 
 export const contratos = () => {
     return async (dispatch) => {
@@ -237,3 +238,20 @@ export const stopUser = () => {
         payload: {}
     }
   }
+
+  export const sendNotification = (notificacion) => {
+    console.log('ACTION:::', notificacion)
+    return async(dispatch) =>{
+        dispatch({
+            type:SEND_NOTIFICATION
+        });
+        await axios.post('https://scmkt.herokuapp.com/api/mail', notificacion)
+        .then((response)=>{
+            console.log("registrado correctamente", response);
+        })
+        .catch(error => {
+            // console.log("No se registró" , error);
+        })
+    }
+    
+}
