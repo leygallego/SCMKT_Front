@@ -16,8 +16,18 @@ function NavBar() {
     logout,
     //user,
     isAuthenticated,
-    //getAccessTokenSilently,
+    getAccessTokenSilently,
   } = useAuth0();
+
+  async function saveToken () { 
+    if(isAuthenticated) {
+    let token = await getAccessTokenSilently();
+    window.sessionStorage.setItem('token', token);
+  }
+  console.log(window.sessionStorage.getItem('token'));
+  console.log(isAuthenticated)}
+
+  saveToken();
 
   return (
       <div className="navbar">

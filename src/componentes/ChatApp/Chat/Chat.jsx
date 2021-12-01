@@ -10,45 +10,47 @@ import Messages from '../Messages/Messages';
 import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input';
 
+import './Chat.css';
 
-const ENDPOINT = 'https://localhost:3000/';
+
+const ENDPOINT = "http://localhost:5000/";
 
 let socket;
 
 
 function Chat () {
-    const [name, setName] = useState('');
+    const user = useSelector(state => state.user);
+    const [name, setName] = useState(user.name)
     const [room, setRoom] = useState('prueba');
     const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
   
-    const [userHook, setUserHook] = useState();
-    const dispatch = useDispatch();
-    const { getAccessTokenSilently } = useAuth0();
+    //const [userHook, setUserHook] = useState();
+    //const dispatch = useDispatch();
+    //const { getAccessTokenSilently } = useAuth0();
 
-    async function callProtectedApi() {
-        const token = await getAccessTokenSilently();
+    /*async function callProtectedApi() {
         try {
-            dispatch(sendLogin(token))
+            dispatch(sendLogin(window.sessionStorage.getItem('token')))
 
         } catch(error) {
             console.log('Error en el perfil ', error)
         }
         
-    }
+    }*/
 
 
 
 
 
-    const {user} = useSelector(state => state)
+    /*const {user} = useSelector(state => state)
     useEffect(() => {
         dispatch(callProtectedApi)
         setUserHook(user);
         
     }, [dispatch])
-
+*/
     useEffect(() => {
         let name = user.name;
         let room = 'prueba';
@@ -62,7 +64,7 @@ function Chat () {
             alert(error);
           }
         });
-      }, [ENDPOINT, user.name]);
+      }, [ENDPOINT]);
 
       useEffect(() => {
         socket.on('message', message => {
@@ -79,9 +81,15 @@ function Chat () {
     
         if(message) {
           socket.emit('sendMessage', message, () => setMessage(''));
+          console.log(message);
         }
       }
 
+      /*console.log(messages);
+      console.log(name);
+      console.log(room);
+      console.log(users);
+*/
     return (
         <div className="outerContainer">
           <div className="container">
