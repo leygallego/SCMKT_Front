@@ -1,65 +1,98 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Contratos.css';
 import Button from '@mui/material/Button';
+import Pagination from '@mui/material/Pagination';
 import { NavLink } from 'react-router-dom';
 import { getContracts, setPage } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import ContractCard from './ContractCard'
 import SearchBar from './SearchBar';
 import { useAuth0 } from '@auth0/auth0-react'
-
-
+import usePagination from './usePagination';
 
 function Contratos() {
     let dispatch = useDispatch()
-    const { contracts, page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
+    const { contracts, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
     const { isAuthenticated, /*loginWithRedirect*/ loginWithPopup } = useAuth0()
-    
-    console.log(contracts)
+
+    // console.log('Contratos', contracts)
 
     useEffect(() => {
-        dispatch(getContracts({ filterState: 'pending' }))
+        // dispatch(getContracts({ filterState: 'pending' }))
+        dispatch(getContracts({}))
     }, [dispatch])
 
-    const changePage = (page) => {
-        dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }))
-        dispatch(setPage(page))
-    }
+    // const changePage = (page) => {
+    //     dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }))
+    //     dispatch(setPage(page))
+    // }
+
+    let [page, setPage] = useState(1);
+    const PER_PAGE = 10;
+    const count = Math.ceil(contracts.length / PER_PAGE);
+    const _DATA = usePagination(contracts, PER_PAGE);
+
+    const handleChange = (e, p) => {
+        setPage(p);
+        _DATA.jump(p);
+        console.log('_DATA', _DATA.currentData())
+    };
 
     return (
         <>
-        <div>
-            <h1>Componente Contratos</h1>
-        <div>
-            <SearchBar />
-        </div>
-        {
-            isAuthenticated?
-            (
+            <div>
+                <h1>Componente Contratos</h1>
                 <div>
-                    <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+                    <SearchBar />
                 </div>
-            )
-            :(
-                <div>
-                    <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
-                </div>
-            )
+                {
+                    isAuthenticated ?
+                        (
+                            <div>
+                                <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+                            </div>
+                        )
+                        : (
+                            <div>
+                                <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
+                            </div>
+                        )
 
-        }
-        
-        </div>
-        <div className="main-contratos">
-        {
-            contracts.length > 0 && contracts.map((c)=>{
-                return <ContractCard id={c.id} conditions={c.conditions}/>
-            })
-            
-        }
-        </div>
-        <button disabled={page - 1 === 0} onClick={() => { changePage(page - 1) }}>prev</button>
+                }
+
+            </div>
+            <div className='pagination-style'>
+                <Pagination
+                    count={count}
+                    size="large"
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                    onChange={handleChange}
+                />
+            </div>
+
+            <div className="main-contratos">
+                {
+                    _DATA.currentData().length > 0 && _DATA.currentData().map((c) => {
+                        return <ContractCard key={c.id} id={c.id} conditions={c.conditions} />
+                    })
+                }
+            </div>
+
+            <div className='pagination-style'>
+                <Pagination
+                    count={count}
+                    size="large"
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                    onChange={handleChange}
+                />
+            </div>
+            {/* <button disabled={page - 1 === 0} onClick={() => { changePage(page - 1) }}>prev</button>
             <label>{page}</label>
-        <button disabled={contracts?.count <= (page * 10)} onClick={() => { changePage(page + 1) }}>next</button>
+            <button disabled={contracts?.count <= (page * 10)} onClick={() => { changePage(page + 1) }}>next</button> */}
         </>
     )
 }
