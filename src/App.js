@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './componentes/NavBar';
 import Home from './componentes/Home';
 import Contratos from './componentes/Contratos';
-import Chat from './componentes/chat';
+import Chat from './componentes/ChatApp/Chat/Chat';
 import AboutUs from './componentes/AboutUs';
 import DetalleContrato from './componentes/DetalleContrato';
 import DetalleView from './componentes/DetalleView';
