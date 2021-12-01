@@ -7,7 +7,7 @@ import { storage } from '../firebase';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, stopUser, getContracts, contratos, removeContract } from '../actions';
+import { editUser, sendLogin, stopUser, getContracts, contratos, removeContract, sendNotification } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react"
 import Countries from './countries';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -120,6 +120,21 @@ function Profile() {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
     }
 
+    // const handleOnClick = () => {
+    //     setBool(false)
+    // }
+
+    const sendmail = {
+        to: user.email,
+        subject: 'Edición de datos',
+        text: `${user.name} acabas de editar tus datos personales `,
+        html: <strong>`${user.name} acabas de editar tus datos personales`</strong>
+
+    }
+
+    const [error, setError] = useState(null);
+    const [sent, setSent] = useState(false);
+
     const handleOnSubmit = (e) => {
         e.preventDefault();
         const registro2 = {
@@ -133,6 +148,10 @@ function Profile() {
         dispatch(editUser(user.id, registro2));
         //console.log("Soy el Nuevo Registro", registro);
         handleEdition();
+
+        dispatch(sendNotification(sendmail))
+        console.log("profile dispatch",sendmail);
+          
     }
 
     c.map(element => {

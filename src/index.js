@@ -13,6 +13,7 @@ ReactDOM.render(
     <Auth0Provider
     domain="dev-a8q5pol6.us.auth0.com"
     clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
+
     redirectUri={
       //"https://henryfront.surge.sh/perfil"
       // "http://localhost:3000/perfil"
