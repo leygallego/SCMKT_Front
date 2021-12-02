@@ -143,6 +143,21 @@ export function createContract(contract){
   }
 }
 
+export function deleteContract(contract){
+    return (dispatch) => {
+      try {
+        axios.post(`https://scmkt.herokuapp.com/contract/delete`, contract)
+            .then(() => {
+                return dispatch({
+                    type: REMOVE_CONTRACT
+                })
+            })
+      } catch (error) {
+        console.log(error)
+    }
+  }
+}
+
 export const getContractsPreview = (data) => {
     return {
         type: PREVIEW_CONTRACT,
