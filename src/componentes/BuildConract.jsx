@@ -54,7 +54,7 @@ export function BuildConract() {
         return errors;
     };
 
-    const uploadFiles = (file) => {
+    const uploadFileC1 = (file) => {
         if (!file) return;
         const storageRef = refStorage(storage, `/documents/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
@@ -74,23 +74,32 @@ export function BuildConract() {
         )
     };
 
+    const uploadFileC2 = (file) => {
+        if (!file) return;
+        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on("state_changed", (snapshot) => { },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        console.log('archivo URL', url)
+                        setInput({
+                            ...input,
+                            c2: url
+                        })
+                    })
+            }
+        )
+    };
+
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
-            setArchivo1(e.target.files[0]);
-            let arch = uploadFiles(e.target.files[0])
-            console.log('archivo', arch)
-            setInput({
-                ...input,
-                c1: arch
-            })
+            // setArchivo1(e.target.files[0]);
+            uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
-            setArchivo2(e.target.files[0]);
-            let arch = uploadFiles(e.target.files[0])
-            
-            setInput({
-                ...input,
-                c2: arch
-            })
+            uploadFileC2(e.target.files[0])
         } else {
             console.log(e.target.name, e.target.value)
             setInput({
@@ -201,7 +210,7 @@ export function BuildConract() {
                                 Sube tu archivo de test.js
                             </div>
                             <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
                         </div>
 
                         {/* <div className="labelInput">

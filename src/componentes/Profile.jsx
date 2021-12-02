@@ -212,7 +212,7 @@ function Profile() {
                                 <div key={index} className="info-contrato">
                                     <h6>{element.conditions.name}</h6>
                                     <h6>{element.conditions.amount}</h6>
-                                    <NavLink to="/detallecontratosfin"><h6>ver detalles</h6></NavLink>
+                                    <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
                                 </div>
                             )
                         }) : <></>}
@@ -342,6 +342,4 @@ function Profile() {
     )
 }
 
-export default withAuthenticationRequired(Profile, {
-    onRedirecting: () => <Home />,
-  });
+export default Profile;

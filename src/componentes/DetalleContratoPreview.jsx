@@ -93,7 +93,7 @@ function DetalleContratoPreview(props) {
             <h1><span>{contract.amount}</span> </h1>
             <div>
             <p>Test</p>
-            {/* {contract.condition.c1 ? <img className="imageCircle" src={contract.condition.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta" />} */}
+            {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}
             </div>
 
             <div className='group-button-preview'>
