@@ -4,6 +4,7 @@ import NavBar from './componentes/NavBar';
 import Home from './componentes/Home';
 import Contratos from './componentes/Contratos';
 import Chat from './componentes/ChatApp/Chat/Chat';
+import Join from './componentes/ChatApp/Join/Join';
 import AboutUs from './componentes/AboutUs';
 import DetalleContrato from './componentes/DetalleContrato';
 import DetalleView from './componentes/DetalleView';
@@ -28,6 +29,7 @@ function App() {
 
         <Switch>
         <Route exact path="/" component={Home}></Route>
+        <Route exact path="/join" component={Join}></Route>
         <Route exact path="/chat" component={Chat}></Route>
         <Route exact path="/contratos" component={Contratos}></Route>  
         <Route exact path="/aboutus" component={AboutUs}></Route>  

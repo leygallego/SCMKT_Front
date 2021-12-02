@@ -65,7 +65,7 @@ function NavBar() {
                         </li>
                         </div>
                         <li>
-                          <NavLink to="/chat">Chat</NavLink>
+                          <NavLink to="/join">Chat</NavLink>
                         </li>
 
 

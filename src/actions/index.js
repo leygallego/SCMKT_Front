@@ -34,9 +34,10 @@ export const sendLogin = (userLoginObject) => {
                         data: 12345
                         }
                     });
-                window.sessionStorage.setItem('user', JSON.stringify(response.data));
+                    window.sessionStorage.setItem('response', JSON.stringify(response))
+                    window.sessionStorage.setItem('user', JSON.stringify(response.data));
             }
-            console.log(window.sessionStorage.getItem('user'))
+            //console.log(JSON.parse(window.sessionStorage.getItem('response')))
             return dispatch({
                 type: SEND_LOGIN,
                 payload: JSON.parse(window.sessionStorage.getItem('user'))
