@@ -15,8 +15,8 @@ import {
     SET_FILTER_STATE,
     SET_FILTER_TYPE,
     SET_AUTHOR,
-    SET_NAME,
-    SET_PAGE
+    SET_NAME
+    
 } from "../actions";
 
 const initialState = {
@@ -27,7 +27,6 @@ const initialState = {
     contratos: [],
     preview: {},
     verified: false,
-    page: 1
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -174,12 +173,6 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 name: action.payload
-            }
-
-        case SET_PAGE:
-            return {
-                ...state,
-                page: action.payload
             }
 
         default: return state
