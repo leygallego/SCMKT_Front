@@ -317,4 +317,4 @@ function Profile() {
     )
 }
 
-export default Profile
+export default Profile;

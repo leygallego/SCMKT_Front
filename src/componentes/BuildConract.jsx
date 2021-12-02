@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import Button from '@mui/material/Button';
+import { getDownloadURL, uploadBytesResumable, ref as refStorage } from 'firebase/storage';
+import { storage } from '../firebase';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
@@ -35,12 +36,14 @@ export function BuildConract() {
         // closeOnOverlayClick: false
     });
 
+    const [archivo1, setArchivo1] = useState(null);
+    const [archivo2, setArchivo2] = useState(null);
+
     useEffect(() => {
         dispatch(getUsers({}))
     }, [dispatch]);
 
     function validate(elem) {
-        console.log('elemmmm', elem)
         if (input[elem] === '') {
             let inputName = elem.charAt(0).toUpperCase() + elem.slice(1)
             setErrors({ ...errors, [elem]: `The ${inputName} field is required` });
@@ -48,21 +51,66 @@ export function BuildConract() {
             setErrors({ ...errors, [elem]: "" });
         }
 
-        // console.log('Error', errors)
-        // console.log('Input', input)
         return errors;
     };
 
+    const uploadFileC1 = (file) => {
+        if (!file) return;
+        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on("state_changed", (snapshot) => { },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        console.log('archivo URL', url)
+                        setInput({
+                            ...input,
+                            c1: url
+                        })
+                    })
+            }
+        )
+    };
+
+    const uploadFileC2 = (file) => {
+        if (!file) return;
+        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, file)
+
+        uploadTask.on("state_changed", (snapshot) => { },
+            (err) => console.log(err),
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref)
+                    .then(url => {
+                        console.log('archivo URL', url)
+                        setInput({
+                            ...input,
+                            c2: url
+                        })
+                    })
+            }
+        )
+    };
+
     const handleInputChange = (e) => {
-        console.log(e.target.name, e.target.value)
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-        setErrors(validate({
-            ...input,
-            [e.target.name]: e.target.value
-        }))
+        if (e.target.name === 'file-c1') {
+            // setArchivo1(e.target.files[0]);
+            uploadFileC1(e.target.files[0])
+        } else if (e.target.name === 'file-c2') {
+            uploadFileC2(e.target.files[0])
+        } else {
+            console.log(e.target.name, e.target.value)
+            setInput({
+                ...input,
+                [e.target.name]: e.target.value
+            })
+            setErrors(validate({
+                ...input,
+                [e.target.name]: e.target.value
+            }))
+        }
     };
 
     function onChangeValue(e, name) {
@@ -79,61 +127,6 @@ export function BuildConract() {
 
     const handleOnSubmit = (e) => {
         e.preventDefault()
-
-        // let nweC = {
-        //     wallet1: user.wallet,
-        //     wallet2: '',
-        //     conditions: {
-        //         name: input.name,
-        //         shortdescription: input.shortdescription,
-        //         longdescription: input.longdescription,
-        //         amount: input.amount,
-        //         coin: input.coin,
-        //         condition: {
-        //             c1: '',
-        //             c2: ''
-        //         }
-        //     },
-        //     status: 'unpublished',
-        //     ownerId: user.id //"e5e0dfd8-9669-4a71-b81c-053770a6be27"
-        // }
-
-        // Swal.fire({
-        //     title: 'Do you want to save the changes?',
-        //     showDenyButton: true,
-        //     showCancelButton: true,
-        //     confirmButtonText: 'Save',
-        //     denyButtonText: `Don't save`,
-        // }).then((result) => {
-        //     /* Read more about isConfirmed, isDenied below */
-        //     if (result.isConfirmed) {
-        //         dispatch(createContract(nweC))
-        //         setInput({
-        //             id: '',
-        //             wallet1: '',
-        //             wallet2: '',
-        //             conditions: {
-        //                 name: '',
-        //                 shortdescription: '',
-        //                 longdescription: '',
-        //                 amount: '0.00000001',
-        //                 coin: '',
-        //                 condition: {
-        //                     c1: '',
-        //                     c2: ''
-        //                 }
-        //             },
-        //             status: 'unpublished',
-        //             ownerId: user.id
-        //         })
-        //         Swal.fire('Saved!', '', 'success')
-        //             .then((result) => {
-        //                 window.location.replace(`https://scmkt.herokuapp.com/contract/`)
-        //             })
-        //     } else if (result.isDenied) {
-        //         Swal.fire('Changes are not saved', '', 'info')
-        //     }
-        // })
     }
 
     return (
@@ -216,7 +209,8 @@ export function BuildConract() {
                             <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
                             </div>
-                            <div className="inputForm-archivo"><input className="seleccion-archivo" type="file" /></div>
+                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
                         </div>
 
                         {/* <div className="labelInput">

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import { getContractsPreview, createContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -38,8 +39,8 @@ function DetalleContratoPreview(props) {
         amount: contract.amount,
         coin: contract.coin,
         condition: {
-          c1: '',
-          c2: ''
+          c1: contract.c1,
+          c2: contract.c2
         }
       },
       status,
@@ -67,6 +68,10 @@ function DetalleContratoPreview(props) {
     })
   }
 
+  const download = () => {
+
+  }
+
   return (
     <div className='preview-content'>
       <div><h1>Detalle Contrato</h1></div>
@@ -86,6 +91,10 @@ function DetalleContratoPreview(props) {
             <p>{contract.shortdescription}</p>
             <p>{contract.longdescription}</p>
             <h1><span>{contract.amount}</span> </h1>
+            <div>
+            <p>Test</p>
+            {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}
+            </div>
 
             <div className='group-button-preview'>
               <Button
