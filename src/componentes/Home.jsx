@@ -14,32 +14,32 @@ import axios from 'axios';
 function Home() {
 
 
-    const [error, setError] = useState(null);
-  const [sent, setSent] = useState(false);
+//     const [error, setError] = useState(null);
+//   const [sent, setSent] = useState(false);
 
-  const [to, setTo] = useState('');
-  const [subject, setSubject] = useState('');
-  const [text, setText] = useState('');
-  const [html, setHtml] = useState('');
+//   const [to, setTo] = useState('');
+//   const [subject, setSubject] = useState('');
+//   const [text, setText] = useState('');
+//   const [html, setHtml] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
 
-    try {
-      await axios.post('https://scmkt.herokuapp.com/api/mail', { to, subject, text, html });
+//     try {
+//       await axios.post('https://scmkt.herokuapp.com/api/mail', { to, subject, text, html });
 
-      setSent(true);
-      setError(null);
-    } catch (err) {
-      setError(err.response.data);
-    }
-  };
+//       setSent(true);
+//       setError(null);
+//     } catch (err) {
+//       setError(err.response.data);
+//     }
+//   };
 
 
     return (
         <>
 
-<form onSubmit={handleSubmit}>
+{/* <form onSubmit={handleSubmit}>
         <input
           value={to}
           onChange={(e) => setTo(e.target.value)}
@@ -63,7 +63,7 @@ function Home() {
         <button type="submit">Submit</button>
       </form>
       {error && error}
-      {sent && <p>Email sent!</p>}
+      {sent && <p>Email sent!</p>} */}
 
             <div className="main">
 
