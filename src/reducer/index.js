@@ -67,20 +67,17 @@ export default function rootReducer(state = initialState, action) {
                 preview: action.payload
             }
         case REMOVE_CONTRACT:
-            const ids = action.payload;
-            console.log('ids',ids)
+            const ids = action.payload; 
+            console.log('ids',ids, action.payload)
 
-            state.contratos.map(elementContract => {
-                ids.contract.map((element) => {
-                    if (element === elementContract.id) {
-                        elementContract.status = "deleted"
-                    } 
-                })
+            let filtered = state.contracts.filter(elementContract => {
+                console.log('elementContract',elementContract)
+                //ids.contract.indexOf(elementContract.id) >= 0
             })
 
-
             return {
-                ...state
+                ...state,
+                contracts: filtered
             }
 
         case POST_SING_UP:
