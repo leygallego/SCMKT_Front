@@ -16,8 +16,8 @@ ReactDOM.render(
 
     redirectUri={
       //"https://henryfront.surge.sh/perfil"
-      // "http://localhost:3000/perfil"
-      "https://scmkt-4fe6b.web.app/perfil"
+       "http://localhost:3000/perfil"
+      //"https://scmkt-4fe6b.web.app/perfil"
     }
     audience="SCMKT"
     scope="openid profile email"

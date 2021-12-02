@@ -69,15 +69,13 @@ export default function rootReducer(state = initialState, action) {
             }
         case REMOVE_CONTRACT:
             const ids = action.payload;
+            console.log('ids',ids)
 
             state.contratos.map(elementContract => {
-                console.log('elementContract', elementContract.id)
-                ids.map((element) => {
-                    console.log('element', element)
+                ids.contract.map((element) => {
                     if (element === elementContract.id) {
-                        console.log('es igual')
                         elementContract.status = "deleted"
-                    } else {console.log('no es igual')}
+                    } 
                 })
             })
 
