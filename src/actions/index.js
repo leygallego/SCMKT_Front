@@ -26,7 +26,6 @@ export const contratos = () => {
     return async (dispatch) => {
         
             const response = await axios.get("https://scmkt.herokuapp.com/contract")
-            console.log('RESPONSE::::', response);
             return dispatch({
                 type: CONTRATOS,
                 payload: response.data
@@ -144,12 +143,14 @@ export function createContract(contract){
 }
 
 export function deleteContract(contract){
+    console.log('DELETE::::::', contract)
     return (dispatch) => {
       try {
-        axios.post(`https://scmkt.herokuapp.com/contract/delete`, contract)
+        axios.put("https://scmkt.herokuapp.com/contract/delete", contract)
             .then(() => {
                 return dispatch({
-                    type: REMOVE_CONTRACT
+                    type: REMOVE_CONTRACT,
+                    payload: contract
                 })
             })
       } catch (error) {
