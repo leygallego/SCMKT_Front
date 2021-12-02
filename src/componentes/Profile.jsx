@@ -67,13 +67,6 @@ function Profile() {
                                 image: `${registro['image'] ? registro.image : user.image}`
                             }
                             dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
-                            dispatch(editUser(user.id, registro2));
                         }, 1500);
                         user.image = url;
                     })
@@ -199,7 +192,7 @@ function Profile() {
                                 <div key={index} className="info-contrato">
                                     <h6>{element.conditions.name}</h6>
                                     <h6>{element.conditions.amount}</h6>
-                                    <NavLink to="/detallecontratosfin"><h6>ver detalles</h6></NavLink>
+                                    <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
                                 </div>
                             )
                         }) : <></>}
@@ -222,7 +215,7 @@ function Profile() {
                                     <div key={index} className="info-contrato">
                                         <h6>{element.conditions.name}</h6>
                                         <h6>{element.conditions.amount}</h6>
-                                        <NavLink to="/detallecontratosfin"><h6>ver detalles</h6></NavLink>
+                                        <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
                                     </div>
                                     <input type="checkbox" name={element.id} onChange={e => {onCheck(e)}}/>
                                 </div>
@@ -238,7 +231,7 @@ function Profile() {
                                 <div key={index} className="info-contrato">
                                     <h6>{element.conditions.name}</h6>
                                     <h6>{element.conditions.amount}</h6>
-                                    <NavLink to="/detallecontratosfin"><h6>ver detalles</h6></NavLink>
+                                    <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
                                 </div>
                             )
                         }) : <></>}
