@@ -12,6 +12,7 @@ import Uploadimage from './UploadImage';
 import ContractsCard from './ContractsCard';
 import Swal from 'sweetalert2';
 import './Profile.css';
+import Spinner from './Spinner';
 
 function Profile() {
 
@@ -20,7 +21,8 @@ function Profile() {
     let o = [];
     const c = useSelector(state => state.contratos)
     const { user } = useSelector(state => state)
-    const { profileImage } = useSelector(state => state);
+    const { profileImage, spinner } = useSelector(state => state);
+    // const { spinner } = useSelector(state => state);
     const [edicionPerfil, setEdicionPerfil] = useState(true)
     const [registro, setRegistro] = useState({});
     const [eraser, setEraser] = useState([]);
@@ -179,12 +181,13 @@ function Profile() {
                 </div>
 
                 <div className="area-perfil">
-
-                    <Uploadimage
+                    {spinner ? <Uploadimage
                         image={profileImage}
                         id={user.id}
                         user={user}
-                    />
+                    /> : <Spinner />}
+
+
                     <br />
                     <Button
                         className="busca-wallet"
@@ -201,12 +204,12 @@ function Profile() {
                             onClick={handleEdition}>
                             Datos Personales
                         </Button>
-                        {edicionPerfil ? <div>
-                            <h6>Nombre: {user.name} {user.last_name}</h6>
-                            <h6>Usuario: {user.username}</h6>
-                            <h6>Email: {user.email}</h6>
-                            <h6>Nº Wallet: {user.wallet}</h6>
-                            <h6>País Residencia: {user.country}</h6>
+                        {edicionPerfil ? <div className="profileDataView">
+                            <h4>Nombre: {user.name} {user.last_name}</h4>
+                            <h4>Usuario: {user.username}</h4>
+                            <h4>Email: {user.email}</h4>
+                            <h4>Nº Wallet: {user.wallet}</h4>
+                            <h4>País Residencia: {user.country}</h4>
                         </div> :
                             <form onSubmit={e => { handleOnSubmit(e) }}>
                                 <div className="registro1">
