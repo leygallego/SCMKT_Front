@@ -11,6 +11,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import usePagination from './usePagination';
 
 function Contratos() {
+    const { user } = useSelector(state => state)
     let dispatch = useDispatch()
     const { contracts, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
     const { isAuthenticated, /*loginWithRedirect*/ loginWithPopup } = useAuth0()
@@ -19,7 +20,7 @@ function Contratos() {
 
     useEffect(() => {
         // dispatch(getContracts({ filterState: 'pending' }))
-        dispatch(getContracts({}))
+        dispatch(getContracts({ownerId: user.id}))
     }, [dispatch])
 
     // const changePage = (page) => {

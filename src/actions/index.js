@@ -110,10 +110,10 @@ export const getUserByID = (id) =>{
     }
 }
 
-export function getContracts ({ name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
+export function getContracts ({ name, author, ownerId, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
         try{
-            const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
             return dispatch({
                 type: GET_CONTRACTS,
                 payload: response.data
