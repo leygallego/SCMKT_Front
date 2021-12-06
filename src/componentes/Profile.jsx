@@ -129,8 +129,8 @@ function Profile() {
         dispatch(editUser(user.id, registro2));
         handleEdition();
 
-        dispatch(sendNotification(sendmail))
-        console.log("profile dispatch",sendmail);
+        // dispatch(sendNotification(sendmail))
+        // console.log("profile dispatch",sendmail);
           
     }
 

@@ -249,19 +249,19 @@ export const stopUser = () => {
     }
   }
 
-  export const sendNotification = (notificacion) => {
-    console.log('ACTION:::', notificacion)
-    return async(dispatch) =>{
-        dispatch({
-            type:SEND_NOTIFICATION
-        });
-        await axios.post('https://scmkt.herokuapp.com/api/mail', notificacion)
-        .then((response)=>{
-            console.log("registrado correctamente", response);
-        })
-        .catch(error => {
-            // console.log("No se registró" , error);
-        })
-    }
+//   export const sendNotification = (notificacion) => {
+//     console.log('ACTION:::', notificacion)
+//     return async(dispatch) =>{
+//         dispatch({
+//             type:SEND_NOTIFICATION
+//         });
+//         await axios.post('https://scmkt.herokuapp.com/api/mail', notificacion)
+//         .then((response)=>{
+//             console.log("registrado correctamente", response);
+//         })
+//         .catch(error => {
+//             // console.log("No se registró" , error);
+//         })
+//     }
     
-}
+// }
