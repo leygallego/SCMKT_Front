@@ -4,14 +4,13 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, contratos, deleteContract } from '../actions';
+import { editUser, sendLogin, getContracts, deleteContract } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Uploadimage from './UploadImage';
 import ContractsCard from './ContractsCard';
-
-
+import Swal from 'sweetalert2';
 import './Profile.css';
 import Spinner from './Spinner';
 
@@ -30,7 +29,7 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(contratos())
+        dispatch(getContracts({ ownerId: user.id }))
         dispatch(callProtectedApi)
     }, [dispatch])
 
@@ -74,8 +73,21 @@ function Profile() {
 
 
     const borraContratos = () => {
-        dispatch(deleteContract({ "contract": eraser }));
-        // setEraser([]);
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                dispatch(deleteContract({ "contract": eraser }));
+
+                Swal.fire('Saved!', '', 'success')
+            } //else if (result.isDenied) {
+              //  Swal.fire('Changes are not saved', '', 'info')
+           // }
+        })
     }
 
     const onCheck = (e) => {
