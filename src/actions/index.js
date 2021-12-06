@@ -22,6 +22,13 @@ export const STOP_USER = 'STOP_USER'
 export const CONTRATOS = 'CONTRATOS';
 export const SEND_NOTIFICATION = 'SEND_NOTIFICATION';
 export const SET_PROFILE_IMAGE = 'SET_PROFILE_IMAGE';
+export const SET_SPINNER = 'SET_SPINNER';
+
+export const setSpinner = () => {
+    return {
+        type: SET_SPINNER
+    }
+}
 
 export const setProfileImage = (url) => {
     return {

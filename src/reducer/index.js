@@ -16,7 +16,8 @@ import {
     SET_FILTER_TYPE,
     SET_AUTHOR,
     SET_NAME,
-    SET_PROFILE_IMAGE
+    SET_PROFILE_IMAGE,
+    SET_SPINNER
 
 } from "../actions";
 
@@ -28,7 +29,8 @@ const initialState = {
     contratos: [],
     preview: {},
     verified: false,
-    profileImage: ""
+    profileImage: "",
+    spinner: true
     // profileImage: "/images/silueta.png"
 }
 
@@ -143,6 +145,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 name: action.payload
+            }
+
+        case SET_SPINNER:
+            return {
+                ...state,
+                spinner: !state.spinner
             }
 
         default: return state

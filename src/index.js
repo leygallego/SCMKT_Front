@@ -15,9 +15,10 @@ ReactDOM.render(
     clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
 
     redirectUri={
-      //"https://henryfront.surge.sh/perfil"
-       //"http://localhost:3000/perfil"
-      "https://scmkt-4fe6b.web.app/perfil"
+      // "https://henryfront.surge.sh/perfil"
+      "http://localhost:3000/perfil"
+      // "https://scmkt-4fe6b.web.app/perfil"
+      // "https://henryfront.surge.sh/"      
     }
     audience="SCMKT"
     scope="openid profile email"
