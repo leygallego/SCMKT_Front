@@ -4,8 +4,8 @@ import {
     getContracts,
     setFilterType,
     setFilterCategory,
-    setFilterDurationL,
-    setFilterDurationH,
+    // setFilterDurationL,
+    // setFilterDurationH,
     setName,
     setAuthor
 } from "../actions"
@@ -33,15 +33,15 @@ function SearchBar() {
         dispatch(getContracts({ page, name, author, filterType, filterCategory: e.target.value, filterDurationH, filterDurationL }))
     }
 
-    const filterByDurationH = (e) => {
-        dispatch(setFilterDurationH(e.target.value))
-        dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH: e.target.value, filterDurationL }))
-    }
+    // const filterByDurationH = (e) => {
+    //     dispatch(setFilterDurationH(e.target.value))
+    //     dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH: e.target.value, filterDurationL }))
+    // }
     
-    const filterByDurationL = (e) => {
-        dispatch(setFilterDurationL(e.target.value))
-        dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL: e.target.value }))
-    }
+    // const filterByDurationL = (e) => {
+    //     dispatch(setFilterDurationL(e.target.value))
+    //     dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL: e.target.value }))
+    // }
 
     const search = (e) => {
         dispatch(setAuthor(e.target.value))

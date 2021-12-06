@@ -20,7 +20,15 @@ export const SET_PAGE = 'SET_PAGE'
 export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 export const STOP_USER = 'STOP_USER'
 export const CONTRATOS = 'CONTRATOS';
-export const SEND_NOTIFICATION = 'SEND_NOTIFICATION'
+export const SEND_NOTIFICATION = 'SEND_NOTIFICATION';
+export const SET_PROFILE_IMAGE = 'SET_PROFILE_IMAGE';
+
+export const setProfileImage = (url) => {
+    return {
+        type: SET_PROFILE_IMAGE,
+        payload: url
+    }
+}
 
 export const contratos = () => {
     return async (dispatch) => {
@@ -37,7 +45,7 @@ export const contratos = () => {
 export const sendLogin = (userLoginObject) => {
     return async dispatch => {
         try {
-            console.log(window.sessionStorage.getItem('user'))
+            // console.log(window.sessionStorage.getItem('user'))
             if (window.sessionStorage.getItem('user') === null) {
                 
                 const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
@@ -50,7 +58,7 @@ export const sendLogin = (userLoginObject) => {
                     });
                 window.sessionStorage.setItem('user', JSON.stringify(response.data));
             }
-            console.log(window.sessionStorage.getItem('user'))
+            // console.log(window.sessionStorage.getItem('user'))
             return dispatch({
                 type: SEND_LOGIN,
                 payload: JSON.parse(window.sessionStorage.getItem('user'))
@@ -62,7 +70,6 @@ export const sendLogin = (userLoginObject) => {
 }
 
 export const postSingUp = (userRegisterObject) => {
-    //console.log('ACTION:::', userRegisterObject)
     return async(dispatch) =>{
         dispatch({
             type:POST_SING_UP
@@ -143,7 +150,6 @@ export function createContract(contract){
 }
 
 export function deleteContract(contract){
-    console.log('DELETE::::::', contract)
     return (dispatch) => {
       try {
         axios.put("https://scmkt.herokuapp.com/contract/delete", contract)
@@ -175,7 +181,6 @@ export const removeContract = (borrar) => {
 }
 
 export const editUser = (id, user) => {
-    console.log('ACTION EDIT USER:::', id, user)
     return async(dispatch) =>{
         dispatch({
             type:EDIT_USER,
@@ -184,7 +189,7 @@ export const editUser = (id, user) => {
         await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
         .then((response)=>{
-            console.log("registrado correctamente", response);
+            // console.log("registrado correctamente", response);
         })
         .catch(error => {
             console.log("No se registró" , error);
@@ -263,5 +268,5 @@ export const stopUser = () => {
 //             // console.log("No se registró" , error);
 //         })
 //     }
-    
+
 // }

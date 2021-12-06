@@ -15,8 +15,9 @@ import {
     SET_FILTER_STATE,
     SET_FILTER_TYPE,
     SET_AUTHOR,
-    SET_NAME
-    
+    SET_NAME,
+    SET_PROFILE_IMAGE
+
 } from "../actions";
 
 const initialState = {
@@ -27,10 +28,19 @@ const initialState = {
     contratos: [],
     preview: {},
     verified: false,
+    profileImage: ""
+    // profileImage: "/images/silueta.png"
 }
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
+
+        case SET_PROFILE_IMAGE:
+            return {
+                ...state,
+                profileImage: action.payload
+            }
+
         case GET_USERS:
             return {
                 ...state,
@@ -48,12 +58,12 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 contracts: action.payload
             }
-        
+
         case CONTRATOS:
             return {
                 ...state,
                 contratos: action.payload
-            }    
+            }
 
         case GET_CONTRACT_BY_ID:
             return {
@@ -67,12 +77,9 @@ export default function rootReducer(state = initialState, action) {
                 preview: action.payload
             }
         case REMOVE_CONTRACT:
-            const ids = action.payload; 
-            console.log('ids',ids, action.payload)
-
+            // ????????????????????
             let filtered = state.contracts.filter(elementContract => {
-                console.log('elementContract',elementContract)
-                //ids.contract.indexOf(elementContract.id) >= 0
+                return console.log('elementContract', elementContract)
             })
 
             return {
@@ -81,53 +88,19 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case POST_SING_UP:
-            // console.log('POST_SING_UP', action.payload);
-            // if (
-            //     action.userRegisterObject.username === ""
-            //     || action.userRegisterObject.country === ""
-            //     || action.userRegisterObject.email === ""
-            //     || action.userRegisterObject.wallet === ""
-            //     || action.userRegisterObject.password === ""
-            // ) {
-            //     return state;
-            // }
-            // return {
-            //     ...state,
-            //     newUser: [...state.newUser, action.userRegisterObject]
-            // }
             return {
                 ...state
             }
         case SEND_LOGIN:
-            //console.log('Este es el payload: ', action.payload)
-            //console.log('SEND_LOGIN:::::', action.payload)
-            //const { name, password } = action.payload;
-            //console.log('Destructurado', name, password)
-            // state.newUser.map(
-            //     element => {
-            //         if (element.name === name && element.password === password) {
-            //             console.log('Si hay login', element.name, element.password);
-            //             return {
-            //                 ...state,
-            //                 user: {
-            //                     name,
-            //                     password
-            //                 }
-            //             }
-
-            //         }
-            //         return null;
-            //     }
-            // );
             return {
                 ...state,
                 user: action.payload
             };
 
-            case EDIT_USER:
-                return{
-                    ...state,
-                    user: action.payload
+        case EDIT_USER:
+            return {
+                ...state,
+                user: action.payload
             };
 
         case SET_FILTER_DURATIONH:

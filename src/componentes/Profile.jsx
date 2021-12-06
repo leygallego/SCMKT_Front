@@ -1,84 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Profile.css';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
-import { getDownloadURL, uploadBytesResumable, ref as refStorage } from 'firebase/storage';
-import { storage } from '../firebase';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, stopUser, getContracts, contratos, deleteContract, sendNotification } from '../actions';
-import { useAuth0 } from "@auth0/auth0-react"
+import { editUser, sendLogin, contratos, deleteContract } from '../actions';
+import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Uploadimage from './UploadImage';
+import ContractsCard from './ContractsCard';
+
+import './Profile.css';
 
 function Profile() {
-
 
     let p = [];
     let d = [];
     let o = [];
     const c = useSelector(state => state.contratos)
     const { user } = useSelector(state => state)
-    const [userHook, setUserHook] = useState();
+    const { profileImage } = useSelector(state => state);
     const [edicionPerfil, setEdicionPerfil] = useState(true)
     const [registro, setRegistro] = useState({});
-    const [avatarImage, setAvatarImage] = useState("/images/silueta.png");
-    const [eraser, setEraser] = useState([]); // Array de id de contratos a borrar
-
-    const inputFileRef = useRef();
-    const uploadButton = useRef();
-
+    const [eraser, setEraser] = useState([]);
     const dispatch = useDispatch();
 
-    const handleBtnClick = () => {
-        inputFileRef.current.click();
-    }
-    const formHandler = (e) => {
-        e.preventDefault();
-        const file = e.target[0].files[0];
-        uploadFiles(file);
-        handleOnSubmit(e);
-    }
-
-    const uploadFiles = (file) => {
-        if (!file) return;
-        const storageRef = refStorage(storage, `/files/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
-
-        uploadTask.on("state_changed", (snapshot) => { },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => {
-                        setAvatarImage(url);
-
-                        setRegistro({
-                            ...registro,
-                            image: url
-                        })
-                        setTimeout(() => {
-                            const registro2 = {
-                                ...user,
-                                name: `${registro['name'] ? registro.name : user.name}`,
-                                last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
-                                country: `${registro['country'] ? registro.country : user.country}`,
-                                wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
-                                image: `${registro['image'] ? registro.image : user.image}`
-                            }
-                            dispatch(editUser(user.id, registro2));
-                        }, 1500);
-                        user.image = url;
-                    })
-            }
-        )
-    };
-
     useEffect(() => {
-        // dispatch(getContracts('', '', '', '', '', '', '', ''))
         dispatch(contratos())
         dispatch(callProtectedApi)
-        setUserHook(user);
     }, [dispatch])
 
     const {
@@ -105,35 +55,6 @@ function Profile() {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
     }
 
-     const sendmail = {
-        to: user.email,
-        subject: 'Edición de datos',
-        text: `${user.name} acabas de editar tus datos personales `,
-        html: <strong>`${user.name} acabas de editar tus datos personales`</strong>
-
-    }
-
-    const [error, setError] = useState(null);
-    const [sent, setSent] = useState(false);
-
-    const handleOnSubmit = (e) => {
-        e.preventDefault();
-        const registro2 = {
-            ...user,
-            name: `${registro['name'] ? registro.name : user.name}`,
-            last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
-            country: `${registro['country'] ? registro.country : user.country}`,
-            wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
-            image: `${registro['image'] ? registro.image : user.image}`
-        }
-        dispatch(editUser(user.id, registro2));
-        handleEdition();
-
-        // dispatch(sendNotification(sendmail))
-        // console.log("profile dispatch",sendmail);
-          
-    }
-
     c.map(element => {
         if (element.status === "published" || element.status === "taken") {
             p.push(element);
@@ -147,25 +68,10 @@ function Profile() {
         return (<></>)
     })
 
-    function handelFileChange(e) {
-        console.log("Cambiò la imagen");
-        uploadButton.current.click();
-        const registro2 = {
-            ...user,
-            name: `${registro['name'] ? registro.name : user.name}`,
-            last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
-            country: `${registro['country'] ? registro.country : user.country}`,
-            wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
-            image: `${registro['image'] ? registro.image : user.image}`
-        }
-        dispatch(editUser(user.id, registro2));
-        //console.log("Soy el Nuevo Registro", registro);
-        handleEdition();
 
-    }
 
     const borraContratos = () => {
-        dispatch(deleteContract({"contract": eraser}));
+        dispatch(deleteContract({ "contract": eraser }));
         // setEraser([]);
     }
 
@@ -177,25 +83,43 @@ function Profile() {
         )
     }
 
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+        const registro2 = {
+            ...user,
+            name: `${registro['name'] ? registro.name : user.name}`,
+            last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
+            country: `${registro['country'] ? registro.country : user.country}`,
+            wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
+            image: `${profileImage}`
+        }
+        dispatch(editUser(user.id, registro2));
+        handleEdition();
+    }
+
+
     return (
         <>
             <div><h1>Perfil de Usuario</h1></div>
-
             <div className="main-perfil">
                 <div className="perfil-card">
                     <h4>Usuario: {user.name}</h4>
 
                     <div className="contratos-publicados">
                         <h5>Contratos Publicados</h5>
-                        {p ? p.map((element, index) => {
-                            return (
-                                <div key={index} className="info-contrato">
-                                    <h6>{element.conditions.name}</h6>
-                                    <h6>{element.conditions.amount}</h6>
-                                    <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
-                                </div>
-                            )
-                        }) : <></>}
+                        <div className='scrolling'>
+                            {p ? p.map((element, index) => {
+                                return (
+                                    <ContractsCard
+                                        key={index}
+                                        name={element.conditions.name}
+                                        amount={element.conditions.amount}
+                                        id={element.id}
+                                        check={false}
+                                    />
+                                )
+                            }) : <></>}
+                        </div>
 
                     </div>
                     <div className="contratos-borradores">
@@ -207,21 +131,22 @@ function Profile() {
                                 onClick={borraContratos}
                             />
                         </div>
+                        <div className='scrolling'>
 
-                        {o ? o.map((element, index) => {
-                            return (
-    
-                                <div className='borradoresContracts'>
-                                    <div key={index} className="info-contrato">
-                                        <h6>{element.conditions.name}</h6>
-                                        <h6>{element.conditions.amount}</h6>
-                                        <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
+                            {o ? o.map((element, index) => {
+                                return (
+                                    <div key={index} className='borradoresContracts'>
+                                        <div key={index} className="info-contrato">
+                                            <h6>{element.conditions.name}</h6>
+                                            <h6>{element.conditions.amount}</h6>
+                                            <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
+                                        </div>
+                                        <input type="checkbox" name={element.id} onChange={e => { onCheck(e) }} />
                                     </div>
-                                    <input type="checkbox" name={element.id} onChange={e => {onCheck(e)}}/>
-                                </div>
 
-                            )
-                        }) : <></>}
+                                )
+                            }) : <></>}
+                        </div>
 
                     </div>
                     <div className="contratos-finalizados">
@@ -242,17 +167,12 @@ function Profile() {
 
                 <div className="area-perfil">
 
-                    <div className="imageCircle">
-                        {user.image ? <img className="imageCircle" src={user.image} alt="imagen de silueta" /> : <img className="imageCircle" src={avatarImage} alt="imagen de silueta" />}
-                        <input type="button" onClick={handleBtnClick} value="v/" />
-                    </div>
-
-                    <form onSubmit={formHandler}>
-                        <input className="avatarInput" type="file" ref={inputFileRef} onChange={(e) => { handelFileChange(e) }} />
-                        {/* <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef} /> */}
-                        <button className="avatarInput" type='submit' ref={uploadButton}>Upload</button>
-                    </form>
-
+                    <Uploadimage
+                        image={profileImage}
+                        id={user.id}
+                        user={user}
+                    />
+                    <br />
                     <Button
                         className="busca-wallet"
                         variant="contained"
