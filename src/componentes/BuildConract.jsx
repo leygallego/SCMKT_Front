@@ -159,6 +159,7 @@ export function BuildConract() {
                                         type="number"
                                         step="0.00000001"
                                         name="amount"
+                                        value={input.amount}
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
