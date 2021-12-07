@@ -29,7 +29,7 @@ function Contratos() {
     // }
 
     let [page, setPage] = useState(1);
-    const PER_PAGE = 10;
+    const PER_PAGE = 12;
     const count = Math.ceil(contracts.length / PER_PAGE);
     const _DATA = usePagination(contracts, PER_PAGE);
 

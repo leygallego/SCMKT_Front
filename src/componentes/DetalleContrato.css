@@ -1,34 +1,34 @@
-.main-detalle{
-    display: grid;
+.main-detalle {
+  display: grid;
 }
 
-.detalle-card{
-  
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: transparent;
-    color: black;
-    font-size: 18px;
-    font-family: 'Poppins', sans-serif;
-    width: 75%;
-    margin-left: 15%;
-    border-radius: 30px;
-    padding: 10px;
+.detalle-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  width: 75%;
+  margin-left: 15%;
+  border-radius: 30px;
+  padding: 10px;
 }
 
-.detalle-card span{
-    color: blue;
+.detalle-card span {
+  color: blue;
 }
 
-.detalle-card Button{
-    margin-left: 2%;
+.detalle-card Button {
+  margin-left: 2%;
 }
 
 .xButton {
-    width: 100%;
-    text-align: end;
-
+  width: 100%;
+  text-align: end;
 }
 
 .contratos-card {
-    background-color: white;
+  background-color: white;
+  max-height: 260px;
+  overflow: hidden;
 }
