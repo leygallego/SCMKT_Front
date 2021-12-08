@@ -25,6 +25,7 @@ function NavBar({location}) {
     //getAccessTokenSilently,
   } = useAuth0();
 
+  /*
   function locacion() {
     if (window.sessionStorage.getItem('token') !== null ) {
       window.location.href = `http://localhost:3000${location.pathname}?code=${window.sessionStorage.getItem('token')}`;
@@ -34,7 +35,7 @@ function NavBar({location}) {
   if (queryString.parse(location.search).error === 'login_required') {
     loginWithRedirect();
   }
-
+*/
   /*
   useEffect(() => {
   locacion();

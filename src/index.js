@@ -4,7 +4,17 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store';
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Auth0Provider } from '@auth0/auth0-react';
+import queryString from 'query-string';
+
+async function prompt() {
+  if (queryString.parse(window.location.search).error === 'required_login') {
+    return "true";
+  }
+  else {
+    return "none";
+  }
+}
 
 //"http://localhost:3000/perfil" || "https://henryfront.surge.sh/perfil"
 
@@ -23,7 +33,7 @@ ReactDOM.render(
     //response_type='id_token token'
     audience="SCMKT"
     scope="openid profile email"
-    prompt="none"
+    prompt= {prompt()}//"none"
     > 
       <App /> 
     </Auth0Provider>
