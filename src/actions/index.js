@@ -49,12 +49,13 @@ export const contratos = () => {
     }
 }
 
+
 export const sendLogin = (userLoginObject) => {
     return async dispatch => {
         try {
             // console.log(window.sessionStorage.getItem('user'))
-            if (window.sessionStorage.getItem('user') === null) {
-                
+            //if (window.sessionStorage.getItem('user') === null) {
+                window.sessionStorage.setItem('token', userLoginObject);
                 const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
                     headers: {
                         authorization: `Bearer ${userLoginObject}`
@@ -63,18 +64,39 @@ export const sendLogin = (userLoginObject) => {
                         data: 12345
                         }
                     });
-                window.sessionStorage.setItem('user', JSON.stringify(response.data));
-            }
+                //window.sessionStorage.setItem('user', JSON.stringify(response.data));
+            //}
             // console.log(window.sessionStorage.getItem('user'))
             return dispatch({
                 type: SEND_LOGIN,
-                payload: JSON.parse(window.sessionStorage.getItem('user'))
-                })
+                payload: response.data
+            })
         } catch(error) {
             console.log('Error en la action ',error)
         }        
     }
 }
+
+
+/*
+export const sendLogin = (userLoginObject) => {
+    //console.log('ACTION:::', userLoginObject);
+    return async dispatch => {
+        return await axios.get('https://scmkt.herokuapp.com/user/login', {
+            headers: {
+                authorization: `Bearer ${userLoginObject}`
+            },
+            body: {
+                data: 12345
+            }
+        })
+        .then(response => {
+            dispatch({
+            type: SEND_LOGIN,
+            payload: response.data
+            })
+        })
+*/
 
 export const postSingUp = (userRegisterObject) => {
     return async(dispatch) =>{
