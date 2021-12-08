@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import queryString from 'query-string';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './NavBar.css';
@@ -8,8 +9,13 @@ import { useAuth0 } from "@auth0/auth0-react"
 // import { useDispatch} from 'react-redux';
 // import { sendLogin } from '../actions';
 
-function NavBar() {
+function NavBar({location}) {
+
+  console.log(queryString.parse(location.search));
+  console.log(location);
+  console.log(location.search)
   // const [showLinks, setShowLinks] = useState(false);
+
 
   const {
     loginWithRedirect,
@@ -18,6 +24,22 @@ function NavBar() {
     isAuthenticated,
     //getAccessTokenSilently,
   } = useAuth0();
+
+  function locacion() {
+    if (window.sessionStorage.getItem('token') !== null ) {
+      window.location.href = `http://localhost:3000${location.pathname}?code=${window.sessionStorage.getItem('token')}`;
+    }
+  }
+
+  if (queryString.parse(location.search).error === 'login_required') {
+    loginWithRedirect();
+  }
+
+  /*
+  useEffect(() => {
+  locacion();
+  }, [location.search, isAuthenticated]);
+*/
 
   return (
       <div className="navbar">

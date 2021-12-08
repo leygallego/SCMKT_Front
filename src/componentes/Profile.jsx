@@ -16,6 +16,8 @@ import Spinner from './Spinner';
 
 function Profile() {
 
+    //console.log(location);
+
     let p = [];
     let d = [];
     let o = [];
@@ -39,7 +41,9 @@ function Profile() {
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
+        window.sessionStorage.setItem('token', token);
         try {
+
             dispatch(sendLogin(token))
         } catch (error) {
             console.log('Error en el perfil ', error)
