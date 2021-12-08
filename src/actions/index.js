@@ -152,7 +152,7 @@ export const getContractsByID = (id) =>{
 export function createContract(contract){
     return (dispatch) => {
       try {
-        axios.post(`https://scmkt.herokuapp.com/contract/new`, contract)
+        axios.put(`https://scmkt.herokuapp.com/contract/new`, contract)
             .then(() => {
                 return dispatch({
                     type: CREATE_CONTRACT
