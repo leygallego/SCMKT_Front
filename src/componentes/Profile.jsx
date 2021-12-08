@@ -19,7 +19,7 @@ function Profile() {
     let p = [];
     let d = [];
     let o = [];
-    const c = useSelector(state => state.contratos)
+    const c = useSelector(state => state.contracts)
     const { user } = useSelector(state => state)
     const { profileImage, spinner } = useSelector(state => state);
     // const { spinner } = useSelector(state => state);
@@ -27,8 +27,9 @@ function Profile() {
     const [registro, setRegistro] = useState({});
     const [eraser, setEraser] = useState([]);
     const dispatch = useDispatch();
-
+let ppp = 0;
     useEffect(() => {
+        console.log('useEffect', ppp, user.id)
         dispatch(getContracts({ ownerId: user.id }))
         dispatch(callProtectedApi)
     }, [dispatch])
