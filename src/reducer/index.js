@@ -1,6 +1,5 @@
 import {
     GET_CONTRACTS,
-    CONTRATOS,
     GET_USERS,
     GET_USER_BY_ID,
     POST_SING_UP,
@@ -26,7 +25,6 @@ const initialState = {
     contracts: [],
     user: {},
     contract: {},
-    contratos: [],
     preview: {},
     verified: false,
     profileImage: "",
@@ -59,12 +57,6 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 contracts: action.payload
-            }
-
-        case CONTRATOS:
-            return {
-                ...state,
-                contratos: action.payload
             }
 
         case GET_CONTRACT_BY_ID:

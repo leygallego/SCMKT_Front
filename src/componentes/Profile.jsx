@@ -27,9 +27,8 @@ function Profile() {
     const [registro, setRegistro] = useState({});
     const [eraser, setEraser] = useState([]);
     const dispatch = useDispatch();
-let ppp = 0;
+
     useEffect(() => {
-        console.log('useEffect', ppp, user.id)
         dispatch(getContracts({ ownerId: user.id }))
         dispatch(callProtectedApi)
     }, [dispatch])
