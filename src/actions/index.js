@@ -19,7 +19,6 @@ export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
 export const PREVIEW_CONTRACT = 'PREVIEW_CONTRACT'
 export const STOP_USER = 'STOP_USER'
-export const CONTRATOS = 'CONTRATOS';
 export const SEND_NOTIFICATION = 'SEND_NOTIFICATION';
 export const SET_PROFILE_IMAGE = 'SET_PROFILE_IMAGE';
 export const SET_SPINNER = 'SET_SPINNER';
@@ -36,19 +35,6 @@ export const setProfileImage = (url) => {
         payload: url
     }
 }
-
-export const contratos = () => {
-    return async (dispatch) => {
-        
-            const response = await axios.get("https://scmkt.herokuapp.com/contract")
-            return dispatch({
-                type: CONTRATOS,
-                payload: response.data
-            })
-        
-    }
-}
-
 
 export const sendLogin = (userLoginObject) => {
     return async dispatch => {
