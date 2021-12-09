@@ -164,14 +164,14 @@ export function createContract(contract){
   }
 }
 
-export function deleteContract(contract){
+export function deleteContract({contract, resto}){
     return (dispatch) => {
       try {
         axios.put("https://scmkt.herokuapp.com/contract/delete", contract)
             .then(() => {
                 return dispatch({
                     type: REMOVE_CONTRACT,
-                    payload: contract
+                    payload: resto
                 })
             })
       } catch (error) {

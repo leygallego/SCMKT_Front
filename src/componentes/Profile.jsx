@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
@@ -7,9 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { editUser, sendLogin, getContracts, deleteContract } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Uploadimage from './UploadImage';
-import ContractsCard from './ContractsCard';
 import Swal from 'sweetalert2';
 import './Profile.css';
 import Spinner from './Spinner';
@@ -17,13 +14,9 @@ import ContractsList from './ContractsList';
 
 function Profile() {
 
-    let p = [];
-    let d = [];
-    let o = [];
     const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
     const { profileImage, spinner } = useSelector(state => state);
-    // const { spinner } = useSelector(state => state);
     const [edicionPerfil, setEdicionPerfil] = useState(true)
     const [registro, setRegistro] = useState({});
     const [eraser, setEraser] = useState([]);
@@ -31,7 +24,6 @@ function Profile() {
 
     useEffect(() => {
         dispatch(callProtectedApi)
-        console.log('useEffect user.id', user.id)
         dispatch(getContracts({ ownerId: user.id }))
     }, [dispatch])
 
@@ -58,22 +50,6 @@ function Profile() {
     const handleEdition = () => {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
     }
-
-    contracts.map(element => {
-        console.log('element', element)
-        if (element.status === "published" || element.status === "taken") {
-            p.push(element);
-        }
-        if (element.status === "unpublished") {
-            o.push(element);
-        }
-        if (element.status === "complete") {
-            d.push(element);
-        }
-        return (<></>)
-    })
-
-
 
     const borraContratos = () => {
         Swal.fire({
@@ -128,65 +104,6 @@ function Profile() {
                             contratos={contracts}
                         />
                     </div>
-                    
-                    {/* <div className="contratos-publicados">
-                        <h5>Contratos Publicados</h5>
-                        <div className='scrolling'>
-                            {p ? p.map((element, index) => {
-                                return (
-                                    <ContractsCard
-                                        key={index}
-                                        name={element.conditions.name}
-                                        amount={element.conditions.amount}
-                                        id={element.id}
-                                        check={false}
-                                    />
-                                )
-                            }) : <></>}
-                        </div>
-
-                    </div>
-                    <div className="contratos-borradores">
-                        <div className='borradoresRow'>
-                            <h5>Borradores</h5>
-                            <Button
-                                variant="error"
-                                startIcon={<DeleteIcon />}
-                                onClick={borraContratos}
-                            />
-                        </div>
-                        <div className='scrolling'>
-
-                            {o ? o.map((element, index) => {
-                                return (
-                                    <div key={index} className='borradoresContracts'>
-                                        <div key={index} className="info-contrato">
-                                            <h6>{element.conditions.name}</h6>
-                                            <h6>{element.conditions.amount}</h6>
-                                            <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
-                                        </div>
-                                        <input type="checkbox" name={element.id} onChange={e => { onCheck(e) }} />
-                                    </div>
-
-                                )
-                            }) : <></>}
-                        </div>
-
-                    </div>
-                    <div className="contratos-finalizados">
-                        <h5>Contratos Finalizados</h5>
-                        {d ? d.map((element, index) => {
-                            return (
-                                <div key={index} className="info-contrato">
-                                    <h6>{element.conditions.name}</h6>
-                                    <h6>{element.conditions.amount}</h6>
-                                    <NavLink to={`/detalle/${element.id}`}><h6>ver detalles</h6></NavLink>
-                                </div>
-                            )
-                        }) : <></>}
-
-                    </div> */}
-
                 </div>
 
                 <div className="area-perfil">
@@ -195,7 +112,6 @@ function Profile() {
                         id={user.id}
                         user={user}
                     /> : <Spinner />}
-
 
                     <br />
                     <Button
