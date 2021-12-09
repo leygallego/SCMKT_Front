@@ -71,16 +71,11 @@ export default function rootReducer(state = initialState, action) {
                 preview: action.payload
             }
         case REMOVE_CONTRACT:
-            // ????????????????????
-            let filtered = state.contracts.filter(elementContract => {
-                return console.log('elementContract', elementContract)
-            })
-
+            console.log('REDUCER', action.payload, state.contracts)
             return {
                 ...state,
-                contracts: filtered
+                contracts: action.payload
             }
-
         case POST_SING_UP:
             return {
                 ...state

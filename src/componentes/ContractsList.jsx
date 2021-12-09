@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContractsCard from './ContractsCard';
-import { deleteContract } from '../actions';
+import { deleteContract, getContracts } from '../actions';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
@@ -11,22 +11,32 @@ const ContractsList = (props) => {
     const { contratos } = props
 
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
 
     const [eraser, setEraser] = useState([]);
 
+    useEffect(() => {
+        // dispatch(callProtectedApi)
+        dispatch(getContracts({ ownerId: user.id }))
+    }, [dispatch])
+
     const borraContratos = () => {
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: `¿Está seguro de eliminar ${eraser.length} contrato(s)?`,
             showDenyButton: true,
             confirmButtonText: 'Yes',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                dispatch(deleteContract({ "contract": eraser }));
-
-                Swal.fire('Saved!', '', 'success')
+                if (eraser.length > 0) {
+                    let resto = contracts.filter(element => !eraser.includes(element.id))
+                    // console.log('restantes', resto, contracts)
+                    dispatch(deleteContract({ contract: eraser, resto }));
+                    setEraser([])
+                }
+                Swal.fire(`${eraser.length} contrato(s) ha(n) sido borrado(s)`, '', 'success')
             } //else if (result.isDenied) {
             //  Swal.fire('Changes are not saved', '', 'info')
             // }
@@ -35,10 +45,12 @@ const ContractsList = (props) => {
 
     const onCheck = (e) => {
         let er = eraser;
-        er.push(e.target.name)
-        setEraser(
-            er
-        )
+        if (e.target.checked) {
+            er.push(e.target.name)
+        } else {
+            er = er.filter(element => element != e.target.name)
+        }
+        setEraser(er)
     }
 
     return (
@@ -48,16 +60,17 @@ const ContractsList = (props) => {
                 <div className='scrolling'>
                     {contracts ? contracts.map((element, index) => {
                         return (
-                            (element.status === "published" || element.status === "taken")
+                            <div key={`${index}-list-1`}>
+                               { (element.status === "published" || element.status === "taken")
                                 ? <ContractsCard
-                                    key={index}
+                                    key={`${index}-list`}
                                     name={element.conditions.name}
                                     amount={element.conditions.amount}
                                     id={element.id}
                                     check={false}
                                 />
-                                : <></>
-                        )
+                                : <></>}
+                            </div>)
                     }) : <></>}
                 </div>
             </div>
@@ -72,11 +85,11 @@ const ContractsList = (props) => {
                     />
                 </div>
                 <div className='scrolling'>
-                    {contratos ? contratos.map((element, index) => {
+                    {contracts ? contracts.map((element, index) => {
                         return (
                             (element.status === "unpublished")
                                 ? <ContractsCard
-                                    key={index}
+                                    key={`${index}-list`}
                                     name={element.conditions.name}
                                     amount={element.conditions.amount}
                                     id={element.id}
@@ -92,11 +105,11 @@ const ContractsList = (props) => {
 
             <div className="contratos-finalizados">
                 <h5>Contratos Finalizados</h5>
-                {contratos ? contratos.map((element, index) => {
+                {contracts ? contracts.map((element, index) => {
                     return (
                         (element.status === "complete")
                             ? <ContractsCard
-                                key={index}
+                                key={`${index}-list`}
                                 name={element.conditions.name}
                                 amount={element.conditions.amount}
                                 id={element.id}
