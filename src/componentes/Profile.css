@@ -1,8 +1,9 @@
+
 .main-perfil{
     display: flex;
     flex-direction: row;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: transparent;
+    background-color: #FFFFFF;
     color: black;
     font-family: 'Poppins', sans-serif;
     width: 85%;
@@ -17,7 +18,7 @@
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: transparent; */
     color: black;
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
     width: 75%;
     margin-left: 5%;
@@ -29,13 +30,14 @@
 .contratos-publicados{
   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: blue;
+    background-color: #0078E7;
     color: white;
-    /* font-size: 12px; */
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
-    width: 100%;
-    margin-top: 2%;
-    margin-left: 5%;
+    width: auto;
+    height: auto;
+    margin-top: 1%;
+    margin-left: 2%;
     margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
@@ -44,12 +46,12 @@
 .contratos-borradores{
   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: rgb(74, 74, 248);
+    background-color: rgba(0, 120, 231, 0.66);;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;;
-    width: 100%;
-    margin-left: 5%;
+    width: auto;
+    margin-left: 1%;
     margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
@@ -64,12 +66,12 @@
 .contratos-finalizados{
   
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: rgb(132, 132, 247);
+    background-color: rgba(0, 120, 231, 0.33);
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;;
-    width: 100%;
-    margin-left: 5%;
+    width: auto;
+    margin-left: 1%;
     margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
@@ -77,29 +79,29 @@
 }
 
 .area-perfil img{
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     margin: 0px 0px 0px 0%;
 }
 .area-perfil{
     /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: transparent; */
     color: black;
-    font-size: 18px;
+    font-size: 14px;
     font-family: 'Poppins', sans-serif;
-    width: 55%;
+    width: 25%;
     margin-top: 2%;
-    margin-left: 15%;
+    margin-left: 5%;
     margin-right: 5%;
     border-radius: 30px;
-    padding: 10px;
+    padding: 5px;
 }
 
 .info-contrato{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: white;
-    width: 97%;
+    width: auto;
     height: auto;
     max-height: 200px;
     margin-top: 5px;
@@ -111,35 +113,52 @@
 .info-contrato h6{
     margin-top: 5px;
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 8px;
 
 }
 
 .datos-personales {
     /* display: grid; */
-    margin-top: 10%;
-    margin-left: 10%;
+    margin-top: 5%;
+    margin-left: 1%;
     height: auto;
     width: auto;
     background-color: black;
     color: white;
     border-radius: 30px;
-    width: 75%;
+    width: 120px;
 }
 
-/* .datos-personales button{
-    background-color: yellow;
-} */
+.inputForm input{
+    width: 80px;
+    margin-left: 15%;
+}
+.selectPais select{
+    width: 80px;
+    margin-left: 1%;
+}
 
-/* .busca-wallet {
-    margin-top: 100px;
-} */
+
+.datos-personales button{
+    background-color: #0078E7;
+    width: 90px;
+    height: 25px;
+    font-size: 8px;
+}
+.boton-wallet button{
+    background-color: #0078E7;
+    width: 120px;
+    height: 25px;
+    font-size: 8px;
+}
+
+
 
 .botonEditar{
-    background-color: rgb(132, 132, 247);
+    background-color: #0078E7;
     border-radius: 10px;
     color: white;
-    width: 70px;
+    width: auto;
     margin-bottom: 20px;
 }
 
@@ -176,5 +195,412 @@
     justify-content: start;
     text-align: start;
     margin-left: 5px;
+    font-size: 8px;
 }
 
+
+
+
+@media (min-width: 576px){
+    .main-perfil{
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #FFFFFF;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        width: 85%;
+        margin-left: 7%;
+        margin-right: 5%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .perfil-card{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: 75%;
+        margin-left: 5%;
+        margin-right: 0%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .contratos-publicados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #0078E7;
+        color: white;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: auto;
+        margin-top: 1%;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .contratos-borradores{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.66);;
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: auto;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .scrolling {
+        max-height: 230px;
+        overflow-y: scroll;
+    }
+    
+    .contratos-finalizados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.33);
+        color: white;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;;
+        width: auto;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .area-perfil img{
+        width: 150px;
+        height: 150px;
+        margin: 0px 0px 0px 0%;
+    }
+    .area-perfil{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: 40%;
+        margin-top: 2%;
+        margin-left: 10%;
+        margin-right: 5%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .info-contrato{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background-color: white;
+        width: auto;
+        height: auto;
+        max-height: 200px;
+        margin-top: 5px;
+        color: black;
+        margin-left: 1.5%;
+        margin-bottom: 1%;
+    }
+    
+    .info-contrato h6{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 10px;
+    
+    }
+    
+    .datos-personales {
+        /* display: grid; */
+        margin-top: 8%;
+        margin-left: 5%;
+        height: auto;
+        width: auto;
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        width: 150;
+    }
+
+    .inputForm input{
+        width: 105px;
+        margin-left: 7%;
+    }
+    .selectPais select{
+        width: 105px;
+        margin-left: 1%;
+    }
+    
+    .datos-personales button{
+        background-color: #0078E7;
+        width: 110px;
+        height: 45px;
+        font-size: 10px;
+    }
+    
+    .boton-wallet button{
+        background-color: #0078E7;
+        width: 150px;
+        height: 45px;
+        font-size: 10px;
+    }
+    
+    .botonEditar{
+        background-color: #0078E7;
+        border-radius: 10px;
+        color: white;
+        width: auto;
+        margin-bottom: 20px;
+    }
+    
+    .avatarInput {
+        display: none;
+    }
+    
+    .imagenbutton {
+        width: 100px;
+        height: 100px;
+        background-image: url("../icons/upload.png");
+        /* background-color: yellow; */
+    }
+    
+    .imageCircle {
+        border-radius: 50%;
+    }
+    
+    .borradoresRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .borradoresContracts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .profileDataView {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: start;
+        margin-left: 5px;
+        font-size: 12px;
+
+    }
+    
+    
+}
+
+
+
+
+@media (min-width: 992px){
+    .main-perfil{
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #FFFFFF;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        width: 85%;
+        margin-left: 7%;
+        margin-right: 5%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .perfil-card{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;
+        width: 75%;
+        margin-left: 5%;
+        margin-right: 0%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .contratos-publicados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #0078E7;
+        color: white;
+        /* font-size: 12px; */
+        font-family: 'Poppins', sans-serif;
+        width: 100%;
+        margin-top: 2%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 45px;
+        padding: 10px;
+    }
+    
+    .contratos-borradores{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.66);;
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: 100%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 45px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .scrolling {
+        max-height: 230px;
+        overflow-y: scroll;
+    }
+    
+    .contratos-finalizados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.33);
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: 100%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 45px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .area-perfil img{
+        width: 200px;
+        height: 200px;
+        margin: 0px 0px 0px 0%;
+    }
+    .area-perfil{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;
+        width: 55%;
+        margin-top: 2%;
+        margin-left: 15%;
+        margin-right: 5%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .info-contrato{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background-color: white;
+        width: 97%;
+        height: auto;
+        max-height: 200px;
+        margin-top: 5px;
+        color: black;
+        margin-left: 1.5%;
+        margin-bottom: 1%;
+    }
+    
+    .info-contrato h6{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    
+    }
+    
+    .datos-personales {
+        /* display: grid; */
+        margin-top: 10%;
+        margin-left: 10%;
+        height: auto;
+        width: auto;
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        width: 75%;
+        font-size: 18px;
+    }
+
+    .inputForm input{
+        width: 155px;
+        margin-left: 3%;
+    }
+    .selectPais select{
+        width: 155px;
+        margin-left: 1%;
+    }
+    
+    .datos-personales button{
+        background-color: #0078E7;
+        width: 220px;
+        height: 45px;
+        font-size: 12px;
+    }
+    .boton-wallet button{
+        background-color: #0078E7;
+        width: 240px;
+        height: 45px;
+        font-size: 12px;
+    }
+    
+    .botonEditar{
+        background-color: #0078E7;
+        border-radius: 10px;
+        color: white;
+        width: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .avatarInput {
+        display: none;
+    }
+    
+    .imagenbutton {
+        width: 100px;
+        height: 100px;
+        background-image: url("../icons/upload.png");
+        /* background-color: yellow; */
+    }
+    
+    .imageCircle {
+        border-radius: 50%;
+    }
+    
+    .borradoresRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .borradoresContracts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .profileDataView {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: start;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+    
+    
+}

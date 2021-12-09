@@ -114,12 +114,15 @@ function Profile() {
                     /> : <Spinner />}
 
                     <br />
+                    <div className="boton-wallet">
                     <Button
                         className="busca-wallet"
                         variant="contained"
                         startIcon={<AccountBalanceWalletIcon />}>
                         Dirección de Wallet
                     </Button>
+                    </div>
+                    
 
                     <div className="datos-personales" >
                         <Button
@@ -148,7 +151,7 @@ function Profile() {
                                     </div>
                                     <div className="labelInput">
                                         <div className="labelForm">País</div>
-                                        <div>
+                                        <div className="selectPais">
                                             <select className="inputFormComponent" name="country" onChange={e => { handleOnChange(e) }} defaultValue={user.country}  >
                                                 {Countries.map((element, index) => {
                                                     return (
