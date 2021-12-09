@@ -13,14 +13,15 @@ import ContractsCard from './ContractsCard';
 import Swal from 'sweetalert2';
 import './Profile.css';
 import Spinner from './Spinner';
+import ContractsList from './ContractsList';
 
 function Profile() {
 
     let p = [];
     let d = [];
     let o = [];
-    const c = useSelector(state => state.contracts)
-    const { user } = useSelector(state => state)
+    const user = useSelector(state => state.user)
+    const contracts = useSelector(state => state.contracts)
     const { profileImage, spinner } = useSelector(state => state);
     // const { spinner } = useSelector(state => state);
     const [edicionPerfil, setEdicionPerfil] = useState(true)
@@ -29,8 +30,9 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getContracts({ ownerId: user.id }))
         dispatch(callProtectedApi)
+        console.log('useEffect user.id', user.id)
+        dispatch(getContracts({ ownerId: user.id }))
     }, [dispatch])
 
     const {
@@ -57,7 +59,8 @@ function Profile() {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
     }
 
-    c.map(element => {
+    contracts.map(element => {
+        console.log('element', element)
         if (element.status === "published" || element.status === "taken") {
             p.push(element);
         }
@@ -85,8 +88,8 @@ function Profile() {
 
                 Swal.fire('Saved!', '', 'success')
             } //else if (result.isDenied) {
-              //  Swal.fire('Changes are not saved', '', 'info')
-           // }
+            //  Swal.fire('Changes are not saved', '', 'info')
+            // }
         })
     }
 
@@ -120,7 +123,13 @@ function Profile() {
                 <div className="perfil-card">
                     <h4>Usuario: {user.name}</h4>
 
-                    <div className="contratos-publicados">
+                    <div className="contratos-publicados2">
+                        <ContractsList
+                            contratos={contracts}
+                        />
+                    </div>
+                    
+                    {/* <div className="contratos-publicados">
                         <h5>Contratos Publicados</h5>
                         <div className='scrolling'>
                             {p ? p.map((element, index) => {
@@ -176,7 +185,7 @@ function Profile() {
                             )
                         }) : <></>}
 
-                    </div>
+                    </div> */}
 
                 </div>
 
