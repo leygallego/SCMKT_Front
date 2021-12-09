@@ -35,6 +35,7 @@ const ContractsList = (props) => {
                     // console.log('restantes', resto, contracts)
                     dispatch(deleteContract({ contract: eraser, resto }));
                     setEraser([])
+                    dispatch(getContracts({ ownerId: user.id }))
                 }
                 Swal.fire(`${eraser.length} contrato(s) ha(n) sido borrado(s)`, '', 'success')
             } //else if (result.isDenied) {
