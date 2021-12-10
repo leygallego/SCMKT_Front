@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react'
 
 function Footer() {
-    const { isAuthenticated } = useAuth0()
-
+    const { loginWithRedirect, isAuthenticated } = useAuth0()
+    
     return (
         <div className="footer-home">
             <div className="home-izquierda">
@@ -19,7 +19,7 @@ function Footer() {
             <div className="home-derecha">
                 <ul>
                     <li>
-                        <NavLink to="/home">Inicio</NavLink>
+                        <NavLink to="/">Inicio</NavLink>
                     </li>
                     <li>
                         <NavLink to="/contratos">Contratos</NavLink>
@@ -38,7 +38,8 @@ function Footer() {
                             : (
                                 <div>
                                     <li>
-                                        <NavLink to="/registro">Regístrate</NavLink>
+                                        {/* <NavLink to="/registro">Regístrate</NavLink> */}
+                                        <button className='register-link' onClick={loginWithRedirect} >Regístrate</button>
                                     </li>
                                 </div>
                             )
