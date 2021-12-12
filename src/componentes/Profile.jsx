@@ -14,6 +14,8 @@ import ContractsList from './ContractsList';
 
 function Profile() {
 
+    //window.sessionStorage.setItem('prompt', 'none');
+
     const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
     const { profileImage, spinner } = useSelector(state => state);
