@@ -8,6 +8,7 @@ import { getUsers, createContract } from '../actions/index';
 import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
+import Swal from 'sweetalert2';
 
 export function BuildConract() {
     const dispatch = useDispatch()
@@ -129,6 +130,26 @@ export function BuildConract() {
         e.preventDefault()
     }
 
+    const cancelPublished = (e) => {
+        e.preventDefault()
+        cancelContract('published')
+    }
+
+    const cancelContract = () => {
+        Swal.fire({
+            title: '¿Está seguro de salir sin guardar el contrato ?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location.replace(`https://scmkt-4fe6b.web.app/contratos/`)
+            }
+        })
+    }
+    
     return (
         <>
             <div className="contractComponent">
@@ -159,7 +180,6 @@ export function BuildConract() {
                                         type="number"
                                         step="0.00000001"
                                         name="amount"
-                                        value={input.amount}
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
@@ -252,31 +272,37 @@ export function BuildConract() {
                         />
 
                         <h1></h1>
-                        <button
-                            type='submit'
-                            className={
-                                input.name === "" ||
-                                    input.shortdescription === "" ||
-                                    input.longdescription === "" ||
-                                    input.amount === "" ||
-                                    input.coin === "" ||
-                                    !checked
-                                    ? "acept-contract acept-contract-disable"
-                                    : "acept-contract"
-                            }
-                            // variant="outlined"
-                            onClick={open}
-                            disabled={
-                                input.name === "" ||
-                                    input.shortdescription === "" ||
-                                    input.longdescription === "" ||
-                                    input.amount === "" ||
-                                    input.coin === "" ||
-                                    !checked
-                                    ? false
-                                    : false
-                            }
-                        >Previsualizar</button>
+                        <div className='group-button-build'>
+                            <button
+                                type='submit'
+                                className={
+                                    input.name === "" ||
+                                        input.shortdescription === "" ||
+                                        input.longdescription === "" ||
+                                        input.amount === "" ||
+                                        input.coin === "" ||
+                                        !checked
+                                        ? "acept-contract acept-contract-disable"
+                                        : "acept-contract"
+                                }
+                                // variant="outlined"
+                                onClick={open}
+                                disabled={
+                                    input.name === "" ||
+                                        input.shortdescription === "" ||
+                                        input.longdescription === "" ||
+                                        input.amount === "" ||
+                                        input.coin === "" ||
+                                        !checked
+                                        ? false
+                                        : false
+                                }
+                            >Previsualizar</button>
+
+                            <button
+                                className="acept-contract"
+                                onClick={cancelPublished}>Cancelar</button>
+                        </div>
                         <div className={isOpen ? '' : ''} visible={isOpen}>
                             <Modal
                                 visible={modalIsOpen}>

@@ -20,7 +20,7 @@ function Contratos() {
 
     useEffect(() => {
         // dispatch(getContracts({ filterState: 'pending' }))
-        dispatch(getContracts({ownerId: user.id}))
+        dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
     }, [dispatch])
 
     // const changePage = (page) => {
