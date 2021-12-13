@@ -14,7 +14,11 @@ import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
 import Footer from './componentes/Footer';
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react';
+
+import '../src/componentes/styles/chat.css';
+import Chat from './componentes/Chat';
+
 
 function App() {
 
@@ -23,31 +27,32 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Route  path="/" component={NavBar}></Route>
+        <Route path="/" component={NavBar}></Route>
 
         <Switch>
-        <Route exact path="/" component={Home}></Route>   
-        <Route exact path="/contratos" component={Contratos}></Route>  
-        <Route exact path="/aboutus" component={AboutUs}></Route>  
-        <Route exact path="/detalle/:id" render={({match})=> <DetalleContrato id={match.params.id} />}></Route>
-        <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
-        <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
-        <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
-        {
-          isAuthenticated? (
-            <Route exact path="/perfil" component={Profile}></Route>
-          )
-          :(
-            <Route exact path="/perfil" component={Home}></Route>
-          )
-        }
-        {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
-        <Route exact path="/login" component={Home}></Route>
-        <Route exact path="/creacontrato" component={BuildContract}></Route>   
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/contratos" component={Contratos}></Route>
+          <Route exact path="/aboutus" component={AboutUs}></Route>
+          <Route exact path="/detalle/:id" render={({ match }) => <DetalleContrato id={match.params.id} />}></Route>
+          <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
+          <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
+          <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
+          {
+            isAuthenticated ? (
+              <Route exact path="/perfil" component={Profile}></Route>
+            )
+              : (
+                <Route exact path="/perfil" component={Home}></Route>
+              )
+          }
+          {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
+          <Route exact path="/login" component={Home}></Route>
+          <Route exact path="/creacontrato" component={BuildContract}></Route>
         </Switch>
-     
+
         <Footer />
       </Router>
+          <Chat />
     </div>
   );
 }

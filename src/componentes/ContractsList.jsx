@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContractsCard from './ContractsCard';
-import { deleteContract, getContracts } from '../actions';
+import { deleteContract, getContracts, setChat } from '../actions';
 import Button from '@mui/material/Button';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
-// import './styles/contractscard.css';
 
 const ContractsList = (props) => {
     const { contratos } = props
@@ -54,12 +54,17 @@ const ContractsList = (props) => {
         setEraser(er)
     }
 
+    // const openChat = () => {
+    //     dispatch(setChat());
+    // }
+
     return (
         <div className='contractsCardComponent'>
             <div className="contratos-publicados">
                 <h5>Contratos Publicados</h5>
                 <div className='scrolling'>
                     {contracts ? contracts.map((element, index) => {
+                        console.log('Contratos', element);
                         return (
                             <div key={`${index}-list-1`}>
                                { (element.status === "published" || element.status === "taken")
@@ -68,7 +73,9 @@ const ContractsList = (props) => {
                                     name={element.conditions.name}
                                     amount={element.conditions.amount}
                                     id={element.id}
+                                    image={element.image}
                                     check={false}
+                                    chat={true}
                                 />
                                 : <></>}
                             </div>)
