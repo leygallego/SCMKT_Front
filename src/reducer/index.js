@@ -16,8 +16,12 @@ import {
     SET_AUTHOR,
     SET_NAME,
     SET_PROFILE_IMAGE,
-    SET_SPINNER
-
+    SET_SPINNER,
+    SET_CHAT,
+    CHOOSE_USER, 
+    GET_MESSAGES, 
+    GET_USERS_DATABASE, 
+    SEND_MESSAGE
 } from "../actions";
 
 const initialState = {
@@ -28,8 +32,16 @@ const initialState = {
     preview: {},
     verified: false,
     profileImage: "",
-    spinner: true
-    // profileImage: "/images/silueta.png"
+    spinner: true,
+    chat: false,
+    choosed: {
+        "name": "Bot Smart Contracts",
+        "id": 1000,
+        "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6" 
+    },
+    loggedUser: {},
+    messages:[]
+
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -140,6 +152,37 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 spinner: !state.spinner
             }
+
+        case SET_CHAT:
+            return {
+                ...state,
+                chat: !state.chat
+            }
+
+
+        case GET_USERS_DATABASE:
+            return {
+                ...state,
+                users: action.payload
+            }
+
+        case CHOOSE_USER:
+            return {
+                ...state,
+                choosed: action.payload
+            }
+
+        case SEND_MESSAGE:
+            return {
+                ...state
+            }
+
+        case GET_MESSAGES:
+            return {
+                ...state,
+                messages: action.payload
+            }
+
 
         default: return state
     }

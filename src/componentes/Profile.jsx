@@ -117,14 +117,14 @@ function Profile() {
 
                     <br />
                     <div className="boton-wallet">
-                    <Button
-                        className="busca-wallet"
-                        variant="contained"
-                        startIcon={<AccountBalanceWalletIcon />}>
-                        Dirección de Wallet
-                    </Button>
+                        <Button
+                            className="busca-wallet"
+                            variant="contained"
+                            startIcon={<AccountBalanceWalletIcon />}>
+                            Dirección de Wallet
+                        </Button>
                     </div>
-                    
+
 
                     <div className="datos-personales" >
                         <Button
@@ -179,6 +179,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
+
         </>
     )
 }
