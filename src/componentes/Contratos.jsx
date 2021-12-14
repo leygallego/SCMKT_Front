@@ -53,19 +53,19 @@ function Contratos() {
     return (
         <>
             <div>
-                <h1>Componente Contratos</h1>
+                
                 <div>
                     <SearchBar />
                 </div>
                 {
                     isAuthenticated ?
                         (
-                            <div>
+                            <div className="crea-contrato">
                                 <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
                             </div>
                         )
                         : (
-                            <div>
+                            <div className="crea-contrato">
                                 <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
                             </div>
                         )

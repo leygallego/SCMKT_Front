@@ -106,7 +106,7 @@ a[href="/registro"] {
       margin: 0px;
       padding: 0.0125rem;
       overflow: hidden;
-      background-color: transparent;
+      background-color: white;
       color: black;
       margin-top: 0%;
       font-size: 0.9em;
@@ -188,7 +188,7 @@ a[href="/registro"] {
     margin: 0px;
     padding: 0.1125rem;
     overflow: hidden;
-    background-color: transparent;
+    background-color: white;
     color: black;
     margin-top: 0%;
     font-size: 1.2em;
