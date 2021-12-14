@@ -1,13 +1,13 @@
 .search-contrato {
     width: 100%;
-    position: relative;
+    /* position: relative; */
     display: flex;
-    margin-left: 2%;
-    margin-top: 2%;
+    margin-left: 1%;
+    /* margin-top: 2%; */
   }
   
   .searchTerm {
-    width: 15.5%;
+    width: 25.5%;
     height: 55px;
     border: 3px solid #0078E7;
     padding: 5px;
@@ -32,7 +32,7 @@
   box-sizing: border-box;
 }
    */
-  select-contrato {
+  select-tipo {
     /* A reset of styles, including removing the default dropdown arrow */
     appearance: none;
     background-color: transparent;
@@ -46,34 +46,25 @@
   
     /* Stack above custom arrow */
     z-index: 1;
-  
-  
-  
+
     /* Remove focus outline, will add on alternate element */
     outline: none;
   }
   
-  .select-contrato {
+  .select-tipo {
     display: grid;
     grid-template-areas: "select";
     align-items: center;
     position: relative;
   
-    /* select,
-    &::after {
-      grid-area: select;
-    } */
-  
     min-width: 15ch;
     max-width: 30ch;
-    margin-left: 2%;
+    margin-right: 15%;
     margin-top: 1%;
     margin-bottom: 1%;
+    padding-right: 10px;
     border: 3px solid #0078E7;
 
-
-  
-    /* border: 1px solid var(--select-border); */
     border-radius: 0.25em;
     padding: 0.25em 0.5em;
   
@@ -89,8 +80,63 @@
    
 }
 
+select-categoria {
+    /* A reset of styles, including removing the default dropdown arrow */
+    appearance: none;
+    background-color: transparent;
+    /* border: none; */
+    padding: 5px 1em 0 0;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+  
+    /* Stack above custom arrow */
+    z-index: 1;
 
-/* .centrar-filtros{
+    /* Remove focus outline, will add on alternate element */
+    outline: none;
+  }
+  
+  .select-categoria {
     display: grid;
-    place-items: center;
-} */
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+  
+    min-width: 15ch;
+    max-width: 30ch;
+    margin-right: 15%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-right: 10px;
+    border: 3px solid #0078E7;
+
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+  
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+  
+    /* Optional styles */
+    /* remove for transparency */
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  
+   
+}
+
+.select-type{
+    margin-right: 10px;
+}
+.select-category{
+    margin-right: 10px;
+}
+
+.wraper-filtros{
+    display: flex;
+    flex-direction: row;
+    /* grid-template-rows: repeat(3, 1fr); */
+}

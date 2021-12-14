@@ -59,20 +59,20 @@ function SearchBar() {
 
     return (
         <>
-            <div className="centrar-filtros" >
+            <div className="wraper-filtros" >
             <div className="search-contrato">
                 <input className="searchTerm" placeholder="Busca contrato" onChange={search} />
             </div>
-            <div>
-                <select className="select-contrato" onChange={filterByType}>
+            <div className="select-type">
+                <select className="select-tipo" onChange={filterByType}>
                     <option value="" label="Filtro por tipo"></option>
                     <option value="type1" label="type1"></option>
                     <option value="type2" label="type2"></option>
                     <option value="type3" label="type3"></option>
                 </select>
             </div>
-            <div>
-                <select className="select-contrato" onChange={filterByCategory}>
+            <div className="select-category">
+                <select className="select-categoria" onChange={filterByCategory}>
                     <option value="" label="Filtro por categoría"></option>
                     <option value="category1" label="category1"></option>
                     <option value="category2" label="category2"></option>
