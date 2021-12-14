@@ -95,7 +95,7 @@ export default function rootReducer(state = initialState, action) {
         case SEND_LOGIN:
             return {
                 ...state,
-                user: action.payload,
+                user: action.payload.user,
                 contracts: action.payload.contracts
             };
 

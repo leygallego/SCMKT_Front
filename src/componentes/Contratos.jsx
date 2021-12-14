@@ -3,7 +3,7 @@ import './Contratos.css';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import { NavLink } from 'react-router-dom';
-import { getContracts, setPage } from "../actions/index"
+import { getContracts, sendLogin } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import ContractCard from './ContractCard'
 import SearchBar from './SearchBar';
@@ -14,14 +14,25 @@ function Contratos() {
     const { user } = useSelector(state => state)
     let dispatch = useDispatch()
     const { contracts, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
-    const { isAuthenticated, /*loginWithRedirect*/ loginWithPopup } = useAuth0()
+    const { isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0()
 
     // console.log('Contratos', contracts)
 
     useEffect(() => {
         // dispatch(getContracts({ filterState: 'pending' }))
-        dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
+        // dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
+        dispatch(callProtectedApi)
     }, [dispatch])
+
+    async function callProtectedApi() {
+        const token = await getAccessTokenSilently();
+        try {
+            await (dispatch(sendLogin(token)))
+            dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
+        } catch (error) {
+            console.log('Error en el perfil ', error)
+        }
+    }
 
     // const changePage = (page) => {
     //     dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }))

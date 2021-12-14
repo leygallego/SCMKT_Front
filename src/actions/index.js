@@ -100,9 +100,12 @@ export const sendLogin = (userLoginObject) => {
                 //window.sessionStorage.setItem('user', JSON.stringify(response.data));
             //}
             // console.log(window.sessionStorage.getItem('user'))
+
+            const contractsResponse = await axios.get(`https://scmkt.herokuapp.com/contract?ownerId=${response.data.id}&typeC='owner'`)
+
             return dispatch({
                 type: SEND_LOGIN,
-                payload: response.data
+                payload: {user: response.data, contracts: contractsResponse.data}
             })
         } catch(error) {
             console.log('Error en la action ',error)
@@ -172,10 +175,10 @@ export const getUserByID = (id) =>{
     }
 }
 
-export function getContracts ({ name, author, ownerId, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
+export function getContracts ({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
         try{
-            const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
             return dispatch({
                 type: GET_CONTRACTS,
                 payload: response.data
