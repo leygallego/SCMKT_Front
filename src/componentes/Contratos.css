@@ -48,3 +48,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.crea-contrato button{
+  margin-left: 0%;
+}

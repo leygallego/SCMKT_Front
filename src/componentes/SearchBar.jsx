@@ -1,5 +1,6 @@
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
+import './SearchBar.css'
 import { 
     getContracts,
     setFilterType,
@@ -58,25 +59,28 @@ function SearchBar() {
 
     return (
         <>
-            <div>
-                <input placeholder="This is the searchbar" onChange={search} />
+            <div className="centrar-filtros" >
+            <div className="search-contrato">
+                <input className="searchTerm" placeholder="Busca contrato" onChange={search} />
             </div>
             <div>
-                <select onChange={filterByType}>
-                    <option value="" label="Filter by type"></option>
+                <select className="select-contrato" onChange={filterByType}>
+                    <option value="" label="Filtro por tipo"></option>
                     <option value="type1" label="type1"></option>
                     <option value="type2" label="type2"></option>
                     <option value="type3" label="type3"></option>
                 </select>
             </div>
             <div>
-                <select onChange={filterByCategory}>
-                    <option value="" label="Filter by category"></option>
+                <select className="select-contrato" onChange={filterByCategory}>
+                    <option value="" label="Filtro por categoría"></option>
                     <option value="category1" label="category1"></option>
                     <option value="category2" label="category2"></option>
                     <option value="category3" label="category3"></option>
                 </select>
             </div>
+            </div>
+            
             {/*<div>
                 <select onChange={filterByDurationH}>
                     <option value="filter" label="Filter by duration"></option>
