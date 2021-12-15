@@ -67,17 +67,17 @@ const ContractsList = (props) => {
                         console.log('Contratos', element);
                         return (
                             <div key={`${index}-list-1`}>
-                               { (element.status === "published" || element.status === "taken")
-                                ? <ContractsCard
-                                    key={`${index}-list`}
-                                    name={element.conditions.name}
-                                    amount={element.conditions.amount}
-                                    id={element.id}
-                                    image={element.image}
-                                    check={false}
-                                    chat={true}
-                                />
-                                : <></>}
+                                {(element.status === "published" || element.status === "taken")
+                                    ? <ContractsCard
+                                        key={`${index}-list`}
+                                        name={element.conditions.name}
+                                        amount={element.conditions.amount}
+                                        id={element.id}
+                                        image={element.image}
+                                        check={false}
+                                        chat={true}
+                                    />
+                                    : <></>}
                             </div>)
                     }) : <></>}
                 </div>
@@ -95,35 +95,42 @@ const ContractsList = (props) => {
                 <div className='scrolling'>
                     {contracts ? contracts.map((element, index) => {
                         return (
-                            (element.status === "unpublished")
-                                ? <ContractsCard
-                                    key={`${index}-list`}
-                                    name={element.conditions.name}
-                                    amount={element.conditions.amount}
-                                    id={element.id}
-                                    check={true}
-                                    onCheck={onCheck}
-                                />
-                                : <></>
+                            <div key={`${index}-list-2`}>
+                                {
+                                    (element.status === "unpublished")
+                                        ? <ContractsCard
+                                            key={`${index}-list-unpub`}
+                                            name={element.conditions.name}
+                                            amount={element.conditions.amount}
+                                            id={element.id}
+                                            check={true}
+                                            onCheck={onCheck}
+                                        />
+                                        : <></>
+                                }
+                            </div>
                         )
                     }) : <></>}
                 </div>
-
             </div>
 
             <div className="contratos-finalizados">
                 <h5>Contratos Finalizados</h5>
                 {contracts ? contracts.map((element, index) => {
                     return (
-                        (element.status === "complete")
-                            ? <ContractsCard
-                                key={`${index}-list`}
-                                name={element.conditions.name}
-                                amount={element.conditions.amount}
-                                id={element.id}
-                                check={false}
-                            />
-                            : <></>
+                        <div key={`${index}-list-3`}>
+                            {
+                                (element.status === "complete")
+                                    ? <ContractsCard
+                                        key={`${index}-list-comp`}
+                                        name={element.conditions.name}
+                                        amount={element.conditions.amount}
+                                        id={element.id}
+                                        check={false}
+                                    />
+                                    : <></>
+                            }
+                        </div>
                     )
                 }) : <></>}
             </div>

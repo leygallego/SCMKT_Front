@@ -8,6 +8,7 @@ import {
     PREVIEW_CONTRACT,
     REMOVE_CONTRACT,
     EDIT_USER,
+    SET_CONTRACT_STATUS,
     SET_FILTER_DURATIONH,
     SET_FILTER_DURATIONL,
     SET_FILTER_CATEGORY,
@@ -18,9 +19,9 @@ import {
     SET_PROFILE_IMAGE,
     SET_SPINNER,
     SET_CHAT,
-    CHOOSE_USER, 
-    GET_MESSAGES, 
-    GET_USERS_DATABASE, 
+    CHOOSE_USER,
+    GET_MESSAGES,
+    GET_USERS_DATABASE,
     SEND_MESSAGE
 } from "../actions";
 
@@ -37,10 +38,10 @@ const initialState = {
     choosed: {
         "name": "Bot Smart Contracts",
         "id": 1000,
-        "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6" 
+        "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6"
     },
     loggedUser: {},
-    messages:[]
+    messages: []
 
 }
 
@@ -69,6 +70,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 contracts: action.payload
+            }
+
+        case SET_CONTRACT_STATUS:
+            return {
+                ...state,
+                contract: { ...state.contract, status: action.payload.status, clientID: action.payload.clientId }
             }
 
         case GET_CONTRACT_BY_ID:

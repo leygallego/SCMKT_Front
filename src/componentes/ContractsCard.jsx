@@ -8,7 +8,6 @@ import { setChat } from '../actions';
 import './styles/contractscard.css';
 
 const ContractsCard = (props) => {
-    console.log('contratcCards', props)
     const { check, onCheck, id, chat } = props
     const dispatch = useDispatch();
     const openChat = () => {

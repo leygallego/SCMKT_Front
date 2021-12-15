@@ -9,6 +9,7 @@ export const POST_SING_UP = 'POST_SING_UP'
 export const SEND_LOGIN = 'SEND_LOGIN'
 export const EDIT_USER = 'EDIT_USER'
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID'
+export const SET_CONTRACT_STATUS = 'SET_CONTRACT_STATUS'
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const SET_FILTER_DURATIONH = 'SET_FILTER_DURATIONH'
@@ -49,17 +50,17 @@ export const sendMessage = (message) => {
     const date = new Date();
     return () => {
         const db = getDatabase();
-        set(ref(db, `/otroMas/${message.to}/chat/${date}`) , {
+        set(ref(db, `/otroMas/${message.to}/chat/${date}`), {
             message
         })
-        .then(() => {
-            return {
-                type: GET_USERS_DATABASE
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        })
+            .then(() => {
+                return {
+                    type: GET_USERS_DATABASE
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
     };
 }
@@ -88,16 +89,16 @@ export const sendLogin = (userLoginObject) => {
         try {
             // console.log(window.sessionStorage.getItem('user'))
             //if (window.sessionStorage.getItem('user') === null) {
-                window.sessionStorage.setItem('token', userLoginObject);
-                const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
-                    headers: {
-                        authorization: `Bearer ${userLoginObject}`
-                    },
-                    body: {
-                        data: 12345
-                        }
-                    });
-                //window.sessionStorage.setItem('user', JSON.stringify(response.data));
+            window.sessionStorage.setItem('token', userLoginObject);
+            const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+                headers: {
+                    authorization: `Bearer ${userLoginObject}`
+                },
+                body: {
+                    data: 12345
+                }
+            });
+            //window.sessionStorage.setItem('user', JSON.stringify(response.data));
             //}
             // console.log(window.sessionStorage.getItem('user'))
 
@@ -105,11 +106,11 @@ export const sendLogin = (userLoginObject) => {
 
             return dispatch({
                 type: SEND_LOGIN,
-                payload: {user: response.data, contracts: contractsResponse.data}
+                payload: { user: response.data, contracts: contractsResponse.data }
             })
-        } catch(error) {
-            console.log('Error en la action ',error)
-        }        
+        } catch (error) {
+            console.log('Error en la action ', error)
+        }
     }
 }
 
@@ -135,19 +136,19 @@ export const sendLogin = (userLoginObject) => {
 */
 
 export const postSingUp = (userRegisterObject) => {
-    return async(dispatch) =>{
+    return async (dispatch) => {
         dispatch({
-            type:POST_SING_UP
+            type: POST_SING_UP
         });
         await axios.put('https://scmkt.herokuapp.com/user/newuser', userRegisterObject)
-        .then((response)=>{
-            console.log("registrado correctamente", response);
-        })
-        .catch(error => {
-            console.log("No se registró" , error);
-        })
+            .then((response) => {
+                console.log("registrado correctamente", response);
+            })
+            .catch(error => {
+                console.log("No se registró", error);
+            })
     }
-    
+
 }
 
 
@@ -161,23 +162,23 @@ export const getUsers = () => {
     }
 }
 
-export const getUserByID = (id) =>{
+export const getUserByID = (id) => {
     let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,7}')
-    if(id === regex){
+    if (id === regex) {
         id = axios.get(`https://scmkt.herokuapp.com/user/auth/${id}`)
     }
     return async dispatch => {
         return await axios.get(`https://scmkt.herokuapp.com/user/${id}`)
-        .then(response => dispatch ({
-            type: GET_USER_BY_ID,
-            payload: response.data
-        }))
+            .then(response => dispatch({
+                type: GET_USER_BY_ID,
+                payload: response.data
+            }))
     }
 }
 
-export function getContracts ({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
+export function getContracts({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
-        try{
+        try {
             const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
             return dispatch({
                 type: GET_CONTRACTS,
@@ -189,45 +190,47 @@ export function getContracts ({ name, author, ownerId, typeC, filterType, filter
     }
 }
 
-export const getContractsByID = (id) =>{
+export const getContractsByID = (id) => {
     return async dispatch => {
         return await axios.get(`https://scmkt.herokuapp.com/contract/${id}`)
-        .then(response => dispatch ({
-            type: GET_CONTRACT_BY_ID,
-            payload: response.data
-        }))
+            .then(response => {
+                dispatch({
+                    type: GET_CONTRACT_BY_ID,
+                    payload: response.data
+                })
+            })
     }
 }
 
-export function createContract(contract){
+export function createContract(contract) {
     return (dispatch) => {
-      try {
-        axios.put(`https://scmkt.herokuapp.com/contract/new`, contract)
-            .then(() => {
-                return dispatch({
-                    type: CREATE_CONTRACT
+        try {
+            axios.put(`https://scmkt.herokuapp.com/contract/new`, contract)
+                .then(() => {
+                    return dispatch({
+                        type: CREATE_CONTRACT
+                    })
                 })
-            })
-      } catch (error) {
-        console.log(error)
+        } catch (error) {
+            console.log(error)
+        }
     }
-  }
 }
 
-export function deleteContract({contract, resto}){
+export function deleteContract({ contract, resto }) {
     return (dispatch) => {
-      try {
-        axios.put("https://scmkt.herokuapp.com/contract/delete", {contract})
-            .then(() => {
-                return dispatch({
-                    type: REMOVE_CONTRACT,
-                    payload: resto
+        try {
+            axios.put("https://scmkt.herokuapp.com/contract/delete", { contract })
+                .then(() => {
+                    return dispatch({
+                        type: REMOVE_CONTRACT,
+                        payload: resto
+                    })
                 })
-            })
-      } catch (error) {
-        console.log(error)
+        } catch (error) {
+            console.log(error)
+        }
     }
-  }
 }
 
 export const getContractsPreview = (data) => {
@@ -238,7 +241,7 @@ export const getContractsPreview = (data) => {
 }
 
 export const removeContract = (borrar) => {
-    
+
     return {
         type: REMOVE_CONTRACT,
         payload: borrar
@@ -246,21 +249,20 @@ export const removeContract = (borrar) => {
 }
 
 export const editUser = (id, user) => {
-    return async(dispatch) =>{
+    return async (dispatch) => {
         dispatch({
-            type:EDIT_USER,
+            type: EDIT_USER,
             payload: user
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
-        .then((response)=>{
-            // console.log("registrado correctamente", response);
-        })
-        .catch(error => {
-            console.log("No se registró" , error);
-        })
+            .then((response) => {
+                // console.log("registrado correctamente", response);
+            })
+            .catch(error => {
+                console.log("No se registró", error);
+            })
     }
-    
 }
 
 export const setName = (name) => {
@@ -317,7 +319,25 @@ export const stopUser = () => {
         type: STOP_USER,
         payload: {}
     }
-  }
+}
+
+export const changeStatusContract = (id, status, user) => {
+    return async (dispatch) => {
+        dispatch({
+            type: SET_CONTRACT_STATUS,
+            payload: { status, clientId: user }
+        });
+        await window.sessionStorage.setItem('user', JSON.stringify(user));
+        await axios.put(`https://scmkt.herokuapp.com/contract/edit/status/${id}`, { status: status, clientId: user })
+            .then((response) => {
+                // console.log("registrado correctamente", response);
+            })
+            .catch(error => {
+                console.log("No se pudo actualizar el estado del contrato", error);
+            })
+    }
+
+}
 
 //   export const sendNotification = (notificacion) => {
 //     console.log('ACTION:::', notificacion)
