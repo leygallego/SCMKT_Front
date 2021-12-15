@@ -3,6 +3,7 @@ import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 
+
 const Detallecontratofin = () => {
 
     let history = useHistory();

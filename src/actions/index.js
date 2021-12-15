@@ -28,11 +28,18 @@ export const SET_SPINNER = 'SET_SPINNER';
 export const SET_CHAT = 'SET_CHAT';
 
 export const GET_USERS_DATABASE = 'GET_USERS_DATABASE';
-export const CHOOSE_USER = 'CHOOSE_USER';
+export const CHOOSED_USER = 'CHOOSED_USER';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 
 const database = getDatabase();
+
+export const choosedUser = (chatUser) => {
+    return {
+        type: CHOOSED_USER,
+        payload: chatUser
+    }
+}
 
 export const getMessages = (id) => {
 

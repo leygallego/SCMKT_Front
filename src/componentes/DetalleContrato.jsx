@@ -2,11 +2,17 @@ import React, { useEffect } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
-import { getContractsByID, removeContract, sendLogin, changeStatusContract } from "../actions/index"
+import {
+    getContractsByID, removeContract,
+    sendLogin, changeStatusContract, setChat,
+    choosedUser
+} from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react'
+import ChatIcon from '@mui/icons-material/Chat';
+import CloseIcon from '@mui/icons-material/Close';
 
-function DetalleContrato(props) {
+function DetalleContrato() {
     const { id } = useParams()
     let dispatch = useDispatch()
     let history = useHistory()
@@ -16,11 +22,22 @@ function DetalleContrato(props) {
 
     useEffect(() => {
         dispatch(callProtectedApi)
-        // dispatch(getContractsByID(id))
         return () => {
             dispatch(removeContract())
         }
     }, [dispatch, id])
+
+    const openChat = () => {
+        console.log(contract.owner)
+        dispatch(choosedUser(
+            {
+                "name": contract.owner.name,
+                "id": contract.owner.id,
+                "image": contract.owner.image
+            },
+        ))
+        dispatch(setChat());
+    }
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
@@ -48,15 +65,32 @@ function DetalleContrato(props) {
         <>
             <div><h1>Detalle Contrato</h1></div>
             <div className="main-detalle">
+
                 {contract?.conditions?.name ?
                     <div className="detalle-card">
-                        <div className="xButton">
-                            <Button
-                                variant="contained"
-                                onClick={handleClick}>
-                                X
-                            </Button>
+                        <div className='contractDetailButton'>
+                            <div className='contractsChat'>
+                                <Button
+                                    className="chatIcon"
+                                    variant="error"
+                                    startIcon={<ChatIcon />}
+                                    onClick={openChat}
+                                    size='lg'
+                                />
+                            </div>
+
+                            <div className="xButton">
+                                <Button
+                                    variant="contained"
+                                    onClick={handleClick}
+                                    startIcon={<CloseIcon />}
+                                    >
+                                    
+                                </Button>
+                            </div>
                         </div>
+
+
                         <h2>{contract.conditions.name}</h2>
                         <p>{contract.conditions.shortdescription}</p>
                         <p>{contract.conditions.longdescription}</p>
