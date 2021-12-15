@@ -1,5 +1,6 @@
 export const NODE_ENV = 'production'
 
+export const urlProduction1 = 'https://scmkt.herokuapp.com'
 export const urlProduction = 'https://scmkt-4fe6b.web.app'
 export const urlDevelop = 'http://localhost'
 export const port1 = '3001'
