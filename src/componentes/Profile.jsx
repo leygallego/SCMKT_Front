@@ -26,7 +26,8 @@ function Profile() {
 
     useEffect(() => {
         dispatch(callProtectedApi)
-        dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
+        dispatch(getContracts( '', '', user.id, 'owner', '', '', '', '', ))
+        //dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
     }, [dispatch])
 
     const {
