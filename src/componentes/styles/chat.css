@@ -168,3 +168,14 @@ border-radius: 50%;
 .chatIcon {
   width: 60px;
 }
+
+.contractsChat {
+  display: flex;
+  text-align: start;
+  align-items: flex-start;
+}
+
+.contractDetailButton {
+  display: flex;
+  flex-direction: row;
+}
