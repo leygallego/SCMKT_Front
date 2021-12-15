@@ -19,7 +19,7 @@ import {
     SET_PROFILE_IMAGE,
     SET_SPINNER,
     SET_CHAT,
-    CHOOSE_USER,
+    CHOOSED_USER,
     GET_MESSAGES,
     GET_USERS_DATABASE,
     SEND_MESSAGE
@@ -44,6 +44,12 @@ const initialState = {
     messages: []
 
 }
+
+// {
+//     "name": "Bot Smart Contracts",
+//     "id": 1000,
+//     "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6"
+// },
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -90,7 +96,6 @@ export default function rootReducer(state = initialState, action) {
                 preview: action.payload
             }
         case REMOVE_CONTRACT:
-            console.log('REDUCER', action.payload, state.contracts)
             return {
                 ...state,
                 contracts: action.payload
@@ -173,7 +178,7 @@ export default function rootReducer(state = initialState, action) {
                 users: action.payload
             }
 
-        case CHOOSE_USER:
+        case CHOOSED_USER:
             return {
                 ...state,
                 choosed: action.payload

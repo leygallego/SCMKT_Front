@@ -62,6 +62,7 @@ function DetalleContratoPreview(props) {
           .then((result) => {
             window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
             // window.location.replace(`http://localhost:3000/perfil`)
+
           })
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info')
