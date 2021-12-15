@@ -17,6 +17,9 @@
   border-radius: 30px;
   padding: 10px;
 }
+.crea-contrato button{
+  border-radius: 30px;
+}
 
 .contratos-card:hover {
   z-index: 5;
@@ -47,8 +50,4 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.crea-contrato button{
-  margin-left: 0%;
 }

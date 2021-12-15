@@ -60,8 +60,7 @@ function DetalleContratoPreview(props) {
 
         Swal.fire('Saved!', '', 'success')
           .then((result) => {
-            window.location.replace(`https://scmkt-4fe6b.web.app/perfil/`)
-            // window.location.replace(`https://henryfront.surge.sh/perfil/`)
+            window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
             // window.location.replace(`http://localhost:3000/perfil`)
           })
       } else if (result.isDenied) {

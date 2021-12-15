@@ -14,8 +14,6 @@ import ContractsList from './ContractsList';
 
 function Profile() {
 
-    //window.sessionStorage.setItem('prompt', 'none');
-
     const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
     const { profileImage, spinner } = useSelector(state => state);
@@ -26,8 +24,7 @@ function Profile() {
 
     useEffect(() => {
         dispatch(callProtectedApi)
-        dispatch(getContracts( '', '', user.id, 'owner', '', '', '', '', ))
-        //dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
+        dispatch(getContracts({ ownerId: user.id }))
     }, [dispatch])
 
     const {
@@ -118,14 +115,14 @@ function Profile() {
 
                     <br />
                     <div className="boton-wallet">
-                        <Button
-                            className="busca-wallet"
-                            variant="contained"
-                            startIcon={<AccountBalanceWalletIcon />}>
-                            Dirección de Wallet
-                        </Button>
+                    <Button
+                        className="busca-wallet"
+                        variant="contained"
+                        startIcon={<AccountBalanceWalletIcon />}>
+                        Dirección de Wallet
+                    </Button>
                     </div>
-
+                    
 
                     <div className="datos-personales" >
                         <Button
@@ -180,7 +177,6 @@ function Profile() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
