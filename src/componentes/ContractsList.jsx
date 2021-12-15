@@ -32,7 +32,6 @@ const ContractsList = (props) => {
             if (result.isConfirmed) {
                 if (eraser.length > 0) {
                     let resto = contracts.filter(element => !eraser.includes(element.id))
-                    // console.log('restantes', resto, contracts)
                     dispatch(deleteContract({ contract: eraser, resto }));
                     setEraser([])
                     dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
@@ -64,7 +63,6 @@ const ContractsList = (props) => {
                 <h5>Contratos Publicados</h5>
                 <div className='scrolling'>
                     {contracts ? contracts.map((element, index) => {
-                        console.log('Contratos', element);
                         return (
                             <div key={`${index}-list-1`}>
                                 {(element.status === "published" || element.status === "taken")

@@ -3,11 +3,13 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { getContractsPreview, createContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
+import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import Swal from 'sweetalert2';
 import './DetalleContratoPreview.css';
 
 function DetalleContratoPreview(props) {
   const { dataPreview, onClose } = props
+  const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`
 
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
@@ -60,8 +62,9 @@ function DetalleContratoPreview(props) {
 
         Swal.fire('Saved!', '', 'success')
           .then((result) => {
-            window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
+            //window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
             // window.location.replace(`http://localhost:3000/perfil`)
+            window.location.replace(`${urlWork}/perfil/`)
 
           })
       } else if (result.isDenied) {

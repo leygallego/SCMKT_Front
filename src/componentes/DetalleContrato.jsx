@@ -8,7 +8,9 @@ import {
     choosedUser
 } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react';
+import EditContract from './EditContract';
+import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -19,6 +21,8 @@ function DetalleContrato() {
     const user = useSelector(state => state.user)
     const contract = useSelector(state => state.contract)
     const { getAccessTokenSilently } = useAuth0()
+
+    const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
 
     useEffect(() => {
         dispatch(callProtectedApi)
@@ -53,6 +57,11 @@ function DetalleContrato() {
         history.push("/contratos");
     }
 
+    function handleClickEdit() {
+        history.push("/contratos");
+        window.location.replace(`${urlWork}/contratos/edit/${id}`)
+    }
+
     function subscribe(contractId, status, clientId) {
         dispatch(changeStatusContract(contractId, status, clientId))
     }
@@ -84,8 +93,8 @@ function DetalleContrato() {
                                     variant="contained"
                                     onClick={handleClick}
                                     startIcon={<CloseIcon />}
-                                    >
-                                    
+                                >
+
                                 </Button>
                             </div>
                         </div>
@@ -102,6 +111,15 @@ function DetalleContrato() {
                                 variant="contained"
                                 onClick={handleClick}
                             >Aceptar</Button>
+
+                            {(contract.status != 'complete' && contract.status != 'delete' && contract.owner.id === user.id)
+                                ? <Button
+                                    className="aceptar-contratos"
+                                    variant="contained"
+                                    onClick={handleClickEdit}
+                                >Editar</Button>
+                                : <></>
+                            }
 
                             {(contract.status === 'complete' || (contract.clientId && contract.clientId != user.id) || contract.owner.id === user.id)
                                 ? <></>
