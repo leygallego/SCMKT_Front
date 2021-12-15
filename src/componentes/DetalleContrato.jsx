@@ -2,59 +2,92 @@ import React, { useEffect } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
-import { getContractsByID, removeContract } from "../actions/index"
+import { getContractsByID, removeContract, sendLogin, changeStatusContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useAuth0 } from '@auth0/auth0-react'
 
 function DetalleContrato(props) {
     const { id } = useParams()
     let dispatch = useDispatch()
     let history = useHistory()
+    const user = useSelector(state => state.user)
     const contract = useSelector(state => state.contract)
-    
-    
-    console.log(contract)
+    const { getAccessTokenSilently } = useAuth0()
 
     useEffect(() => {
-        dispatch(getContractsByID(id))
+        dispatch(callProtectedApi)
+        // dispatch(getContractsByID(id))
         return () => {
             dispatch(removeContract())
         }
     }, [dispatch, id])
 
+    async function callProtectedApi() {
+        const token = await getAccessTokenSilently();
+        try {
+            await (dispatch(sendLogin(token)))
+            dispatch(getContractsByID(id))
+        } catch (error) {
+            console.log('Error en el Detalle de Contratos ', error)
+        }
+    }
+
     function handleClick() {
         history.push("/contratos");
     }
-    
+
+    function subscribe(contractId, status, clientId) {
+        dispatch(changeStatusContract(contractId, status, clientId))
+    }
+
+    function unsubscribe(contractId, status) {
+        dispatch(changeStatusContract(contractId, status, null))
+    }
 
     return (
         <>
             <div><h1>Detalle Contrato</h1></div>
             <div className="main-detalle">
-            { contract?.conditions?.name ?
-                <div className="detalle-card">
-                <div className="xButton">
-                    <Button
-                        variant="contained"
-                        onClick={handleClick}>
-                        X
-                    </Button>
-                </div>
-                <h2>{contract.conditions.name}</h2>
-                <p>{contract.conditions.shortdescription}</p>
-                <p>{contract.conditions.longdescription}</p>
-                <h1><span>{contract.conditions.amount}</span> </h1>
-                
-                <Button
-                    className="aceptar-contratos"
-                    variant="contained"
-                    onClick={handleClick}
-                >Aceptar</Button>
+                {contract?.conditions?.name ?
+                    <div className="detalle-card">
+                        <div className="xButton">
+                            <Button
+                                variant="contained"
+                                onClick={handleClick}>
+                                X
+                            </Button>
+                        </div>
+                        <h2>{contract.conditions.name}</h2>
+                        <p>{contract.conditions.shortdescription}</p>
+                        <p>{contract.conditions.longdescription}</p>
+                        <h1><span>{contract.conditions.amount}</span> </h1>
 
-              </div>
-              :
-              <div>Cargando...</div>
-            }
+                        <div>
+                            <Button
+                                className="aceptar-contratos"
+                                variant="contained"
+                                onClick={handleClick}
+                            >Aceptar</Button>
+
+                            {(contract.status === 'complete' || (contract.clientId && contract.clientId != user.id) || contract.owner.id === user.id)
+                                ? <></>
+                                : contract.status === 'taken'
+                                    ? <Button
+                                        className="aceptar-contratos"
+                                        variant="contained"
+                                        onClick={() => unsubscribe(contract.id, 'published')}
+                                    >Desuscribir</Button>
+                                    : <Button
+                                        className="aceptar-contratos"
+                                        variant="contained"
+                                        onClick={() => subscribe(contract.id, 'taken', user.id)}
+                                    >Suscribirse</Button>
+                            }
+                        </div>
+                    </div>
+                    :
+                    <div>Cargando...</div>
+                }
             </div>
         </>
     )
