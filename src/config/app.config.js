@@ -1,4 +1,4 @@
-export const NODE_ENV = 'production1'
+export const NODE_ENV = 'production'
 
 export const urlProduction = 'https://scmkt-4fe6b.web.app'
 export const urlDevelop = 'http://localhost'
