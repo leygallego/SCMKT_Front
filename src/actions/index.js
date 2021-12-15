@@ -1,6 +1,7 @@
 import axios from 'axios';
 import '../firebase';
 import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { NODE_ENV, urlProduction, urlDevelop, port1 } from '../config/app.config.js';
 
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
@@ -33,6 +34,7 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 
 const database = getDatabase();
+const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port1}`
 
 export const choosedUser = (chatUser) => {
     return {
@@ -97,7 +99,7 @@ export const sendLogin = (userLoginObject) => {
             // console.log(window.sessionStorage.getItem('user'))
             //if (window.sessionStorage.getItem('user') === null) {
             window.sessionStorage.setItem('token', userLoginObject);
-            const response = await axios.get('https://scmkt.herokuapp.com/user/login', {
+            const response = await axios.get(`${urlWork}/user/login`, {
                 headers: {
                     authorization: `Bearer ${userLoginObject}`
                 },
@@ -109,7 +111,7 @@ export const sendLogin = (userLoginObject) => {
             //}
             // console.log(window.sessionStorage.getItem('user'))
 
-            const contractsResponse = await axios.get(`https://scmkt.herokuapp.com/contract?ownerId=${response.data.id}&typeC='owner'`)
+            const contractsResponse = await axios.get(`${urlWork}/contract?ownerId=${response.data.id}&typeC='owner'`)
 
             return dispatch({
                 type: SEND_LOGIN,
@@ -147,7 +149,7 @@ export const postSingUp = (userRegisterObject) => {
         dispatch({
             type: POST_SING_UP
         });
-        await axios.put('https://scmkt.herokuapp.com/user/newuser', userRegisterObject)
+        await axios.put(`${urlWork}/user/newuser`, userRegisterObject)
             .then((response) => {
                 console.log("registrado correctamente", response);
             })
@@ -161,7 +163,7 @@ export const postSingUp = (userRegisterObject) => {
 
 export const getUsers = () => {
     return async dispatch => {
-        return await axios.get("https://scmkt.herokuapp.com/user")
+        return await axios.get(`${urlWork}/user`)
             .then(response => dispatch({
                 type: GET_USERS,
                 payload: response.data
@@ -172,10 +174,10 @@ export const getUsers = () => {
 export const getUserByID = (id) => {
     let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,7}')
     if (id === regex) {
-        id = axios.get(`https://scmkt.herokuapp.com/user/auth/${id}`)
+        id = axios.get(`${urlWork}/user/auth/${id}`)
     }
     return async dispatch => {
-        return await axios.get(`https://scmkt.herokuapp.com/user/${id}`)
+        return await axios.get(`${urlWork}/user/${id}`)
             .then(response => dispatch({
                 type: GET_USER_BY_ID,
                 payload: response.data
@@ -186,7 +188,7 @@ export const getUserByID = (id) => {
 export function getContracts({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`https://scmkt.herokuapp.com/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            const response = await axios.get(`${urlWork}/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
             return dispatch({
                 type: GET_CONTRACTS,
                 payload: response.data
@@ -199,7 +201,7 @@ export function getContracts({ name, author, ownerId, typeC, filterType, filterC
 
 export const getContractsByID = (id) => {
     return async dispatch => {
-        return await axios.get(`https://scmkt.herokuapp.com/contract/${id}`)
+        return await axios.get(`${urlWork}/contract/${id}`)
             .then(response => {
                 dispatch({
                     type: GET_CONTRACT_BY_ID,
@@ -212,7 +214,7 @@ export const getContractsByID = (id) => {
 export function createContract(contract) {
     return (dispatch) => {
         try {
-            axios.put(`https://scmkt.herokuapp.com/contract/new`, contract)
+            axios.put(`${urlWork}/contract/new`, contract)
                 .then(() => {
                     return dispatch({
                         type: CREATE_CONTRACT
@@ -227,7 +229,7 @@ export function createContract(contract) {
 export function deleteContract({ contract, resto }) {
     return (dispatch) => {
         try {
-            axios.put("https://scmkt.herokuapp.com/contract/delete", { contract })
+            axios.put(`${urlWork}/contract/delete`, { contract })
                 .then(() => {
                     return dispatch({
                         type: REMOVE_CONTRACT,
@@ -262,7 +264,7 @@ export const editUser = (id, user) => {
             payload: user
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
-        await axios.put(`https://scmkt.herokuapp.com/user/edit/${id}`, user)
+        await axios.put(`${urlWork}/user/edit/${id}`, user)
             .then((response) => {
                 // console.log("registrado correctamente", response);
             })
@@ -335,7 +337,7 @@ export const changeStatusContract = (id, status, user) => {
             payload: { status, clientId: user }
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
-        await axios.put(`https://scmkt.herokuapp.com/contract/edit/status/${id}`, { status: status, clientId: user })
+        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
             .then((response) => {
                 // console.log("registrado correctamente", response);
             })

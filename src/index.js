@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Auth0Provider } from '@auth0/auth0-react';
 import queryString from 'query-string';
+import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 
 /*
 async function prompt() {
@@ -54,8 +55,9 @@ ReactDOM.render(
     clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
 
     redirectUri={
+      `${NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`}/perfil`
       // "http://localhost:3000/perfil"
-      "https://scmkt-4fe6b.web.app/perfil"
+      // "https://scmkt-4fe6b.web.app/perfil"
     }
     //response_type='id_token token'
     audience="SCMKT"
