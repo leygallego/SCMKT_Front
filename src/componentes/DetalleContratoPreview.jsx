@@ -95,7 +95,7 @@ function DetalleContratoPreview(props) {
             <h2>{contract.name}</h2>
             <p>{contract.shortdescription}</p>
             <p>{contract.longdescription}</p>
-            <h1><span>{contract.amount}</span> </h1>
+            <h1><span>{contract.amount} ({contract.coin})</span> </h1>
             <div>
             <p>Test</p>
             {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}

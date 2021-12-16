@@ -1,47 +1,50 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getDownloadURL, uploadBytesResumable, ref as refStorage } from 'firebase/storage';
 import { storage } from '../firebase';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, createContract } from '../actions/index';
+import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
 
 export function EditContract() {
+    const { id } = useParams()
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
+    const contract = useSelector(state => state.contract)
+    const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`
 
     const [checked, setChecked] = useState(false);
     const [input, setInput] = useState({
-        id: '',
-        wallet1: user.wallet,
-        wallet2: '',
-        name: '',
-        shortdescription: '',
-        longdescription: '',
-        amount: '0.00000001',
-        coin: '',
-        c1: '',
-        c2: '',
-        status: 'unpublished',
-        ownerId: user.id
+        id: contract.id,
+        wallet1: contract.wallet1,
+        wallet2: contract.wallet2,
+        author: contract.author,
+        name: contract.conditions.name,
+        shortdescription: contract.conditions.shortdescription,
+        longdescription: contract.conditions.longdescription,
+        amount: contract.conditions.amount,
+        coin: contract.conditions.coin,
+        c1: contract.conditions.condition.c1,
+        c2: contract.conditions.condition.c2,
+        status: contract.status,
+        clientId: contract.clientId
     })
 
     const [errors, setErrors] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {
-        // preventScroll: true,
-        // closeOnOverlayClick: false
     });
 
     const [archivo1, setArchivo1] = useState(null);
     const [archivo2, setArchivo2] = useState(null);
 
     useEffect(() => {
-        dispatch(getUsers({}))
+        //dispatch(getUsers({}))
     }, [dispatch]);
 
     function validate(elem) {
@@ -57,7 +60,7 @@ export function EditContract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
-        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
         uploadTask.on("state_changed", (snapshot) => { },
@@ -77,7 +80,7 @@ export function EditContract() {
 
     const uploadFileC2 = (file) => {
         if (!file) return;
-        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
         uploadTask.on("state_changed", (snapshot) => { },
@@ -145,10 +148,53 @@ export function EditContract() {
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                window.location.replace(`https://scmkt-4fe6b.web.app/contratos/`)
+                window.location.replace(`${urlWork}/contratos/`)
             }
         })
     }
+    
+    const saveContract = (status) => {
+        let nweC = {
+          wallet1: user.wallet,
+          wallet2: '',
+          conditions: {
+            name: contract.name,
+            shortdescription: contract.shortdescription,
+            longdescription: contract.longdescription,
+            amount: contract.amount,
+            coin: contract.coin,
+            condition: {
+              c1: contract.c1,
+              c2: contract.c2
+            }
+          },
+          status,
+          ownerId: user.id
+        }
+    
+        Swal.fire({
+          title: 'Do you want to save the changes?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Save',
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            // dispatch(editContract(nweC)) CONTINUAR
+    
+            Swal.fire('Saved!', '', 'success')
+              .then((result) => {
+                //window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
+                // window.location.replace(`http://localhost:3000/perfil`)
+                window.location.replace(`${urlWork}/perfil/`)
+    
+              })
+          } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info')
+          }
+        })
+      }
     
     return (
         <>
@@ -165,6 +211,7 @@ export function EditContract() {
                                     className="inputFormCComponent"
                                     type="text"
                                     name="name"
+                                    value={input.name}
                                     onChange={e => { handleInputChange(e) }}
                                     onBlur={(e) => validate(e.target.name)}
                                 />
@@ -180,6 +227,7 @@ export function EditContract() {
                                         type="number"
                                         step="0.00000001"
                                         name="amount"
+                                        value={input.amount}
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
@@ -189,9 +237,9 @@ export function EditContract() {
                                 <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
-                                    <select className="inputFormCoin" name="coin">
-                                        <option value="10" name='' onClick={e => { onChangeValue(e, '') }} ></option>
-                                        <option value="20" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
+                                    <select className="inputFormCoin" name="coin" value={input.coin}>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, '') }} ></option>
+                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
                                     </select>
                                 </div>
                             </div>
@@ -204,6 +252,7 @@ export function EditContract() {
                                     className="inputFormCComponent"
                                     type="text"
                                     name="shortdescription"
+                                    value={input.shortdescription}
                                     onChange={e => { handleInputChange(e) }}
                                     rows="2"
                                 /></div>
@@ -218,6 +267,7 @@ export function EditContract() {
                                     className="inputFormCComponent"
                                     type="text"
                                     name="longdescription"
+                                    value={input.longdescription}
                                     onChange={e => { handleInputChange(e) }}
                                     rows="5"
                                 // maxlength="15000"
@@ -260,8 +310,8 @@ export function EditContract() {
                         <FormControlLabel
                             control={
                                 <Checkbox
-                                    checked={checked}
-                                    // value={checked}
+                                    checked={true}
+                                    disabled={true}
                                     size='medium'
                                     inputProps={{ 'aria-label': 'Checkbox A' }}
                                     color="default"
@@ -294,10 +344,10 @@ export function EditContract() {
                                         input.amount === "" ||
                                         input.coin === "" ||
                                         !checked
-                                        ? false
+                                        ? true
                                         : false
                                 }
-                            >Previsualizar</button>
+                            >Grabar</button>
 
                             <button
                                 className="acept-contract"

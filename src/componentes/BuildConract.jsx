@@ -190,8 +190,8 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
                                     <select className="inputFormCoin" name="coin">
-                                        <option value="10" name='' onClick={e => { onChangeValue(e, '') }} ></option>
-                                        <option value="20" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, '') }} ></option>
+                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
                                     </select>
                                 </div>
                             </div>
