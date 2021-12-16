@@ -1,7 +1,7 @@
 import axios from 'axios';
 import '../firebase';
 import { getDatabase, ref, onValue, set } from 'firebase/database';
-import { NODE_ENV, urlProduction, urlDevelop, port1 } from '../config/app.config.js';
+import { NODE_ENV, urlProduction1, urlDevelop, port1 } from '../config/app.config.js';
 
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
@@ -34,7 +34,7 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 
 const database = getDatabase();
-const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port1}`
+const urlWork = NODE_ENV==='production'? urlProduction1 : `${urlDevelop}:${port1}`
 
 export const choosedUser = (chatUser) => {
     return {
