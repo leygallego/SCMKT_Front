@@ -11,6 +11,10 @@ import Swal from 'sweetalert2';
 import './Profile.css';
 import Spinner from './Spinner';
 import ContractsList from './ContractsList';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 
 function Profile() {
 
@@ -89,6 +93,8 @@ function Profile() {
         }
         dispatch(editUser(user.id, registro2));
         handleEdition();
+
+        toast('Has editado tus datos')
     }
 
 
