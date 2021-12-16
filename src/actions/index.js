@@ -9,6 +9,7 @@ export const GET_CONTRACTS = 'GET_CONTRACTS'
 export const POST_SING_UP = 'POST_SING_UP'
 export const SEND_LOGIN = 'SEND_LOGIN'
 export const EDIT_USER = 'EDIT_USER'
+export const SET_CONTRACT = 'SET_CONTRACT'
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID'
 export const SET_CONTRACT_STATUS = 'SET_CONTRACT_STATUS'
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
@@ -328,6 +329,37 @@ export const stopUser = () => {
         type: STOP_USER,
         payload: {}
     }
+}
+
+export const updateContract = (id, status, user) => {
+    return (dispatch) => {
+        try { //CONTINUAR
+            // axios.put(`${urlWork}/contract/edit`, contract)
+            //     .then(() => {
+            //         return dispatch({
+            //             type: UPDATE_CONTRACT
+            //         })
+            //     })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    return async (dispatch) => {
+        dispatch({
+            type: SET_CONTRACT_STATUS,
+            payload: { status, clientId: user }
+        });
+        await window.sessionStorage.setItem('user', JSON.stringify(user));
+        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
+            .then((response) => {
+                // console.log("registrado correctamente", response);
+            })
+            .catch(error => {
+                console.log("No se pudo actualizar el estado del contrato", error);
+            })
+    }
+
 }
 
 export const changeStatusContract = (id, status, user) => {

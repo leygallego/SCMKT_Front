@@ -18,6 +18,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 import '../src/componentes/styles/chat.css';
 import Chat from './componentes/Chat';
+import EditContract from './componentes/EditContract';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
           <Route exact path="/login" component={Home}></Route>
           <Route exact path="/creacontrato" component={BuildContract}></Route>
+          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id}/>}></Route>
         </Switch>
 
         <Footer />
