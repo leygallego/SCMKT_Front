@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Auth0Provider } from '@auth0/auth0-react';
 import queryString from 'query-string';
+import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 
 /*
 async function prompt() {
