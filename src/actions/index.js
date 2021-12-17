@@ -12,6 +12,7 @@ export const EDIT_USER = 'EDIT_USER'
 export const SET_CONTRACT = 'SET_CONTRACT'
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID'
 export const SET_CONTRACT_STATUS = 'SET_CONTRACT_STATUS'
+export const UPDATE_CONTRACT = 'UPDATE_CONTRACT'
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const SET_FILTER_DURATIONH = 'SET_FILTER_DURATIONH'
@@ -35,7 +36,7 @@ export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
 
 const database = getDatabase();
-const urlWork = NODE_ENV==='production'? urlProduction1 : `${urlDevelop}:${port1}`
+const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}`
 
 export const choosedUser = (chatUser) => {
     return {
@@ -331,27 +332,14 @@ export const stopUser = () => {
     }
 }
 
-export const updateContract = (id, status, user) => {
-    return (dispatch) => {
-        try { //CONTINUAR
-            // axios.put(`${urlWork}/contract/edit`, contract)
-            //     .then(() => {
-            //         return dispatch({
-            //             type: UPDATE_CONTRACT
-            //         })
-            //     })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
+export const updateContract = (contract) => {
     return async (dispatch) => {
         dispatch({
-            type: SET_CONTRACT_STATUS,
-            payload: { status, clientId: user }
+            type: UPDATE_CONTRACT,
+            payload: contract
         });
-        await window.sessionStorage.setItem('user', JSON.stringify(user));
-        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
+        await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
+        await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
             .then((response) => {
                 // console.log("registrado correctamente", response);
             })
@@ -359,7 +347,6 @@ export const updateContract = (id, status, user) => {
                 console.log("No se pudo actualizar el estado del contrato", error);
             })
     }
-
 }
 
 export const changeStatusContract = (id, status, user) => {

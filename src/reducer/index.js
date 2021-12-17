@@ -8,6 +8,7 @@ import {
     PREVIEW_CONTRACT,
     REMOVE_CONTRACT,
     EDIT_USER,
+    UPDATE_CONTRACT,
     SET_CONTRACT_STATUS,
     SET_FILTER_DURATIONH,
     SET_FILTER_DURATIONL,
@@ -85,6 +86,12 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case GET_CONTRACT_BY_ID:
+            return {
+                ...state,
+                contract: action.payload
+            }
+
+        case UPDATE_CONTRACT:
             return {
                 ...state,
                 contract: action.payload

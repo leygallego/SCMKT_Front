@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDownloadURL, uploadBytesResumable, ref as refStorage } from 'firebase/storage';
 import { storage } from '../firebase';
+import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
+import { updateContract } from '../actions/index.js';
 import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
@@ -16,7 +19,7 @@ export function EditContract() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
     const contract = useSelector(state => state.contract)
-    const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`
+    const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
 
     const [checked, setChecked] = useState(false);
     const [input, setInput] = useState({
@@ -39,9 +42,6 @@ export function EditContract() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {
     });
-
-    const [archivo1, setArchivo1] = useState(null);
-    const [archivo2, setArchivo2] = useState(null);
 
     useEffect(() => {
         //dispatch(getUsers({}))
@@ -152,57 +152,62 @@ export function EditContract() {
             }
         })
     }
-    
-    const saveContract = (status) => {
+
+    const saveContract = () => {
         let nweC = {
-          wallet1: user.wallet,
-          wallet2: '',
-          conditions: {
-            name: contract.name,
-            shortdescription: contract.shortdescription,
-            longdescription: contract.longdescription,
-            amount: contract.amount,
-            coin: contract.coin,
-            condition: {
-              c1: contract.c1,
-              c2: contract.c2
-            }
-          },
-          status,
-          ownerId: user.id
+            id: input.id,
+            wallet1: input.wallet,
+            wallet2: input.wallet2,
+            author: input.author,
+            conditions: {
+                name: input.name,
+                shortdescription: input.shortdescription,
+                longdescription: input.longdescription,
+                amount: input.amount,
+                coin: input.coin,
+                condition: {
+                    c1: input.c1,
+                    c2: input.c2
+                }
+            },
+            status: input.status,
+            clientId: input.clientId,
+            ownerId: user.id
         }
-    
+
+        console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
+
         Swal.fire({
-          title: 'Do you want to save the changes?',
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: 'Save',
-          denyButtonText: `Don't save`,
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            // showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
         }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            // dispatch(editContract(nweC)) CONTINUAR
-    
-            Swal.fire('Saved!', '', 'success')
-              .then((result) => {
-                //window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
-                // window.location.replace(`http://localhost:3000/perfil`)
-                window.location.replace(`${urlWork}/perfil/`)
-    
-              })
-          } else if (result.isDenied) {
-            Swal.fire('Changes are not saved', '', 'info')
-          }
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                dispatch(updateContract(nweC))
+
+                Swal.fire('Saved!', '', 'success')
+                    .then((result) => {
+                        //window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
+                        // window.location.replace(`http://localhost:3000/perfil`)
+                        window.location.replace(`${urlWork}/perfil/`)
+
+                    })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
         })
-      }
-    
+    }
+
     return (
         <>
             <div className="contractComponent">
                 <div className="contractForm">
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
                     <form className='contractForm-form' onSubmit={handleOnSubmit}>
-                        <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
+                        {/* <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a> */}
                         {/* <br/><br/> */}
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Nombre del Contrato</div>
@@ -280,8 +285,32 @@ export function EditContract() {
                             <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
                             </div>
-                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo">
+                                <input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} />
+                                {/* <div className='modal-overlay'>
+                                    <iframe src={`/iframe/?url=${input.c1}`} />
+                                </div> */}
+                            </div>
+                            <div className="inputForm-archivo">
+                                <input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} />
+                                {/* <div className='modal-overlay'>
+                                    <iframe src={`/iframe/?url=${input.c2}`} />
+                                </div> */}
+                                {/* <Button
+                                    className="busca-datos"
+                                    variant="contained"
+                                    startIcon={<VisibilityOutlinedIcon />}
+                                    onClick={open}>
+                                </Button> */}
+                                <div className={isOpen ? '' : ''} visible={isOpen}>
+                                    <Modal
+                                        visible={modalIsOpen}>
+                                        <div className='modal-overlay'>
+                                            <iframe src="/iframe/?url=https://www.etsy.com" />
+                                        </div>
+                                    </Modal>
+                                </div>
+                            </div>
                         </div>
 
                         {/* <div className="labelInput">
@@ -336,7 +365,7 @@ export function EditContract() {
                                         : "acept-contract"
                                 }
                                 // variant="outlined"
-                                onClick={open}
+                                onClick={saveContract}
                                 disabled={
                                     input.name === "" ||
                                         input.shortdescription === "" ||
@@ -344,7 +373,7 @@ export function EditContract() {
                                         input.amount === "" ||
                                         input.coin === "" ||
                                         !checked
-                                        ? true
+                                        ? false
                                         : false
                                 }
                             >Grabar</button>
@@ -360,7 +389,7 @@ export function EditContract() {
                                     <DetalleContratoPreview
                                         visible={close}
                                         onClose={close}
-                                        dataPreview={input}
+                                        inputPreview={input}
                                     // close={close}
                                     />
                                 </div>
