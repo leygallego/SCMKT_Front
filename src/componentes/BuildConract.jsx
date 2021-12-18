@@ -57,7 +57,7 @@ export function BuildConract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
-        const storageRef = refStorage(storage, `/documents/${file.name}`)
+        const storageRef = refStorage(storage, `/documents/${user.id? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
         uploadTask.on("state_changed", (snapshot) => { },
