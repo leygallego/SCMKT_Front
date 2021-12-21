@@ -5,11 +5,10 @@ import { useHistory, useParams } from 'react-router-dom';
 import {
     getContractsByID, removeContract,
     sendLogin, changeStatusContract, setChat,
-    choosedUser
+    choosedUser, searchChannel
 } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
-import EditContract from './EditContract';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,26 +20,40 @@ function DetalleContrato() {
     const user = useSelector(state => state.user)
     const contract = useSelector(state => state.contract)
     const { getAccessTokenSilently } = useAuth0()
+    const receiver = useSelector(state => state.choosed.id);
 
     const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
 
     useEffect(() => {
         dispatch(callProtectedApi)
+       
         return () => {
             dispatch(removeContract())
         }
     }, [dispatch, id])
 
     const openChat = () => {
-        console.log(contract.owner)
-        dispatch(choosedUser(
-            {
-                "name": contract.owner.name,
-                "id": contract.owner.id,
-                "image": contract.owner.image
-            },
-        ))
-        dispatch(setChat());
+        setTimeout(() => {
+            dispatch(choosedUser(
+                {
+                    "name": contract.owner.name,
+                    "id": contract.owner.id,
+                    "image": contract.owner.image
+                },
+            ))  
+        }, 500);
+setTimeout(() => {
+    dispatch(searchChannel(
+        {
+            "id1": user.id,
+            "id2": receiver
+        }
+    ))
+}, 600);
+      setTimeout(() => {
+        dispatch(setChat());  
+      }, 700);  
+        
     }
 
     async function callProtectedApi() {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import '../firebase';
-import { getDatabase, ref, onValue, set } from 'firebase/database';
+import { getDatabase, ref, onValue, set, push, get, child } from 'firebase/database';
 import { NODE_ENV, urlProduction1, urlDevelop, port1 } from '../config/app.config.js';
 
 export const GET_USERS = 'GET_USERS'
@@ -32,9 +32,81 @@ export const GET_USERS_DATABASE = 'GET_USERS_DATABASE';
 export const CHOOSED_USER = 'CHOOSED_USER';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
+export const SET_CHANNEL = 'SET_CHANNEL';
+export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
+export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
+export const RETURN_NULL = 'RETURN_NULL';
 
 const database = getDatabase();
-const urlWork = NODE_ENV==='production'? urlProduction1 : `${urlDevelop}:${port1}`
+const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}`
+
+export const configChannel = (channelId) => {
+    return {
+        type: CONFIG_CHANNEL,
+        payload: channelId
+    }
+}
+
+export const searchChannel = (channel) => {
+    const { id1, id2 } = channel;
+    return async (dispatch) => {
+        const dbRef = ref(getDatabase());
+        await get(child(dbRef, "smartChatChannels"))
+            .then((snapshot) => {
+                const validate = snapshot.val();
+                if (validate === null) {
+                    console.log("No hay datos en la db....");
+                    dispatch(setChannel(channel))
+                } else {
+                    const searchChannel = Object.entries(snapshot.val());
+                    console.log('En el else de searchChannel', searchChannel);
+                    searchChannel.map(element => {
+                        let arr = [];
+                        arr.push(element[1]['channel'].id1);
+                        arr.push(element[1]['channel'].id2);
+                        if (arr.indexOf(id1) >= 0 && arr.indexOf(id2) >= 0) {
+                            const send = element[0];
+                            dispatch(configChannel(send));
+                        } else {
+                            console.log('Despachando channel desde searchChannel')
+                            dispatch(setChannel(channel));
+                        }
+                    });
+                }
+            })
+    }
+}
+
+export const setChannel = (channel) => {
+    return (dispatch) => {
+        const db = getDatabase();
+        const list = ref(db, 'smartChatChannels');
+        const newItem = push(list);
+        set(newItem, {
+            channel
+        })
+            .then(() => {
+                return {
+                    type: RETURN_NULL
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        // onValue(ref(database, `/smartChatChannels`), (snapshot) => {
+        //     console.log('CHANNELS::::', snapshot.val())
+        //     console.log('CHANNEL_PAYLOAD::::', channel)
+        //     const chan = snapshot.val();
+        //     chan.map(element => {
+
+        //     });
+        //     dispatch({
+        //         type: SET_CHANNEL,
+        //         payload: channel
+        //     })
+        // })
+    }
+}
 
 export const choosedUser = (chatUser) => {
     return {
@@ -46,7 +118,7 @@ export const choosedUser = (chatUser) => {
 export const getMessages = (id) => {
 
     return (dispatch) => {
-        onValue(ref(database, `/otroMas/${id}/chat/`), (snapshot) => {
+        onValue(ref(database, `/smartChat/${id}/chat/`), (snapshot) => {
             dispatch({
                 type: GET_MESSAGES,
                 payload: snapshot.val()
@@ -56,10 +128,11 @@ export const getMessages = (id) => {
 }
 
 export const sendMessage = (message) => {
+    console.log('desde el SEND_MESSAGE:::', message)
     const date = new Date();
     return () => {
         const db = getDatabase();
-        set(ref(db, `/otroMas/${message.to}/chat/${date}`), {
+        set(ref(db, `smartChat/${message.channelId}/chat/${date}`), {
             message
         })
             .then(() => {

@@ -55,8 +55,8 @@ ReactDOM.render(
     clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
 
     redirectUri={
-      `${NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`}/perfil`
-      // "http://localhost:3000/perfil"
+      // `${NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`}/perfil`
+      "http://localhost:3000/perfil"
       // "https://scmkt-4fe6b.web.app/perfil"
     }
     //response_type='id_token token'
