@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './NavBar.css';
 // import ReorderIcon from '@mui/icons-material/Reorder';
-import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react";
+import UserAvatar from './UserAvatar';
 // import axios from 'axios';
 // import { useDispatch} from 'react-redux';
 // import { sendLogin } from '../actions';
@@ -56,10 +57,9 @@ function NavBar() {
                           <button className="logout-button" onClick={logout}>Logout</button>
                         </li>
                         </div>
-                       
-
-
-
+                        <div className="profile-image">
+                          <UserAvatar/>
+                        </div>
 
                       </ul>
                     </div>

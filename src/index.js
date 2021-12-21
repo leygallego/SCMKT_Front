@@ -50,23 +50,22 @@ else {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Auth0Provider
-    domain="dev-a8q5pol6.us.auth0.com"
-    clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
-
-    redirectUri={
-      // `${NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`}/perfil`
-      "http://localhost:3000/perfil"
-      // "https://scmkt-4fe6b.web.app/perfil"
-    }
-    //response_type='id_token token'
-    audience="SCMKT"
-    scope="openid profile email"
-    prompt= {call_prompt()}
-    > 
-      <App /> 
-    </Auth0Provider>
-  </Provider>,
+  <Auth0Provider
+  domain="dev-a8q5pol6.us.auth0.com"
+  clientId="gws4as2IJJiz2lfMBFOx2G8lieJc4b5N"
+  redirectUri={
+    `${NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`}/perfil`
+    // "http://localhost:3000/perfil"
+    // "https://scmkt-4fe6b.web.app/perfil"
+  }
+  //response_type='id_token token'
+  audience="SCMKT"
+  scope="openid profile email"
+  prompt= {call_prompt()}
+  > 
+    <App /> 
+  </Auth0Provider>
+</Provider>,
   document.getElementById('root')
 );
 

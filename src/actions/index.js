@@ -9,8 +9,10 @@ export const GET_CONTRACTS = 'GET_CONTRACTS'
 export const POST_SING_UP = 'POST_SING_UP'
 export const SEND_LOGIN = 'SEND_LOGIN'
 export const EDIT_USER = 'EDIT_USER'
+export const SET_CONTRACT = 'SET_CONTRACT'
 export const GET_CONTRACT_BY_ID = 'GET_CONTRACT_BY_ID'
 export const SET_CONTRACT_STATUS = 'SET_CONTRACT_STATUS'
+export const UPDATE_CONTRACT = 'UPDATE_CONTRACT'
 export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const SET_FILTER_DURATIONH = 'SET_FILTER_DURATIONH'
@@ -400,6 +402,23 @@ export const stopUser = () => {
     return {
         type: STOP_USER,
         payload: {}
+    }
+}
+
+export const updateContract = (contract) => {
+    return async (dispatch) => {
+        dispatch({
+            type: UPDATE_CONTRACT,
+            payload: contract
+        });
+        await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
+        await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
+            .then((response) => {
+                // console.log("registrado correctamente", response);
+            })
+            .catch(error => {
+                console.log("No se pudo actualizar el estado del contrato", error);
+            })
     }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
     getContractsByID, removeContract,
     sendLogin, changeStatusContract, setChat,
@@ -118,7 +119,7 @@ setTimeout(() => {
                         <p>{contract.conditions.longdescription}</p>
                         <h1><span>{contract.conditions.amount}</span> </h1>
 
-                        <div>
+                        <div className="group-button-build">
                             <Button
                                 className="aceptar-contratos"
                                 variant="contained"
@@ -126,11 +127,12 @@ setTimeout(() => {
                             >Aceptar</Button>
 
                             {(contract.status != 'complete' && contract.status != 'delete' && contract.owner.id === user.id)
-                                ? <Button
-                                    className="aceptar-contratos"
-                                    variant="contained"
-                                    onClick={handleClickEdit}
-                                >Editar</Button>
+                                ? <div>
+                                    <div className="aceptar-contratos">
+                                        <NavLink to={`/editcontrato/${id}`}><Button variant="contained">Editar</Button></NavLink>
+                                    </div>
+
+                                </div>
                                 : <></>
                             }
 
