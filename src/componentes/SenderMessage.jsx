@@ -6,19 +6,18 @@ export default function SenderMessage() {
 
     const dispatch = useDispatch();
     const [message, setMessage] = useState();
-    // const logged = useSelector(state => state.loggedUser);
+    const channelChatId = useSelector(state => state.channel);
     const logged = useSelector(state => state.user);
 
-    const receiver = useSelector(state => state.choosed.id);
-    console.log(receiver)
     const handleOnChange = (e) => {
         setMessage(e.target.value)
     }
+
     const handleOnClick = () => {
         if (message) dispatch(sendMessage({
+            channelId: channelChatId,
             message,
             from: logged.id,
-            to: receiver
         }));
         setMessage('');
     }
@@ -28,7 +27,6 @@ export default function SenderMessage() {
             handleOnClick();
         }
     };
-
 
     return (
         <dir className="senderComponent">

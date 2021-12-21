@@ -7,9 +7,12 @@ const Chatdestination = () => {
 
     const user = useSelector(state => state.choosed)
     const dispatch = useDispatch();
+    const channel = useSelector(state => state.channel);
 
     useEffect(() => {
-        dispatch(getMessages(user.id));    
+
+       channel ? dispatch(getMessages(channel)): console.log('');    
+    
     }, [dispatch]);
 
     return (

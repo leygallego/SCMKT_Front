@@ -16,9 +16,7 @@ const Uploadimage = (props) => {
     const { profileImage } = useSelector(state => state);
     const dispatch = useDispatch();
     const handleBtnClick = () => {
-
-        inputFileRef.current.click(); 
-
+        inputFileRef.current.click();
     }
     const formHandler = (e) => {
         e.preventDefault();
@@ -59,14 +57,15 @@ const Uploadimage = (props) => {
             <div className="imageCircle">
                 {props.image ? <img className="imageCircle" src={profileImage} alt="imagen de silueta" /> : <img className="imageCircle" src={props.user.image} alt="imagen de silueta" />}
                 <Button
-                                variant="error"
-                                startIcon={<UploadIcon />}
-                                onClick={handleBtnClick}
-                            />
+                    variant="error"
+                    startIcon={<UploadIcon />}
+                    onClick={handleBtnClick}
+                />
                 {/* <input type="button" className='imagenbutton' onClick={handleBtnClick} ></input> */}
             </div>
             <form onSubmit={formHandler}>
-                <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef} onChange={(e) => { handelFileChange(e) }} />
+                <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef}
+                    onChange={(e) => { handelFileChange(e) }} />
                 <button className="avatarInput" type='submit' ref={uploadButton}>Upload</button>
             </form>
         </div>

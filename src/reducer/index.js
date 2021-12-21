@@ -23,7 +23,8 @@ import {
     CHOOSED_USER,
     GET_MESSAGES,
     GET_USERS_DATABASE,
-    SEND_MESSAGE
+    SEND_MESSAGE,
+    CONFIG_CHANNEL
 } from "../actions";
 
 const initialState = {
@@ -36,13 +37,10 @@ const initialState = {
     profileImage: "",
     spinner: true,
     chat: false,
-    choosed: {
-        "name": "Bot Smart Contracts",
-        "id": 1000,
-        "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6"
-    },
+    choosed: {},
     loggedUser: {},
-    messages: []
+    messages: [],
+    channel: ""
 
 }
 
@@ -200,6 +198,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 messages: action.payload
+            }
+        
+        case CONFIG_CHANNEL:
+            return {
+                ...state,
+                channel: action.payload
             }
 
 
