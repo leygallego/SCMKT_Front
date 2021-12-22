@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import './NavBar.css';
-// import ReorderIcon from '@mui/icons-material/Reorder';
+import ReorderIcon from '@mui/icons-material/Reorder';
+import CloseIcon from '@mui/icons-material/Close';
 import { useAuth0 } from "@auth0/auth0-react";
 import UserAvatar from './UserAvatar';
 // import axios from 'axios';
@@ -20,69 +21,80 @@ function NavBar() {
     //getAccessTokenSilently,
   } = useAuth0();
 
-  
+  const [clicked, setClicked] = useState(false);
+  const handleClick = () => {
+    setClicked(!clicked)
+  }
 
   return (
-      <div className="navbar">
-        <nav>
-          {/* <div className="links" id={showLinks ? "hidden" : ""}> */}
-          <div className="links">
 
-            <ul>
-              {/* <button className="reorder-button" onClick={()=> setShowLinks(!showLinks)}>
-            <ReorderIcon />
-          </button> */}
 
-              <li className="smart" >
-                <NavLink to="/"> <span>SmartContracts</span> </NavLink>
-              </li>
-              <li>
-                <NavLink to="/contratos">Contratos</NavLink>
-              </li>
-              <li>
-                <NavLink to="/aboutus">Quienes Somos</NavLink>
-              </li>
-              {
+    <nav>
+
+      <div className="logo-smartcontracts">
+       
+          SmartContracts
+        
+      </div>
+      <div className="menu-icon" onClick={handleClick}>
+       { clicked ? <CloseIcon /> : <ReorderIcon />}
+      </div>
+      {/* <ul className={clicked ? "menu-list" : "menu-list close"}>
+        <li>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+        </li>
+        <li>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+        </li> */}
+        {
                 isAuthenticated ?
                   (
-                    <div>
-                      <ul>
+                    // <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <li>
+                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+                    </li>
+                    <li>
+                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+                    </li>
 
-                        <li>
-                          <NavLink to="/perfil">Perfil</NavLink>
-                        </li>
+                        
+                         <li className={({ isActive }) => (isActive ? "active" : "noActive")}><NavLink to="/perfil">Perfil</NavLink></li> 
+                        
 
                         <div className="logout-button">
-                        <li>
-                          <button className="logout-button" onClick={logout}>Logout</button>
-                        </li>
+                        
+                          <button className="logout-button" onClick={logout}>Cerrar Sesión</button>
+                        
                         </div>
-                        <div className="profile-image">
+                        <li className="profile-image">
                           <UserAvatar/>
-                        </div>
+                        </li>
 
-                      </ul>
-                    </div>
+                      
+                    </ul>
                   )
                   : (
-                    <div className="login-button">
-                      <ul>
-                        <li>
-                          <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
-                        </li>
 
-                        {/* <li>
-                    <NavLink to="/registro"> <Button variant="contained">Registrarse</Button> </NavLink>
-                  </li> */}
-                      </ul>
+                    <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <li>
+                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+                    </li>
+                    <li>
+                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+                    </li>
+                    <div className="login-button">
+                      
+                          <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
+                        
                     </div>
+
+                    </ul>
                   )
               }
-            </ul>
+      
 
-          </div>
-        </nav>
-      </div>
+    </nav>
   )
 }
 
