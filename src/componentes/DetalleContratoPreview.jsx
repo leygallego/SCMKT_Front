@@ -9,7 +9,7 @@ import './DetalleContratoPreview.css';
 
 function DetalleContratoPreview(props) {
   const { dataPreview, onClose } = props
-  const urlWork = NODE_ENV==='production'? urlProduction : `${urlDevelop}:${port2}`
+  const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
 
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
@@ -97,8 +97,36 @@ function DetalleContratoPreview(props) {
             <p>{contract.longdescription}</p>
             <h1><span>{contract.amount} ({contract.coin})</span> </h1>
             <div>
-            <p>Test</p>
-            {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}
+              <p>Test</p>
+              <div className='iframes-test-contract'>
+                <object data={contract.c1} type="application/pdf" className='iframes-test-contract-object'>
+                  <iframe id="inlineFrameC1"
+                    // title="Test 1"
+                    src={`https://docs.google.com/viewer?url=${contract.c1}&embedded=true`}
+                    // style="border:1px solid #666CCC"
+                    frameborder="1"
+                    scrolling="auto"
+                    width="50%"
+                    height="100%"
+                  >
+                  </iframe>
+                </object>
+
+                <object data={contract.c2} type="application/pdf" className='iframes-test-contract-object'>
+                  <iframe id="inlineFrameC2"
+                    // title="Test 2"
+                    src={`https://docs.google.com/viewer?url=${contract.c2}&embedded=true`}
+                    // style="border:1px solid #666CCC"
+                    frameborder="1"
+                    scrolling="auto"
+                    width="50%"
+                    height="100%"
+                  >
+                  </iframe>
+                </object>
+              </div>
+
+              {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}
             </div>
 
             <div className='group-button-preview'>

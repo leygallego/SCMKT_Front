@@ -109,6 +109,7 @@
 
 .file-group-contract {
   display: flex;
+  align-items: end;
 }
 
 .input__row {
@@ -142,11 +143,22 @@
   margin: 0;
   width: 30px;
   height: 30px;
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   background: #c3e3fc
     url("https://www.interactius.com/wp-content/uploads/2017/09/folder.png")
     no-repeat center;
+}
+
+.iframes-test-contract {
+  display: flex;
+  width: 100%;
+  height: 500px;
+}
+
+.iframes-test-contract-object {
+  width: 50%;
+  height: 500px;
 }
 
 @media (min-width: 576px) {

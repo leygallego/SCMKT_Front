@@ -139,9 +139,9 @@ export function BuildConract() {
         Swal.fire({
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
-            showCancelButton: true,
+            // showCancelButton: true,
             confirmButtonText: 'Yes',
-            denyButtonText: `No`,
+            // denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -303,6 +303,7 @@ export function BuildConract() {
                                 className="acept-contract"
                                 onClick={cancelPublished}>Cancelar</button>
                         </div>
+                        
                         <div className={isOpen ? '' : ''} visible={isOpen}>
                             <Modal
                                 visible={modalIsOpen}>

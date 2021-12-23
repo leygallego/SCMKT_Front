@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDownloadURL, uploadBytesResumable, ref as refStorage } from 'firebase/storage';
 import { storage } from '../firebase';
@@ -25,6 +25,8 @@ export function EditContract() {
     const [checked, setChecked] = useState(false);
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
+    const [showFile1, setShowFile1] = useState(false);
+    const [showFile2, setShowFile2] = useState(false);
     const [input, setInput] = useState({
         id: contract.id,
         wallet1: contract.wallet1,
@@ -35,20 +37,27 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
-        c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 != undefined? contract.conditions.condition.c1 : null,
-        c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 != undefined? contract.conditions.condition.c2 : null,
+        c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
+        c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
         clientId: contract.clientId
     })
 
     const [errors, setErrors] = useState({});
-    // const [modalIsOpen, setModalIsOpen] = useState(false);
-    // const [Modal, open, close, isOpen] = useModal('root', {
-    // });
+    const inputFileC1Ref = useRef();
+    const inputFileC2Ref = useRef();
 
     useEffect(() => {
         //dispatch(getUsers({}))
     }, [dispatch]);
+
+    const handleBtnFleC1Click = () => {
+        // console.log('HAGO CLICL', showFile1)
+        inputFileC1Ref.current.click();
+    }
+    const handleBtnFleC2Click = () => {
+        inputFileC2Ref.current.click();
+    }
 
     function validate(elem) {
         if (input[elem] === '') {
@@ -71,7 +80,6 @@ export function EditContract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c1: url
@@ -92,7 +100,6 @@ export function EditContract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c2: url
@@ -111,14 +118,14 @@ export function EditContract() {
     }
 
     const handleInputChange = (e) => {
-        console.log('adfasdf', e.target.files[0])
+        // console.log('adfasdf', e.target.files[0])
         if (e.target.name === 'file-c1') {
             // setArchivo1(e.target.files[0]);
             uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
         } else {
-            console.log(e.target.name, e.target.value)
+            // console.log(e.target.name, e.target.value)
             setInput({
                 ...input,
                 [e.target.name]: e.target.value
@@ -188,7 +195,7 @@ export function EditContract() {
             ownerId: user.id
         }
 
-        console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
+        // console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
 
         Swal.fire({
             title: 'Do you want to save the changes?',
@@ -212,6 +219,22 @@ export function EditContract() {
                 Swal.fire('Changes are not saved', '', 'info')
             }
         })
+    }
+
+    function openFile(url, name) {
+        console.log('ENTRO')
+        if (navigator.appName.indexOf('Microsoft Internet Explorer') != -1) {
+            window.showModelessDialog(url, '', 'dialogTop:50px;dialogLeft:50px;dialogHeight:500px;dialogWidth:700px')
+        }
+        if (navigator.appName.indexOf('Netscape') != -1) {
+            window.open(url, '', 'width=700,height=500,left=50,top=50');
+            void 0
+        };
+        //  return false;
+        //  `<div><a href=${url}></a></div>`
+
+
+        // window.showModalDialog(link, name, "width=500, height=630")
     }
 
     return (
@@ -302,34 +325,82 @@ export function EditContract() {
                                 <div className='file-group-contract'>
                                     <div class="input__row uploader">
                                         <label for="file-c1"></label>
-                                        <input name='file-c1' id="file-c1" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
+                                        <input name='file-c1' id="file-c1" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
                                         <div id="inputval" className="input-value">{file1 ? file1 : ''}</div>
                                     </div>
-                                    {input.c1 && input.c1 != undefined && input.c1 != 'undefined'
+                                    {input.c1 && input.c1 !== undefined && input.c1 !== 'undefined'
                                         ? <div className=''>
-                                            <a href={input.c1} target='_blank' rel='noopener noreferrer'><VisibilityOutlinedIcon /></a>
+                                            <a ref={inputFileC1Ref} onClick={() => setShowFile1(!showFile1)}><VisibilityOutlinedIcon /></a>
+                                            {/* <a onClick={()=>openFile(input.c1, "Test 01")}><VisibilityOutlinedIcon /></a> */}
+                                            {/* <a href={input.c1} target='_blank' rel='noopener noreferrer' onClick={handleBtnFleC1Click}><DownloadIcon /></a> */}
                                             <a href={input.c1} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
+
+                                            {/* <img src={DownloadIcon} alt="" />
+                                            <span class="material-icons" onClick={handleBtnFleC1Click}>dow<VisibilityOutlinedIcon />nload</span> */}
+                                            {/* <input ref={inputFileC1Ref} type="text" /> */}
+                                            {/* <button onClick={handleBtnFleC1Click}><VisibilityOutlinedIcon /></button> */}
                                         </div>
                                         :
                                         <div></div>
                                     }
                                 </div>
 
-                                <div className='ver_que_estilo_poner'>
+                                <div className='file-group-contract'>
                                     <div class="input__row uploader">
                                         <label for="file-c2"></label>
-                                        <input name='file-c2' id="file-c2" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
+                                        <input name='file-c2' id="file-c2" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
                                         <div id="inputval" className="input-value">{file2 ? file2 : ''}</div>
                                     </div>
-                                    {input.c2 && input.c2 != undefined && input.c2 != 'undefined'
-                                        ? <div className='view-file-test'>
-                                            <a href={input.c2} target='_blank' rel='noopener noreferrer'><VisibilityOutlinedIcon /></a>
+                                    {input.c2 && input.c2 !== undefined && input.c2 !== 'undefined'
+                                        ? <div className=''>
+                                            <a onClick={() => setShowFile2(!showFile2)}><VisibilityOutlinedIcon /></a>
+                                            {/* <a onClick={()=>openFile(input.c2, "Test 02")}><VisibilityOutlinedIcon /></a> */}
                                             <a href={input.c2} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
                                         </div>
                                         :
                                         <div></div>
                                     }
                                 </div>
+
+                                {showFile1 || showFile2
+                                    ? <div className='iframes-test-contract'>
+                                        {showFile1
+                                            ? <object data={input.c1} type="application/pdf" className='iframes-test-contract-object'>
+                                                <iframe id="inlineFrameC1"
+                                                    // title="Test 1"
+                                                    src={`https://docs.google.com/viewer?url=${input.c1}&embedded=true`}
+                                                    // style="border:1px solid #666CCC"
+                                                    frameborder="1"
+                                                    scrolling="auto"
+                                                    width="50%"
+                                                    height="100%"
+                                                >
+                                                </iframe>
+                                            </object>
+                                            : <div></div>
+                                        }
+
+                                        {showFile2
+                                            ?
+                                            <object data={input.c2} type="application/pdf" className='iframes-test-contract-object'>
+                                                <iframe id="inlineFrameC2"
+                                                    // title="Test 2"
+                                                    target='_blank'
+                                                    src={`https://docs.google.com/viewer?url=${input.c2}&embedded=true`}
+                                                    // style="border:1px solid #666CCC"
+                                                    frameborder="1"
+                                                    scrolling="auto"
+                                                    width="50%"
+                                                    height="100%"
+                                                >
+                                                </iframe>
+                                            </object>
+                                            : <div></div>
+                                        }
+                                    </div>
+                                    : <div></div>
+
+                                }
                             </div>
 
                         </div>
