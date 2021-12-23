@@ -1,4 +1,4 @@
-/* dispositivos móviles */
+/* Pantallas más de 800px */
 
 nav{
   background: white;
@@ -158,8 +158,9 @@ nav{
   }
   
     .menu-list.close{
-      right: -110%;
-      transition: all 0.5s ease-in-out;
+      /* right: -110%;
+      transition: all 0.5s ease-in-out; */
+      display: none;
   }
     .login-button button{
       border-radius: 30px;
@@ -215,8 +216,9 @@ nav{
 }
 
   .menu-list.close{
-    right: -110%;
-    transition: all 0.5s ease-in-out;
+    /* right: -110%;
+    transition: all 0.5s ease-in-out; */
+    display: none;
 }
   .login-button button{
     border-radius: 30px;
