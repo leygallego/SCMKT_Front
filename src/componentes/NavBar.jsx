@@ -33,7 +33,7 @@ function NavBar() {
 
       <div className="logo-smartcontracts">
        
-          SmartContracts
+          <NavLink to="/"><span>SmartContracts</span> </NavLink>
         
       </div>
       <div className="menu-icon" onClick={handleClick}>
