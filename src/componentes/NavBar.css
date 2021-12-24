@@ -22,7 +22,10 @@ nav{
 .logo-smartcontracts{
   font-weight: 600;
   font-size: 45px;
+}
+.logo-smartcontracts span{
   color: #0078E7;
+  /* text-decoration: none; */
 }
 
 .menu-list{
@@ -141,13 +144,15 @@ nav{
       grid-template-columns: repeat(1, 1fr);
       width: 50%;
       position: absolute;
-      background-color: rgba(0, 0, 0, 0.7);
+      /* background-color: rgba(0, 0, 0, 0.7); */
+      background-color: black;
       padding: 20px;
       right: 0;
       margin-right: 50%;
       top: 64px;
       transition: all 0.5s ease-in-out;
       font-size: 22px;
+      z-index: 9999;
   
   }
   

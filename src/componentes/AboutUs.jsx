@@ -7,7 +7,13 @@ function AboutUs() {
 
             <div className="about-container">
                 <div className="decorative-about">
-                    <img src="./images/decorative.png" alt="imagen decorativa" />
+                    <img src="./images/decorative.png" alt="imagen decorativa"/>
+                </div>
+                <div className="leyder">
+                <img src="./images/leyder.png" alt="imagen decorativa"/>
+                </div>
+                <div className="benito">
+                <img src="./images/benito.jpeg" alt="imagen decorativa"/>
                 </div>
                 <div className="texto-about">
                     <h1>Somos (scmkt)</h1>
