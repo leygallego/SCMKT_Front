@@ -52,11 +52,7 @@ const ContractsList = (props) => {
         }
         setEraser(er)
     }
-
-    // const openChat = () => {
-    //     dispatch(setChat());
-    // }
-
+    
     return (
         <div className='contractsCardComponent'>
             <div className="contratos-publicados">

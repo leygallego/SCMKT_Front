@@ -11,7 +11,7 @@ const ContractsCard = (props) => {
     const { check, onCheck, id, chat } = props
     const dispatch = useDispatch();
     const openChat = () => {
-        dispatch(setChat());
+        dispatch(setChat(true));
     }
 
     return (

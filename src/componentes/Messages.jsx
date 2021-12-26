@@ -10,30 +10,26 @@ export default function Messages() {
 
     messages ? mess = Object.values(messages) : console.log('');
 
-    // console.log('MESSAGES::::::', mess)
-
     const myRef = useRef(null);
 
-    const executeScroll = () => myRef.current.scrollIntoView({ block: "end", behavior: "smooth" })
-    console.log("LOGGED:::", logged)
+    const executeScroll = () => {
+        setTimeout(() => {
+            myRef.current.scrollIntoView({ block: "end", behavior: "smooth" })    
+        }, 150);
+        
+    }
+
     return (
         <div className="messageArea"  >
             {mess ? mess.map((element, index) => {
                 return (
-                    <div className='messageContainer'>
-
+                    <div className={logged === element.message.from ? 'messageDivFrom' : 'messageDivTo'}>
                         <div 
                         key={index} 
-
-                        className={logged === element.message.from ? 'messageDivFrom' : 'messageDivTo'}
+                        className={logged === element.message.from ? 'messageDataFrom' : 'messageDataTo'}
                         >{element.message.message}
                         </div>
-
-                        {
-                            setTimeout(() => {
-                                executeScroll()
-                            }, 150)
-                        }
+                        { executeScroll() }
                     </div>
                 )
             }) : <></>}

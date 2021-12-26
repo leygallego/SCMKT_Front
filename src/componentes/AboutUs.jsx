@@ -1,10 +1,20 @@
 import React from 'react';
 import './AboutUs.css';
+import { useDispatch } from 'react-redux';
+import { setChat, configChannel, eraseMessage } from '../actions';
 
 function AboutUs() {
+
+    const dispatch = useDispatch();
+
+    dispatch(setChat(false));
+    // dispatch(configChannel(""));
+    dispatch(eraseMessage([]));
+
+
+
     return (
         <>
-
             <div className="about-container">
                 <div className="decorative-about">
                     <img src="./images/decorative.png" alt="imagen decorativa" />
