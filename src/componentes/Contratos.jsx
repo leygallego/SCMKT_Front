@@ -64,7 +64,7 @@ function Contratos() {
                         )
                 }
             </div>
-            { <div className='pagination-style'>
+             <div className='pagination-style'>
                 <Pagination
                     count={count}
                     size="large"
