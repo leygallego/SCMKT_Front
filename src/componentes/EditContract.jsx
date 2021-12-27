@@ -25,6 +25,8 @@ export function EditContract() {
     const [checked, setChecked] = useState(false);
     const [file1, setFile1] = useState();
     const [file2, setFile2] = useState();
+    const [showFile1, setShowFile1] = useState(false);
+    const [showFile2, setShowFile2] = useState(false);
     const [input, setInput] = useState({
         id: contract.id,
         wallet1: contract.wallet1,
@@ -35,8 +37,8 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
-        c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 != undefined? contract.conditions.condition.c1 : null,
-        c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 != undefined? contract.conditions.condition.c2 : null,
+        c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
+        c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
         clientId: contract.clientId
     })
@@ -111,7 +113,6 @@ export function EditContract() {
     }
 
     const handleInputChange = (e) => {
-        console.log('adfasdf', e.target.files[0])
         if (e.target.name === 'file-c1') {
             // setArchivo1(e.target.files[0]);
             uploadFileC1(e.target.files[0])
@@ -155,9 +156,9 @@ export function EditContract() {
         Swal.fire({
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
-            showCancelButton: true,
+            // showCancelButton: true,
             confirmButtonText: 'Yes',
-            denyButtonText: `No`,
+            // denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
@@ -298,39 +299,78 @@ export function EditContract() {
                             <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
                             </div>
-                            <div className="inputForm-archivo-edit-contract">
-                                <div className='file-group-contract'>
-                                    <div class="input__row uploader">
-                                        <label for="file-c1"></label>
-                                        <input name='file-c1' id="file-c1" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
-                                        <div id="inputval" className="input-value">{file1 ? file1 : ''}</div>
-                                    </div>
-                                    {input.c1 && input.c1 != undefined && input.c1 != 'undefined'
-                                        ? <div className=''>
-                                            <a href={input.c1} target='_blank' rel='noopener noreferrer'><VisibilityOutlinedIcon /></a>
-                                            <a href={input.c1} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
-                                        </div>
-                                        :
-                                        <div></div>
-                                    }
-                                </div>
 
-                                <div className='ver_que_estilo_poner'>
-                                    <div class="input__row uploader">
-                                        <label for="file-c2"></label>
-                                        <input name='file-c2' id="file-c2" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
-                                        <div id="inputval" className="input-value">{file2 ? file2 : ''}</div>
+                            <div className='file-group-contract'>
+                                <div class="input__row uploader">
+                                    <label for="file-c1"></label>
+                                    <input name='file-c1' id="file-c1" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
+                                    <div id="inputval" className="input-value">{file1 ? file1 : ''}</div>
+                                </div>
+                                {input.c1 && input.c1 !== undefined && input.c1 !== 'undefined'
+                                    ? <div className='view-file-test'>
+                                        <a onClick={() => setShowFile1(!showFile1)}><VisibilityOutlinedIcon /></a>
+                                        <a href={input.c1} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
                                     </div>
-                                    {input.c2 && input.c2 != undefined && input.c2 != 'undefined'
-                                        ? <div className='view-file-test'>
-                                            <a href={input.c2} target='_blank' rel='noopener noreferrer'><VisibilityOutlinedIcon /></a>
-                                            <a href={input.c2} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
-                                        </div>
-                                        :
-                                        <div></div>
+                                    :
+                                    <div></div>
+                                }
+                            </div>
+
+                            <div className='file-group-contract'>
+                                <div class="input__row uploader">
+                                    <label for="file-c2"></label>
+                                    <input name='file-c2' id="file-c2" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
+                                    <div id="inputval" className="input-value">{file2 ? file2 : ''}</div>
+                                </div>
+                                {input.c2 && input.c2 !== undefined && input.c2 !== 'undefined'
+                                    ? <div className='view-file-test'>
+                                        <a onClick={() => setShowFile2(!showFile2)}><VisibilityOutlinedIcon /></a>
+                                        <a href={input.c2} target='_blank' rel='noopener noreferrer'><DownloadIcon /></a>
+                                    </div>
+                                    :
+                                    <div></div>
+                                }
+                            </div>
+
+                            {showFile1 || showFile2
+                                ? <div className='iframes-test-contract'>
+                                    {showFile1
+                                        ? <object data={input.c1} type="application/pdf" className='iframes-test-contract-object'>
+                                            <iframe id="inlineFrameC1"
+                                                // title="Test 1"
+                                                src={`https://docs.google.com/viewer?url=${input.c1}&embedded=true`}
+                                                // style="border:1px solid #666CCC"
+                                                frameborder="1"
+                                                scrolling="auto"
+                                                width="50%"
+                                                height="100%"
+                                            >
+                                            </iframe>
+                                        </object>
+                                        : <div></div>
+                                    }
+
+                                    {showFile2
+                                        ?
+                                        <object data={input.c2} type="application/pdf" className='iframes-test-contract-object'>
+                                            <iframe id="inlineFrameC2"
+                                                // title="Test 2"
+                                                target='_blank'
+                                                src={`https://docs.google.com/viewer?url=${input.c2}&embedded=true`}
+                                                // style="border:1px solid #666CCC"
+                                                frameborder="1"
+                                                scrolling="auto"
+                                                width="50%"
+                                                height="100%"
+                                            >
+                                            </iframe>
+                                        </object>
+                                        : <div></div>
                                     }
                                 </div>
-                            </div>
+                                : <div></div>
+                            }
+                            {/* </div> */}
 
                         </div>
 
@@ -404,7 +444,7 @@ export function EditContract() {
                         </div>
                     </form>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

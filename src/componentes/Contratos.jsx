@@ -93,6 +93,7 @@ function Contratos() {
                     variant="outlined"
                     shape="rounded"
                     page={page}
+                    className={'pagination-style'}
                     onChange={handleChange}
                 />
             </div>

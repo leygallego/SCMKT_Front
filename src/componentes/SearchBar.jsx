@@ -74,9 +74,9 @@ function SearchBar() {
             <div className="select-category">
                 <select className="select-categoria" onChange={filterByCategory}>
                     <option value="" label="Filtro por categoría"></option>
-                    <option value="category1" label="category1"></option>
-                    <option value="category2" label="category2"></option>
-                    <option value="category3" label="category3"></option>
+                    <option value="beginner" label="Principiante"></option>
+                    <option value="intermediate" label="Intermedio"></option>
+                    <option value="advanced" label="Avanzado"></option>
                 </select>
             </div>
             </div>
