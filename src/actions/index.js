@@ -41,8 +41,9 @@ export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
 
 const database = getDatabase();
+
 let chatUser = "";
-const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}`
+const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port1}`
 
 export const configChannel = (channelId) => {
     return {
