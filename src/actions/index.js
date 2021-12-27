@@ -3,6 +3,7 @@ import '../firebase';
 import { getDatabase, ref, onValue, set, push, get, child } from 'firebase/database';
 import { NODE_ENV, urlProduction1, urlDevelop, port1 } from '../config/app.config.js';
 
+
 export const GET_USERS = 'GET_USERS'
 export const GET_USER_BY_ID = 'GET_USER_BY_ID'
 export const GET_CONTRACTS = 'GET_CONTRACTS'
@@ -29,18 +30,19 @@ export const SEND_NOTIFICATION = 'SEND_NOTIFICATION';
 export const SET_PROFILE_IMAGE = 'SET_PROFILE_IMAGE';
 export const SET_SPINNER = 'SET_SPINNER';
 export const SET_CHAT = 'SET_CHAT';
-
 export const GET_USERS_DATABASE = 'GET_USERS_DATABASE';
 export const CHOOSED_USER = 'CHOOSED_USER';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const GET_MESSAGES = 'GET_MESSAGES';
+export const ERASE_MESSAGE = 'ERASE_MESSAGE';
 export const SET_CHANNEL = 'SET_CHANNEL';
 export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
 
 const database = getDatabase();
-const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}`
+let chatUser = "";
+const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}`
 
 export const configChannel = (channelId) => {
     return {
@@ -49,31 +51,45 @@ export const configChannel = (channelId) => {
     }
 }
 
+let id22 = "";
 export const searchChannel = (channel) => {
-    const { id1, id2 } = channel;
+    const { id1 } = channel;
+    // console.log('id1::::', id1);
+    // console.log('id2::::', id22); // undefined
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
             .then((snapshot) => {
                 const validate = snapshot.val();
+                let bool = false;
+                let bool2 = false;
                 if (validate === null) {
                     console.log("No hay datos en la db....");
+                    channel.id2 = id22;
                     dispatch(setChannel(channel))
-                } else {
-                    const searchChannel = Object.entries(snapshot.val());
-                    console.log('En el else de searchChannel', searchChannel);
-                    searchChannel.map(element => {
-                        let arr = [];
-                        arr.push(element[1]['channel'].id1);
-                        arr.push(element[1]['channel'].id2);
-                        if (arr.indexOf(id1) >= 0 && arr.indexOf(id2) >= 0) {
-                            const send = element[0];
-                            dispatch(configChannel(send));
-                        } else {
-                            console.log('Despachando channel desde searchChannel')
-                            dispatch(setChannel(channel));
+                }
+                else {
+                    
+                    console.log('Si hay datos....')
+                    Object.keys(snapshot.val()).map(key => {
+                        const value = snapshot.val()[key];
+                        if (!bool) {
+                            if (
+                                id1 === value.channel.id1 && id22 === value.channel.id2
+                                || id22 === value.channel.id1 && id1 === value.channel.id2
+                            ) {
+                                console.log('si aparecen las dos ids y su key es: ', key);
+                                bool = true;
+                                bool2 = true;
+                                dispatch(configChannel(key));
+                            }
                         }
+
                     });
+                    if (!bool2) {
+                        channel.id2 = id22;
+                        dispatch(setChannel(channel))
+                    }
                 }
             })
     }
@@ -95,18 +111,6 @@ export const setChannel = (channel) => {
             .catch(error => {
                 console.log(error)
             })
-        // onValue(ref(database, `/smartChatChannels`), (snapshot) => {
-        //     console.log('CHANNELS::::', snapshot.val())
-        //     console.log('CHANNEL_PAYLOAD::::', channel)
-        //     const chan = snapshot.val();
-        //     chan.map(element => {
-
-        //     });
-        //     dispatch({
-        //         type: SET_CHANNEL,
-        //         payload: channel
-        //     })
-        // })
     }
 }
 
@@ -126,6 +130,13 @@ export const getMessages = (id) => {
                 payload: snapshot.val()
             })
         })
+    }
+}
+
+export const eraseMessage = (obj) => {
+    return {
+        type: ERASE_MESSAGE,
+        payload: obj
     }
 }
 
@@ -149,9 +160,10 @@ export const sendMessage = (message) => {
     };
 }
 
-export const setChat = () => {
+export const setChat = (bool) => {
     return {
-        type: SET_CHAT
+        type: SET_CHAT,
+        payload: bool
     }
 }
 
@@ -171,8 +183,6 @@ export const setProfileImage = (url) => {
 export const sendLogin = (userLoginObject) => {
     return async dispatch => {
         try {
-            // console.log(window.sessionStorage.getItem('user'))
-            //if (window.sessionStorage.getItem('user') === null) {
             window.sessionStorage.setItem('token', userLoginObject);
             const response = await axios.get(`${urlWork}/user/login`, {
                 headers: {
@@ -182,11 +192,9 @@ export const sendLogin = (userLoginObject) => {
                     data: 12345
                 }
             });
-            //window.sessionStorage.setItem('user', JSON.stringify(response.data));
-            //}
-            // console.log(window.sessionStorage.getItem('user'))
 
             const contractsResponse = await axios.get(`${urlWork}/contract?ownerId=${response.data.id}&typeC='owner'`)
+            chatUser = response.data.id;
 
             return dispatch({
                 type: SEND_LOGIN,
@@ -198,26 +206,6 @@ export const sendLogin = (userLoginObject) => {
     }
 }
 
-
-/*
-export const sendLogin = (userLoginObject) => {
-    //console.log('ACTION:::', userLoginObject);
-    return async dispatch => {
-        return await axios.get('https://scmkt.herokuapp.com/user/login', {
-            headers: {
-                authorization: `Bearer ${userLoginObject}`
-            },
-            body: {
-                data: 12345
-            }
-        })
-        .then(response => {
-            dispatch({
-            type: SEND_LOGIN,
-            payload: response.data
-            })
-        })
-*/
 
 export const postSingUp = (userRegisterObject) => {
     return async (dispatch) => {
@@ -275,13 +263,37 @@ export function getContracts({ name, author, ownerId, typeC, filterType, filterC
 }
 
 export const getContractsByID = (id) => {
+    let responseChat = {};
     return async dispatch => {
         return await axios.get(`${urlWork}/contract/${id}`)
             .then(response => {
+                console.log('getContractsByID(id);', response.data)
+                responseChat = response.data;
+                id22 = response.data.owner.id;
                 dispatch({
                     type: GET_CONTRACT_BY_ID,
                     payload: response.data
                 })
+            })
+            // .thens añadidos para el chat
+            .then(() => {
+                console.log('chooseUser()', responseChat)
+                console.log('Me conecté con ', responseChat.owner.name);
+                dispatch(choosedUser(
+                    {
+                        "name": responseChat.owner.name,
+                        "id": responseChat.owner.id,
+                        "image": responseChat.owner.image
+                    },
+                ));
+            })
+            .then(() => {
+                console.log('searchChannel()');
+                dispatch(searchChannel(
+                    {
+                        "id1": chatUser
+                    }
+                ))
             })
     }
 }
@@ -413,7 +425,7 @@ export const updateContract = (contract) => {
         });
         await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
         await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
-            .then((response) => {
+            .then(() => {
                 // console.log("registrado correctamente", response);
             })
             .catch(error => {
@@ -430,7 +442,7 @@ export const changeStatusContract = (id, status, user) => {
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
         await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
-            .then((response) => {
+            .then(() => {
                 // console.log("registrado correctamente", response);
             })
             .catch(error => {
@@ -439,20 +451,3 @@ export const changeStatusContract = (id, status, user) => {
     }
 
 }
-
-//   export const sendNotification = (notificacion) => {
-//     console.log('ACTION:::', notificacion)
-//     return async(dispatch) =>{
-//         dispatch({
-//             type:SEND_NOTIFICATION
-//         });
-//         await axios.post('https://scmkt.herokuapp.com/api/mail', notificacion)
-//         .then((response)=>{
-//             console.log("registrado correctamente", response);
-//         })
-//         .catch(error => {
-//             // console.log("No se registró" , error);
-//         })
-//     }
-
-// }

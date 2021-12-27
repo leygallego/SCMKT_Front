@@ -3,11 +3,7 @@ import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import {
-    getContractsByID, removeContract,
-    sendLogin, changeStatusContract, setChat,
-    choosedUser, searchChannel
-} from "../actions/index"
+import { getContractsByID, removeContract, sendLogin, changeStatusContract, setChat, configChannel, eraseMessage } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
@@ -15,59 +11,40 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 
 function DetalleContrato() {
-    const { id } = useParams()
-    let dispatch = useDispatch()
-    let history = useHistory()
-    const user = useSelector(state => state.user)
-    const contract = useSelector(state => state.contract)
-    const { getAccessTokenSilently } = useAuth0()
-    const receiver = useSelector(state => state.choosed.id);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const user = useSelector(state => state.user);
+    const contract = useSelector(state => state.contract);
+    const { getAccessTokenSilently } = useAuth0();
 
-    const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
+    const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
 
     useEffect(() => {
-        dispatch(callProtectedApi)
-       
+        dispatch(callProtectedApi);
         return () => {
             dispatch(removeContract())
         }
-    }, [dispatch, id])
+    }, [dispatch])
 
     const openChat = () => {
-        setTimeout(() => {
-            dispatch(choosedUser(
-                {
-                    "name": contract.owner.name,
-                    "id": contract.owner.id,
-                    "image": contract.owner.image
-                },
-            ))  
-        }, 500);
-setTimeout(() => {
-    dispatch(searchChannel(
-        {
-            "id1": user.id,
-            "id2": receiver
-        }
-    ))
-}, 600);
-      setTimeout(() => {
-        dispatch(setChat());  
-      }, 700);  
-        
+        dispatch(setChat(true));
     }
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
         try {
             await (dispatch(sendLogin(token)))
-            dispatch(getContractsByID(id))
+            dispatch(getContractsByID(id));
         } catch (error) {
             console.log('Error en el Detalle de Contratos ', error)
         }
     }
 
     function handleClick() {
+        dispatch(setChat(false));
+        // dispatch(configChannel(""));
+        dispatch(eraseMessage([]));
         history.push("/contratos");
     }
 
@@ -77,6 +54,9 @@ setTimeout(() => {
     }
 
     function subscribe(contractId, status, clientId) {
+        dispatch(setChat(false));
+        // dispatch(configChannel(""));
+        dispatch(eraseMessage([]));
         dispatch(changeStatusContract(contractId, status, clientId))
     }
 

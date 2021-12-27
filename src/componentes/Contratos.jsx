@@ -3,7 +3,7 @@ import './Contratos.css';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import { NavLink } from 'react-router-dom';
-import { getContracts, sendLogin } from "../actions/index"
+import { getContracts, sendLogin, setChat, configChannel, eraseMessage } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import ContractCard from './ContractCard'
 import SearchBar from './SearchBar';
@@ -13,36 +13,30 @@ import usePagination from './usePagination';
 function Contratos() {
     const { user } = useSelector(state => state)
     let dispatch = useDispatch()
-    const { contracts, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState } = useSelector(state => state)
+    const { contracts } = useSelector(state => state)
     const { isAuthenticated, getAccessTokenSilently, loginWithPopup } = useAuth0()
 
-    // console.log('Contratos', contracts)
-
     useEffect(() => {
-        // dispatch(getContracts({ filterState: 'pending' }))
-        // dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
         dispatch(callProtectedApi)
+        dispatch(setChat(false));
+        // dispatch(configChannel(""));
+        dispatch(eraseMessage([]));
     }, [dispatch])
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
         try {
             await (dispatch(sendLogin(token)))
-            dispatch(getContracts({ownerId: user.id, typeC: 'all'}))
+            dispatch(getContracts({ ownerId: user.id, typeC: 'all' }))
         } catch (error) {
             console.log('Error en el perfil ', error)
         }
     }
 
-    // const changePage = (page) => {
-    //     dispatch(getContracts({ page, name, author, filterType, filterCategory, filterDurationH, filterDurationL, filterState }))
-    //     dispatch(setPage(page))
-    // }
-
     let [page, setPage] = useState(1);
     const PER_PAGE = 12;
-    const count = contracts? Math.ceil(contracts.length / PER_PAGE) : 0;
-    const _DATA = usePagination(contracts? contracts : [], PER_PAGE);
+    const count = contracts ? Math.ceil(contracts.length / PER_PAGE) : 0;
+    const _DATA = usePagination(contracts ? contracts : [], PER_PAGE);
 
     const handleChange = (e, p) => {
         setPage(p);
@@ -52,9 +46,8 @@ function Contratos() {
 
     return (
         <>
-            <div className="wraper-contratos">
-                
-                <div className="searchbar-mode">
+            <div>
+                <div>
                     <SearchBar />
                 </div>
                 {
@@ -69,11 +62,9 @@ function Contratos() {
                                 <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
                             </div>
                         )
-
                 }
-
             </div>
-            {/* <div className='pagination-style'>
+            { <div className='pagination-style'>
                 <Pagination
                     count={count}
                     size="large"
@@ -82,16 +73,14 @@ function Contratos() {
                     page={page}
                     onChange={handleChange}
                 />
-            </div> */}
-
+            </div>
             <div className="main-contratos">
                 {
                     _DATA.currentData().length > 0 && _DATA.currentData().map((c) => {
-                        return <ContractCard key={c.id} id={c.id} conditions={c.conditions} />
+                        return <ContractCard key={c.id} id={c.id} conditions={c.conditions} owner={c.owner} />
                     })
                 }
             </div>
-
             <div className='pagination-style'>
                 <Pagination
                     count={count}
@@ -102,7 +91,6 @@ function Contratos() {
                     onChange={handleChange}
                 />
             </div>
-            
         </>
     )
 }

@@ -3,7 +3,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, deleteContract } from '../actions';
+import { editUser, sendLogin, getContracts, deleteContract, setChat, configChannel, eraseMessage } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
@@ -29,6 +29,9 @@ function Profile() {
     useEffect(() => {
         dispatch(callProtectedApi)
         dispatch(getContracts({ ownerId: user.id }))
+        dispatch(setChat(false));
+        // dispatch(configChannel(""));
+        dispatch(eraseMessage([]));
     }, [dispatch])
 
     const {
