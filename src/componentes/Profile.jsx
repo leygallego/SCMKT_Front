@@ -3,7 +3,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, deleteContract, setChat, configChannel, eraseMessage } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
@@ -56,32 +56,6 @@ function Profile() {
 
     const handleEdition = () => {
         setEdicionPerfil(edicionPerfil => !edicionPerfil)
-    }
-
-    const borraContratos = () => {
-        Swal.fire({
-            title: 'Do you want to save the changes?',
-            showDenyButton: true,
-            confirmButtonText: 'Yes',
-            denyButtonText: `No`,
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                dispatch(deleteContract({ "contract": eraser }));
-
-                Swal.fire('Saved!', '', 'success')
-            } //else if (result.isDenied) {
-            //  Swal.fire('Changes are not saved', '', 'info')
-            // }
-        })
-    }
-
-    const onCheck = (e) => {
-        let er = eraser;
-        er.push(e.target.name)
-        setEraser(
-            er
-        )
     }
 
     const handleOnSubmit = (e) => {
