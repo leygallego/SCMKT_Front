@@ -3,28 +3,31 @@
     background-color: #0078E7;
     width: 100%;
     height: 100%;
-    margin-bottom: 5%;
+    font-family: 'Poppins', sans-serif;
     grid-template-areas:
-    "texto-about"
-    "decorative-about"
-    
+    "decorative-about   texto-about"
 
 }
 
 .decorative-about img{
-    display: none;
+    display: grid;
+    margin-left: 50%;
+    height: 100%;
 }
 
+
 .texto-about{
+    
     display: flex;
     flex-direction: column;
     background-color: #C4C4C4;
     height: auto;
-    width: 300px;
+    width: 18.75em;
     border-radius: 20px;
-    margin: 15% 15% 15% 5%;
+    margin: -90% 15% 15% 12%;
     text-align: justify;    
     padding: 2% 5% 5% 5%;
+
 
 }
 
@@ -33,58 +36,96 @@
     font-weight: 700;
     font-style: italic;
     text-align: center;
+
  }
 
  .texto-about p{
-     color: #000000;
-     font-size: 16px;
- }
+    color: #000000;
+    font-size: 18px;     }
 
- @media (min-width: 600px){
-
-    .about-container{
-        display: grid;
-        background-color: #0078E7;
-        width: 100%;
-        height: 100%;
-        font-family: 'Poppins', sans-serif;
-        grid-template-areas:
-        "decorative-about   texto-about"
-
+    .leyder img{
+        border: solid;
+        width: 6.25em;
+        height: 6.25em;
+        border-radius: 50%;
+        margin-left: -159%;
+        margin-top: 8%;
     }
-    
-    .decorative-about img{
+    .benito img{
         display: grid;
         margin-left: 50%;
         height: 100%;
+        border: solid;
+        width: 6.25em;
+        height: 6.25em;
+        border-radius: 50%;
+        margin-left: 66%;
+        margin-top: -53%;
     }
     
-    .texto-about{
+
+
+
+
+ @media screen and (max-width: 800px){
+
+        /* .benito{
+         display: none;
+     }
+     .leyder{
+         display: none;
+     } */
+
+     .decorative-about img{
+        display: none;
         
+    }
+
+     .texto-about{
+    
         display: flex;
         flex-direction: column;
         background-color: #C4C4C4;
-        height: auto;
-        width: 300px;
+        height: 50em;
+        width: 22.75em;
         border-radius: 20px;
-        margin: 15% 15% 15% 12%;
+        margin: 5% 35% 35% 2%;
         text-align: justify;    
         padding: 2% 5% 5% 5%;
-
+    
     
     }
-    
-    .texto-about h1{
-        color: #0078E7;
-        font-weight: 700;
-        font-style: italic;
-        text-align: center;
 
-     }
-    
-     .texto-about p{
-        color: #000000;
-        font-size: 18px;     }
+    .leyder img{
+        border: solid;
+        width: 6.25em;
+        height: 6.25em;
+        border-radius: 50%;
+        margin-left: 29%;
+        margin-top: 8%;
+
+    }
+    .benito img{
+        display: grid;
+        margin-left: 50%;
+        height: 100%;
+        border: solid;
+        width: 6.25em;
+        height: 6.25em;
+        border-radius: 50%;
+        margin-left: 95%;
+        margin-top: -40%;
+    }
 
 
+ }
+
+ @media screen and (max-width:600px ) {
+
+    .benito{
+        display: none;
+    }
+    .leyder{
+        display: none;
+    }
  }

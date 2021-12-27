@@ -29,11 +29,9 @@ export default function SenderMessage() {
     };
 
     return (
-        <dir className="senderComponent">
+        <div className="senderComponent">
             <input className='inputSender' type="text" value={message} onChange={e => { handleOnChange(e) }} onKeyDown={e => { handleKeyPress(e) }} defaultValue={message} />
-            <div>
-                <input className='inputSenderButton' type="button" value="Enviar" onClick={handleOnClick} />
-            </div>
-        </dir>
+            <input className='inputSenderButton' type="button" value="Enviar" onClick={handleOnClick} />
+        </div>
     )
 }

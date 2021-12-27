@@ -24,6 +24,7 @@ import {
     GET_MESSAGES,
     GET_USERS_DATABASE,
     SEND_MESSAGE,
+    ERASE_MESSAGE,
     CONFIG_CHANNEL
 } from "../actions";
 
@@ -43,12 +44,6 @@ const initialState = {
     channel: ""
 
 }
-
-// {
-//     "name": "Bot Smart Contracts",
-//     "id": 1000,
-//     "image": "https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/files%2Fbot.jpeg?alt=media&token=decf5a07-af00-41e0-9572-84a22ed390c6"
-// },
 
 export default function rootReducer(state = initialState, action) {
     switch (action.type) {
@@ -80,7 +75,11 @@ export default function rootReducer(state = initialState, action) {
         case SET_CONTRACT_STATUS:
             return {
                 ...state,
-                contract: { ...state.contract, status: action.payload.status, clientID: action.payload.clientId }
+                contract: { 
+                    ...state.contract, 
+                    status: action.payload.status, 
+                    clientID: action.payload.clientId 
+                }
             }
 
         case GET_CONTRACT_BY_ID:
@@ -173,7 +172,7 @@ export default function rootReducer(state = initialState, action) {
         case SET_CHAT:
             return {
                 ...state,
-                chat: !state.chat
+                chat: action.payload
             }
 
 
@@ -199,13 +198,19 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 messages: action.payload
             }
-        
+
+        case ERASE_MESSAGE:
+            return {
+                ...state,
+                message: action.payload
+            }    
+
         case CONFIG_CHANNEL:
+            console.log('CONFIG_CHANNEL::::', action.payload)
             return {
                 ...state,
                 channel: action.payload
             }
-
 
         default: return state
     }

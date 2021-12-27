@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import { setChat } from '../actions';
+import { setChat, configChannel, eraseMessage } from '../actions';
 import UserDetail from './UserDetail';
 import Messages from './Messages';
 import SenderMessage from './SenderMessage';
@@ -20,12 +20,13 @@ const Chat = () => {
     }, [visible]);
 
     const closeChat = () => {
-        dispatch(setChat());
+        dispatch(setChat(false));
+        // dispatch(configChannel(""));
+        dispatch(eraseMessage([]));
     }
 
     return (
         <div>
-            {/* Implementaciòn del Chat */}
             {
                 chatVisible ?
                     <div className="chatComponent">
