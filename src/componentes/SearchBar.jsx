@@ -47,14 +47,11 @@ function SearchBar() {
     const search = (e) => {
         dispatch(setAuthor(e.target.value))
         dispatch(setName(e.target.value))
-        if (dispatch(getContracts({ page, name, author: e.target.value, filterType, filterCategory, filterDurationH, filterDurationL })).length === 0){
-            dispatch(getContracts({ page, name: e.target.value, author, filterType, filterCategory, filterDurationH, filterDurationL }))
-        } else {
-            dispatch(getContracts({ page, name, author: e.target.value, filterType, filterCategory, filterDurationH, filterDurationL }))
-        }
-        
-  
-        
+        // if (dispatch(getContracts({ page, name, author: e.target.value, ownerId: 1, typeC: 'all', filterType, filterCategory, filterDurationH, filterDurationL })).length === 0){
+        //     dispatch(getContracts({ page, name: e.target.value, author, ownerId: 1, typeC: 'all', filterType, filterCategory, filterDurationH, filterDurationL }))
+        // } else {
+            dispatch(getContracts({ page, name: e.target.value, author: e.target.value, ownerId: 1, typeC: 'all', filterType, filterCategory, filterDurationH, filterDurationL }))
+        // }
     }
 
     return (
