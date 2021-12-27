@@ -47,6 +47,7 @@ function Contratos() {
     return (
         <>
             <div>
+                
                 <div>
                     <SearchBar />
                 </div>
@@ -62,24 +63,9 @@ function Contratos() {
                                 <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
                             </div>
                         )
+
                 }
-            </div>
-             <div className='pagination-style'>
-                <Pagination
-                    count={count}
-                    size="large"
-                    variant="outlined"
-                    shape="rounded"
-                    page={page}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="main-contratos">
-                {
-                    _DATA.currentData().length > 0 && _DATA.currentData().map((c) => {
-                        return <ContractCard key={c.id} id={c.id} conditions={c.conditions} owner={c.owner} />
-                    })
-                }
+
             </div>
             <div className='pagination-style'>
                 <Pagination
@@ -91,8 +77,84 @@ function Contratos() {
                     onChange={handleChange}
                 />
             </div>
+
+            <div className="main-contratos">
+                {
+                    _DATA.currentData().length > 0 && _DATA.currentData().map((c) => {
+                        return <ContractCard key={c.id} id={c.id} conditions={c.conditions} />
+                    })
+                }
+            </div>
+
+            <div className='pagination-style'>
+                <Pagination
+                    count={count}
+                    size="large"
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                    onChange={handleChange}
+                />
+            </div>
+            {/* <button disabled={page - 1 === 0} onClick={() => { changePage(page - 1) }}>prev</button>
+            <label>{page}</label>
+            <button disabled={contracts?.count <= (page * 10)} onClick={() => { changePage(page + 1) }}>next</button> */}
         </>
     )
 }
+
+    // return (
+    //     <>
+    //         <div>
+    //             <div>
+    //                 <SearchBar />
+    //             </div>
+    //             {
+    //                 isAuthenticated ?
+    //                     (
+    //                         <div className="crea-contrato">
+    //                             <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+    //                         </div>
+    //                     )
+    //                     : (
+    //                         <div className="crea-contrato">
+    //                             <Button variant="contained" onClick={loginWithPopup}>Crear Contrato</Button>
+    //                         </div>
+    //                     )
+    //             }
+    //         </div>
+
+            
+    //         { <div className='pagination-style'>
+    //             <Pagination
+    //                 count={count}
+    //                 size="large"
+    //                 variant="outlined"
+    //                 shape="rounded"
+    //                 page={page}
+    //                 onChange={handleChange}
+    //             />
+    //         </div> 
+    //         <div className="main-contratos">
+    //             {
+    //                 _DATA.currentData().length > 0 && _DATA.currentData().map((c) => {
+    //                     return <ContractCard key={c.id} id={c.id} conditions={c.conditions} owner={c.owner} />
+    //                 })
+    //             }
+    //         </div>
+    //         <div className='pagination-style'>
+    //             <Pagination
+    //                 count={count}
+    //                 size="large"
+    //                 variant="outlined"
+    //                 shape="rounded"
+    //                 page={page}
+    //                 onChange={handleChange}
+    //             />
+    //         </div> 
+  
+    //     </>
+    // )
+// }
 
 export default Contratos
