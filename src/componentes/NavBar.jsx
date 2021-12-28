@@ -52,19 +52,19 @@ function NavBar() {
                     // <ul className={clicked ? "menu-list" : "menu-list close"}>
                     <ul className={clicked ? "menu-list" : "menu-list close"}>
                     <li>
-                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+                      <NavLink onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
                     </li>
                     <li>
-                      <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+                      <NavLink onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
                     </li>
 
                         
-                         <li className={({ isActive }) => (isActive ? "active" : "noActive")}><NavLink to="/perfil">Perfil</NavLink></li> 
+                         <li onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")}><NavLink to="/perfil">Perfil</NavLink></li> 
                         
 
-                        <div className="logout-button">
+                        <div onClick={handleClick} className="logout-button">
                         
-                          <button className="logout-button" onClick={logout}>Cerrar Sesión</button>
+                          <button className="logout-button" onClick={logout}> <span>Cerrar Sesión</span> </button>
                         
                         </div>
                         <li className="profile-image">
@@ -77,13 +77,13 @@ function NavBar() {
                   : (
 
                     <ul className={clicked ? "menu-list" : "menu-list close"}>
-                    <li>
+                    <li onClick={handleClick} >
                       <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
                     </li>
-                    <li>
+                    <li onClick={handleClick}>
                       <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
                     </li>
-                    <div className="login-button">
+                    <div onClick={handleClick} className="login-button">
                       
                           <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
                         
