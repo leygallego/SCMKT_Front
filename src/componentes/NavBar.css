@@ -9,7 +9,7 @@ nav{
   list-style-type: none;
   /* display: flex;
   justify-content: space-between; */
-  color: black;
+  /* color: blue; */
   position: relative;
   /* z-index: 99; */
 }
@@ -34,6 +34,7 @@ nav{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   list-style-type: none;
+  /* color: yellow; */
   /* display: flex;
   justify-content: space-between;
   align-items: center; */
@@ -48,6 +49,7 @@ nav{
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   list-style-type: none;
+  /* color: yellow; */
   /* display: flex;
   justify-content: space-between;
   align-items: center; */
@@ -91,7 +93,7 @@ nav{
 
 .menu-list li{
   text-decoration: none;
-  color: black;
+  /* color: yellow; */
   font-weight: 300;
   padding: 5px 10px;
   margin-left: 20px;
@@ -105,13 +107,14 @@ nav{
   }
 
 .active{
+  text-decoration: none;
   color: black;
   font-weight: bold;
 }
 
 .noActive{
-  color: rgb(233, 140, 140);
-
+  text-decoration: none;
+  color: #0078E7;
 }
 
 .login-button button{
@@ -134,6 +137,8 @@ nav{
     .menu-icon{
       display: flex;
       color: black;
+      transform: rotate(360deg);
+      transition: all 0.2s ease-in-out;
       margin-left: 1450%;
   
     }

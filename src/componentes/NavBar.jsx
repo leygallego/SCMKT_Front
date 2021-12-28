@@ -59,7 +59,7 @@ function NavBar() {
                     </li>
 
                         
-                         <li onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")}><NavLink to="/perfil">Perfil</NavLink></li> 
+                         <li onClick={handleClick} ><NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/perfil">Perfil</NavLink></li> 
                         
 
                         <div onClick={handleClick} className="logout-button">
