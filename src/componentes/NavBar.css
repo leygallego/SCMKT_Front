@@ -142,24 +142,27 @@ nav{
       list-style-type: none;
       display: grid;
       grid-template-columns: repeat(1, 1fr);
-      width: 50%;
+      width: 100%;
+      height: 650px;
       position: absolute;
-      /* background-color: rgba(0, 0, 0, 0.7); */
-      background-color: black;
-      padding: 20px;
-      right: 0;
-      margin-right: 50%;
-      top: 64px;
+      background-color: rgb(255, 255, 255, 0.9);
+      padding: 0px;
+      margin-top: 2%;
+      margin-bottom: 1px;
+      margin-right: 0%;
+      margin-left: 0%;
+      top: 50px;
       transition: all 0.5s ease-in-out;
-      font-size: 22px;
+      font-size: 30px;
       z-index: 9999;
   
   }
   
   .menu-list li{
+    margin-top: 1%;
     margin-bottom: 20px;
     width: 100%;
-    text-align: left;
+    text-align: center;
   }
   
     .menu-list.close{
@@ -172,6 +175,23 @@ nav{
       font-size: 16px;
       margin-top: 1%;
       margin-left: 8%;
+    }
+    .logout-button{
+      border: none;
+      height: 25px;
+      background-color: #0078E7;
+      color: white;
+      width: 116px ;
+      height: 35px;
+      margin-right: 5%;
+      margin-left: 40%;
+      border-radius: 30px ;
+    }
+    .logout-button span{
+      color: white;
+      margin-left: -29%;
+      font-size: 16px;
+  
     }
 
     .profile-image{
@@ -201,23 +221,28 @@ nav{
   .menu-list{
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    width: 50%;
+    grid-template-rows: repeat(6, 1fr);
+    width: 100%;
+    height: 800px;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    right: 0px;
-    margin-right: 50%;
+    background-color: rgb(255, 255, 255, 0.9);
+    padding: 0px;
+    margin-top: 1%;
+    margin-bottom: 1px;
+    margin-right: 0%;
+    margin-left: 0%;
     top: 50px;
     transition: all 0.5s ease-in-out;
-    font-size: 18px;
+    font-size: 25px;
 
 }
 
 .menu-list li{
-  margin-bottom: 20px;
-  width: 55%;
-  text-align: left;
+  margin-top: 5%;
+  width: 100%;
+  padding-top: 1px;
+  /* margin-top: 1px; */
+  text-align: center;
 }
 
   .menu-list.close{
@@ -228,7 +253,6 @@ nav{
   .login-button button{
     border-radius: 30px;
     font-size: 12px;
-    margin-top: 1%;
     margin-left: 10%;
     width: 150px;
   }
@@ -238,11 +262,17 @@ nav{
     height: 25px;
     background-color: #0078E7;
     color: white;
-    width: 106px ;
+    width: 116px ;
+    height: 35px;
     margin-right: 5%;
-    margin-left: 10%;
+    margin-left: 40%;
     border-radius: 30px ;
-    font-size: 12px;
+  }
+  .logout-button span{
+    color: white;
+    margin-left: -29%;
+    font-size: 16px;
+
   }
   .profile-image{
     display: none;

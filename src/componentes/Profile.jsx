@@ -77,7 +77,6 @@ function Profile() {
 
     return (
         <>
-            <div><h1>Perfil de Usuario</h1></div>
             <div className="main-perfil">
                 <div className="perfil-card">
                     <h4>Usuario: {user.name}</h4>
