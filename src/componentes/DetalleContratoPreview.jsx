@@ -5,7 +5,7 @@ import { getContractsPreview, createContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import Swal from 'sweetalert2';
-import './DetalleContratoPreview.css';
+import './styles/DetalleContratoPreview.css';
 
 function DetalleContratoPreview(props) {
   const { dataPreview, onClose } = props
@@ -36,6 +36,9 @@ function DetalleContratoPreview(props) {
       wallet2: '',
       conditions: {
         name: contract.name,
+        type: contract.type,
+        duration: contract.duration,
+        category: contract.category,
         shortdescription: contract.shortdescription,
         longdescription: contract.longdescription,
         amount: contract.amount,
@@ -93,39 +96,67 @@ function DetalleContratoPreview(props) {
               </Button>
             </div>
             <h2>{contract.name}</h2>
+            <p>
+              <div>
+                {/* <div className="labelForm-buildContract">Tipo</div> */}
+                <div className="inputForm">
+                  <select className="inputFormCoin-disabled" disabled={true} name="type" value={contract.type}>
+                    <option value="" name=''></option>
+                    <option value="tipo1" name='Tipo 1'>Tipo 1</option>
+                    <option value="tipo2" name='Tipo 2'>Tipo 2</option>
+                    <option value="tipo3" name='Tipo 3'>Tipo 3</option>
+                  </select>
+                </div>
+              </div>
+            </p>
+            <p>{contract.duration}</p>
+            <p><select className="inputFormCoin-disabled" disabled={true} name="category" value={contract.category}>
+              <option value="" name=''></option>
+              <option value="beginner" name='Principiante'>Principiante</option>
+              <option value="intermediate" name='Intermedio'>Intermedio</option>
+              <option value="advanced" name='Avanzado'>Avanzado</option>
+            </select></p>
             <p>{contract.shortdescription}</p>
             <p>{contract.longdescription}</p>
             <h1><span>{contract.amount} ({contract.coin})</span> </h1>
             <div>
               <p>Test</p>
-              {/* {contract.c1 ? <input className="imageCircle1" value={contract.c1} alt="imagen de silueta" /> : <img className="imageCircle" src={""} alt="imagen de silueta2" />} */}
-              <div className='iframes-test-contract'>
-                <object data={contract.c1} type="application/pdf" className='iframes-test-contract-object'>
-                  <iframe id="inlineFrameC1"
-                    // title="Test 1"
-                    src={`https://docs.google.com/viewer?url=${contract.c1}&embedded=true`}
-                    // style="border:1px solid #666CCC"
-                    frameborder="1"
-                    scrolling="auto"
-                    width="50%"
-                    height="100%"
-                  >
-                  </iframe>
-                </object>
+              {contract.c1 || contract.c2
+                ? <div className='iframes-test-contract'>
+                  {contract.c1
+                    ? <object data={contract.c1} type="application/pdf" className='iframes-test-contract-object'>
+                      <iframe id="inlineFrameC1"
+                        // title="Test 1"
+                        src={`https://docs.google.com/viewer?url=${contract.c1}&embedded=true`}
+                        // style="border:1px solid #666CCC"
+                        frameborder="1"
+                        scrolling="auto"
+                        width="50%"
+                        height="100%"
+                      >
+                      </iframe>
+                    </object>
+                    : <div></div>
+                  }
 
-                <object data={contract.c2} type="application/pdf" className='iframes-test-contract-object'>
-                  <iframe id="inlineFrameC2"
-                    // title="Test 2"
-                    src={`https://docs.google.com/viewer?url=${contract.c2}&embedded=true`}
-                    // style="border:1px solid #666CCC"
-                    frameborder="1"
-                    scrolling="auto"
-                    width="50%"
-                    height="100%"
-                  >
-                  </iframe>
-                </object>
-              </div>
+                  {contract.c2
+                    ? <object data={contract.c2} type="application/pdf" className='iframes-test-contract-object'>
+                      <iframe id="inlineFrameC2"
+                        // title="Test 2"
+                        src={`https://docs.google.com/viewer?url=${contract.c2}&embedded=true`}
+                        // style="border:1px solid #666CCC"
+                        frameborder="1"
+                        scrolling="auto"
+                        width="50%"
+                        height="100%"
+                      >
+                      </iframe>
+                    </object>
+                    : <div></div>
+                  }
+                </div>
+                : <div></div>
+              }
             </div>
 
             <div className='group-button-preview'>

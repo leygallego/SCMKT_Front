@@ -33,6 +33,9 @@ export function EditContract() {
         wallet2: contract.wallet2,
         author: contract.author,
         name: contract.conditions.name,
+        type: contract.conditions.type,
+        duration: contract.conditions.duration,
+        category: contract.conditions.category,
         shortdescription: contract.conditions.shortdescription,
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
@@ -73,7 +76,6 @@ export function EditContract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c1: url
@@ -94,7 +96,6 @@ export function EditContract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c2: url
@@ -105,13 +106,6 @@ export function EditContract() {
         )
     };
 
-    const onloadFile = (el, name) => {
-        console.log('my name is', el.target)
-        if (name === 'c1') {
-
-        }
-    }
-
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
             // setArchivo1(e.target.files[0]);
@@ -119,7 +113,6 @@ export function EditContract() {
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
         } else {
-            console.log(e.target.name, e.target.value)
             setInput({
                 ...input,
                 [e.target.name]: e.target.value
@@ -135,11 +128,11 @@ export function EditContract() {
         e.preventDefault();
         setInput({
             ...input,
-            coin: e.target.value
+            [name]: e.target.value
         })
         setErrors(validate({
             ...input,
-            coin: e.target.value
+            [name]: e.target.value
         }))
     }
 
@@ -179,6 +172,8 @@ export function EditContract() {
                 longdescription: input.longdescription,
                 amount: input.amount,
                 coin: input.coin,
+                category: input.category,
+                type: input.type,
                 condition: {
                     c1: input.c1,
                     c2: input.c2
@@ -189,7 +184,7 @@ export function EditContract() {
             ownerId: user.id
         }
 
-        console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
+        // console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
 
         Swal.fire({
             title: 'Do you want to save the changes?',
@@ -234,6 +229,39 @@ export function EditContract() {
                                     onChange={e => { handleInputChange(e) }}
                                     onBlur={(e) => validate(e.target.name)}
                                 />
+                            </div>
+                        </div>
+
+                        <div className='combo'>
+                            <div>
+                                <div className="labelForm-buildContract">Tiempo</div>
+                                <input type="hour" id="start" name="trip-start"
+                                    value="15:21:05"
+                                    min="00:00:00:0000" max="23:59:59:6666" />
+                            </div>
+
+                            <div>
+                                <div className="labelForm-buildContract">Categoría</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="coin" value={input.category}>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
+                                        <option value="beginner" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="intermediate" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="advanced" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="labelForm-buildContract">Tipo</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="coin" value={input.type}>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
+                                        <option value="type1" name='type1' onClick={e => { onChangeValue(e, 'type') }}>Tipo 1</option>
+                                        <option value="type2" name='type2' onClick={e => { onChangeValue(e, 'type') }}>Tipo 2</option>
+                                        <option value="type3" name='type3' onClick={e => { onChangeValue(e, 'type') }}>Tipo 3</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
