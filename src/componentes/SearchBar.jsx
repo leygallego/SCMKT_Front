@@ -26,12 +26,12 @@ function SearchBar() {
 
     const filterByType = (e) => {
         dispatch(setFilterType(e.target.value))
-        dispatch(getContracts({ page, name, author, filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
+        dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
     }
 
     const filterByCategory = (e) => {
         dispatch(setFilterCategory(e.target.value))
-        dispatch(getContracts({ page, name, author, filterType, filterCategory: e.target.value, filterDurationH, filterDurationL }))
+        dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType, filterCategory: e.target.value, filterDurationH, filterDurationL }))
     }
 
     // const filterByDurationH = (e) => {

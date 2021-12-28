@@ -1,5 +1,5 @@
 .preview-content{
-  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./../componentes/imagenes/FondoPF.jpeg')no-repeat center center fixed ; 
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./../../componentes/imagenes/FondoPF.jpeg')no-repeat center center fixed ; 
   -webkit-background-size: repeat;
   -moz-background-size: repeat;
   -o-background-size: repeat;

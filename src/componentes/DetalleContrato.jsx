@@ -95,6 +95,26 @@ function DetalleContrato() {
 
 
                         <h2>{contract.conditions.name}</h2>
+                        <p>
+                            <div>
+                                {/* <div className="labelForm-buildContract">Tipo</div> */}
+                                <div className="inputForm">
+                                    <select className="inputFormCoin-disabled" disabled={true} name="type" value={contract.conditions.type}>
+                                        <option value="" name=''></option>
+                                        <option value="type1" name='type1'>Tipo 1</option>
+                                        <option value="type2" name='type2'>Tipo 2</option>
+                                        <option value="type3" name='type3'>Tipo 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </p>
+                        <p>{contract.conditions.duration}</p>
+                        <p><select className="inputFormCoin-disabled" disabled={true} name="category" value={contract.conditions.category}>
+                            <option value="" name=''></option>
+                            <option value="beginner" name='Principiante'>Principiante</option>
+                            <option value="intermediate" name='Intermedio'>Intermedio</option>
+                            <option value="advanced" name='Avanzado'>Avanzado</option>
+                        </select></p>
                         <p>{contract.conditions.shortdescription}</p>
                         <p>{contract.conditions.longdescription}</p>
                         <h1><span>{contract.conditions.amount}</span> </h1>

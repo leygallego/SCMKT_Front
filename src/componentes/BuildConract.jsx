@@ -20,6 +20,9 @@ export function BuildConract() {
         wallet1: user.wallet,
         wallet2: '',
         name: '',
+        type: '',
+        duration: '',
+        category: '',
         shortdescription: '',
         longdescription: '',
         amount: '0.00000001',
@@ -57,7 +60,7 @@ export function BuildConract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
-        const storageRef = refStorage(storage, `/documents/${user.id? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
+        const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
         uploadTask.on("state_changed", (snapshot) => { },
@@ -65,7 +68,6 @@ export function BuildConract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c1: url
@@ -85,7 +87,6 @@ export function BuildConract() {
             () => {
                 getDownloadURL(uploadTask.snapshot.ref)
                     .then(url => {
-                        console.log('archivo URL', url)
                         setInput({
                             ...input,
                             c2: url
@@ -102,7 +103,6 @@ export function BuildConract() {
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
         } else {
-            console.log(e.target.name, e.target.value)
             setInput({
                 ...input,
                 [e.target.name]: e.target.value
@@ -118,11 +118,11 @@ export function BuildConract() {
         e.preventDefault();
         setInput({
             ...input,
-            coin: e.target.value
+            [name]: e.target.value
         })
         setErrors(validate({
             ...input,
-            coin: e.target.value
+            [name]: e.target.value
         }))
     }
 
@@ -149,7 +149,7 @@ export function BuildConract() {
             }
         })
     }
-    
+
     return (
         <>
             <div className="contractComponent">
@@ -173,6 +173,46 @@ export function BuildConract() {
 
                         <div className='combo'>
                             <div>
+                                <div className="labelForm-buildContract">Tipo</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="type" value={input.type}>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
+                                        <option value="type1" name='type1' onClick={e => { onChangeValue(e, 'type') }}>Tipo 1</option>
+                                        <option value="type2" name='type2' onClick={e => { onChangeValue(e, 'type') }}>Tipo 2</option>
+                                        <option value="type3" name='type3' onClick={e => { onChangeValue(e, 'type') }}>Tipo 3</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="labelForm-buildContract">Tiempo</div>
+                                <input
+                                    type="hour"
+                                    id="start"
+                                    name="  "
+                                    className="inputFormReward"
+                                    value={input.duration}
+                                    min="00:00"
+                                    onChange={e => { handleInputChange(e) }}
+                                    onBlur={(e) => validate(e.target.name)}
+                                />
+                            </div>
+
+                            <div>
+                                <div className="labelForm-buildContract">Categoría</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="category" value={input.category}>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
+                                        <option value="beginner" name='beginner' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="intermediate" name='intermediate' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="advanced" name='advanced' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='combo'>
+                            <div>
                                 <div className="labelForm-buildContract">Recompensa</div>
                                 <div className="inputForm">
                                     <input
@@ -190,8 +230,8 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
                                     <select className="inputFormCoin" name="coin">
-                                        <option value="" name='' onClick={e => { onChangeValue(e, '') }} ></option>
-                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'coin') }} ></option>
+                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'coin') }}>ETH</option>
                                     </select>
                                 </div>
                             </div>
