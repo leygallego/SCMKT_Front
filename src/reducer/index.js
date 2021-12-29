@@ -75,10 +75,10 @@ export default function rootReducer(state = initialState, action) {
         case SET_CONTRACT_STATUS:
             return {
                 ...state,
-                contract: { 
-                    ...state.contract, 
-                    status: action.payload.status, 
-                    clientID: action.payload.clientId 
+                contract: {
+                    ...state.contract,
+                    status: action.payload.status,
+                    clientID: action.payload.clientId
                 }
             }
 
@@ -203,7 +203,7 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 message: action.payload
-            }    
+            }
 
         case CONFIG_CHANNEL:
             console.log('CONFIG_CHANNEL::::', action.payload)
