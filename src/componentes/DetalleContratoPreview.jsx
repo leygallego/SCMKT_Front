@@ -96,26 +96,9 @@ function DetalleContratoPreview(props) {
               </Button>
             </div>
             <h2>{contract.name}</h2>
-            <p>
-              <div>
-                {/* <div className="labelForm-buildContract">Tipo</div> */}
-                <div className="inputForm">
-                  <select className="inputFormCoin-disabled" disabled={true} name="type" value={contract.type}>
-                    <option value="" name=''></option>
-                    <option value="tipo1" name='Tipo 1'>Tipo 1</option>
-                    <option value="tipo2" name='Tipo 2'>Tipo 2</option>
-                    <option value="tipo3" name='Tipo 3'>Tipo 3</option>
-                  </select>
-                </div>
-              </div>
-            </p>
+            <p>{contract.type}</p>
             <p>{contract.duration}</p>
-            <p><select className="inputFormCoin-disabled" disabled={true} name="category" value={contract.category}>
-              <option value="" name=''></option>
-              <option value="beginner" name='Principiante'>Principiante</option>
-              <option value="intermediate" name='Intermedio'>Intermedio</option>
-              <option value="advanced" name='Avanzado'>Avanzado</option>
-            </select></p>
+            <p>{contract.category}</p>
             <p>{contract.shortdescription}</p>
             <p>{contract.longdescription}</p>
             <h1><span>{contract.amount} ({contract.coin})</span> </h1>
