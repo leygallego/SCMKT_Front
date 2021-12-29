@@ -39,7 +39,7 @@
     margin-top: 1%;
     margin-left: 2%;
     margin-bottom: 2%;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 10px;
 }
 
@@ -53,7 +53,7 @@
     width: auto;
     margin-left: 1%;
     margin-bottom: 2%;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 10px;
     height: auto;
 }
@@ -73,7 +73,7 @@
     width: auto;
     margin-left: 1%;
     margin-bottom: 2%;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 10px;
     height: auto;
 }
@@ -120,13 +120,13 @@
 .datos-personales {
     /* display: grid; */
     margin-top: 5%;
-    margin-left: 1%;
+    margin-left: -10%;
     height: auto;
-    width: auto;
+    width: 120%;
     background-color: black;
     color: white;
-    border-radius: 30px;
-    width: 120px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .inputForm input{
@@ -140,13 +140,13 @@
 .datos-personales h4{
     margin-top: 1px;
     margin-bottom: 1px;
-    margin-left: 15px;
+    margin-left: 1px;
 }
 
 
 .datos-personales button{
     background-color: #0078E7;
-    width: 110px;
+    width: 120px;
     height: 25px;
     font-size: 8px;
     border-radius: 30px;
@@ -248,7 +248,7 @@
         margin-top: 1%;
         margin-left: 2%;
         margin-bottom: 2%;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 10px;
     }
     
@@ -262,7 +262,7 @@
         width: auto;
         margin-left: 2%;
         margin-bottom: 2%;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 10px;
         height: auto;
     }
@@ -444,7 +444,7 @@
         width: 75%;
         margin-left: 5%;
         margin-right: 0%;
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 10px;
     }
     
@@ -453,14 +453,14 @@
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         background-color: #0078E7;
         color: white;
-        /* font-size: 12px; */
+        font-size: 22px;
         font-family: 'Poppins', sans-serif;
         width: 100%;
         margin-top: 2%;
         margin-left: 5%;
         margin-bottom: 2%;
-        border-radius: 45px;
-        padding: 10px;
+        border-radius: 20px;
+        padding-top: 1px;
     }
     
     .contratos-borradores{
@@ -473,7 +473,7 @@
         width: 100%;
         margin-left: 5%;
         margin-bottom: 2%;
-        border-radius: 45px;
+        border-radius: 20px;
         padding: 10px;
         height: auto;
     }
@@ -493,7 +493,7 @@
         width: 100%;
         margin-left: 5%;
         margin-bottom: 2%;
-        border-radius: 45px;
+        border-radius: 20px;
         padding: 10px;
         height: auto;
     }
@@ -545,7 +545,7 @@
         width: auto;
         background-color: black;
         color: white;
-        border-radius: 30px;
+        border-radius: 20px;
         width: 75%;
     }
     .datos-personales h4{

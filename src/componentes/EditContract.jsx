@@ -150,7 +150,7 @@ export function EditContract() {
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
             // showCancelButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             // denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -187,17 +187,17 @@ export function EditContract() {
         // console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
 
         Swal.fire({
-            title: 'Do you want to save the changes?',
+            title: '¿Deseas guardar los cambios?',
             showDenyButton: true,
             // showCancelButton: true,
-            confirmButtonText: 'Save',
-            denyButtonText: `Don't save`,
+            confirmButtonText: 'Guardar',
+            denyButtonText: `Cancelar`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 dispatch(updateContract(nweC))
 
-                Swal.fire('Saved!', '', 'success')
+                Swal.fire('¡Guardado!', '', 'success')
                     .then((result) => {
                         //window.location.replace("https://scmkt-4fe6b.web.app/perfil/")
                         // window.location.replace(`http://localhost:3000/perfil`)
@@ -205,7 +205,7 @@ export function EditContract() {
 
                     })
             } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
+                Swal.fire('No se ha guardado ningún cambio', '', 'info')
             }
         })
     }

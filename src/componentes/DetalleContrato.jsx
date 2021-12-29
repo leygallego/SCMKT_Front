@@ -16,6 +16,7 @@ function DetalleContrato() {
     const history = useHistory();
     const user = useSelector(state => state.user);
     const contract = useSelector(state => state.contract);
+    console.log("CONTRACT =====", contract);
     const { getAccessTokenSilently } = useAuth0();
 
     const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
@@ -66,7 +67,7 @@ function DetalleContrato() {
 
     return (
         <>
-            <div><h1>Detalle Contrato</h1></div>
+            <div><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name: "Privado" } `}</h1></div>
             <div className="main-detalle">
 
                 {contract?.conditions?.name ?

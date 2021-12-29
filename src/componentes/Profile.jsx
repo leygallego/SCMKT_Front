@@ -79,7 +79,7 @@ function Profile() {
         <>
             <div className="main-perfil">
                 <div className="perfil-card">
-                    <h4>Usuario: {user.name}</h4>
+                    <h2>Usuario: {user.name}</h2>
 
                     <div className="contratos-publicados2">
                         <ContractsList
@@ -96,14 +96,14 @@ function Profile() {
                     /> : <Spinner />}
 
                     <br />
-                    <div className="boton-wallet">
+                    {/* <div className="boton-wallet">
                     <Button
                         className="busca-wallet"
                         variant="contained"
                         startIcon={<AccountBalanceWalletIcon />}>
                         Dirección de Wallet
                     </Button>
-                    </div>
+                    </div> */}
                     
 
                     <div className="datos-personales" >
@@ -115,11 +115,11 @@ function Profile() {
                             Datos Personales
                         </Button>
                         {edicionPerfil ? <div className="profileDataView">
-                            <h4>Nombre: {user.name} {user.last_name}</h4>
-                            <h4>Usuario: {user.username}</h4>
-                            <h4>Email: {user.email}</h4>
-                            <h4>Nº Wallet: {user.wallet}</h4>
-                            <h4>País Residencia: {user.country}</h4>
+                        <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
+                            <h4>Usuario: {user.username}</h4><br />
+                            <h4>Email: {user.email}</h4><br />
+                            <h4>Nº Wallet: {user.wallet}</h4><br />
+                            <h4>País Residencia: {user.country}</h4><br />
                         </div> :
                             <form onSubmit={e => { handleOnSubmit(e) }}>
                                 <div className="registro1">

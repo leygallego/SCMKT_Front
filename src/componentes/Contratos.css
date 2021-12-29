@@ -20,6 +20,7 @@
 }
 .crea-contrato button{
   border-radius: 30px;
+  text-decoration-line: none;
 }
 
 .contratos-card:hover {

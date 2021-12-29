@@ -69,7 +69,7 @@ const ContractsList = (props) => {
                                         id={element.id}
                                         image={element.image}
                                         check={false}
-                                        chat={true}
+                                        chat={false}
                                     />
                                     : <></>}
                             </div>)

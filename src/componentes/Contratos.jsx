@@ -67,7 +67,7 @@ function Contratos() {
                 }
 
             </div>
-            <div className='pagination-style'>
+            {/* <div className='pagination-style'>
                 <Pagination
                     count={count}
                     size="large"
@@ -76,7 +76,7 @@ function Contratos() {
                     page={page}
                     onChange={handleChange}
                 />
-            </div>
+            </div> */}
 
             <div className="main-contratos">
                 {
