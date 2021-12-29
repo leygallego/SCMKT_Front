@@ -150,6 +150,18 @@ export function BuildConract() {
         })
     }
 
+    const onChangeDuration = (e) => {
+        const nameEvent = e.target.name;
+
+        if (e.target.value == '' || /^[0-9\b]+$/.test(e.target.value)) {
+            console.log('asdf')
+            setInput({
+                ...input,
+                [nameEvent]: e.target.value
+            })
+        }
+    }
+
     return (
         <>
             <div className="contractComponent">
@@ -177,25 +189,25 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="type" value={input.type}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="type1" name='type1' onClick={e => { onChangeValue(e, 'type') }}>Tipo 1</option>
-                                        <option value="type2" name='type2' onClick={e => { onChangeValue(e, 'type') }}>Tipo 2</option>
-                                        <option value="type3" name='type3' onClick={e => { onChangeValue(e, 'type') }}>Tipo 3</option>
+                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="labelInput">
                                 <div className="labelForm-buildContract">Tiempo</div>
-                                <input
-                                    type="hour"
-                                    id="start"
-                                    name="  "
-                                    className="inputFormReward"
-                                    value={input.duration}
-                                    min="00:00"
-                                    onChange={e => { handleInputChange(e) }}
-                                    onBlur={(e) => validate(e.target.name)}
-                                />
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormCComponent"
+                                        type="text"
+                                        name="duration"
+                                        value={input.duration}
+                                        min="0"
+                                        onChange={onChangeDuration}
+                                    />
+                                </div>
+
                             </div>
 
                             <div>
@@ -203,9 +215,9 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="category" value={input.category}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
-                                        <option value="beginner" name='beginner' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                        <option value="intermediate" name='intermediate' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                        <option value="advanced" name='advanced' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                        <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
                             </div>
