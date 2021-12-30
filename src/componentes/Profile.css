@@ -1,3 +1,6 @@
+.contratos-wraper{
+    margin-top: 14%;
+}
 
 .main-perfil{
     display: flex;
@@ -12,6 +15,7 @@
     margin-bottom: 2%;
     border-radius: 30px;
     padding: 10px;
+    margin-top: 14%;
 }
 
 .perfil-card{
