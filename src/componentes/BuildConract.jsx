@@ -4,7 +4,7 @@ import { storage } from '../firebase';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, createContract } from '../actions/index';
+import { getUsers } from '../actions/index';
 import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
@@ -34,14 +34,11 @@ export function BuildConract() {
     })
 
     const [errors, setErrors] = useState({});
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {
         // preventScroll: true,
         // closeOnOverlayClick: false
     });
-
-    const [archivo1, setArchivo1] = useState(null);
-    const [archivo2, setArchivo2] = useState(null);
 
     useEffect(() => {
         dispatch(getUsers({}))
@@ -98,7 +95,6 @@ export function BuildConract() {
 
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
-            // setArchivo1(e.target.files[0]);
             uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
@@ -153,7 +149,7 @@ export function BuildConract() {
     const onChangeDuration = (e) => {
         const nameEvent = e.target.name;
 
-        if (e.target.value == '' || /^[0-9\b]+$/.test(e.target.value)) {
+        if (e.target.value === '' || /^[0-9\b]+$/.test(e.target.value)) {
             console.log('asdf')
             setInput({
                 ...input,
@@ -169,7 +165,6 @@ export function BuildConract() {
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
                     <form className='contractForm-form' onSubmit={handleOnSubmit}>
                         <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
-                        {/* <br/><br/> */}
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Nombre del Contrato</div>
                             <div className="inputForm">

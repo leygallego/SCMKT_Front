@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContractsCard from './ContractsCard';
-import { deleteContract, getContracts, setChat } from '../actions';
+import { deleteContract, getContracts, setChat, setLoading } from '../actions';
 import Button from '@mui/material/Button';
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -19,6 +19,7 @@ const ContractsList = (props) => {
     useEffect(() => {
         // dispatch(callProtectedApi)
         dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
+        dispatch(setLoading(false))
     }, [dispatch])
 
     const borraContratos = () => {
@@ -35,6 +36,7 @@ const ContractsList = (props) => {
                     dispatch(deleteContract({ contract: eraser, resto }));
                     setEraser([])
                     dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
+                    dispatch(setLoading(false))
                 }
                 Swal.fire(`${eraser.length} contrato(s) ha(n) sido borrado(s)`, '', 'success')
             } //else if (result.isDenied) {

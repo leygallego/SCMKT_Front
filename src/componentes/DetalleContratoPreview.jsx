@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import { getContractsPreview, createContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
@@ -76,10 +75,6 @@ function DetalleContratoPreview(props) {
     })
   }
 
-  const download = () => {
-
-  }
-
   return (
     <div className='preview-content'>
       <div><h1>Detalle Contrato</h1></div>
@@ -109,7 +104,7 @@ function DetalleContratoPreview(props) {
                   {contract.c1
                     ? <object data={contract.c1} type="application/pdf" className='iframes-test-contract-object'>
                       <iframe id="inlineFrameC1"
-                        // title="Test 1"
+                        title="Test 1"
                         src={`https://docs.google.com/viewer?url=${contract.c1}&embedded=true`}
                         // style="border:1px solid #666CCC"
                         frameborder="1"
@@ -125,7 +120,7 @@ function DetalleContratoPreview(props) {
                   {contract.c2
                     ? <object data={contract.c2} type="application/pdf" className='iframes-test-contract-object'>
                       <iframe id="inlineFrameC2"
-                        // title="Test 2"
+                        title="Test 2"
                         src={`https://docs.google.com/viewer?url=${contract.c2}&embedded=true`}
                         // style="border:1px solid #666CCC"
                         frameborder="1"

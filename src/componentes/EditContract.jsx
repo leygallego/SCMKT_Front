@@ -214,7 +214,7 @@ export function EditContract() {
     const onChangeDuration = (e) => {
         const nameEvent = e.target.name;
 
-        if (e.target.value == '' || /^[0-9\b]+$/.test(e.target.value)) {
+        if (e.target.value === '' || /^[0-9\b]+$/.test(e.target.value)) {
             console.log('asdf')
             setInput({
                 ...input,
@@ -384,7 +384,7 @@ export function EditContract() {
                                     {showFile1
                                         ? <object data={input.c1} type="application/pdf" className='iframes-test-contract-object'>
                                             <iframe id="inlineFrameC1"
-                                                // title="Test 1"
+                                                title="Test 1"
                                                 src={`https://docs.google.com/viewer?url=${input.c1}&embedded=true`}
                                                 // style="border:1px solid #666CCC"
                                                 frameborder="1"
@@ -401,7 +401,7 @@ export function EditContract() {
                                         ?
                                         <object data={input.c2} type="application/pdf" className='iframes-test-contract-object'>
                                             <iframe id="inlineFrameC2"
-                                                // title="Test 2"
+                                                title="Test 2"
                                                 target='_blank'
                                                 src={`https://docs.google.com/viewer?url=${input.c2}&embedded=true`}
                                                 // style="border:1px solid #666CCC"
