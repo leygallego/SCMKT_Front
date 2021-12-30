@@ -25,7 +25,8 @@ import {
     GET_USERS_DATABASE,
     SEND_MESSAGE,
     ERASE_MESSAGE,
-    CONFIG_CHANNEL
+    CONFIG_CHANNEL,
+    SET_LOADING
 } from "../actions";
 
 const initialState = {
@@ -41,8 +42,9 @@ const initialState = {
     choosed: {},
     loggedUser: {},
     messages: [],
-    channel: ""
-
+    channel: "",
+    isAuthenticated: false,
+    loading: false,
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -75,10 +77,10 @@ export default function rootReducer(state = initialState, action) {
         case SET_CONTRACT_STATUS:
             return {
                 ...state,
-                contract: { 
-                    ...state.contract, 
-                    status: action.payload.status, 
-                    clientID: action.payload.clientId 
+                contract: {
+                    ...state.contract,
+                    status: action.payload.status,
+                    clientID: action.payload.clientId
                 }
             }
 
@@ -99,20 +101,24 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 preview: action.payload
             }
+
         case REMOVE_CONTRACT:
             return {
                 ...state,
                 contracts: action.payload
             }
+
         case POST_SING_UP:
             return {
                 ...state
             }
+
         case SEND_LOGIN:
             return {
                 ...state,
                 user: action.payload.user,
-                contracts: action.payload.contracts
+                contracts: action.payload.contracts,
+                loading: false
             };
 
         case EDIT_USER:
@@ -175,7 +181,6 @@ export default function rootReducer(state = initialState, action) {
                 chat: action.payload
             }
 
-
         case GET_USERS_DATABASE:
             return {
                 ...state,
@@ -203,13 +208,19 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 message: action.payload
-            }    
+            }
 
         case CONFIG_CHANNEL:
             console.log('CONFIG_CHANNEL::::', action.payload)
             return {
                 ...state,
                 channel: action.payload
+            }
+
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: action.payload
             }
 
         default: return state

@@ -3,16 +3,16 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
-import Swal from 'sweetalert2';
 import './Profile.css';
 import Spinner from './Spinner';
 import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from './Loader';
 
 import useMetaMask from '../hooks/useMetaMask'
 
@@ -24,16 +24,19 @@ function Profile() {
 
     const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
-    const { profileImage, spinner } = useSelector(state => state);
+    const { profileImage, spinner, loading } = useSelector(state => state);
     const [edicionPerfil, setEdicionPerfil] = useState(true)
     const [registro, setRegistro] = useState({});
     const [eraser, setEraser] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(setLoading(true))
         dispatch(callProtectedApi)
-        dispatch(getContracts({ ownerId: user.id }))
         dispatch(setChat(false));
+        dispatch(getContracts({ ownerId: user.id }))
+        dispatch(setLoading(false))
+
         // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
     }, [dispatch])
@@ -81,7 +84,9 @@ function Profile() {
 
     return (
         <>
-            <div className="main-perfil">
+            {loading
+            ? <Loader />
+            :<div className="main-perfil">
                 <div className="perfil-card">
                     <h2>Usuario: {user.name}</h2>
 
@@ -100,16 +105,15 @@ function Profile() {
                     /> : <Spinner />}
 
                     <br />
-                    {<div className="boton-wallet">
+
+                    <div className="boton-wallet">
                     <Button
                         className="busca-wallet"
                         variant="contained"
-                        startIcon={<AccountBalanceWalletIcon />}
-                        onClick={isActive ? disconnect : connect}>
-                        {isActive ? 'Desconectar' : 'Conectar Wallet'}
+                        startIcon={<AccountBalanceWalletIcon />}>
+                        Dirección de Wallet
                     </Button>
-                    </div>}
-                    
+                    </div>
 
                     <div className="datos-personales" >
                         <Button
@@ -120,10 +124,10 @@ function Profile() {
                             Datos Personales
                         </Button>
                         {edicionPerfil ? <div className="profileDataView">
-                        <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
+                            <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
                             <h4>Usuario: {user.username}</h4><br />
                             <h4>Email: {user.email}</h4><br />
-                            <h4>Nº Wallet: {/*user.wallet*/account}</h4><br />
+                            <h4>Nº Wallet: {user.wallet}</h4><br />
                             <h4>País Residencia: {user.country}</h4><br />
                         </div> :
                             <form onSubmit={e => { handleOnSubmit(e) }}>
@@ -164,6 +168,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
+			}
         </>
     )
 }

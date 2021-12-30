@@ -40,6 +40,7 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
+        instructions: contract.conditions.instructions? contract.conditions.instructions : '',
         c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
         c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
@@ -160,7 +161,7 @@ export function EditContract() {
         })
     }
 
-    const saveContract = () => {
+    const saveContract = (status = '') => {
         let nweC = {
             id: input.id,
             wallet1: input.wallet,
@@ -168,18 +169,20 @@ export function EditContract() {
             author: input.author,
             conditions: {
                 name: input.name,
+                type: input.type,
+                duration: input.duration,
+                category: input.category,
                 shortdescription: input.shortdescription,
                 longdescription: input.longdescription,
                 amount: input.amount,
                 coin: input.coin,
-                category: input.category,
-                type: input.type,
+                instructions: input.instructions,
                 condition: {
                     c1: input.c1,
                     c2: input.c2
                 }
             },
-            status: input.status,
+            status: status === '' ? input.status : status,
             clientId: input.clientId,
             ownerId: user.id
         }
@@ -210,6 +213,18 @@ export function EditContract() {
         })
     }
 
+    const onChangeDuration = (e) => {
+        const nameEvent = e.target.name;
+
+        if (e.target.value === '' || /^[0-9\b]+$/.test(e.target.value)) {
+            console.log('asdf')
+            setInput({
+                ...input,
+                [nameEvent]: e.target.value
+            })
+        }
+    }
+
     return (
         <>
             <div className="contractComponent">
@@ -233,21 +248,28 @@ export function EditContract() {
                         </div>
 
                         <div className='combo'>
-                            <div>
+                            <div className="labelInput">
                                 <div className="labelForm-buildContract">Tiempo</div>
-                                <input type="hour" id="start" name="trip-start"
-                                    value="15:21:05"
-                                    min="00:00:00:0000" max="23:59:59:6666" />
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormCComponent"
+                                        type="text"
+                                        name="duration"
+                                        value={input.duration}
+                                        min="0"
+                                        onChange={onChangeDuration}
+                                    />
+                                </div>
                             </div>
 
                             <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="coin" value={input.category}>
+                                    <select className="inputFormCoin" name="category" value={input.category}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
-                                        <option value="beginner" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                        <option value="intermediate" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                        <option value="advanced" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                        <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
                             </div>
@@ -255,11 +277,10 @@ export function EditContract() {
                             <div>
                                 <div className="labelForm-buildContract">Tipo</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="coin" value={input.type}>
+                                    <select className="inputFormCoin" name="type" value={input.type}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="type1" name='type1' onClick={e => { onChangeValue(e, 'type') }}>Tipo 1</option>
-                                        <option value="type2" name='type2' onClick={e => { onChangeValue(e, 'type') }}>Tipo 2</option>
-                                        <option value="type3" name='type3' onClick={e => { onChangeValue(e, 'type') }}>Tipo 3</option>
+                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
                             </div>
@@ -285,8 +306,8 @@ export function EditContract() {
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
                                     <select className="inputFormCoin" name="coin" value={input.coin}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, '') }} ></option>
-                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'ETH') }}>ETH</option>
+                                        <option value="" name='' onClick={e => { onChangeValue(e, 'coin') }} ></option>
+                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'coin') }}>ETH</option>
                                     </select>
                                 </div>
                             </div>
@@ -331,7 +352,7 @@ export function EditContract() {
                             <div className='file-group-contract'>
                                 <div class="input__row uploader">
                                     <label for="file-c1"></label>
-                                    <input name='file-c1' id="file-c1" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
+                                    <input name='file-c1' id="file-c1" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
                                     <div id="inputval" className="input-value">{file1 ? file1 : ''}</div>
                                 </div>
                                 {input.c1 && input.c1 !== undefined && input.c1 !== 'undefined'
@@ -347,7 +368,7 @@ export function EditContract() {
                             <div className='file-group-contract'>
                                 <div class="input__row uploader">
                                     <label for="file-c2"></label>
-                                    <input name='file-c2' id="file-c2" class="upload" type="file" /*onChange={e => { handleInputChange(e) }}*/ />
+                                    <input name='file-c2' id="file-c2" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
                                     <div id="inputval" className="input-value">{file2 ? file2 : ''}</div>
                                 </div>
                                 {input.c2 && input.c2 !== undefined && input.c2 !== 'undefined'
@@ -365,7 +386,7 @@ export function EditContract() {
                                     {showFile1
                                         ? <object data={input.c1} type="application/pdf" className='iframes-test-contract-object'>
                                             <iframe id="inlineFrameC1"
-                                                // title="Test 1"
+                                                title="Test 1"
                                                 src={`https://docs.google.com/viewer?url=${input.c1}&embedded=true`}
                                                 // style="border:1px solid #666CCC"
                                                 frameborder="1"
@@ -382,7 +403,7 @@ export function EditContract() {
                                         ?
                                         <object data={input.c2} type="application/pdf" className='iframes-test-contract-object'>
                                             <iframe id="inlineFrameC2"
-                                                // title="Test 2"
+                                                title="Test 2"
                                                 target='_blank'
                                                 src={`https://docs.google.com/viewer?url=${input.c2}&embedded=true`}
                                                 // style="border:1px solid #666CCC"
@@ -447,24 +468,35 @@ export function EditContract() {
                                         input.shortdescription === "" ||
                                         input.longdescription === "" ||
                                         input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
+                                        input.coin === ""
                                         ? "acept-contract acept-contract-disable"
                                         : "acept-contract"
                                 }
                                 // variant="outlined"
-                                onClick={saveContract}
+                                onClick={() => saveContract('')}
                                 disabled={
                                     input.name === "" ||
                                         input.shortdescription === "" ||
                                         input.longdescription === "" ||
                                         input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
-                                        ? false
+                                        input.coin === ""
+                                        ? true
                                         : false
                                 }
                             >Grabar</button>
+
+                            <button
+                                type='submit'
+                                className='acept-contract'
+                                onClick={() => saveContract('published')}
+                                hidden={
+                                    input.status === "published" ||
+                                        input.status === "taken" ||
+                                        input.status === 'complete'
+                                        ? true
+                                        : false
+                                }
+                            >Publicar</button>
 
                             <button
                                 className="acept-contract"

@@ -39,6 +39,7 @@ export const SET_CHANNEL = 'SET_CHANNEL';
 export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
+export const SET_LOADING = 'SET_LOADING';
 
 const database = getDatabase();
 
@@ -56,8 +57,6 @@ export const configChannel = (channelId) => {
 let id22 = "";
 export const searchChannel = (channel) => {
     const { id1 } = channel;
-    // console.log('id1::::', id1);
-    // console.log('id2::::', id22); // undefined
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -66,32 +65,25 @@ export const searchChannel = (channel) => {
                 let bool = false;
                 let bool2 = false;
                 if (validate === null) {
-                    console.log("No hay datos en la db....");
                     channel.id2 = id22;
                     dispatch(setChannel(channel))
                 }
-                else {
-                    
-                    console.log('Si hay datos....')
-                    Object.keys(snapshot.val()).map(key => {
-                        const value = snapshot.val()[key];
-                        if (!bool) {
-                            if (
-                                id1 === value.channel.id1 && id22 === value.channel.id2
-                                || id22 === value.channel.id1 && id1 === value.channel.id2
-                            ) {
-                                console.log('si aparecen las dos ids y su key es: ', key);
-                                bool = true;
-                                bool2 = true;
-                                dispatch(configChannel(key));
-                            }
+                Object.keys(snapshot.val()).map(key => {
+                    const value = snapshot.val()[key];
+                    if (!bool) {
+                        if (
+                            id1 === value.channel.id1 && id22 === value.channel.id2
+                            || id22 === value.channel.id1 && id1 === value.channel.id2
+                        ) {
+                            bool = true;
+                            bool2 = true;
+                            dispatch(configChannel(key));
                         }
-
-                    });
-                    if (!bool2) {
-                        channel.id2 = id22;
-                        dispatch(setChannel(channel))
                     }
+                });
+                if (!bool2) {
+                    channel.id2 = id22;
+                    dispatch(setChannel(channel))
                 }
             })
     }
@@ -105,10 +97,20 @@ export const setChannel = (channel) => {
         set(newItem, {
             channel
         })
-            .then(() => {
-                return {
-                    type: RETURN_NULL
-                }
+            .then(async () => {
+                const dbRef = ref(getDatabase());
+                await get(child(dbRef, "smartChatChannels"))
+                    .then((snapshot) => {
+                        Object.keys(snapshot.val()).map(key => {
+                            const value = snapshot.val()[key];
+                            if (
+                                channel.id1 === value.channel.id1 && channel.id2 === value.channel.id2
+                                || channel.id22 === value.channel.id1 && channel.id1 === value.channel.id2
+                            ) {
+                                dispatch(configChannel(key));
+                            }
+                        });
+                    })
             })
             .catch(error => {
                 console.log(error)
@@ -143,7 +145,6 @@ export const eraseMessage = (obj) => {
 }
 
 export const sendMessage = (message) => {
-    console.log('desde el SEND_MESSAGE:::', message)
     const date = new Date();
     return () => {
         const db = getDatabase();
@@ -269,7 +270,6 @@ export const getContractsByID = (id) => {
     return async dispatch => {
         return await axios.get(`${urlWork}/contract/${id}`)
             .then(response => {
-                console.log('getContractsByID(id);', response.data)
                 responseChat = response.data;
                 id22 = response.data.owner.id;
                 dispatch({
@@ -279,8 +279,6 @@ export const getContractsByID = (id) => {
             })
             // .thens añadidos para el chat
             .then(() => {
-                console.log('chooseUser()', responseChat)
-                console.log('Me conecté con ', responseChat.owner.name);
                 dispatch(choosedUser(
                     {
                         "name": responseChat.owner.name,
@@ -290,7 +288,6 @@ export const getContractsByID = (id) => {
                 ));
             })
             .then(() => {
-                console.log('searchChannel()');
                 dispatch(searchChannel(
                     {
                         "id1": chatUser
@@ -426,6 +423,7 @@ export const updateContract = (contract) => {
             payload: contract
         });
         await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
+        
         await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
             .then(() => {
                 // console.log("registrado correctamente", response);
@@ -452,4 +450,15 @@ export const changeStatusContract = (id, status, user) => {
             })
     }
 
+}
+
+export const setLoading = (payload) => {
+    return async (dispatch) => {
+        setTimeout(() => {
+            dispatch({
+                type: SET_LOADING,
+                payload
+            })
+        }, 0);
+    }
 }

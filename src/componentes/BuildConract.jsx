@@ -4,7 +4,7 @@ import { storage } from '../firebase';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, createContract } from '../actions/index';
+import { getUsers } from '../actions/index';
 import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
@@ -34,14 +34,11 @@ export function BuildConract() {
     })
 
     const [errors, setErrors] = useState({});
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {
         // preventScroll: true,
         // closeOnOverlayClick: false
     });
-
-    const [archivo1, setArchivo1] = useState(null);
-    const [archivo2, setArchivo2] = useState(null);
 
     useEffect(() => {
         dispatch(getUsers({}))
@@ -98,7 +95,6 @@ export function BuildConract() {
 
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
-            // setArchivo1(e.target.files[0]);
             uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
@@ -150,6 +146,18 @@ export function BuildConract() {
         })
     }
 
+    const onChangeDuration = (e) => {
+        const nameEvent = e.target.name;
+
+        if (e.target.value === '' || /^[0-9\b]+$/.test(e.target.value)) {
+            console.log('asdf')
+            setInput({
+                ...input,
+                [nameEvent]: e.target.value
+            })
+        }
+    }
+
     return (
         <>
             <div className="contractComponent">
@@ -157,7 +165,6 @@ export function BuildConract() {
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
                     <form className='contractForm-form' onSubmit={handleOnSubmit}>
                         <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
-                        {/* <br/><br/> */}
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Nombre del Contrato</div>
                             <div className="inputForm">
@@ -177,25 +184,25 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="type" value={input.type}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="type1" name='type1' onClick={e => { onChangeValue(e, 'type') }}>Tipo 1</option>
-                                        <option value="type2" name='type2' onClick={e => { onChangeValue(e, 'type') }}>Tipo 2</option>
-                                        <option value="type3" name='type3' onClick={e => { onChangeValue(e, 'type') }}>Tipo 3</option>
+                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div>
+                            <div className="labelInput">
                                 <div className="labelForm-buildContract">Tiempo</div>
-                                <input
-                                    type="hour"
-                                    id="start"
-                                    name="  "
-                                    className="inputFormReward"
-                                    value={input.duration}
-                                    min="00:00"
-                                    onChange={e => { handleInputChange(e) }}
-                                    onBlur={(e) => validate(e.target.name)}
-                                />
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormCComponent"
+                                        type="text"
+                                        name="duration"
+                                        value={input.duration}
+                                        min="0"
+                                        onChange={onChangeDuration}
+                                    />
+                                </div>
+
                             </div>
 
                             <div>
@@ -203,9 +210,9 @@ export function BuildConract() {
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="category" value={input.category}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
-                                        <option value="beginner" name='beginner' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                        <option value="intermediate" name='intermediate' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                        <option value="advanced" name='advanced' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                        <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
                             </div>
