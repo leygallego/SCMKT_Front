@@ -14,9 +14,13 @@ import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import useMetaMask from '../hooks/useMetaMask'
+
 toast.configure()
 
 function Profile() {
+
+    const { connect, disconnect, isActive, account, shouldDisable } = useMetaMask()
 
     const user = useSelector(state => state.user)
     const contracts = useSelector(state => state.contracts)
@@ -96,14 +100,14 @@ function Profile() {
                     /> : <Spinner />}
 
                     <br />
-                    {/* <div className="boton-wallet">
+                    {<div className="boton-wallet">
                     <Button
                         className="busca-wallet"
                         variant="contained"
                         startIcon={<AccountBalanceWalletIcon />}>
-                        Dirección de Wallet
+                        {isActive ? account : ''}
                     </Button>
-                    </div> */}
+                    </div>}
                     
 
                     <div className="datos-personales" >
