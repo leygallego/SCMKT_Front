@@ -104,8 +104,9 @@ function Profile() {
                     <Button
                         className="busca-wallet"
                         variant="contained"
-                        startIcon={<AccountBalanceWalletIcon />}>
-                        {isActive ? account : ''}
+                        startIcon={<AccountBalanceWalletIcon />}
+                        onClick={isActive ? disconnect : connect}>
+                        {isActive ? 'Desconectar' : 'Conectar Wallet'}
                     </Button>
                     </div>}
                     
@@ -122,7 +123,7 @@ function Profile() {
                         <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
                             <h4>Usuario: {user.username}</h4><br />
                             <h4>Email: {user.email}</h4><br />
-                            <h4>Nº Wallet: {user.wallet}</h4><br />
+                            <h4>Nº Wallet: {/*user.wallet*/account}</h4><br />
                             <h4>País Residencia: {user.country}</h4><br />
                         </div> :
                             <form onSubmit={e => { handleOnSubmit(e) }}>
