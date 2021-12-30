@@ -39,6 +39,7 @@ export const SET_CHANNEL = 'SET_CHANNEL';
 export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
+export const SET_LOADING = 'SET_LOADING';
 
 const database = getDatabase();
 
@@ -448,4 +449,16 @@ export const changeStatusContract = (id, status, user) => {
             })
     }
 
+}
+
+export const setLoading = (payload) => {
+    return async (dispatch) => {
+        console.log('SET LOADING ACTION::::', payload)
+        setTimeout(() => {
+            dispatch({
+                type: SET_LOADING,
+                payload
+            })
+        }, 0);
+    }
 }
