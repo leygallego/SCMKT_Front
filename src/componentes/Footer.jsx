@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react';
+import './Footer.css';
 
 function Footer() {
     const { loginWithRedirect, isAuthenticated } = useAuth0()
@@ -8,7 +9,7 @@ function Footer() {
     return (
         <div className="footer-home">
             <div className="home-izquierda">
-                <h6>SmartContracts</h6>
+                <h5>SmartContracts</h5>
                 <div className="logos-footer">
                     <a href="https://facebook.com" target='_blank' rel='noopener noreferrer'><img src="/images/facebook.png" alt="facebook logo" /></a>
                     <a href="https://instagram.com" target='_blank' rel='noopener noreferrer'><img src="/images/instagram.png" alt="instagram logo" /></a>
@@ -19,19 +20,19 @@ function Footer() {
             <div className="home-derecha">
                 <ul>
                     <li>
-                        <NavLink to="/">Inicio</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/">Inicio</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/contratos">Contratos</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/aboutus">Quiénes Somos</NavLink>
+                        <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quiénes Somos</NavLink>
                     </li>
                     {
                         isAuthenticated ? (
                             <div>
                                 <li>
-                                    <NavLink to="/perfil">Mi Cuenta</NavLink>
+                                    <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/perfil">Mi Cuenta</NavLink>
                                 </li>
                             </div>
                         )
@@ -39,7 +40,7 @@ function Footer() {
                                 <div>
                                     <li>
                                         {/* <NavLink to="/registro">Regístrate</NavLink> */}
-                                        <button className='register-link' onClick={loginWithRedirect} >Regístrate</button>
+                                        <button className={({ isActive }) => (isActive ? "active" : "noActive")} onClick={loginWithRedirect} >Regístrate</button>
                                     </li>
                                 </div>
                             )
