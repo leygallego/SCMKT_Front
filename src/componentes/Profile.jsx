@@ -84,7 +84,9 @@ function Profile() {
 
     return (
         <>
-            <div className="main-perfil">
+            {loading
+            ? <Loader />
+            :<div className="main-perfil">
                 <div className="perfil-card">
                     <h2>Usuario: {user.name}</h2>
 
@@ -166,6 +168,7 @@ function Profile() {
                     </div>
                 </div>
             </div>
+			}
         </>
     )
 }
