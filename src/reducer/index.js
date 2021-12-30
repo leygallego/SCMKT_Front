@@ -25,7 +25,8 @@ import {
     GET_USERS_DATABASE,
     SEND_MESSAGE,
     ERASE_MESSAGE,
-    CONFIG_CHANNEL
+    CONFIG_CHANNEL,
+    SET_LOADING
 } from "../actions";
 
 const initialState = {
@@ -41,8 +42,9 @@ const initialState = {
     choosed: {},
     loggedUser: {},
     messages: [],
-    channel: ""
-
+    channel: "",
+    isAuthenticated: false,
+    loading: false,
 }
 
 export default function rootReducer(state = initialState, action) {
@@ -99,20 +101,24 @@ export default function rootReducer(state = initialState, action) {
                 ...state,
                 preview: action.payload
             }
+
         case REMOVE_CONTRACT:
             return {
                 ...state,
                 contracts: action.payload
             }
+
         case POST_SING_UP:
             return {
                 ...state
             }
+
         case SEND_LOGIN:
             return {
                 ...state,
                 user: action.payload.user,
-                contracts: action.payload.contracts
+                contracts: action.payload.contracts,
+                loading: false
             };
 
         case EDIT_USER:
@@ -175,7 +181,6 @@ export default function rootReducer(state = initialState, action) {
                 chat: action.payload
             }
 
-
         case GET_USERS_DATABASE:
             return {
                 ...state,
@@ -210,6 +215,13 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 channel: action.payload
+            }
+
+        case SET_LOADING:
+            console.log('SET LOADING REDUCER::::', action.payload)
+            return {
+                ...state,
+                loading: action.payload
             }
 
         default: return state

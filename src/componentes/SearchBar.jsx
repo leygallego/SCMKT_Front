@@ -8,7 +8,8 @@ import {
     // setFilterDurationL,
     // setFilterDurationH,
     setName,
-    setAuthor
+    setAuthor,
+    setLoading
 } from "../actions"
 
 function SearchBar() {
@@ -27,11 +28,13 @@ function SearchBar() {
     const filterByType = (e) => {
         dispatch(setFilterType(e.target.value))
         dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
+        dispatch(setLoading(false))
     }
 
     const filterByCategory = (e) => {
         dispatch(setFilterCategory(e.target.value))
         dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType, filterCategory: e.target.value, filterDurationH, filterDurationL }))
+        dispatch(setLoading(false))
     }
 
     // const filterByDurationH = (e) => {
@@ -51,6 +54,7 @@ function SearchBar() {
         //     dispatch(getContracts({ page, name: e.target.value, author, ownerId: 1, typeC: 'all', filterType, filterCategory, filterDurationH, filterDurationL }))
         // } else {
             dispatch(getContracts({ page, name: e.target.value, author: e.target.value, ownerId: 1, typeC: 'all', filterType, filterCategory, filterDurationH, filterDurationL }))
+            dispatch(setLoading(false))
         // }
     }
 
