@@ -40,6 +40,7 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
+        instructions: contract.conditions.instructions? contract.conditions.instructions : '',
         c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
         c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
@@ -168,13 +169,14 @@ export function EditContract() {
             author: input.author,
             conditions: {
                 name: input.name,
+                type: input.type,
+                duration: input.duration,
+                category: input.category,
                 shortdescription: input.shortdescription,
                 longdescription: input.longdescription,
                 amount: input.amount,
                 coin: input.coin,
-                type: input.type,
-                duration: input.duration,
-                category: input.category,
+                instructions: input.instructions,
                 condition: {
                     c1: input.c1,
                     c2: input.c2

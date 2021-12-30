@@ -423,6 +423,7 @@ export const updateContract = (contract) => {
             payload: contract
         });
         await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
+        
         await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
             .then(() => {
                 // console.log("registrado correctamente", response);
@@ -453,7 +454,6 @@ export const changeStatusContract = (id, status, user) => {
 
 export const setLoading = (payload) => {
     return async (dispatch) => {
-        console.log('SET LOADING ACTION::::', payload)
         setTimeout(() => {
             dispatch({
                 type: SET_LOADING,

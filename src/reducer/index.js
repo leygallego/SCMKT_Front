@@ -218,7 +218,6 @@ export default function rootReducer(state = initialState, action) {
             }
 
         case SET_LOADING:
-            console.log('SET LOADING REDUCER::::', action.payload)
             return {
                 ...state,
                 loading: action.payload
