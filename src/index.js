@@ -8,6 +8,10 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import queryString from 'query-string';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 
+import Web3 from 'web3'
+import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
+import { MetaMaskContext, MetaMaskProvider } from './hooks/useMetaMask'
+
 /*
 async function prompt() {
   if (queryString.parse(window.location.search).error === 'required_login') {
@@ -48,6 +52,10 @@ else {
 
 //console.log(window.sessionStorage.getItem('prompt'));
 
+function getLibrary(provider, connector) {
+  return new Web3(provider)
+}
+
 ReactDOM.render(
   <Provider store={store}>
   <Auth0Provider
@@ -63,7 +71,11 @@ ReactDOM.render(
   scope="openid profile email"
   prompt= {call_prompt()}
   > 
-    <App /> 
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <MetaMaskProvider>
+        <App /> 
+      </MetaMaskProvider>
+    </Web3ReactProvider>
   </Auth0Provider>
 </Provider>,
   document.getElementById('root')
