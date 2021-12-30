@@ -45,13 +45,7 @@ function NavBar() {
       <div className="menu-icon" onClick={handleClick}>
         {clicked ? <CloseIcon /> : <ReorderIcon />}
       </div>
-      {/* <ul className={clicked ? "menu-list" : "menu-list close"}>
-        <li>
-          <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
-        </li>
-        <li>
-          <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
-        </li> */}
+      
       {
         isAuthenticated ?
           (
