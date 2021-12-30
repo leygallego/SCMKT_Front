@@ -105,15 +105,15 @@ function Profile() {
                     /> : <Spinner />}
 
                     <br />
-                    {/* <div className="boton-wallet">
+
+                    <div className="boton-wallet">
                     <Button
                         className="busca-wallet"
                         variant="contained"
                         startIcon={<AccountBalanceWalletIcon />}>
                         Dirección de Wallet
                     </Button>
-                    </div> */}
-
+                    </div>
 
                     <div className="datos-personales" >
                         <Button

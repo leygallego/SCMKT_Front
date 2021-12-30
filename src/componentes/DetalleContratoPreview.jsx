@@ -42,6 +42,7 @@ function DetalleContratoPreview(props) {
         longdescription: contract.longdescription,
         amount: contract.amount,
         coin: contract.coin,
+        instructions: '',
         condition: {
           c1: contract.c1,
           c2: contract.c2

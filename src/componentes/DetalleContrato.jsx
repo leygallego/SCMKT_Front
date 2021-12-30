@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import Loader from './Loader';
+import { useModal } from 'react-hooks-use-modal';
+import ContractStepsResolve from './ContractStepsResolve';
 
 function DetalleContrato() {
     const { id } = useParams();
@@ -18,10 +20,15 @@ function DetalleContrato() {
     const user = useSelector(state => state.user);
     const contract = useSelector(state => state.contract);
     const loading = useSelector(state => state.loading);
-    console.log("CONTRACT =====", contract);
     const { getAccessTokenSilently } = useAuth0();
 
     const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
+
+    const [modalIsOpen] = useState(false);
+    const [Modal, open, close, isOpen] = useModal('root', {
+        // preventScroll: true,
+        // closeOnOverlayClick: false
+    });
 
     useEffect(() => {
         dispatch(setLoading(true))
@@ -106,12 +113,26 @@ function DetalleContrato() {
                                 <p>{contract.conditions.longdescription}</p>
                                 <h1><span>{contract.conditions.amount}</span> </h1>
 
+                                <div className={isOpen ? '' : ''} visible={isOpen}>
+                                    <Modal
+                                        visible={modalIsOpen}>
+                                        <div className='modal-overlay'>
+                                            <ContractStepsResolve
+                                                id={contract.id}
+                                                visible={close}
+                                                onClose={close}
+                                            // close={close}
+                                            />
+                                        </div>
+                                    </Modal>
+                                </div>
+
                                 <div className="group-button-build">
                                     <Button
                                         className="aceptar-contratos"
                                         variant="contained"
                                         onClick={handleClick}
-                                    >Aceptar</Button>
+                                    >Regresar</Button>
 
                                     {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
                                         ? <div>
@@ -119,6 +140,17 @@ function DetalleContrato() {
                                                 <NavLink to={`/editcontrato/${id}`}><Button variant="contained">Editar</Button></NavLink>
                                             </div>
 
+                                        </div>
+                                        : <></>
+                                    }
+
+                                    {(contract.status === 'taken' && ((contract.clientId && contract.clientId === user.id) || contract.owner.id === user.id))
+                                        ? <div>
+                                            <Button
+                                                className="aceptar-contratos"
+                                                variant="contained"
+                                                onClick={open}
+                                            >Resolver</Button>
                                         </div>
                                         : <></>
                                     }
