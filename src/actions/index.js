@@ -44,7 +44,7 @@ const database = getDatabase();
 
 let chatUser = "";
 // const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
-const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
+const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
 
 export const configChannel = (channelId) => {
     return {
