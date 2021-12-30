@@ -12,6 +12,7 @@
 .decorative-about img{
     display: grid;
     margin-left: 50%;
+    width: auto;
     height: 100%;
 }
 
