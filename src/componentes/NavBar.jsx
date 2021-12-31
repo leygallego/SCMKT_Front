@@ -64,7 +64,7 @@ function NavBar() {
 
                         <div onClick={handleClick} className="logout-button">
                         
-                          <button className="logout-button" onClick={logout}> <span>Cerrar Sesión</span> </button>
+                          <button className="logout-boton" onClick={logout}> <span>Cerrar Sesión</span> </button>
                         
                         </div>
                         <li className="profile-image">

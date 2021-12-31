@@ -155,12 +155,16 @@
     font-size: 8px;
     border-radius: 30px;
 }
+/* .boton-wallet{
+    margin-left: -29px;
+} */
 .boton-wallet button{
     background-color: #0078E7;
     width: 120px;
     height: 25px;
     font-size: 8px;
     border-radius: 30px;
+    margin-left: -10%;
 }
 
 
@@ -212,7 +216,7 @@
 
 
 
-@media (min-width: 576px){
+@media (min-width: 600px){
     .main-perfil{
         display: flex;
         flex-direction: row;
@@ -363,13 +367,17 @@
         font-size: 10px;
         border-radius: 30px;
     }
+    /* .boton-wallet{
+        margin-left: 29px;
+    } */
     
     .boton-wallet button{
         background-color: #0078E7;
-        width: 150px;
-        height: 45px;
+        width: 190px;
+        height: 40px;
         font-size: 10px;
         border-radius: 30px;
+        margin-left: 10px;
     }
     
     .botonEditar{
@@ -573,6 +581,10 @@
         width: 240px;
         height: 45px;
         font-size: 12px;
+    }
+
+    .boton-wallet{
+        margin-left: -29px;
     }
     .boton-wallet button{
         background-color: #0078E7;
