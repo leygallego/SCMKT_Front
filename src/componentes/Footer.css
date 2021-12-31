@@ -37,7 +37,7 @@
     width: 30%;
     margin-left: 55%;
     text-align: right;
-    font-size: 18px;
+    font-size: 15px;
     /* color: #0078E7; */
 }
 
@@ -60,19 +60,20 @@
 
   @media (max-width:600px) {
     .home-derecha{
-        margin-left: -20%;
+        margin-left: -10%;
         width: 300px;
+        font-size: 7px;
 
     }
-    .footer-home h5{
+    /* .footer-home h5{
         
         font-size: 26px;
-    }
+    } */
   }
 
   @media (max-width:800px) {
     .home-derecha{
-        margin-left: -30%;
+        margin-left: -50%;
         width: 350px;
 
         font-size: 14px;
