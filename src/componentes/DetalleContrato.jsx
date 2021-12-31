@@ -106,9 +106,9 @@ function DetalleContrato() {
 
 
                                 <h2>{contract.conditions.name}</h2>
-                                <p>{contract.conditions.type}</p>
-                                <p>{contract.conditions.duration}</p>
-                                <p>{contract.conditions.category}</p>
+                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined'? contract.conditions.type : ''}</p>
+                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined'? contract.conditions.duration : ''}</p>
+                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined'? contract.conditions.category : ''}</p>
                                 <p>{contract.conditions.shortdescription}</p>
                                 <p>{contract.conditions.longdescription}</p>
                                 <h1><span>{contract.conditions.amount}</span> </h1>
