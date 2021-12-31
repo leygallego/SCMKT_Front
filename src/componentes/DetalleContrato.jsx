@@ -75,9 +75,9 @@ function DetalleContrato() {
         <>
             {loading
                 ? <Loader />
-                : <div>
+                : <div className='wraper-detalle'>
 
-                    <div><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
+                    <div className='titulo-detalle' ><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
                     <div className="main-detalle">
 
                         {contract?.conditions?.name ?

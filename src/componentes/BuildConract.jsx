@@ -136,7 +136,7 @@ export function BuildConract() {
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -160,6 +160,10 @@ export function BuildConract() {
 
     return (
         <>
+            <div className='wraper-crear' >
+
+
+            
             <div className="contractComponent">
                 <div className="contractForm">
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
@@ -366,6 +370,7 @@ export function BuildConract() {
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
         </>
     )
