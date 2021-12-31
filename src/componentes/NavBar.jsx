@@ -45,8 +45,55 @@ function NavBar() {
       <div className="menu-icon" onClick={handleClick}>
         {clicked ? <CloseIcon /> : <ReorderIcon />}
       </div>
+
+        {
+                isAuthenticated ?
+                  (
+                    // <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <li>
+                      <NavLink onClick={handleClick} className={({ active }) => (active ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+                    </li>
+                    <li>
+                      <NavLink onClick={handleClick} className={({ active }) => (active ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+                    </li>
+
+                        
+                         <li onClick={handleClick} ><NavLink className={({ active }) => (active ? "active" : "noActive")} to="/perfil">Perfil</NavLink></li> 
+                        
+
+                        <div onClick={handleClick} className="logout-button">
+                        
+                          <button className="logout-button" onClick={logout}> <span>Cerrar Sesión</span> </button>
+                        
+                        </div>
+                        <li className="profile-image">
+                          <UserAvatar/>
+                        </li>
+
+                      
+                    </ul>
+                  )
+                  : (
+
+                    <ul className={clicked ? "menu-list" : "menu-list close"}>
+                    <li onClick={handleClick} >
+                      <NavLink className={({ active }) => (active ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+                    </li>
+                    <li onClick={handleClick}>
+                      <NavLink className={({ active }) => (active ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
+                    </li>
+                    <div onClick={handleClick} className="login-button">
+                      
+                          <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
+                        
+                    </div>
+
+                    </ul>
+                  )
+              }
       
-      {
+      {/*
         isAuthenticated ?
           (
             // <ul className={clicked ? "menu-list" : "menu-list close"}>
@@ -91,7 +138,7 @@ function NavBar() {
 
             </ul>
           )
-      }
+          */}
 
 
     </nav>

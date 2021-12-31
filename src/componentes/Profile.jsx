@@ -88,7 +88,7 @@ function Profile() {
             ? <Loader />
             :<div className="main-perfil">
                 <div className="perfil-card">
-                    <h2>Usuario: {user.name}</h2>
+                    <h2>Hola {user.name}</h2>
 
                     <div className="contratos-publicados2">
                         <ContractsList
@@ -110,8 +110,9 @@ function Profile() {
                     <Button
                         className="busca-wallet"
                         variant="contained"
-                        startIcon={<AccountBalanceWalletIcon />}>
-                        Dirección de Wallet
+                        startIcon={<AccountBalanceWalletIcon />}
+                        onClick={isActive ? disconnect : connect}>
+                        {isActive ? 'Desconectar' : 'Conectar Wallet'}
                     </Button>
                     </div>
 
@@ -127,7 +128,7 @@ function Profile() {
                             <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
                             <h4>Usuario: {user.username}</h4><br />
                             <h4>Email: {user.email}</h4><br />
-                            <h4>Nº Wallet: {user.wallet}</h4><br />
+                            <h4>Nº Wallet: {isActive ? account : 'MetaMask Desconectada'}</h4><br />
                             <h4>País Residencia: {user.country}</h4><br />
                         </div> :
                             <form onSubmit={e => { handleOnSubmit(e) }}>

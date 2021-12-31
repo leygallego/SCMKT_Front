@@ -17,7 +17,7 @@ export function BuildConract() {
     const [checked, setChecked] = useState(false);
     const [input, setInput] = useState({
         id: '',
-        wallet1: user.wallet,
+        wallet1: '',
         wallet2: '',
         name: '',
         type: '',
@@ -136,7 +136,7 @@ export function BuildConract() {
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -160,6 +160,10 @@ export function BuildConract() {
 
     return (
         <>
+            <div className='wraper-crear' >
+
+
+            
             <div className="contractComponent">
                 <div className="contractForm">
                     {/* <form action={(e) => { handleOnSubmit(e) }}> */}
@@ -245,7 +249,8 @@ export function BuildConract() {
                         </div>
 
                         <div className="labelInput">
-                            <div className="labelForm-buildContract">Describe tu problema en pocas palabras</div>
+                            <div className="labelForm-buildContract">Describe tu problema en pocas palabras
+                            </div>
                             <div className="inputForm">
                                 <textarea
                                     className="inputFormCComponent"
@@ -365,6 +370,7 @@ export function BuildConract() {
                         </div>
                     </form>
                 </div>
+            </div>
             </div>
         </>
     )
