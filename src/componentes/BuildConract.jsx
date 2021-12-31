@@ -9,6 +9,7 @@ import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
+import LoadFile from './LoadFile/LoadFile';
 
 export function BuildConract() {
     const dispatch = useDispatch()
@@ -40,6 +41,12 @@ export function BuildConract() {
         // closeOnOverlayClick: false
     });
 
+    const [modalIsOpenFile = modalIsOpen] = useState(false);
+    const [ModalFile = Modal, openFile = open, closeFile = close, isOpenFile = isOpen] = useModal('root', {
+        // preventScroll: true,
+        closeOnOverlayClick: false
+    });
+
     useEffect(() => {
         dispatch(getUsers({}))
     }, [dispatch]);
@@ -57,6 +64,7 @@ export function BuildConract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
+        openFile()
         const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -70,12 +78,16 @@ export function BuildConract() {
                             c1: url
                         })
                     })
+                    .then(() => {
+                        closeFile()
+                    })
             }
         )
     };
 
     const uploadFileC2 = (file) => {
         if (!file) return;
+        openFile()
         const storageRef = refStorage(storage, `/documents/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -88,6 +100,8 @@ export function BuildConract() {
                             ...input,
                             c2: url
                         })
+                    }).then(() => {
+                        closeFile()
                     })
             }
         )
@@ -286,6 +300,13 @@ export function BuildConract() {
                             <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
                         </div>
 
+                        <ModalFile
+                            visible={modalIsOpenFile}>
+                            <div className='modal-overlay'>
+                                <LoadFile />
+                            </div>
+                        </ModalFile>
+
                         {/* <div className="labelInput">
                             <div className="labelForm">
                                 Confirma tu contraseña
@@ -346,7 +367,7 @@ export function BuildConract() {
                                         input.amount === "" ||
                                         input.coin === "" ||
                                         !checked
-                                        ? false
+                                        ? true
                                         : false
                                 }
                             >Previsualizar</button>

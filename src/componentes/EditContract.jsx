@@ -11,9 +11,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import { updateContract } from '../actions/index.js';
 import './styles/buildContract.css';
-// import { useModal } from 'react-hooks-use-modal';
+import { useModal } from 'react-hooks-use-modal';
 // import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
+import LoadFile from './LoadFile/LoadFile';
 
 export function EditContract() {
     const { id } = useParams()
@@ -40,7 +41,7 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
-        instructions: contract.conditions.instructions? contract.conditions.instructions : '',
+        instructions: contract.conditions.instructions ? contract.conditions.instructions : '',
         c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
         c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
@@ -48,9 +49,11 @@ export function EditContract() {
     })
 
     const [errors, setErrors] = useState({});
-    // const [modalIsOpen, setModalIsOpen] = useState(false);
-    // const [Modal, open, close, isOpen] = useModal('root', {
-    // });
+    const [modalIsOpen] = useState(false);
+    const [Modal, open, close, isOpen] = useModal('root', {
+        // preventScroll: true,
+        closeOnOverlayClick: false
+    });
 
     useEffect(() => {
         //dispatch(getUsers({}))
@@ -69,6 +72,7 @@ export function EditContract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
+        open()
         const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -83,12 +87,17 @@ export function EditContract() {
                         })
                         setFile1(file.name)
                     })
+                    .then(() => {
+                        close()
+                    })
             }
         )
     };
 
     const uploadFileC2 = (file) => {
         if (!file) return;
+        open()
+        console.log('ABRO MODAL')
         const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -103,8 +112,12 @@ export function EditContract() {
                         })
                         setFile2(file.name)
                     })
+                    .then(() => {
+                        close()
+                    })
             }
         )
+        console.log('CIERRE MODAL')
     };
 
     const handleInputChange = (e) => {
@@ -364,6 +377,13 @@ export function EditContract() {
                                     <div></div>
                                 }
                             </div>
+
+                            <Modal
+                                visible={modalIsOpen}>
+                                <div className='modal-overlay'>
+                                    <LoadFile />
+                                </div>
+                            </Modal>
 
                             <div className='file-group-contract'>
                                 <div class="input__row uploader">
