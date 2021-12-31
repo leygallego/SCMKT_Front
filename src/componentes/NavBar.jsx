@@ -93,7 +93,7 @@ function NavBar() {
                   )
               }
       
-      {
+      {/*
         isAuthenticated ?
           (
             // <ul className={clicked ? "menu-list" : "menu-list close"}>
@@ -138,7 +138,7 @@ function NavBar() {
 
             </ul>
           )
-      }
+          */}
 
 
     </nav>

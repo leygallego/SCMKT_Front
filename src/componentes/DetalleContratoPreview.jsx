@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
+import useMetaMask from '../hooks/useMetaMask';
 
 function DetalleContratoPreview(props) {
+
   const { dataPreview, onClose } = props
   const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
+  const { connect, disconnect, isActive, account, shouldDisable } = useMetaMask()
 
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
@@ -31,7 +34,7 @@ function DetalleContratoPreview(props) {
 
   const saveContract = (status) => {
     let nweC = {
-      wallet1: user.wallet,
+      wallet1: `${isActive ? account : 'Necesitas conectar tu wallet de MetaMask para crear un contrato'}`,
       wallet2: '',
       conditions: {
         name: contract.name,
