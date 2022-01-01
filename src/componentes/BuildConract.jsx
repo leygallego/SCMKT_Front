@@ -200,10 +200,10 @@ export function BuildConract() {
                             <div>
                                 <div className="labelForm-buildContract">Tipo</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="type" value={input.type}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
-                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
+                                    <select className="inputFormCoin" name="type">
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'type') }} ></option>
+                                        <option value="Desafío" name='Desafío' onChange={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solución" name='Solución' onChange={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
                             </div>
@@ -226,11 +226,11 @@ export function BuildConract() {
                             <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="category" value={input.category}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
-                                        <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                        <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                        <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                    <select className="inputFormCoin" name="category">
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'category') }} ></option>
+                                        <option value="Principiante" name='Principiante' onChange={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="Intermedio" name='Intermedio' onChange={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="Avanzado" name='Avanzado' onChange={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
                             </div>
@@ -254,9 +254,9 @@ export function BuildConract() {
                                 <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
                                     {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
-                                    <select className="inputFormCoin" name="coin">
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'coin') }} ></option>
-                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'coin') }}>ETH</option>
+                                    <select className="inputFormCoin" name="coin" onChange={e => { onChangeValue(e, 'coin') }}>
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'coin') }}></option>
+                                        <option value="ETH" name='ETH' onChange={e => { onChangeValue(e, 'coin') }}>ETH</option>
                                     </select>
                                 </div>
                             </div>
