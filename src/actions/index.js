@@ -434,14 +434,14 @@ export const updateContract = (contract) => {
     }
 }
 
-export const changeStatusContract = (id, status, user) => {
+export const changeStatusContract = (id, status, user, previous) => {
     return async (dispatch) => {
         dispatch({
             type: SET_CONTRACT_STATUS,
-            payload: { status, clientId: user }
+            payload: { status, clientId: user, previous }
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
-        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
+        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user, previous: previous })
             .then(() => {
                 // console.log("registrado correctamente", response);
             })
