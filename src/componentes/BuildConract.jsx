@@ -367,7 +367,7 @@ export function BuildConract() {
                                         input.amount === "" ||
                                         input.coin === "" ||
                                         !checked
-                                        ? true
+                                        ? false
                                         : false
                                 }
                             >Previsualizar</button>
