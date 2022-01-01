@@ -200,10 +200,10 @@ export function BuildConract() {
                             <div>
                                 <div className="labelForm-buildContract">Tipo</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="type" value={input.type}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
-                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
+                                    <select className="inputFormCoin" name="type">
+                                        <option value="" name='' onClick={e => onChangeValue(e, 'type')} ></option>
+                                        <option value="Desafío" name='Desafío' onClick={e => onChangeValue(e, 'type')}>Desafío</option>
+                                        <option value="Solución" name='Solución' onClick={e => onChangeValue(e, 'type')} >Solución</option>
                                     </select>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@ export function BuildConract() {
                             <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
-                                    <select className="inputFormCoin" name="category" value={input.category}>
+                                    <select className="inputFormCoin" name="category">
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
                                         <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
                                         <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
@@ -367,7 +367,7 @@ export function BuildConract() {
                                         input.amount === "" ||
                                         input.coin === "" ||
                                         !checked
-                                        ? true
+                                        ? false
                                         : false
                                 }
                             >Previsualizar</button>
