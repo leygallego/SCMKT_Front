@@ -2,6 +2,9 @@ import axios from 'axios';
 import '../firebase';
 import { getDatabase, ref, onValue, set, push, get, child } from 'firebase/database';
 import { NODE_ENV, urlProduction1, urlProduction, urlDevelop, port1 } from '../config/app.config.js';
+import { Octokit } from 'octokit';
+//import {createOAuthAppAuth} from '@octokit/auth-oauth-app';
+const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
 
 
 export const GET_USERS = 'GET_USERS'
@@ -88,6 +91,26 @@ export const searchChannel = (channel) => {
             })
     }
 }
+
+/*
+export const createrepo = (user, token, name) => {
+    const octokit = new Octokit({
+        authStrategy: createOAuthAppAuth,
+        auth: token,
+      });
+    
+    try{
+        return async (dispatch) => {
+            await octokit.request(`POST /${user}/repos`, {
+                name: name,
+              })
+            }
+
+    }catch(e){console.log(e)}
+    
+    
+}
+*/
 
 export const setChannel = (channel) => {
     return (dispatch) => {

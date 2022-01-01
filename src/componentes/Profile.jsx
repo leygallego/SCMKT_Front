@@ -3,7 +3,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading, createrepo } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
@@ -13,8 +13,18 @@ import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
-
+import { Octokit, App } from "octokit";
+//import { createOAuthAppAuth } from "octokit-auth-oauth-app";
 import useMetaMask from '../hooks/useMetaMask'
+const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+const {PersonalToken} = process.env;
+
+
+
+
+
+
 
 toast.configure()
 
@@ -40,19 +50,25 @@ function Profile() {
         // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
     }, [dispatch])
-
+    
+    
     const {
         getAccessTokenSilently,
     } = useAuth0();
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
+        
         try {
-            dispatch(sendLogin(token))
+            await dispatch(sendLogin(token))
         } catch (error) {
             console.log('Error en el perfil ', error)
         }
     }
+
+    
+
+    //createrepo(user.name, 'prueba');
 
     const handleOnChange = (e) => {
         setRegistro({
@@ -81,6 +97,29 @@ function Profile() {
         toast('Has editado tus datos')
     }
 
+
+    async function createRepo2() {
+        const octokit = new Octokit({
+            authStrategy: createOAuthAppAuth,
+            auth: PersonalToken,
+          });
+
+          await octokit.request(`POST /${user.username}/repos`, {
+            name: 'prueba',
+          })
+
+          console.log('repo creado')
+        }
+
+
+
+
+    
+
+
+    
+    
+    
 
     return (
         <>
@@ -114,6 +153,11 @@ function Profile() {
                         onClick={isActive ? disconnect : connect}>
                         {isActive ? 'Desconectar' : 'Conectar Wallet'}
                     </Button>
+                    <Button onClick = { createRepo2()}>
+                        Crear Repositorio
+                    </Button>
+                
+                    
                     </div>
 
                     <div className="datos-personales" >
