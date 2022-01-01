@@ -67,8 +67,8 @@ function DetalleContrato() {
         dispatch(changeStatusContract(contractId, status, clientId))
     }
 
-    function unsubscribe(contractId, status) {
-        dispatch(changeStatusContract(contractId, status, null))
+    function unsubscribe(contractId, status, previous) {
+        dispatch(changeStatusContract(contractId, status, null, previous))
     }
 
     return (
@@ -161,7 +161,7 @@ function DetalleContrato() {
                                             ? <Button
                                                 className="aceptar-contratos"
                                                 variant="contained"
-                                                onClick={() => unsubscribe(contract.id, 'published')}
+                                                onClick={() => unsubscribe(contract.id, 'published', user.id)}
                                             >Desuscribir</Button>
                                             : <Button
                                                 className="aceptar-contratos"
