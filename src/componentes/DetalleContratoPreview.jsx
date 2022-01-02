@@ -112,12 +112,7 @@ function DetalleContratoPreview(props) {
 
   return (
     <div className='preview-content'>
-      <Button
-                className="aceptar-contratos"
-                variant="contained"
-                onClick={handleOnSubmit}
-              >Guardar Borrador</Button>
-      <div><h1>Detalle Contrato</h1></div>
+      
       <div className="main-detalle">
         {
           // contract?.name ?
