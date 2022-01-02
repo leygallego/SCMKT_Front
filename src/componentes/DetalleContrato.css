@@ -2,6 +2,10 @@
   display: grid;
 }
 
+.wraper-detalle{
+  margin-top: 14%;
+}
+
 .detalle-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: white;
@@ -31,4 +35,20 @@
   background-color: white;
   max-height: 260px;
   overflow: hidden;
+}
+
+.input-reach-text-disabled {
+  border: transparent;
+  color: black;
+  padding: 2px;
+  min-height: 400px;
+  font-weight: normal;  
+}
+
+.input-reach-text-disabled span {
+  border: transparent;
+  color:black;
+  padding: 2px;
+  min-height: 400px;
+  /* font-weight: normal; */
 }

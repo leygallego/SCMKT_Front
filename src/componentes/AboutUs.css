@@ -1,4 +1,5 @@
 .about-container{
+    margin-top: 14%;
     display: grid;
     background-color: #0078E7;
     width: 100%;
@@ -12,6 +13,7 @@
 .decorative-about img{
     display: grid;
     margin-left: 50%;
+    width: auto;
     height: 100%;
 }
 
@@ -24,7 +26,7 @@
     height: auto;
     width: 18.75em;
     border-radius: 20px;
-    margin: -90% 15% 15% 12%;
+    margin: 10% 15% 15% 12%;
     text-align: justify;    
     padding: 2% 5% 5% 5%;
 
@@ -43,25 +45,7 @@
     color: #000000;
     font-size: 18px;     }
 
-    .leyder img{
-        border: solid;
-        width: 6.25em;
-        height: 6.25em;
-        border-radius: 50%;
-        margin-left: -159%;
-        margin-top: 8%;
-    }
-    .benito img{
-        display: grid;
-        margin-left: 50%;
-        height: 100%;
-        border: solid;
-        width: 6.25em;
-        height: 6.25em;
-        border-radius: 50%;
-        margin-left: 66%;
-        margin-top: -53%;
-    }
+    
     
 
 
@@ -69,63 +53,53 @@
 
  @media screen and (max-width: 800px){
 
-        /* .benito{
-         display: none;
-     }
-     .leyder{
-         display: none;
-     } */
+       
 
      .decorative-about img{
-        display: none;
+        display: grid;
         
     }
 
-     .texto-about{
-    
-        display: flex;
-        flex-direction: column;
-        background-color: #C4C4C4;
-        height: 50em;
-        width: 22.75em;
-        border-radius: 20px;
-        margin: 5% 35% 35% 2%;
-        text-align: justify;    
-        padding: 2% 5% 5% 5%;
-    
-    
+    .about-container{
+
+        grid-template-areas:
+        "decorative-about   texto-about"    
     }
 
-    .leyder img{
-        border: solid;
-        width: 6.25em;
-        height: 6.25em;
-        border-radius: 50%;
-        margin-left: 29%;
-        margin-top: 8%;
-
-    }
-    .benito img{
-        display: grid;
-        margin-left: 50%;
+    .decorative-about img{
+        margin-left: 10%;
+        width: auto;
         height: 100%;
-        border: solid;
-        width: 6.25em;
-        height: 6.25em;
-        border-radius: 50%;
-        margin-left: 95%;
-        margin-top: -40%;
     }
+
+    .texto-about{
+    
+       
+        margin-left: 2%;
+        
+    
+    
+    }
+
+   
 
 
  }
 
  @media screen and (max-width:600px ) {
 
-    .benito{
-        display: none;
+    .about-container{
+        grid-template-areas:
+        "decorative-about"
+        "texto-about"
     }
-    .leyder{
-        display: none;
+
+    .texto-about{
+    
+       
+        margin-left: 14%;
+        
+    
+    
     }
  }

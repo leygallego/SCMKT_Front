@@ -9,6 +9,13 @@ import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
+import LoadFile from './LoadFile/LoadFile';
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { ContentState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 export function BuildConract() {
     const dispatch = useDispatch()
@@ -17,7 +24,7 @@ export function BuildConract() {
     const [checked, setChecked] = useState(false);
     const [input, setInput] = useState({
         id: '',
-        wallet1: user.wallet,
+        wallet1: '',
         wallet2: '',
         name: '',
         type: '',
@@ -40,6 +47,40 @@ export function BuildConract() {
         // closeOnOverlayClick: false
     });
 
+    const [modalIsOpenFile = modalIsOpen] = useState(false);
+    const [ModalFile = Modal, openFile = open, closeFile = close, isOpenFile = isOpen] = useModal('root', {
+        // preventScroll: true,
+        closeOnOverlayClick: false
+    });
+
+    const html = `${input.shortdescription}`
+    const contentBlock = htmlToDraft(html);
+
+    const [contentState, setContentState] = useState(
+        contentBlock ?
+            ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            : null
+    )
+
+    const [editorState, setEditorState] = useState(() =>
+        // EditorState.createEmpty()
+        EditorState.createWithContent(contentState)
+    );
+
+    const htmlLong = `${input.longdescription}`
+    const contentBlockLong = htmlToDraft(htmlLong);
+
+    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+        contentBlockLong ?
+            ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
+            : null
+    )
+
+    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+        // EditorState.createEmpty()
+        EditorState.createWithContent(contentStateLong)
+    );
+
     useEffect(() => {
         dispatch(getUsers({}))
     }, [dispatch]);
@@ -57,6 +98,7 @@ export function BuildConract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
+        openFile()
         const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -70,12 +112,16 @@ export function BuildConract() {
                             c1: url
                         })
                     })
+                    .then(() => {
+                        closeFile()
+                    })
             }
         )
     };
 
     const uploadFileC2 = (file) => {
         if (!file) return;
+        openFile()
         const storageRef = refStorage(storage, `/documents/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -88,12 +134,15 @@ export function BuildConract() {
                             ...input,
                             c2: url
                         })
+                    }).then(() => {
+                        closeFile()
                     })
             }
         )
     };
 
     const handleInputChange = (e) => {
+        console.log(e.target.value)
         if (e.target.name === 'file-c1') {
             uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
@@ -114,7 +163,9 @@ export function BuildConract() {
         e.preventDefault();
         setInput({
             ...input,
-            [name]: e.target.value
+            [name]: e.target.value,
+            shortdescription: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+            longdescription: draftToHtml(convertToRaw(editorStateLong.getCurrentContent()))
         })
         setErrors(validate({
             ...input,
@@ -136,7 +187,7 @@ export function BuildConract() {
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -150,117 +201,144 @@ export function BuildConract() {
         const nameEvent = e.target.name;
 
         if (e.target.value === '' || /^[0-9\b]+$/.test(e.target.value)) {
-            console.log('asdf')
             setInput({
                 ...input,
-                [nameEvent]: e.target.value
+                [nameEvent]: e.target.value,
+                shortdescription: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+                longdescription: draftToHtml(convertToRaw(editorStateLong.getCurrentContent()))
             })
         }
     }
 
+    const showPrevious = () => {
+        setInput({
+            ...input,
+            shortdescription: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+            longdescription: draftToHtml(convertToRaw(editorStateLong.getCurrentContent())),
+        })
+
+        open()
+    }
+
     return (
         <>
-            <div className="contractComponent">
-                <div className="contractForm">
-                    {/* <form action={(e) => { handleOnSubmit(e) }}> */}
-                    <form className='contractForm-form' onSubmit={handleOnSubmit}>
-                        <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
-                        <div className="labelInput">
-                            <div className="labelForm-buildContract">Nombre del Contrato</div>
-                            <div className="inputForm">
-                                <input
-                                    className="inputFormCComponent"
-                                    type="text"
-                                    name="name"
-                                    onChange={e => { handleInputChange(e) }}
-                                    onBlur={(e) => validate(e.target.name)}
-                                />
-                            </div>
-                        </div>
-
-                        <div className='combo'>
-                            <div>
-                                <div className="labelForm-buildContract">Tipo</div>
-                                <div className="inputForm">
-                                    <select className="inputFormCoin" name="type" value={input.type}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
-                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
-                                    </select>
-                                </div>
-                            </div>
-
+            <div className='wraper-crear' >
+                <div className="contractComponent">
+                    <div className="contractForm">
+                        {/* <form action={(e) => { handleOnSubmit(e) }}> */}
+                        <form className='contractForm-form' onSubmit={handleOnSubmit}>
+                            <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Tiempo</div>
+                                <div className="labelForm-buildContract">Nombre del Contrato</div>
                                 <div className="inputForm">
                                     <input
                                         className="inputFormCComponent"
                                         type="text"
-                                        name="duration"
-                                        value={input.duration}
-                                        min="0"
-                                        onChange={onChangeDuration}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div>
-                                <div className="labelForm-buildContract">Categoría</div>
-                                <div className="inputForm">
-                                    <select className="inputFormCoin" name="category" value={input.category}>
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'category') }} ></option>
-                                        <option value="Principiante" name='Principiante' onClick={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                        <option value="Intermedio" name='Intermedio' onClick={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                        <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='combo'>
-                            <div>
-                                <div className="labelForm-buildContract">Recompensa</div>
-                                <div className="inputForm">
-                                    <input
-                                        className="inputFormReward"
-                                        type="number"
-                                        step="0.00000001"
-                                        name="amount"
+                                        name="name"
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
                                 </div>
                             </div>
-                            <div>
-                                <div className="labelForm-buildContract">Moneda</div>
-                                <div className="inputForm">
-                                    {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
-                                    <select className="inputFormCoin" name="coin">
-                                        <option value="" name='' onClick={e => { onChangeValue(e, 'coin') }} ></option>
-                                        <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'coin') }}>ETH</option>
-                                    </select>
+
+                            <div className='combo'>
+                                <div>
+                                    <div className="labelForm-buildContract">Tipo</div>
+                                    <div className="inputForm">
+                                        <select className="inputFormCoin" name="type">
+                                            <option value="" name='' onChange={e => { onChangeValue(e, 'type') }} ></option>
+                                            <option value="Desafío" name='Desafío' onChange={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                            <option value="Solución" name='Solución' onChange={e => { onChangeValue(e, 'type') }}>Solución</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="labelInput">
+                                    <div className="labelForm-buildContract">Tiempo</div>
+                                    <div className="inputForm">
+                                        <input
+                                            className="inputFormCComponent"
+                                            type="text"
+                                            name="duration"
+                                            value={input.duration}
+                                            min="0"
+                                            onChange={onChangeDuration}
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div>
+                                    <div className="labelForm-buildContract">Categoría</div>
+                                    <div className="inputForm">
+                                        <select className="inputFormCoin" name="category">
+                                            <option value="" name='' onChange={e => { onChangeValue(e, 'category') }} ></option>
+                                            <option value="Principiante" name='Principiante' onChange={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                            <option value="Intermedio" name='Intermedio' onChange={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                            <option value="Avanzado" name='Avanzado' onChange={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="labelInput">
-                            <div className="labelForm-buildContract">Describe tu problema en pocas palabras</div>
-                            <div className="inputForm">
+                            <div className='combo'>
+                                <div>
+                                    <div className="labelForm-buildContract">Recompensa</div>
+                                    <div className="inputForm">
+                                        <input
+                                            className="inputFormReward"
+                                            type="number"
+                                            min="0.00000001"
+                                            max="100"
+                                            step="0.00000001"
+                                            name="amount"
+                                            onChange={e => { handleInputChange(e) }}
+                                            onBlur={(e) => validate(e.target.name)}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <div className="labelForm-buildContract">Moneda</div>
+                                    <div className="inputForm">
+                                        {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
+                                        <select className="inputFormCoin" name="coin" onChange={e => { onChangeValue(e, 'coin') }}>
+                                            <option value="" name='' onChange={e => { onChangeValue(e, 'coin') }}></option>
+                                            <option value="ETH" name='ETH' onChange={e => { onChangeValue(e, 'coin') }}>ETH</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="labelInput">
+                                <div className="labelForm-buildContract">Describe tu problema en pocas palabras
+                                </div>
+                                {/* <div className="inputForm">
                                 <textarea
                                     className="inputFormCComponent"
                                     type="text"
                                     name="shortdescription"
                                     onChange={e => { handleInputChange(e) }}
                                     rows="2"
-                                /></div>
-                        </div>
-
-                        <div className="labelInput">
-                            <div className="labelForm-buildContract">
-                                Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
+                                />
+                                </div> */}
+                                <div className='input-reach-text'>
+                                    <Editor
+                                        editorState={editorState}
+                                        onEditorStateChange={setEditorState}
+                                        defaultContentState={contentState}
+                                        onContentStateChange={setContentState}
+                                        toolbarClassName="toolbarClassName"
+                                        wrapperClassName="wrapperClassName"
+                                    />
+                                </div>
                             </div>
-                            <div className="inputForm">
+
+
+                            <div className="labelInput">
+                                <div className="labelForm-buildContract">
+                                    Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
+                                </div>
+                                {/* <div className="inputForm">
                                 <textarea
                                     className="inputFormCComponent"
                                     type="text"
@@ -270,25 +348,42 @@ export function BuildConract() {
                                 // maxlength="15000"
                                 // onBlur={(e) => validate(e.target.name)}
                                 />
+                            </div> */}
+                                <div className='input-reach-text'>
+                                    <Editor
+                                        editorState={editorStateLong}
+                                        onEditorStateChange={setEditorStateLong}
+                                        defaultContentState={contentStateLong}
+                                        onContentStateChange={setContentStateLong}
+                                        toolbarClassName="toolbarClassName"
+                                        wrapperClassName="wrapperClassName"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="labelInput-combo">
-                            <div className="labelForm-archivoTest">
-                                Sube tu archivo de test.js
+                            <div className="labelInput-combo">
+                                <div className="labelForm-archivoTest">
+                                    Sube tu archivo de test.js
+                                </div>
+                                <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                                <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
                             </div>
-                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                        </div>
 
-                        {/* <div className="labelInput">
+                            <ModalFile
+                                visible={modalIsOpenFile}>
+                                <div className='modal-overlay'>
+                                    <LoadFile />
+                                </div>
+                            </ModalFile>
+
+                            {/* <div className="labelInput">
                             <div className="labelForm">
                                 Confirma tu contraseña
                             </div>
                             <div className="inputForm"><input className="inputFormCComponent" type="password" name="password" onChange={e => { handleInputChange(e) }} /></div>
                         </div> */}
 
-                        {/* <div className="labelInput">
+                            {/* <div className="labelInput">
                             <div className="labelForm-buildContract terms">
                                 Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario
                             </div>
@@ -304,66 +399,67 @@ export function BuildConract() {
                             </div>
                         </div> */}
 
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={checked}
-                                    // value={checked}
-                                    size='medium'
-                                    inputProps={{ 'aria-label': 'Checkbox A' }}
-                                    color="default"
-                                    onChange={() => setChecked(!checked)}
-                                />
-                            }
-                            label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
-                        />
-
-                        <h1></h1>
-                        <div className='group-button-build'>
-                            <button
-                                type='submit'
-                                className={
-                                    input.name === "" ||
-                                        input.shortdescription === "" ||
-                                        input.longdescription === "" ||
-                                        input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
-                                        ? "acept-contract acept-contract-disable"
-                                        : "acept-contract"
-                                }
-                                // variant="outlined"
-                                onClick={open}
-                                disabled={
-                                    input.name === "" ||
-                                        input.shortdescription === "" ||
-                                        input.longdescription === "" ||
-                                        input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
-                                        ? false
-                                        : false
-                                }
-                            >Previsualizar</button>
-
-                            <button
-                                className="acept-contract"
-                                onClick={cancelPublished}>Cancelar</button>
-                        </div>
-                        <div className={isOpen ? '' : ''} visible={isOpen}>
-                            <Modal
-                                visible={modalIsOpen}>
-                                <div className='modal-overlay'>
-                                    <DetalleContratoPreview
-                                        visible={close}
-                                        onClose={close}
-                                        dataPreview={input}
-                                    // close={close}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={checked}
+                                        // value={checked}
+                                        size='medium'
+                                        inputProps={{ 'aria-label': 'Checkbox A' }}
+                                        color="default"
+                                        onChange={() => setChecked(!checked)}
                                     />
-                                </div>
-                            </Modal>
-                        </div>
-                    </form>
+                                }
+                                label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
+                            />
+
+                            <h1></h1>
+                            <div className='group-button-build'>
+                                <button
+                                    type='submit'
+                                    className={
+                                        input.name === "" ||
+                                            input.shortdescription === "" ||
+                                            input.longdescription === "" ||
+                                            input.amount === "" ||
+                                            input.coin === "" ||
+                                            !checked
+                                            ? "acept-contract acept-contract-disable"
+                                            : "acept-contract"
+                                    }
+                                    // variant="outlined"
+                                    onClick={showPrevious}
+                                    disabled={
+                                        input.name === "" ||
+                                            input.shortdescription === "" ||
+                                            input.longdescription === "" ||
+                                            input.amount === "" ||
+                                            input.coin === "" ||
+                                            !checked
+                                            ? false
+                                            : false
+                                    }
+                                >Previsualizar</button>
+
+                                <button
+                                    className="acept-contract"
+                                    onClick={cancelPublished}>Cancelar</button>
+                            </div>
+                            <div className={isOpen ? '' : ''} visible={isOpen}>
+                                <Modal
+                                    visible={modalIsOpen}>
+                                    <div className='modal-overlay'>
+                                        <DetalleContratoPreview
+                                            visible={close}
+                                            onClose={close}
+                                            dataPreview={input}
+                                        // close={close}
+                                        />
+                                    </div>
+                                </Modal>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </>

@@ -10,6 +10,12 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import ChatIcon from '@mui/icons-material/Chat';
 import CloseIcon from '@mui/icons-material/Close';
 import Loader from './Loader';
+import { useModal } from 'react-hooks-use-modal';
+import ContractStepsResolve from './ContractStepsResolve';
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
+import { ContentState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
 
 function DetalleContrato() {
     const { id } = useParams();
@@ -18,11 +24,44 @@ function DetalleContrato() {
     const user = useSelector(state => state.user);
     const contract = useSelector(state => state.contract);
     const loading = useSelector(state => state.loading);
+
     const suscribed = useSelector(state => state.userSuscribed);
-    // console.log("CONTRACT =====", contract);
     const { getAccessTokenSilently } = useAuth0();
 
     const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
+
+    const [modalIsOpen] = useState(false);
+    const [Modal, open, close, isOpen] = useModal('root', {
+        // preventScroll: true,
+        // closeOnOverlayClick: false
+    });
+
+    let html = `${contract?.conditions?.shortdescription? contract?.conditions?.shortdescription : '<div></div>'}`
+    let contentBlock = htmlToDraft(html);
+    
+    const [contentState, setContentState] = useState(
+        contentBlock? 
+            ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            : null
+    )
+
+    const [editorState, setEditorState] = useState(() =>
+        //EditorState.createEmpty()
+        EditorState.createWithContent(contentState)
+    );
+
+    let htmlLong = `${contract?.conditions?.longdescription? contract?.conditions?.longdescription : '<div></div>'}`
+    let contentBlockLong = htmlToDraft(htmlLong);
+    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+        contentBlockLong? 
+            ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
+            : null
+    )
+
+    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+        //EditorState.createEmpty()
+        EditorState.createWithContent(contentStateLong)
+    );
 
     useEffect(() => {
         dispatch(setLoading(true))
@@ -62,8 +101,8 @@ function DetalleContrato() {
         dispatch(changeStatusContract(contractId, status, clientId))
     }
 
-    function unsubscribe(contractId, status) {
-        dispatch(changeStatusContract(contractId, status, null))
+    function unsubscribe(contractId, status, previous) {
+        dispatch(changeStatusContract(contractId, status, null, previous))
     }
 
     const chatSuscribed = (id1, id2) => {
@@ -89,9 +128,9 @@ function DetalleContrato() {
         <>
             {loading
                 ? <Loader />
-                : <div>
+                : <div className='wraper-detalle'>
 
-                    <div><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
+                    <div className='titulo-detalle' ><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
                     <div className="main-detalle">
 
                         {contract?.conditions?.name ?
@@ -135,19 +174,59 @@ function DetalleContrato() {
 
 
                                 <h2>{contract.conditions.name}</h2>
-                                <p>{contract.conditions.type}</p>
-                                <p>{contract.conditions.duration}</p>
-                                <p>{contract.conditions.category}</p>
-                                <p>{contract.conditions.shortdescription}</p>
-                                <p>{contract.conditions.longdescription}</p>
+                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
+                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
+                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
+                                {/* <p>{contract.conditions.shortdescription}</p> */}
+                                <div className='input-reach-text-disabled'>
+                                    <Editor
+                                        toolbarHidden
+                                        readOnly={true}
+                                        editorState={editorState}
+                                        onEditorStateChange={setEditorState}
+                                        defaultContentState={contentState}
+                                        onContentStateChange={setContentState}
+                                        wrapperClassName="wrapper-class"
+                                        editorClassName="editor-class"
+                                        toolbarClassName="toolbar-class"
+                                    />
+                                </div>
+                                {/* <p>{contract.conditions.longdescription}</p> */}
+                                <div className='input-reach-text-disabled' >
+                                    <Editor
+                                        toolbarHidden
+                                        readOnly={true}
+                                        editorState={editorStateLong}
+                                        onEditorStateChange={setEditorStateLong}
+                                        defaultContentState={contentStateLong}
+                                        onContentStateChange={setContentStateLong}
+                                        wrapperClassName="wrapper-class"
+                                        editorClassName="editor-class"
+                                        toolbarClassName="toolbar-class"
+                                    />
+                                </div>
                                 <h1><span>{contract.conditions.amount}</span> </h1>
+
+                                <div className={isOpen ? '' : ''} visible={isOpen}>
+                                    <Modal
+                                        visible={modalIsOpen}>
+                                        <div className='modal-overlay'>
+                                            <ContractStepsResolve
+                                                id={contract.id}
+                                                visible={close}
+                                                onClose={close}
+                                            // close={close}
+                                            />
+                                        </div>
+                                    </Modal>
+                                </div>
 
                                 <div className="group-button-build">
                                     <Button
                                         className="aceptar-contratos"
                                         variant="contained"
                                         onClick={handleClick}
-                                    >Aceptar</Button>
+                                    >Regresar</Button>
 
                                     {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
                                         ? <div>
@@ -159,13 +238,24 @@ function DetalleContrato() {
                                         : <></>
                                     }
 
+                                    {(contract.status === 'taken' && ((contract.clientId && contract.clientId === user.id) || contract.owner.id === user.id))
+                                        ? <div>
+                                            <Button
+                                                className="aceptar-contratos"
+                                                variant="contained"
+                                                onClick={open}
+                                            >Resolver</Button>
+                                        </div>
+                                        : <></>
+                                    }
+
                                     {(contract.status === 'complete' || (contract.clientId && contract.clientId !== user.id) || contract.owner.id === user.id)
                                         ? <></>
                                         : contract.status === 'taken'
                                             ? <Button
                                                 className="aceptar-contratos"
                                                 variant="contained"
-                                                onClick={() => unsubscribe(contract.id, 'published')}
+                                                onClick={() => unsubscribe(contract.id, 'published', user.id)}
                                             >Desuscribir</Button>
                                             : <Button
                                                 className="aceptar-contratos"

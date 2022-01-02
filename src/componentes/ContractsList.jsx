@@ -26,7 +26,7 @@ const ContractsList = (props) => {
         Swal.fire({
             title: `¿Está seguro de eliminar ${eraser.length} contrato(s)?`,
             showDenyButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
