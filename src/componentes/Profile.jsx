@@ -16,14 +16,23 @@ import Loader from './Loader';
 import { Octokit, App } from "octokit";
 //import { createOAuthAppAuth } from "octokit-auth-oauth-app";
 import useMetaMask from '../hooks/useMetaMask'
-const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
+const { createOAuthAppAuth, createOAuthDeviceAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
-const {PersonalToken} = process.env;
 
-
-
-
-
+const octokit = new Octokit({
+    // authStrategy: createOAuthAppAuth,
+    // auth: {
+    //   //clientType: 'oauth-app',
+    //   clientId: 'd1caa78b0df97e743827',
+    //   scopes: ['user', 'public_repo', 'repo'],
+    //   onVerification(verification) {
+    //     console.log('Open %s', verification.verification_uri);
+    //     console.log('Enter code: %s', verification.user_code);
+    //   },
+    // },
+    //auth: process.env.TOKEN
+    
+})
 
 
 toast.configure()
@@ -66,9 +75,16 @@ function Profile() {
         }
     }
 
-    
+    async function getRepo() {
 
-    //createrepo(user.name, 'prueba');
+        octokit.request('POST /user/repos', {
+            name: 'prueba-diff-auth1'
+        }).then(console.log, console.log);
+
+        // octokit.request('GET /user')
+        //     .then(console.log, console.log);
+      
+    }
 
     const handleOnChange = (e) => {
         setRegistro({
@@ -97,29 +113,6 @@ function Profile() {
         toast('Has editado tus datos')
     }
 
-
-    async function createRepo2() {
-        const octokit = new Octokit({
-            authStrategy: createOAuthAppAuth,
-            auth: PersonalToken,
-          });
-
-          await octokit.request(`POST /${user.username}/repos`, {
-            name: 'prueba',
-          })
-
-          console.log('repo creado')
-        }
-
-
-
-
-    
-
-
-    
-    
-    
 
     return (
         <>
@@ -153,11 +146,17 @@ function Profile() {
                         onClick={isActive ? disconnect : connect}>
                         {isActive ? 'Desconectar' : 'Conectar Wallet'}
                     </Button>
-                    <Button onClick = { createRepo2()}>
-                        Crear Repositorio
-                    </Button>
-                
-                    
+                    </div>
+                        
+                    <div className="boton-wallet">
+                        <Button
+                            className="busca-wallet"
+                            variant="contained"
+                            startIcon={<AccountBalanceWalletIcon />}
+                            //user.username, 'repo-prueba-00'
+                            onClick={getRepo}>
+                            Crear Repositorio
+                        </Button>
                     </div>
 
                     <div className="datos-personales" >

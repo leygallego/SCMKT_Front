@@ -43,6 +43,8 @@ export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
 export const SET_LOADING = 'SET_LOADING';
+require('dotenv').config();
+// const {PersonalToken} = process.env;
 
 const database = getDatabase();
 
@@ -92,25 +94,28 @@ export const searchChannel = (channel) => {
     }
 }
 
-/*
-export const createrepo = (user, token, name) => {
-    const octokit = new Octokit({
-        authStrategy: createOAuthAppAuth,
-        auth: token,
-      });
-    
-    try{
-        return async (dispatch) => {
-            await octokit.request(`POST /${user}/repos`, {
-                name: name,
-              })
-            }
+// const octokit = new Octokit({
+//         //authStrategy: createOAuthAppAuth,
+//         auth: process.env.PersonalToken,
+//       });
 
-    }catch(e){console.log(e)}
+// export const createrepo = () => {
+
+    
+//     try {
+//         return async (dispatch) => {
+//             await octokit.request(`GET /repos/{owner}/{repo}`, {
+//                 owner: 'zzzNitro',
+//                 repo: 'Countries_PI'
+//               })
+//               .then(console.log(response.data))
+//         }
+
+//     } catch(e) { console.log(e) }
     
     
-}
-*/
+// }
+
 
 export const setChannel = (channel) => {
     return (dispatch) => {
