@@ -15,6 +15,7 @@ import { useModal } from 'react-hooks-use-modal';
 // import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
 import LoadFile from './LoadFile/LoadFile';
+import './styles/EdictContract.css';
 
 export function EditContract() {
     const { id } = useParams()
@@ -248,7 +249,7 @@ export function EditContract() {
                         {/* <br/><br/> */}
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Nombre del Contrato</div>
-                            <div className="inputForm">
+                            <div className="inputForm-nombre">
                                 <input
                                     className="inputFormCComponent"
                                     type="text"

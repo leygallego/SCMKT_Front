@@ -75,7 +75,7 @@ function Contratos() {
             <div className='pagination-style'>
                 <Pagination
                     count={count}
-                    size="large"
+                    size="small"
                     variant="outlined"
                     shape="rounded"
                     page={page}

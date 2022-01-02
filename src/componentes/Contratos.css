@@ -67,19 +67,23 @@
 }
 
 @media screen and (max-width: 800px){
-.wraper.contratos{
+/* .wraper.contratos{
   margin-top: 50%;
   background-color: yellow;
-}
+} */
 
 .pagination-estilo {
   
-  margin-top: 50%;
+  margin-top: 68%;
   
 }
 .searcbar.mode{
   margin-top: 50%;
   display: flex;
+}
+
+.container-contratos{
+  margin-top: 24%;
 }
 
 
