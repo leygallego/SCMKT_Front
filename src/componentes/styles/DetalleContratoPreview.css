@@ -5,11 +5,18 @@
   -o-background-size: repeat;
   background-size: repeat;
   background-repeat: repeat;
+  display: flex;
+  flex-direction: column;
 
-  width: 100%;
+  width: 70%;
+  max-height: 700px;
   border-radius: 30px;
   margin-top: 14%;
+  margin-left: 10%;
 }
+/* .main-detalle{
+  background-color: yellow;
+} */
 
 .group-button-preview{
   display: flex;

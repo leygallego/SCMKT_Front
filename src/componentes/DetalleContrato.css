@@ -12,10 +12,12 @@
   color: black;
   font-size: 18px;
   font-family: "Poppins", sans-serif;
-  width: 75%;
-  margin-left: 15%;
+  width: 500px;
+  height: 500px;
+  margin-left: 12%;
   border-radius: 30px;
   padding: 10px;
+  text-align: center;
 }
 
 .detalle-card span {
@@ -41,7 +43,7 @@
   border: transparent;
   color: black;
   padding: 2px;
-  min-height: 400px;
+  /* min-height: 400px; */
   font-weight: normal;  
 }
 
@@ -49,6 +51,7 @@
   border: transparent;
   color:black;
   padding: 2px;
-  min-height: 400px;
+  /* min-height: 400px; */
   /* font-weight: normal; */
 }
+
