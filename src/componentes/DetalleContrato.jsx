@@ -3,7 +3,7 @@ import './DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { getContractsByID, removeContract, sendLogin, changeStatusContract, setChat, eraseMessage, setLoading } from "../actions";
+import { getContractsByID, removeContract, sendLogin, changeStatusContract, setChat, eraseMessage, setLoading, getUserSuscribed, searchSuscribed, choosedUser } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
@@ -24,6 +24,8 @@ function DetalleContrato() {
     const user = useSelector(state => state.user);
     const contract = useSelector(state => state.contract);
     const loading = useSelector(state => state.loading);
+
+    const suscribed = useSelector(state => state.userSuscribed);
     const { getAccessTokenSilently } = useAuth0();
 
     const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
@@ -64,6 +66,9 @@ function DetalleContrato() {
     useEffect(() => {
         dispatch(setLoading(true))
         dispatch(callProtectedApi);
+        if (contract.clientId) {
+            dispatch(getUserSuscribed(contract.clientId));
+        }
         return () => {
             dispatch(removeContract())
         }
@@ -86,20 +91,37 @@ function DetalleContrato() {
 
     function handleClick() {
         dispatch(setChat(false));
-        // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
         history.push("/contratos");
     }
 
     function subscribe(contractId, status, clientId) {
         dispatch(setChat(false));
-        // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
         dispatch(changeStatusContract(contractId, status, clientId))
     }
 
     function unsubscribe(contractId, status, previous) {
         dispatch(changeStatusContract(contractId, status, null, previous))
+    }
+
+    const chatSuscribed = (id1, id2) => {
+        console.log("Chat privado...", id1, id2)
+        console.log('chatSuscribed', suscribed)
+        dispatch(searchSuscribed(
+            {
+                "id1": id1,
+                "id2": id2
+            }
+        ));
+        dispatch(choosedUser(
+            {
+                "name": suscribed.name,
+                "id": suscribed.id,
+                "image": suscribed.image
+            },
+        ));
+        openChat();
     }
 
     return (
@@ -115,13 +137,28 @@ function DetalleContrato() {
                             <div className="detalle-card">
                                 <div className='contractDetailButton'>
                                     <div className='contractsChat'>
-                                        <Button
+
+                                        {contract.clientId ? <div>
+                                            <div className="userDataComponent">
+                                                <div className="caja">
+                                                    <div className="box">
+                                                        <img src={suscribed.image}
+                                                            width="60"
+                                                            alt='suscrito'
+                                                            onClick={() => { chatSuscribed(user.id, contract.clientId) }}
+                                                        />                    </div>
+                                                </div>
+                                                <h5>Suscrito</h5>
+
+                                            </div>
+
+                                        </div> : <Button
                                             className="chatIcon"
                                             variant="error"
                                             startIcon={<ChatIcon />}
                                             onClick={openChat}
                                             size='lg'
-                                        />
+                                        />}
                                     </div>
 
                                     <div className="xButton">

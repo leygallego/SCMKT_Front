@@ -10,7 +10,8 @@ export default function SenderMessage() {
     const logged = useSelector(state => state.user);
 
     const handleOnChange = (e) => {
-        setMessage(e.target.value)
+        setMessage(e.target.value);
+        console.log("Mensaje a enviar al canal: ", channelChatId);
     }
 
     const handleOnClick = () => {
