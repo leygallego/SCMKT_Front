@@ -16,7 +16,7 @@
   text-indent: 0.5px;
 }
 
-.wraper-crear{
+.wraper-crear {
   margin-top: 14%;
 }
 
@@ -169,6 +169,19 @@
   height: 500px;
 }
 
+.input-reach-text {
+  width: 100%;
+  border: 1px solid black;
+  padding: 2px;
+  min-height: 400px;
+  font-weight: normal;
+}
+
+.input-reach-text {
+  color: black;
+  /* font-size: 12px; */
+}
+
 @media (min-width: 576px) {
   .contractComponent {
     width: 100%;
@@ -235,6 +248,6 @@
   }
 
   .buttonFormComponent input {
-    color: white;
+    color: rgb(136, 42, 42);
   }
 }

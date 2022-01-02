@@ -12,6 +12,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import Loader from './Loader';
 import { useModal } from 'react-hooks-use-modal';
 import ContractStepsResolve from './ContractStepsResolve';
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
+import { ContentState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
 
 function DetalleContrato() {
     const { id } = useParams();
@@ -29,6 +33,33 @@ function DetalleContrato() {
         // preventScroll: true,
         // closeOnOverlayClick: false
     });
+
+    let html = `${contract?.conditions?.shortdescription? contract?.conditions?.shortdescription : '<div></div>'}`
+    let contentBlock = htmlToDraft(html);
+    
+    const [contentState, setContentState] = useState(
+        contentBlock? 
+            ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            : null
+    )
+
+    const [editorState, setEditorState] = useState(() =>
+        //EditorState.createEmpty()
+        EditorState.createWithContent(contentState)
+    );
+
+    let htmlLong = `${contract?.conditions?.longdescription? contract?.conditions?.longdescription : '<div></div>'}`
+    let contentBlockLong = htmlToDraft(htmlLong);
+    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+        contentBlockLong? 
+            ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
+            : null
+    )
+
+    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+        //EditorState.createEmpty()
+        EditorState.createWithContent(contentStateLong)
+    );
 
     useEffect(() => {
         dispatch(setLoading(true))
@@ -106,11 +137,37 @@ function DetalleContrato() {
 
 
                                 <h2>{contract.conditions.name}</h2>
-                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined'? contract.conditions.type : ''}</p>
-                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined'? contract.conditions.duration : ''}</p>
-                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined'? contract.conditions.category : ''}</p>
-                                <p>{contract.conditions.shortdescription}</p>
-                                <p>{contract.conditions.longdescription}</p>
+                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
+                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
+                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
+                                {/* <p>{contract.conditions.shortdescription}</p> */}
+                                <div className='input-reach-text-disabled'>
+                                    <Editor
+                                        toolbarHidden
+                                        readOnly={true}
+                                        editorState={editorState}
+                                        onEditorStateChange={setEditorState}
+                                        defaultContentState={contentState}
+                                        onContentStateChange={setContentState}
+                                        wrapperClassName="wrapper-class"
+                                        editorClassName="editor-class"
+                                        toolbarClassName="toolbar-class"
+                                    />
+                                </div>
+                                {/* <p>{contract.conditions.longdescription}</p> */}
+                                <div className='input-reach-text-disabled' >
+                                    <Editor
+                                        toolbarHidden
+                                        readOnly={true}
+                                        editorState={editorStateLong}
+                                        onEditorStateChange={setEditorStateLong}
+                                        defaultContentState={contentStateLong}
+                                        onContentStateChange={setContentStateLong}
+                                        wrapperClassName="wrapper-class"
+                                        editorClassName="editor-class"
+                                        toolbarClassName="toolbar-class"
+                                    />
+                                </div>
                                 <h1><span>{contract.conditions.amount}</span> </h1>
 
                                 <div className={isOpen ? '' : ''} visible={isOpen}>
