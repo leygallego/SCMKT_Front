@@ -174,9 +174,9 @@ function DetalleContrato() {
 
 
                                 <h2>{contract?.conditions?.name}</h2>
-                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
-                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
-                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
+                                <p>{contract?.conditions?.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
+                                <p>{contract?.conditions?.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
+                                <p>{contract?.conditions?.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
                                 {/* <p>{contract.conditions.shortdescription}</p> */}
                                 <div className='input-reach-text-disabled'>
                                     <Editor
