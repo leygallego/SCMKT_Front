@@ -108,6 +108,7 @@ function DetalleContrato() {
     const chatSuscribed = (id1, id2) => {
         console.log("Chat privado...", id1, id2)
         console.log('chatSuscribed', suscribed)
+        dispatch(getUserSuscribed(id2));
         dispatch(searchSuscribed(
             {
                 "id1": id1,

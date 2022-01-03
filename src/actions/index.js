@@ -47,8 +47,8 @@ export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
 const database = getDatabase();
 
 let chatUser = "";
-const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
-// const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
+// const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
+const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
 
 export const configChannel = (channelId) => {
     return {
@@ -60,7 +60,6 @@ export const configChannel = (channelId) => {
 let id22 = "";
 export const searchChannel = (channel) => {
     const { id1, id2 } = channel;
-    console.log("searchChannel:   id1---------->", id1, "id2----------->" , id2);
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -96,7 +95,6 @@ export const searchChannel = (channel) => {
 
 export const searchSuscribed = (channel) => {
     const { id1, id2 } = channel;
-    console.log("searchChannel:   id1---------->", id1, "id2----------->" , id2);
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -134,7 +132,6 @@ export const searchSuscribed = (channel) => {
 
 export const setChannel = (channel) => {
     const { id1, id2 } = channel;
-    console.log("setChannel:  id1---------->", id1, "id2----------->" , id2);
     return (dispatch) => {
         const db = getDatabase();
         const list = ref(db, 'smartChatChannels');

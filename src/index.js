@@ -10,7 +10,7 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.
 
 import Web3 from 'web3'
 import { Web3ReactProvider } from '@web3-react/core'
-import { MetaMaskContext, MetaMaskProvider } from './hooks/useMetaMask'
+import { MetaMaskProvider } from './hooks/useMetaMask'
 
 /*
 async function prompt() {
