@@ -9,7 +9,8 @@ import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
-import LoadFile from './LoadFile/LoadFile';
+//import LoadFile from './LoadFile/LoadFile';
+
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -37,7 +38,8 @@ export function BuildConract() {
         c1: '',
         c2: '',
         status: 'unpublished',
-        ownerId: user.id
+        ownerId: user.id,
+        pat:''
     })
 
     const [errors, setErrors] = useState({});
@@ -96,57 +98,58 @@ export function BuildConract() {
         return errors;
     };
 
-    const uploadFileC1 = (file) => {
-        if (!file) return;
-        openFile()
-        const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
+    // const uploadFileC1 = (file) => {
+    //     if (!file) return;
+    //     openFile()
+    //     const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
+    //     const uploadTask = uploadBytesResumable(storageRef, file)
 
-        uploadTask.on("state_changed", (snapshot) => { },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => {
-                        setInput({
-                            ...input,
-                            c1: url
-                        })
-                    })
-                    .then(() => {
-                        closeFile()
-                    })
-            }
-        )
-    };
+    //     uploadTask.on("state_changed", (snapshot) => { },
+    //         (err) => console.log(err),
+    //         () => {
+    //             getDownloadURL(uploadTask.snapshot.ref)
+    //                 .then(url => {
+    //                     setInput({
+    //                         ...input,
+    //                         c1: url
+    //                     })
+    //                 })
+    //                 .then(() => {
+    //                     closeFile()
+    //                 })
+    //         }
+    //     )
+    // };
 
-    const uploadFileC2 = (file) => {
-        if (!file) return;
-        openFile()
-        const storageRef = refStorage(storage, `/documents/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
+    // const uploadFileC2 = (file) => {
+    //     if (!file) return;
+    //     openFile()
+    //     const storageRef = refStorage(storage, `/documents/${file.name}`)
+    //     const uploadTask = uploadBytesResumable(storageRef, file)
 
-        uploadTask.on("state_changed", (snapshot) => { },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref)
-                    .then(url => {
-                        setInput({
-                            ...input,
-                            c2: url
-                        })
-                    }).then(() => {
-                        closeFile()
-                    })
-            }
-        )
-    };
+    //     uploadTask.on("state_changed", (snapshot) => { },
+    //         (err) => console.log(err),
+    //         () => {
+    //             getDownloadURL(uploadTask.snapshot.ref)
+    //                 .then(url => {
+    //                     setInput({
+    //                         ...input,
+    //                         c2: url
+    //                     })
+    //                 }).then(() => {
+    //                     closeFile()
+    //                 })
+    //         }
+    //     )
+    // };
+
 
     const handleInputChange = (e) => {
         console.log(e.target.value)
         if (e.target.name === 'file-c1') {
-            uploadFileC1(e.target.files[0])
+            // uploadFileC1(e.target.files[0])
         } else if (e.target.name === 'file-c2') {
-            uploadFileC2(e.target.files[0])
+            // uploadFileC2(e.target.files[0])
         } else {
             setInput({
                 ...input,
@@ -310,7 +313,8 @@ export function BuildConract() {
                             </div>
 
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Describe tu problema en pocas palabras
+                                <div className="labelForm-buildContract">Describe tu problema
+
                                 </div>
                                 {/* <div className="inputForm">
                                 <textarea
@@ -336,7 +340,8 @@ export function BuildConract() {
 
                             <div className="labelInput">
                                 <div className="labelForm-buildContract">
-                                    Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
+                                    Escribe aquí tu test
+
                                 </div>
                                 {/* <div className="inputForm">
                                 <textarea
@@ -361,20 +366,29 @@ export function BuildConract() {
                                 </div>
                             </div>
 
-                            <div className="labelInput-combo">
+                            <div>
+                                <div className="labelForm-buildContract">
+                                    Escribe aquí tu Personal-Access-Token:
+                                </div>
+                                <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
+                            </div>
+
+                            {/*<div className="labelInput-combo">
                                 <div className="labelForm-archivoTest">
                                     Sube tu archivo de test.js
                                 </div>
                                 <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
                                 <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                            </div>
+                            </div>*/}
 
-                            <ModalFile
+                            {/*<ModalFile
+
                                 visible={modalIsOpenFile}>
                                 <div className='modal-overlay'>
                                     <LoadFile />
                                 </div>
-                            </ModalFile>
+                            </ModalFile>*/}
+
 
                             {/* <div className="labelInput">
                             <div className="labelForm">

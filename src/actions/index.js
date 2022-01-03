@@ -2,6 +2,9 @@ import axios from 'axios';
 import '../firebase';
 import { getDatabase, ref, onValue, set, push, get, child } from 'firebase/database';
 import { NODE_ENV, urlProduction1, urlProduction, urlDevelop, port1 } from '../config/app.config.js';
+import { Octokit } from 'octokit';
+//import {createOAuthAppAuth} from '@octokit/auth-oauth-app';
+const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
 
 
 export const GET_USERS = 'GET_USERS'
@@ -40,6 +43,7 @@ export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
 export const SET_LOADING = 'SET_LOADING';
+
 export const GET_USER_SUSCRIBED = 'GET_USER_SUSCRIBED';
 export const SEARCH_SUSCRIBED = "SEARCH_SUSCRIBED";
 export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
@@ -47,7 +51,7 @@ export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
 const database = getDatabase();
 
 let chatUser = "";
-// const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
+//const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
 const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
 
 export const configChannel = (channelId) => {
@@ -92,6 +96,7 @@ export const searchChannel = (channel) => {
             })
     }
 }
+
 
 export const searchSuscribed = (channel) => {
     const { id1, id2 } = channel;
