@@ -60,7 +60,6 @@ export const configChannel = (channelId) => {
 let id22 = "";
 export const searchChannel = (channel) => {
     const { id1, id2 } = channel;
-    console.log("searchChannel:   id1---------->", id1, "id2----------->" , id2);
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -96,7 +95,6 @@ export const searchChannel = (channel) => {
 
 export const searchSuscribed = (channel) => {
     const { id1, id2 } = channel;
-    console.log("searchChannel:   id1---------->", id1, "id2----------->" , id2);
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -134,7 +132,6 @@ export const searchSuscribed = (channel) => {
 
 export const setChannel = (channel) => {
     const { id1, id2 } = channel;
-    console.log("setChannel:  id1---------->", id1, "id2----------->" , id2);
     return (dispatch) => {
         const db = getDatabase();
         const list = ref(db, 'smartChatChannels');

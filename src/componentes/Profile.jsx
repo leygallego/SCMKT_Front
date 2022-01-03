@@ -36,8 +36,6 @@ function Profile() {
         dispatch(setChat(false));
         dispatch(getContracts({ ownerId: user.id }))
         dispatch(setLoading(false))
-
-        // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
     }, [dispatch])
 
