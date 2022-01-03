@@ -205,7 +205,7 @@ function DetalleContrato() {
                                         toolbarClassName="toolbar-class"
                                     />
                                 </div>
-                                <h1><span>{contract.conditions.amount}</span> </h1>
+                                <h1><span>{contract?.conditions?.amount}</span> </h1>
 
                                 <div className={isOpen ? '' : ''} visible={isOpen}>
                                     <Modal
