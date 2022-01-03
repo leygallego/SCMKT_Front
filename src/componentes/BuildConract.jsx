@@ -307,8 +307,8 @@ function BuildConract() {
                             <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
                             </div>
-                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
-                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="text" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="text" onChange={e => { handleInputChange(e) }} /></div>
                         </div>
 
                         {/* <div className="labelInput">
@@ -380,7 +380,7 @@ function BuildConract() {
                                 className="acept-contract"
                                 onClick={cancelPublished}>Cancelar</button>
                         </div>
-                        <div className={isOpen ? '' : ''} visible={isOpen}>
+                        {/*<div className={isOpen ? '' : ''} visible={isOpen}>
                             <Modal
                                 visible={modalIsOpen}>
                                 <div className='modal-overlay'>
@@ -392,7 +392,8 @@ function BuildConract() {
                                     />
                                 </div>
                             </Modal>
-                        </div>
+                        </div> */}
+                        
                     </form>
                 </div>
             </div>
