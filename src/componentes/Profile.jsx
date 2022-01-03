@@ -13,16 +13,19 @@ import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
-import { Octokit, App } from "octokit";
-//import { createOAuthAppAuth } from "octokit-auth-oauth-app";
+import { Octokit } from "octokit";
 import useMetaMask from '../hooks/useMetaMask'
-const { createOAuthAppAuth, createOAuthDeviceAuth } = require('@octokit/auth-oauth-app');
+import fs from 'fs'
+
+
+const { Base64 } = require("js-base64")
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
 
 const octokit = new Octokit({
     // authStrategy: createOAuthAppAuth,
     // auth: {
-    //   //clientType: 'oauth-app',
+    //   clientType: 'github-app',
     //   clientId: 'd1caa78b0df97e743827',
     //   scopes: ['user', 'public_repo', 'repo'],
     //   onVerification(verification) {
@@ -30,7 +33,7 @@ const octokit = new Octokit({
     //     console.log('Enter code: %s', verification.user_code);
     //   },
     // },
-    //auth: process.env.TOKEN
+    auth: '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'
     
 })
 
@@ -76,13 +79,48 @@ function Profile() {
     }
 
     async function getRepo() {
+        try {
+            let owner = 'zzzNitro'
+            let name = 'prueba-tests1'
+            let file = 'https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940'
 
-        octokit.request('POST /user/repos', {
-            name: 'prueba-diff-auth1'
-        }).then(console.log, console.log);
+            //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
+            //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
+            const contentEncoded = Base64.encode(file)
 
-        // octokit.request('GET /user')
-        //     .then(console.log, console.log);
+            // octokit.request('POST /user/repos', {
+            //     name: name
+            // }).then(console.log, console.log);
+
+            // octokit.request('GET /user')
+            //     .then(console.log, console.log);
+
+            // const { data } = await octokit.repos.createOrUpdateFileContents({
+            //     owner: owner,
+            //       repo: "octokit-create-file-example",
+            //       path: "OUTPUT.md",
+            //       message: "feat: Added OUTPUT.md programatically",
+            //       content: file,
+            //       committer: {
+            //         name: owner,
+            //         email: 'pablo.benito@rocketmail.com',
+            //       },
+            //       author: {
+            //         name: owner,
+            //         email: 'pablo.benito@rocketmail.com',
+            //       },
+            //     });
+            //     console.log(data)
+            octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+                owner: owner,
+                repo: name,
+                message: "feat: Added test.js programatically",
+                content: contentEncoded,
+            }).then(console.log, console.log);
+        } catch(err) {
+            console.log(err)
+        }
+        
       
     }
 
@@ -157,8 +195,11 @@ function Profile() {
                             onClick={getRepo}>
                             Crear Repositorio
                         </Button>
+                        <Button>
+                                <input type="file">Upload File</input>
+                        </Button>
                     </div>
-
+                        
                     <div className="datos-personales" >
                         <Button
                             className="busca-datos"

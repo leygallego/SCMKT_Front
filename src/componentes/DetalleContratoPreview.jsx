@@ -6,6 +6,24 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
 import useMetaMask from '../hooks/useMetaMask';
+import { Octokit } from 'octokit'
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+
+const octokit = new Octokit({
+    // authStrategy: createOAuthAppAuth,
+    // auth: {
+    //   clientType: 'github-app',
+    //   clientId: 'd1caa78b0df97e743827',
+    //   scopes: ['user', 'public_repo', 'repo'],
+    //   onVerification(verification) {
+    //     console.log('Open %s', verification.verification_uri);
+    //     console.log('Enter code: %s', verification.user_code);
+    //   },
+    // },
+    auth: process.env.TOKEN
+    
+})
 
 function DetalleContratoPreview(props) {
 
@@ -54,6 +72,13 @@ function DetalleContratoPreview(props) {
       status,
       ownerId: user.id
     }
+
+  async function getRepo() {
+    octokit.request('POST /user/repos', {
+        name: 'prueba-diff-auth1'
+    }).then(console.log, console.log);
+  }
+
 
     Swal.fire({
       title: 'Deseas guardar los cambios?',

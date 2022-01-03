@@ -19,6 +19,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "firebase": "^9.5.0",
+    "fs": "*",
+    "js-base64": "^3.7.2",
     "node-iframe": "^1.5.10",
     "nodemailer": "^6.7.2",
     "octokit": "^1.7.1",

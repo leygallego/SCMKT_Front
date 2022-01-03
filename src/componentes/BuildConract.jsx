@@ -9,8 +9,28 @@ import './styles/buildContract.css';
 import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
+// import { Octokit } from 'octokit'
+// const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+// require('dotenv').config();
 
-export function BuildConract() {
+// const octokit = new Octokit({
+//     // authStrategy: createOAuthAppAuth,
+//     // auth: {
+//     //   clientType: 'github-app',
+//     //   clientId: 'd1caa78b0df97e743827',
+//     //   scopes: ['user', 'public_repo', 'repo'],
+//     //   onVerification(verification) {
+//     //     console.log('Open %s', verification.verification_uri);
+//     //     console.log('Enter code: %s', verification.user_code);
+//     //   },
+//     // },
+//     auth: process.env.TOKEN
+    
+// })
+
+
+
+function BuildConract() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
@@ -55,6 +75,7 @@ export function BuildConract() {
         return errors;
     };
 
+
     const uploadFileC1 = (file) => {
         if (!file) return;
         const storageRef = refStorage(storage, `/documents/${user.id ? user.id : 'zzzzzzzzzzzzzzzz'}/${file.name}`)
@@ -96,6 +117,7 @@ export function BuildConract() {
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
             uploadFileC1(e.target.files[0])
+            // add fs.readFileSync 
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
         } else {
@@ -157,6 +179,13 @@ export function BuildConract() {
             })
         }
     }
+
+    // async function getRepo() {
+
+    //     octokit.request('POST /user/repos', {
+    //         name: 'prueba-diff-auth1'
+    //     }).then(console.log, console.log);
+    // }
 
     return (
         <>
