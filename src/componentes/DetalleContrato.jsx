@@ -75,6 +75,7 @@ function DetalleContrato() {
 
     function handleClick() {
         dispatch(setChat(false));
+        //wtf
         // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
         history.push("/contratos");
