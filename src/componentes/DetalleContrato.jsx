@@ -99,6 +99,7 @@ function DetalleContrato() {
         // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
         dispatch(changeStatusContract(contractId, status, clientId))
+        getInvite()
     }
 
     function unsubscribe(contractId, status) {
