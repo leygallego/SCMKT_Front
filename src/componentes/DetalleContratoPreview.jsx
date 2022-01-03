@@ -8,15 +8,15 @@ import './styles/DetalleContratoPreview.css';
 import useMetaMask from '../hooks/useMetaMask';
 
 import { Octokit } from "octokit";
-
-const { Base64 } = require("js-base64")
-const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
-require('dotenv').config();
-
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import { ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+const { Base64 } = require("js-base64")
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+
+
 
 
 function DetalleContratoPreview(props) {
