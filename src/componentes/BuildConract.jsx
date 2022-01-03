@@ -117,7 +117,7 @@ function BuildConract() {
     const handleInputChange = (e) => {
         if (e.target.name === 'file-c1') {
             uploadFileC1(e.target.files[0])
-            // add fs.readFileSync 
+            // add fs.readFileSync to
         } else if (e.target.name === 'file-c2') {
             uploadFileC2(e.target.files[0])
         } else {

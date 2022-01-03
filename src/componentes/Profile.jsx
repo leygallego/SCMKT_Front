@@ -13,10 +13,8 @@ import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
-import { Octokit } from "octokit";
 import useMetaMask from '../hooks/useMetaMask'
-import fs from 'fs'
-
+import { Octokit } from "octokit";
 
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
@@ -33,7 +31,7 @@ const octokit = new Octokit({
     //     console.log('Enter code: %s', verification.user_code);
     //   },
     // },
-    auth: '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'
+    auth: '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'
     
 })
 
@@ -82,11 +80,19 @@ function Profile() {
         try {
             let owner = 'zzzNitro'
             let name = 'prueba-tests1'
-            let file = 'https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940'
+            let collab = 'pmarchionno'
+            let file = 'value sacado del state'
 
-            //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
-            //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
-            const contentEncoded = Base64.encode(file)
+            // //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
+            // //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
+            // const contentEncoded = Base64.encode(file)
+
+            octokit.request(`PUT /repos/${owner}/${name}/collaborators/${collab}`, {
+                owner: owner,
+                repo: name,
+                username: `${collab}`,
+                permission: 'push'
+            }).then(console.log, console.log)
 
             // octokit.request('POST /user/repos', {
             //     name: name
@@ -111,12 +117,14 @@ function Profile() {
             //       },
             //     });
             //     console.log(data)
-            octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
-                owner: owner,
-                repo: name,
-                message: "feat: Added test.js programatically",
-                content: contentEncoded,
-            }).then(console.log, console.log);
+            // octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+            //     owner: owner,
+            //     repo: name,
+            //     message: "feat: Added test.js programatically",
+            //     content: contentEncoded,
+            // }).then(console.log, console.log);
+
+
         } catch(err) {
             console.log(err)
         }
@@ -195,9 +203,7 @@ function Profile() {
                             onClick={getRepo}>
                             Crear Repositorio
                         </Button>
-                        <Button>
-                                <input type="file">Upload File</input>
-                        </Button>
+                        
                     </div>
                         
                     <div className="datos-personales" >
