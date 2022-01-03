@@ -10,6 +10,7 @@ import { useModal } from 'react-hooks-use-modal';
 import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
 //import LoadFile from './LoadFile/LoadFile';
+
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -141,6 +142,7 @@ export function BuildConract() {
     //         }
     //     )
     // };
+
 
     const handleInputChange = (e) => {
         console.log(e.target.value)
@@ -312,6 +314,7 @@ export function BuildConract() {
 
                             <div className="labelInput">
                                 <div className="labelForm-buildContract">Describe tu problema
+
                                 </div>
                                 {/* <div className="inputForm">
                                 <textarea
@@ -338,6 +341,7 @@ export function BuildConract() {
                             <div className="labelInput">
                                 <div className="labelForm-buildContract">
                                     Escribe aquí tu test
+
                                 </div>
                                 {/* <div className="inputForm">
                                 <textarea
@@ -378,11 +382,13 @@ export function BuildConract() {
                             </div>*/}
 
                             {/*<ModalFile
+
                                 visible={modalIsOpenFile}>
                                 <div className='modal-overlay'>
                                     <LoadFile />
                                 </div>
                             </ModalFile>*/}
+
 
                             {/* <div className="labelInput">
                             <div className="labelForm">

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { getContractsPreview, createContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,14 +6,17 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
 import useMetaMask from '../hooks/useMetaMask';
+
 import { Octokit } from "octokit";
 
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
 
-
-
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
+import { ContentState } from 'draft-js';
+import htmlToDraft from 'html-to-draftjs';
 
 
 function DetalleContratoPreview(props) {
@@ -25,6 +28,7 @@ function DetalleContratoPreview(props) {
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const contract = useSelector(state => state.preview)
+
 
   const octokit = new Octokit({
     // authStrategy: createOAuthAppAuth,
@@ -40,6 +44,33 @@ function DetalleContratoPreview(props) {
     // auth: `${contract.pat}`
     auth: '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'
   })
+
+  let html = `${contract?.shortdescription ? contract?.shortdescription : '<div></div>'}`
+  let contentBlock = htmlToDraft(html);
+
+  const [contentState, setContentState] = useState(
+    contentBlock ?
+      ContentState.createFromBlockArray(contentBlock.contentBlocks)
+      : null
+  )
+
+  const [editorState, setEditorState] = useState(() =>
+    //EditorState.createEmpty()
+    EditorState.createWithContent(contentState)
+  );
+
+  let htmlLong = `${contract?.longdescription ? contract?.longdescription : '<div></div>'}`
+  let contentBlockLong = htmlToDraft(htmlLong);
+  const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+    contentBlockLong ?
+      ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
+      : null
+  )
+
+  const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+    //EditorState.createEmpty()
+    EditorState.createWithContent(contentStateLong)
+  );
 
   useEffect(() => {
     dispatch(getContractsPreview(dataPreview))
@@ -158,7 +189,7 @@ function DetalleContratoPreview(props) {
 
   return (
     <div className='preview-content'>
-      <div><h1>Detalle Contrato</h1></div>
+      
       <div className="main-detalle">
         {
           // contract?.name ?
@@ -175,8 +206,34 @@ function DetalleContratoPreview(props) {
             <p>{contract.type}</p>
             <p>{contract.duration}</p>
             <p>{contract.category}</p>
-            <p>{contract.shortdescription}</p>
-            <p>{contract.longdescription}</p>
+            {/* <p>{contract.shortdescription}</p> */}
+            <div className='input-reach-text-disabled'>
+              <Editor
+                toolbarHidden
+                readOnly={true}
+                editorState={editorState}
+                onEditorStateChange={setEditorState}
+                defaultContentState={contentState}
+                onContentStateChange={setContentState}
+                wrapperClassName="wrapper-class"
+                editorClassName="editor-class"
+                toolbarClassName="toolbar-class"
+              />
+            </div>
+            {/* <p>{contract.longdescription}</p> */}
+            <div className='input-reach-text-disabled' >
+              <Editor
+                toolbarHidden
+                readOnly={true}
+                editorState={editorStateLong}
+                onEditorStateChange={setEditorStateLong}
+                defaultContentState={contentStateLong}
+                onContentStateChange={setContentStateLong}
+                wrapperClassName="wrapper-class"
+                editorClassName="editor-class"
+                toolbarClassName="toolbar-class"
+              />
+            </div>
             <h1><span>{contract.amount} ({contract.coin})</span> </h1>
             <div>
               <p>Test</p>

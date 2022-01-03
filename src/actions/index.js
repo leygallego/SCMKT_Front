@@ -43,15 +43,16 @@ export const CONFIG_CHANNEL = 'CONFIG_CHANNEL';
 export const SEARCH_CHANNEL = 'SEARCH_CHANNEL';
 export const RETURN_NULL = 'RETURN_NULL';
 export const SET_LOADING = 'SET_LOADING';
-require('dotenv').config();
-// const {PersonalToken} = process.env;
-//wtf
+
+export const GET_USER_SUSCRIBED = 'GET_USER_SUSCRIBED';
+export const SEARCH_SUSCRIBED = "SEARCH_SUSCRIBED";
+export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
 
 const database = getDatabase();
 
 let chatUser = "";
 //const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
-const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
+const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
 
 export const configChannel = (channelId) => {
     return {
@@ -62,7 +63,7 @@ export const configChannel = (channelId) => {
 
 let id22 = "";
 export const searchChannel = (channel) => {
-    const { id1 } = channel;
+    const { id1, id2 } = channel;
     return async (dispatch) => {
         const dbRef = ref(getDatabase());
         await get(child(dbRef, "smartChatChannels"))
@@ -71,7 +72,7 @@ export const searchChannel = (channel) => {
                 let bool = false;
                 let bool2 = false;
                 if (validate === null) {
-                    channel.id2 = id22;
+                    !id2 ? channel.id2 = id22 : channel.id2 = id2;
                     dispatch(setChannel(channel))
                 }
                 Object.keys(snapshot.val()).map(key => {
@@ -88,37 +89,54 @@ export const searchChannel = (channel) => {
                     }
                 });
                 if (!bool2) {
-                    channel.id2 = id22;
+                    // channel.id2 = id22;
+                    !id2 ? channel.id2 = id22 : channel.id2 = id2;
                     dispatch(setChannel(channel))
                 }
             })
     }
 }
 
-// const octokit = new Octokit({
-//         //authStrategy: createOAuthAppAuth,
-//         auth: process.env.PersonalToken,
-//       });
 
-// export const createrepo = () => {
+export const searchSuscribed = (channel) => {
+    const { id1, id2 } = channel;
+    return async (dispatch) => {
+        const dbRef = ref(getDatabase());
+        await get(child(dbRef, "smartChatChannels"))
+            .then((snapshot) => {
+                const validate = snapshot.val();
+                let bool = false;
+                let bool2 = false;
+                if (validate === null) {
+                    // !id2 ? channel.id2 = id22 : channel.id2 = id2;
+                    dispatch(setChannelSuscribed(channel))
+                }
+                Object.keys(snapshot.val()).map(key => {
+                    const value = snapshot.val()[key];
+                    if (!bool) {
+                        if (
+                            id1 === value.channel.id1 && id2 === value.channel.id2
+                            || id2 === value.channel.id1 && id1 === value.channel.id2
+                        ) {
+                            bool = true;
+                            bool2 = true;
+                            dispatch(configChannel(key));
+                        }
+                    }
+                });
+                if (!bool2) {
+                    // channel.id2 = id22;
+                    // !id2 ? channel.id2 = id22 : channel.id2 = id2;
+                    dispatch(setChannelSuscribed(channel))
+                }
+            })
+    }
+}
 
-    
-//     try {
-//         return async (dispatch) => {
-//             await octokit.request(`GET /repos/{owner}/{repo}`, {
-//                 owner: 'zzzNitro',
-//                 repo: 'Countries_PI'
-//               })
-//               .then(console.log(response.data))
-//         }
-
-//     } catch(e) { console.log(e) }
-    
-    
-// }
 
 
 export const setChannel = (channel) => {
+    const { id1, id2 } = channel;
     return (dispatch) => {
         const db = getDatabase();
         const list = ref(db, 'smartChatChannels');
@@ -146,6 +164,38 @@ export const setChannel = (channel) => {
             })
     }
 }
+
+export const setChannelSuscribed = (channel) => {
+    const { id1, id2 } = channel;
+    console.log("setChannelSuscribed:  id1---------->", id1, "id2----------->" , id2);
+    return (dispatch) => {
+        const db = getDatabase();
+        const list = ref(db, 'smartChatChannels');
+        const newItem = push(list);
+        set(newItem, {
+            channel
+        })
+            .then(async () => {
+                const dbRef = ref(getDatabase());
+                await get(child(dbRef, "smartChatChannels"))
+                    .then((snapshot) => {
+                        Object.keys(snapshot.val()).map(key => {
+                            const value = snapshot.val()[key];
+                            if (
+                                channel.id1 === value.channel.id1 && channel.id2 === value.channel.id2
+                                || channel.id2 === value.channel.id1 && channel.id1 === value.channel.id2
+                            ) {
+                                dispatch(configChannel(key));
+                            }
+                        });
+                    })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+}
+
 
 export const choosedUser = (chatUser) => {
     return {
@@ -280,13 +330,32 @@ export const getUserByID = (id) => {
     }
 }
 
+export const getUserSuscribed = (id) => {
+    let regex = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,7}')
+    if (id === regex) {
+        id = axios.get(`${urlWork}/user/auth/${id}`)
+    }
+    return async dispatch => {
+        return await axios.get(`${urlWork}/user/${id}`)
+            .then(response => dispatch({
+                type: GET_USER_SUSCRIBED,
+                payload: response.data
+            }))
+    }
+}
+
 export function getContracts({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
         try {
             const response = await axios.get(`${urlWork}/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            const contratos = response.data.filter(contrato => (contrato.clientId === null || (contrato.clientId === ownerId && contrato.status === 'taken') ));
+
+
+            // const contratos = response.data.filter(contrato => (contrato.clientId === null || (contrato.clientId == ownerId && contrato.status === 'taken') || (contrato.clientId == ownerId && contrato.status === 'taken') || contrato.owner.id == ownerId ))
+            console.log("Contratos:::", contratos)
             return dispatch({
                 type: GET_CONTRACTS,
-                payload: response.data
+                payload: contratos
             })
         } catch (error) {
             console.log(error)
@@ -306,7 +375,7 @@ export const getContractsByID = (id) => {
                     payload: response.data
                 })
             })
-            // .thens añadidos para el chat
+            // .thens añadidos para el chat   
             .then(() => {
                 dispatch(choosedUser(
                     {
@@ -319,7 +388,8 @@ export const getContractsByID = (id) => {
             .then(() => {
                 dispatch(searchChannel(
                     {
-                        "id1": chatUser
+                        "id1": chatUser,
+                        "id2": id22
                     }
                 ))
             })
@@ -463,14 +533,14 @@ export const updateContract = (contract) => {
     }
 }
 
-export const changeStatusContract = (id, status, user) => {
+export const changeStatusContract = (id, status, user, previous) => {
     return async (dispatch) => {
         dispatch({
             type: SET_CONTRACT_STATUS,
-            payload: { status, clientId: user }
+            payload: { status, clientId: user, previous }
         });
         await window.sessionStorage.setItem('user', JSON.stringify(user));
-        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user })
+        await axios.put(`${urlWork}/contract/edit/status/${id}`, { status: status, clientId: user, previous: previous })
             .then(() => {
                 // console.log("registrado correctamente", response);
             })

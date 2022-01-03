@@ -11,9 +11,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import { updateContract } from '../actions/index.js';
 import './styles/buildContract.css';
-// import { useModal } from 'react-hooks-use-modal';
+import { useModal } from 'react-hooks-use-modal';
 // import DetalleContratoPreview from './DetalleContratoPreview';
 import Swal from 'sweetalert2';
+import LoadFile from './LoadFile/LoadFile';
+
+import './styles/EdictContract.css';
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from "draft-js";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { ContentState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 export function EditContract() {
     const { id } = useParams()
@@ -40,7 +49,7 @@ export function EditContract() {
         longdescription: contract.conditions.longdescription,
         amount: contract.conditions.amount,
         coin: contract.conditions.coin,
-        instructions: contract.conditions.instructions? contract.conditions.instructions : '',
+        instructions: contract.conditions.instructions ? contract.conditions.instructions : '',
         c1: contract.conditions.condition.c1 && contract.conditions.condition.c1 !== undefined ? contract.conditions.condition.c1 : null,
         c2: contract.conditions.condition.c2 && contract.conditions.condition.c2 !== undefined ? contract.conditions.condition.c2 : null,
         status: contract.status,
@@ -48,9 +57,41 @@ export function EditContract() {
     })
 
     const [errors, setErrors] = useState({});
-    // const [modalIsOpen, setModalIsOpen] = useState(false);
-    // const [Modal, open, close, isOpen] = useModal('root', {
-    // });
+    const [modalIsOpen] = useState(false);
+    const [Modal, open, close, isOpen] = useModal('root', {
+        // preventScroll: true,
+        closeOnOverlayClick: false
+    });
+
+    let _contentState = ContentState.createFromText(`${input.shortdescription}`);
+    let raw = convertToRaw(_contentState)
+    const html = `${input.shortdescription}`
+    const contentBlock = htmlToDraft(html);
+
+    const [contentState, setContentState] = useState(
+        contentBlock ?
+            ContentState.createFromBlockArray(contentBlock.contentBlocks)
+            : null
+    )
+
+    const [editorState, setEditorState] = useState(() =>
+        // EditorState.createEmpty()
+        EditorState.createWithContent(contentState)
+    );
+
+    const htmlLong = `${input.longdescription}`
+    const contentBlockLong = htmlToDraft(htmlLong);
+
+    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+        contentBlockLong ?
+            ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
+            : null
+    )
+
+    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+        // EditorState.createEmpty()
+        EditorState.createWithContent(contentStateLong)
+    );
 
     useEffect(() => {
         //dispatch(getUsers({}))
@@ -69,6 +110,7 @@ export function EditContract() {
 
     const uploadFileC1 = (file) => {
         if (!file) return;
+        open()
         const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -83,12 +125,16 @@ export function EditContract() {
                         })
                         setFile1(file.name)
                     })
+                    .then(() => {
+                        close()
+                    })
             }
         )
     };
 
     const uploadFileC2 = (file) => {
         if (!file) return;
+        open()
         const storageRef = refStorage(storage, `/documents/${id}/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -102,6 +148,9 @@ export function EditContract() {
                             c2: url
                         })
                         setFile2(file.name)
+                    })
+                    .then(() => {
+                        close()
                     })
             }
         )
@@ -172,8 +221,8 @@ export function EditContract() {
                 type: input.type,
                 duration: input.duration,
                 category: input.category,
-                shortdescription: input.shortdescription,
-                longdescription: input.longdescription,
+                shortdescription: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+                longdescription: draftToHtml(convertToRaw(editorStateLong.getCurrentContent())),
                 amount: input.amount,
                 coin: input.coin,
                 instructions: input.instructions,
@@ -186,8 +235,6 @@ export function EditContract() {
             clientId: input.clientId,
             ownerId: user.id
         }
-
-        // console.log('formateo datos de contrato', nweC, nweC.conditions, nweC.conditions.condition)
 
         Swal.fire({
             title: '¿Deseas guardar los cambios?',
@@ -235,7 +282,7 @@ export function EditContract() {
                         {/* <br/><br/> */}
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Nombre del Contrato</div>
-                            <div className="inputForm">
+                            <div className="inputForm-nombre">
                                 <input
                                     className="inputFormCComponent"
                                     type="text"
@@ -315,31 +362,56 @@ export function EditContract() {
 
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Describe tu problema en pocas palabras</div>
-                            <div className="inputForm">
+                            {/* <div contenteditable="true" className="inputForm">
                                 <textarea
+                                disabled
                                     className="inputFormCComponent"
                                     type="text"
                                     name="shortdescription"
-                                    value={input.shortdescription}
+                                    //value={input.shortdescription}
+                                    value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
                                     onChange={e => { handleInputChange(e) }}
+                                    onBlur={e => { handleInputChange(e) }}
                                     rows="2"
-                                /></div>
+                                /></div> */}
+                            <div className='input-reach-text'>
+                                <Editor
+                                    editorState={editorState}
+                                    onEditorStateChange={setEditorState}
+                                    defaultContentState={contentState}
+                                    onContentStateChange={setContentState}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                />
+                            </div>
                         </div>
 
                         <div className="labelInput">
                             <div className="labelForm-buildContract">
                                 Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
                             </div>
-                            <div className="inputForm">
+                            {/* <div className="inputForm">
                                 <textarea
                                     className="inputFormCComponent"
                                     type="text"
                                     name="longdescription"
-                                    value={input.longdescription}
+                                    // value={input.longdescription}
+                                    value={draftToHtml(convertToRaw(editorStateLong.getCurrentContent()))}
                                     onChange={e => { handleInputChange(e) }}
                                     rows="5"
                                 // maxlength="15000"
                                 // onBlur={(e) => validate(e.target.name)}
+                                />
+                            </div> */}
+
+                            <div className='input-reach-text'>
+                                <Editor
+                                    editorState={editorStateLong}
+                                    onEditorStateChange={setEditorStateLong}
+                                    defaultContentState={contentStateLong}
+                                    onContentStateChange={setContentStateLong}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
                                 />
                             </div>
                         </div>
@@ -364,6 +436,13 @@ export function EditContract() {
                                     <div></div>
                                 }
                             </div>
+
+                            <Modal
+                                visible={modalIsOpen}>
+                                <div className='modal-overlay'>
+                                    <LoadFile />
+                                </div>
+                            </Modal>
 
                             <div className='file-group-contract'>
                                 <div class="input__row uploader">

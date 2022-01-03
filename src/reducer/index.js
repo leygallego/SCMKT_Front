@@ -26,13 +26,15 @@ import {
     SEND_MESSAGE,
     ERASE_MESSAGE,
     CONFIG_CHANNEL,
-    SET_LOADING
+    SET_LOADING,
+    GET_USER_SUSCRIBED
 } from "../actions";
 
 const initialState = {
     users: [],
     contracts: [],
     user: {},
+    userSuscribed: {},
     contract: {},
     preview: {},
     verified: false,
@@ -66,6 +68,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 user: action.payload
+            }
+
+        case GET_USER_SUSCRIBED:
+            return {
+                ...state,
+                userSuscribed: action.payload
             }
 
         case GET_CONTRACTS:

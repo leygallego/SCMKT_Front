@@ -8,6 +8,7 @@ import { setChat } from '../actions';
 import './styles/contractscard.css';
 
 const ContractsCard = (props) => {
+    console.log('PROPS:::::::::::', props.client)
     const { check, onCheck, id, chat } = props
     const dispatch = useDispatch();
     const openChat = () => {
@@ -29,6 +30,7 @@ const ContractsCard = (props) => {
                     <h6>{props.name}</h6>
                     <h6>{props.amount}</h6>
                     <NavLink to={`/detalle/${props.id}`}>
+                        { console.log('enviar el dispatch')}
                         <h6>ver detalles</h6>
                     </NavLink>
                 </div>

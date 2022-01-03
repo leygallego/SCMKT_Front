@@ -45,10 +45,17 @@ function Home() {
                 <div className="wraper-images">
                     <div className="imagen-home">
                         <img src="/images/assetHome2.png" alt="imagen para home" />
+                        <div className="imagen-azul">
+                        <div className="videoComponent">
+                        <iframe
+                        width="600"
+                        height="1200" 
+                        src="https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2FHenry%20_%20Invertimos%20en%20tu%20educaci%C3%B3n.mp4?alt=media&token=8cfd7cf9-2843-47ea-8cb3-3c6bd2f70fb3"></iframe>
+                        </div>
+                        </div>
                     </div>
-                    <div className="imagen-azul">
-                        <img src="/images/azul.png" alt="imagen azul" />
-                    </div>
+                    
+                    
                 </div>
             </div>
             <div className="divisor-home"></div>

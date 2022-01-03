@@ -49,6 +49,9 @@ function Contratos() {
 
     return (
         <>
+                <div className='container-contratos'>
+
+                
             <div className='contratos-wraper'>
                 <div>
                     <SearchBar />
@@ -67,6 +70,19 @@ function Contratos() {
                         )
                 }
 
+            </div>
+
+            <div className='pagination-style'>
+                <Pagination
+                    count={count}
+                    size="small"
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                    className={'pagination-estilo'}
+                    onChange={handleChange}
+                />
+                
             </div>
             {/* <div className='pagination-style'>
                 <Pagination
@@ -100,6 +116,10 @@ function Contratos() {
                     className={'pagination-style'}
                     onChange={handleChange}
                 />
+                
+            </div>
+            
+
             </div>
             {/* <button disabled={page - 1 === 0} onClick={() => { changePage(page - 1) }}>prev</button>
             <label>{page}</label>

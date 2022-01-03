@@ -56,8 +56,6 @@ function Profile() {
         dispatch(setChat(false));
         dispatch(getContracts({ ownerId: user.id }))
         dispatch(setLoading(false))
-
-        // dispatch(configChannel(""));
         dispatch(eraseMessage([]));
     }, [dispatch])
     
@@ -166,7 +164,7 @@ function Profile() {
             ? <Loader />
             :<div className="main-perfil">
                 <div className="perfil-card">
-                    <h2>Usuario: {user.name}</h2>
+                    <h2>Hola {user.name}</h2>
 
                     <div className="contratos-publicados2">
                         <ContractsList

@@ -26,7 +26,7 @@ const ContractsList = (props) => {
         Swal.fire({
             title: `¿Está seguro de eliminar ${eraser.length} contrato(s)?`,
             showDenyButton: true,
-            confirmButtonText: 'Yes',
+            confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -54,13 +54,14 @@ const ContractsList = (props) => {
         }
         setEraser(er)
     }
-    
+    // console.log("contractsList", contracts)
     return (
         <div className='contractsCardComponent'>
             <div className="contratos-publicados">
                 <h5>Contratos Publicados</h5>
                 <div className='scrolling'>
                     {contracts ? contracts.map((element, index) => {
+                        // console.log('ContractsList::: element', element)
                         return (
                             <div key={`${index}-list-1`}>
                                 {(element.status === "published" || element.status === "taken")
@@ -72,6 +73,7 @@ const ContractsList = (props) => {
                                         image={element.image}
                                         check={false}
                                         chat={false}
+                                        client={element.clientId}
                                     />
                                     : <></>}
                             </div>)
