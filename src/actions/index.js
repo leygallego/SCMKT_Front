@@ -45,6 +45,7 @@ export const RETURN_NULL = 'RETURN_NULL';
 export const SET_LOADING = 'SET_LOADING';
 require('dotenv').config();
 // const {PersonalToken} = process.env;
+//wtf
 
 const database = getDatabase();
 
