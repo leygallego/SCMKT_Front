@@ -37,7 +37,8 @@ function DetalleContratoPreview(props) {
     //     console.log('Enter code: %s', verification.user_code);
     //   },
     // },
-    auth: `${contract.pat}`
+    // auth: `${contract.pat}`
+    auth: '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'
   })
 
   useEffect(() => {
@@ -101,7 +102,7 @@ function DetalleContratoPreview(props) {
         name: `${contract.name}`
     }).then(console.log, console.log);
 
-    setTimeout(createTest, 3000)
+    setTimeout(createTest, 5000)
 
   }
 
