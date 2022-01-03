@@ -50,7 +50,8 @@ function BuildConract() {
         c1: '',
         c2: '',
         status: 'unpublished',
-        ownerId: user.id
+        ownerId: user.id,
+        pat: ''
     })
 
     const [errors, setErrors] = useState({});
@@ -306,7 +307,7 @@ function BuildConract() {
                             <div className="labelForm-buildContract">
                                 Escribe aquí tu Personal-Access-Token:
                             </div>
-                                <input type="text" name="Password" value={input.longdescription} />
+                                <input type="text" name="personaltoken" onChange={e => { handleInputChange(e) }} />
                             </div>
 
                         {/*<div className="labelInput-combo">

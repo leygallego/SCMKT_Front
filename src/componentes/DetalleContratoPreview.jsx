@@ -74,12 +74,12 @@ function DetalleContratoPreview(props) {
       //     console.log('Enter code: %s', verification.user_code);
       //   },
       // },
-      auth: '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'
+      auth: `${contract.pat}`
     })
-    let owner = `${user.username}`
-    let name = `${contract.name}`
-    let file = `${contract.longdescription}`
-    const contentEncoded = Base64.encode(file)
+    // let owner = `${user.username}`
+    // let name = `${contract.name}`
+    // let file = `${contract.longdescription}`
+    // const contentEncoded = Base64.encode(file)
 
     octokit.request('POST /user/repos', {
         name: `${contract.name}`
@@ -99,12 +99,12 @@ function DetalleContratoPreview(props) {
       //     console.log('Enter code: %s', verification.user_code);
       //   },
       // },
-      auth: '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'
+      auth: `${contract.pat}`
     })
     let owner = `${user.username}`
     let name = `${contract.name}`
     let file = `${contract.longdescription}`
-    const contentEncoded = Base64.encode(file)
+    let contentEncoded = Base64.encode(file)
 
     octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
           owner: owner,
@@ -125,8 +125,7 @@ function DetalleContratoPreview(props) {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(createContract(nweC))
-        createRepo()
-        createTest()
+        createRepo().then(createTest())
 
         Swal.fire('Guardado correctamente', '', 'success')
           .then((result) => {
