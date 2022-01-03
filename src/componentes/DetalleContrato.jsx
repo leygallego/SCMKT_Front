@@ -131,10 +131,10 @@ function DetalleContrato() {
                 ? <Loader />
                 : <div className='wraper-detalle'>
 
-                    <div className='titulo-detalle' ><h1>{`Seleccionaste el contrato ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
+                    <div className='titulo-detalle' ><h1>{`Seleccionaste: ${contract?.conditions?.name ? contract.conditions.name : "Privado"} `}</h1></div>
                     <div className="main-detalle">
 
-                        {contract?.conditions?.name ?
+                        { <h1>contract?.conditions?.name </h1>  ?
                             <div className="detalle-card">
                                 <div className='contractDetailButton'>
                                     <div className='contractsChat'>
@@ -174,10 +174,10 @@ function DetalleContrato() {
                                 </div>
 
 
-                                <h2>{contract.conditions.name}</h2>
-                                <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
-                                <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
-                                <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
+                                <h2>{contract?.conditions?.name}</h2>
+                                <p>{contract?.conditions?.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
+                                <p>{contract?.conditions?.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
+                                <p>{contract?.conditions?.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
                                 {/* <p>{contract.conditions.shortdescription}</p> */}
                                 <div className='input-reach-text-disabled'>
                                     <Editor
@@ -206,7 +206,7 @@ function DetalleContrato() {
                                         toolbarClassName="toolbar-class"
                                     />
                                 </div>
-                                <h1><span>{contract.conditions.amount}</span> </h1>
+                                <h1><span>{contract?.conditions?.amount}</span> </h1>
 
                                 <div className={isOpen ? '' : ''} visible={isOpen}>
                                     <Modal

@@ -1,21 +1,27 @@
+
 .main-detalle {
   display: grid;
 }
-
-.wraper-detalle{
-  margin-top: 14%;
+.titulo-detalle h1{
+  font-size: 14px;
+  text-align: center;
 }
 
 .detalle-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   background-color: white;
   color: black;
-  font-size: 18px;
+  font-size: 10px;
   font-family: "Poppins", sans-serif;
-  width: 75%;
-  margin-left: 15%;
+  width: 280px;
+  height: 360px;
+  margin-left: 12px;
   border-radius: 30px;
   padding: 10px;
+  text-align: center;
+}
+.wraper-detalle{
+  margin-top: 24%;
 }
 
 .detalle-card span {
@@ -41,7 +47,7 @@
   border: transparent;
   color: black;
   padding: 2px;
-  min-height: 400px;
+  /* min-height: 400px; */
   font-weight: normal;  
 }
 
@@ -49,6 +55,35 @@
   border: transparent;
   color:black;
   padding: 2px;
-  min-height: 400px;
+  /* min-height: 400px; */
   /* font-weight: normal; */
+}
+
+
+@media (min-width:600px){
+
+  
+  .detalle-card {
+    font-size: 7px;
+    font-size: 18px;
+    width: 600px;
+    height: 490px;
+    margin-left: 200px;
+    border-radius: 30px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .wraper-detalle{
+    margin-top: 14%;
+  }
+  
+  .titulo-detalle h1{
+    font-size: 24px;
+    text-align: left;
+    margin-left: 260px;
+  }
+  
 }

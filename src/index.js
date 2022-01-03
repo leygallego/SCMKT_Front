@@ -9,8 +9,9 @@ import queryString from 'query-string';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 
 import Web3 from 'web3'
-import { Web3ReactProvider } from '@web3-react/core'
-import { MetaMaskProvider } from './hooks/useMetaMask'
+
+import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
+import { MetaMaskContext, MetaMaskProvider } from './hooks/useMetaMask'
 
 /*
 async function prompt() {
