@@ -1,0 +1,38 @@
+/* movil */
+
+.contractComponent{
+    margin-top: 24%;
+
+}
+
+.labelForm-buildContract{
+    font-size: 15px;
+    text-align: center;
+}
+
+.inputForm{
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+.group-button-build button{
+    background-color: white;
+    color: #0078E7
+
+}
+
+
+
+@media (min-width:600px){
+    .contractComponent{
+        margin-top: 14%;
+    
+    }
+
+    .labelForm-buildContract{
+        font-size: 25px;
+        text-align: center;
+    }
+
+}

@@ -1,0 +1,281 @@
+.chatComponent{
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    margin-left: 25%;
+    bottom: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    background-color: white;
+    z-index: 9999;
+     }
+
+.chatPannel { 
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        text-align: end;
+        height: 15%;
+}
+   
+
+.chatBody {
+    display: flex;
+    flex-direction: row;
+    /* background-color: yellow; */
+    height: 100%;
+}
+
+.chatLeft {
+    width: 20%;
+    /* height: 100px;
+    background: url('../imagenes/decorative.png'); */
+    /* background-color: blue; */
+}
+
+.chatCenter {
+    width: 60%;
+    height: 100%;
+}
+
+.messageArea {
+    box-sizing: border-box;
+    width: 100%;
+    height: 235px;
+    border: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    /* background-color: rgb(195, 208, 238); */
+    background: url('../imagenes/FondoPF.jpeg');
+
+    overflow-y: scroll;
+  }
+
+.chatRight {
+    width: 20%;
+    height: 100%;
+    /* background-image: url('decorative.png'); */
+}
+
+.messageComponent {
+    height: 100%;
+    width: 100%;
+    border: solid;
+    border-color: black;
+    background-color: #f2f2f2;
+    overflow-y: scroll;
+}
+
+.senderComponent {
+    display: flex;
+    flex-direction: row;
+    width: 30%;
+    position: fixed;
+    bottom: 0;
+    z-index: 99999;
+}
+  
+  .inputSender {
+    width: 100%;
+    height: 30px;
+    border: solid;
+    background-color: white;
+    border-radius: 5px;
+    border-width: 1px;
+    color: black;
+    font-size: 20px;
+    font-family: Poppins;
+    padding-left: 10px; 
+}
+  
+  .inputSenderButton {
+    width: 100px;
+    height: 35px;
+    border: solid;
+    border-radius: 30px;
+    border-width: 1px;
+    background: #0078E7;
+    color: white;
+    font-size: 16px;
+  }
+  
+.userDataComponent {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-family: Poppins;
+  font-size: 14px;
+  color: rgb(103, 103, 255);
+}
+
+.avatar {
+  max-height: 100px;
+  max-width: 100px;
+  border-radius: 50%;
+}
+
+.caja{
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+}
+
+.box{
+width: 100px;
+height: 50px;
+overflow: hidden;
+border-radius: 50%;
+
+}
+
+.box img{
+width: 50%;
+height: auto;
+border-radius: 50%;
+}
+  
+.chaters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.messageContainer {
+  width: 100%;
+  background-color: black;
+}
+
+/* Div alineado a la derecha... el que envía el mensaje */
+.messageDivFrom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  max-width: 100%;
+  text-align: right;
+  align-items: center;
+  margin-top: 5px;
+  padding: 10px;
+  margin-right: 15px;
+  font-family: Poppins;
+  font-size: 14px;
+}
+
+/* Div donde vá el mensaje... */
+.messageDataFrom {
+  display: flex;
+  width: fit-content;
+  max-width: 70%;
+  padding: 5px;
+  text-align: start;
+  align-items: center;
+  border: solid;
+  border-color: rgb(180, 236, 182);
+  border-width: 0.1px;
+  border-radius: 5px;
+  background-color: rgb(180, 236, 182);
+}
+
+.messageDataFrom::after {
+  content: "";
+  position: relative;
+  bottom: -8px;; 
+  left: 20px;
+  border-top-color: rgb(180, 236, 182);           
+  border-bottom: 15px solid rgb(180, 236, 182);
+  border-right: 15px solid transparent;
+  border-left: 0px solid transparent;
+}
+
+
+/* Div alineado a la izquierda... el que recibe el mensaje */
+.messageDivTo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  max-width: 100%;
+  text-align: left;
+  align-items: center;
+  margin-top: 5px;
+  padding: 10px;
+  margin-left: 15px
+}
+
+/* Div donde vá el mensaje... */
+.messageDataTo {
+  display: flex;
+  width: fit-content;
+  max-width: 70%;
+  padding: 5px;
+  text-align: start;
+  align-items: center;
+  border: solid;
+  border-color: #94b9f8;
+  border-width: 0.1px;
+  border-radius: 5px;
+  font-family: Poppins;
+  font-size: 14px;
+  background-color: #94b9f8;
+}
+
+.messageDataTo::before {
+  content: "";
+  position: relative;
+  bottom: 8px;; 
+  left: -20px;
+  border-top: 15px solid #94b9f8;
+  border-top-color: #94b9f8; 
+  border-left: 15px solid transparent;
+  border-right: 0px solid transparent;
+}
+
+.activeContracts {
+  display: flex;
+  flex-direction: row;
+}
+
+.chatIcon {
+  width: 60px;
+}
+
+.contractsChat {
+  display: flex;
+  text-align: start;
+  align-items: flex-start;
+}
+
+.contractDetailButton {
+  display: flex;
+  flex-direction: row;
+}
+
+.chatPannel button{
+  color: white;
+  background-color: #0078E7;
+  border-radius: 20px;
+  /* width: 1px; */
+  height: 25px;
+}
+
+@media (max-width:600px) {
+  .chatComponent{
+    width: 100%;
+    margin-left: 0%;
+    
+     }
+
+     .senderComponent {
+      display: flex;
+      flex-direction: row;
+      width: 60%;
+      position: fixed;
+      bottom: 0;
+      z-index: 99999;
+  }
+  .chatPannel button{
+    
+    height: 15px;
+    width: auto;
+    margin-left: 10%;
+  }
+}

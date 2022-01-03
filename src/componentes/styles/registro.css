@@ -1,0 +1,104 @@
+
+.registro1Component {
+    /* margin-top: 50px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;}
+
+
+.circleButton {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(103, 103, 255);
+    border: solid;
+    border-width: 1px;
+    border-radius: 50px;
+}
+
+.circleButton2 {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(184, 190, 181);
+    border: solid;
+    border-width: 1px;
+    border-radius: 50px;
+}
+
+.twoButtonsComponent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* background-color: yellow; */
+}
+
+.circleText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: aqua; */
+    margin: 5px;
+}
+
+.inputsPlace {
+    /* margin-top: 20px; */
+    /* border: solid; */
+    border-width: 1px;
+    border-radius: 20px;
+    /* width: 20%;
+    height: 100%; */
+    background-color: rgb(247, 247, 233);
+}
+
+.labelInput {
+    /* background-color: yellow; */
+    margin-top: 10px
+}
+
+.labelForm {
+    /* background-color: blue; */
+    text-align: start;
+    padding-left: 25px;
+}
+
+.inputFormComponent {
+    width: 80%;
+    height: 30px;
+    font-size: 20px;
+}
+
+.buttonFormComponent {
+    margin-top: 10px;
+}
+
+.buttonComponent {
+    height: 30px;
+    width: 120px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: rgb(103, 103, 255);
+
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.avatarInput {
+    display: none
+}
+
+.loginComponent {
+    background-color: rgb(247, 247, 233);
+}
+
+.avatarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center4;
+}

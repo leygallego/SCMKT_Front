@@ -1,0 +1,659 @@
+.contratos-wraper{
+    margin-top: 14%;
+}
+
+.main-perfil{
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #FFFFFF;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    margin-left: 7%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    border-radius: 30px;
+    padding: 10px;
+    margin-top: 14%;
+}
+
+.perfil-card{
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent; */
+    color: black;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    width: 75%;
+    margin-left: 5%;
+    margin-right: 0%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.contratos-publicados{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #0078E7;
+    color: white;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    width: auto;
+    height: auto;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.contratos-borradores{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: rgba(0, 120, 231, 0.66);;
+    color: white;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;;
+    width: auto;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    padding: 10px;
+    height: auto;
+}
+
+.scrolling {
+    max-height: 230px;
+    overflow-y: scroll;
+}
+
+.contratos-finalizados{
+  
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: rgba(0, 120, 231, 0.33);
+    color: white;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;;
+    width: auto;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    border-radius: 20px;
+    padding: 10px;
+    height: auto;
+}
+
+.area-perfil img{
+    width: 100px;
+    height: 100px;
+    margin: 0px 0px 0px 0%;
+}
+.area-perfil{
+    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: transparent; */
+    color: black;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    width: 25%;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+.info-contrato{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: white;
+    width: auto;
+    height: auto;
+    max-height: 200px;
+    margin-top: 5px;
+    color: black;
+    margin-left: 1.5%;
+    margin-bottom: 1%;
+}
+
+.info-contrato h6{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 8px;
+
+}
+
+.datos-personales {
+    /* display: grid; */
+    margin-top: 5%;
+    margin-left: -10%;
+    height: auto;
+    width: 110px;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.inputForm input{
+    width: 80px;
+    margin-left: 2px;
+}
+.selectPais select{
+    width: 80px;
+    margin-left: 1%;
+}
+.datos-personales h4{
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 1px;
+}
+
+
+.datos-personales button{
+    background-color: #0078E7;
+    width: 120px;
+    height: 25px;
+    font-size: 8px;
+    border-radius: 30px;
+}
+/* .boton-wallet{
+    margin-left: -29px;
+} */
+.boton-wallet button{
+    background-color: #0078E7;
+    width: 110px;
+    height: 25px;
+    font-size: 8px;
+    border-radius: 30px;
+    margin-left: -10%;
+}
+
+
+
+.botonEditar{
+    background-color: #0078E7;
+    border-radius: 10px;
+    color: white;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.avatarInput {
+    display: none;
+}
+
+.imagenbutton {
+    width: 100px;
+    height: 100px;
+    background-image: url("../icons/upload.png");
+    /* background-color: yellow; */
+}
+
+.imageCircle {
+    border-radius: 50%;
+}
+
+.borradoresRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.borradoresContracts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profileDataView {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: start;
+    margin-left: 5px;
+    font-size: 8px;
+}
+
+
+
+
+@media (min-width: 600px){
+    .main-perfil{
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #FFFFFF;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        width: 85%;
+        margin-left: 7%;
+        margin-right: 5%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .perfil-card{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: 75%;
+        margin-left: 5%;
+        margin-right: 0%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .contratos-publicados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #0078E7;
+        color: white;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: auto;
+        margin-top: 1%;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .contratos-borradores{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.66);;
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: auto;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .scrolling {
+        max-height: 230px;
+        overflow-y: scroll;
+    }
+    
+    .contratos-finalizados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.33);
+        color: white;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;;
+        width: auto;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .area-perfil img{
+        width: 150px;
+        height: 150px;
+        margin: 0px 0px 0px 0%;
+    }
+    .area-perfil{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        width: 40%;
+        margin-top: 2%;
+        margin-left: 10%;
+        margin-right: 5%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .info-contrato{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background-color: white;
+        width: auto;
+        height: auto;
+        max-height: 200px;
+        margin-top: 5px;
+        color: black;
+        margin-left: 1.5%;
+        margin-bottom: 1%;
+    }
+    
+    .info-contrato h6{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 10px;
+    
+    }
+    
+    .datos-personales {
+        /* display: grid; */
+        margin-top: 8%;
+        margin-left: 5%;
+        height: auto;
+        width: auto;
+        background-color: black;
+        color: white;
+        border-radius: 30px;
+        width: 150;
+    }
+
+    /* .inputForm input{
+        width: 105px;
+        margin-left: 7%;
+    } */
+
+    .inputForm input{
+        width: 155px;
+        margin-left: -10px;
+    }
+    .selectPais select{
+        width: 105px;
+        margin-left: 1%;
+    }
+    
+    .datos-personales h4{
+        margin-top: 1px;
+        margin-bottom: 1px;
+        margin-left: 15px;
+    }
+    .datos-personales button{
+        background-color: #0078E7;
+        width: 200px;
+        height: 45px;
+        font-size: 10px;
+        border-radius: 30px;
+    }
+    /* .boton-wallet{
+        margin-left: 29px;
+    } */
+    
+    .boton-wallet button{
+        background-color: #0078E7;
+        width: 190px;
+        height: 40px;
+        font-size: 10px;
+        border-radius: 30px;
+        margin-left: 10px;
+    }
+    
+    .botonEditar{
+        background-color: #0078E7;
+        border-radius: 10px;
+        color: white;
+        width: auto;
+        margin-bottom: 20px;
+    }
+    
+    .avatarInput {
+        display: none;
+    }
+    
+    .imagenbutton {
+        width: 100px;
+        height: 100px;
+        background-image: url("../icons/upload.png");
+        /* background-color: yellow; */
+    }
+    
+    .imageCircle {
+        border-radius: 50%;
+    }
+    
+    .borradoresRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .borradoresContracts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .profileDataView {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: start;
+        margin-left: 5px;
+        font-size: 12px;
+
+    }
+    
+    
+}
+
+
+
+
+@media (min-width: 992px){
+    .main-perfil{
+        display: flex;
+        flex-direction: row;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #FFFFFF;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        width: 85%;
+        margin-left: 7%;
+        margin-right: 5%;
+        margin-bottom: 2%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .perfil-card{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;
+        width: 75%;
+        margin-left: 5%;
+        margin-right: 0%;
+        border-radius: 20px;
+        padding: 10px;
+    }
+    
+    .contratos-publicados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: #0078E7;
+        color: white;
+        font-size: 22px;
+        font-family: 'Poppins', sans-serif;
+        width: 100%;
+        margin-top: 2%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        padding-top: 1px;
+    }
+    
+    .contratos-borradores{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.66);
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: 100%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .scrolling {
+        max-height: 230px;
+        overflow-y: scroll;
+    }
+    
+    .contratos-finalizados{
+      
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: rgba(0, 120, 231, 0.33);
+        color: white;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;;
+        width: 100%;
+        margin-left: 5%;
+        margin-bottom: 2%;
+        border-radius: 20px;
+        padding: 10px;
+        height: auto;
+    }
+    
+    .area-perfil img{
+        width: 200px;
+        height: 200px;
+        margin: 0px 0px 0px 0%;
+    }
+    .area-perfil{
+        /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        background-color: transparent; */
+        color: black;
+        font-size: 18px;
+        font-family: 'Poppins', sans-serif;
+        width: 55%;
+        margin-top: 2%;
+        margin-left: 15%;
+        margin-right: 5%;
+        border-radius: 30px;
+        padding: 10px;
+    }
+    
+    .info-contrato{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        background-color: white;
+        width: 97%;
+        height: auto;
+        max-height: 200px;
+        margin-top: 5px;
+        color: black;
+        margin-left: 1.5%;
+        margin-bottom: 1%;
+    }
+    
+    .info-contrato h6{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 12px;
+    
+    }
+    
+    /* .datos-personales {
+        display: grid;
+        margin-top: 10%;
+        margin-left: 10%;
+        height: auto;
+        width: auto;
+        background-color: black;
+        color: white;
+        border-radius: 20px;
+        width: 75%;
+    } */
+
+    .datos-personales {
+        /* display: grid; */
+        margin-top: 5%;
+        margin-left: 10%;
+        height: auto;
+        width: 250px;
+        background-color: black;
+        color: white;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .datos-personales h4{
+        margin-top: 2px;
+        margin-bottom: 2px;
+        margin-left: 25px;
+    }
+
+    .inputForm input{
+        width: 155px;
+        margin-left: -10px;
+    }
+    .selectPais select{
+        width: 155px;
+        margin-left: 1%;
+    }
+    
+    .datos-personales button{
+        background-color: #0078E7;
+        border-radius: 30px;
+        width: 240px;
+        height: 45px;
+        font-size: 12px;
+    }
+
+    .boton-wallet{
+        margin-left: -29px;
+    }
+    .boton-wallet button{
+        background-color: #0078E7;
+        width: 240px;
+        border-radius: 30px;
+        height: 45px;
+        font-size: 12px;
+    }
+    
+    .botonEditar{
+        background-color: #0078E7;
+        border-radius: 10px;
+        color: white;
+        width: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .avatarInput {
+        display: none;
+    }
+    
+    .imagenbutton {
+        width: 100px;
+        height: 100px;
+        background-image: url("../icons/upload.png");
+        /* background-color: yellow; */
+    }
+    
+    .imageCircle {
+        border-radius: 50%;
+    }
+    
+    .borradoresRow {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .borradoresContracts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .profileDataView {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        text-align: start;
+        margin-left: 5px;
+        font-size: 14px;
+    }
+    
+    
+}

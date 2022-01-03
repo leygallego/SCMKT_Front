@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  overflow: hidden;
+  /* margin-top: 5%; */
 }
 
 .App-logo {
@@ -38,16 +40,16 @@
 }
 
 body{
-  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./images/FondoPF.jpeg')no-repeat center center fixed ;
+  background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./componentes/imagenes/FondoPF.jpeg')no-repeat center center fixed ; 
   /* background-size: 100%; */
-  min-height: 100%;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /* min-height: 100%; */
+  -webkit-background-size: repeat;
+  -moz-background-size: repeat;
+  -o-background-size: repeat;
+  background-size: repeat;
+  background-repeat: repeat;
 }
 
 html {
   height: 100%;
 }
-
