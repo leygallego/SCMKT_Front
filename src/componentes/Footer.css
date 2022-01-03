@@ -6,6 +6,19 @@
     display: flex;
     /* justify-content: space-evenly; */
 }
+.boton-registrarse button{
+    color: #0078E7;
+    border: none;
+    background-color: transparent;
+    /* font-family: 'Poppins', sans-serif; */
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 70px;
+
+
+
+
+}
 
     .footer-home{
         display: grid;
@@ -81,5 +94,14 @@
     .footer-home h5{
         
         font-size: 18px;
+    }
+
+    .boton-registrarse button{
+        
+        font-size: 10.5px;
+        margin-left: 253px;
+    
+    
+    
     }
   }
