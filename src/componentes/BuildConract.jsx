@@ -274,7 +274,7 @@ function BuildConract() {
                         </div>
 
                         <div className="labelInput">
-                            <div className="labelForm-buildContract">Describe tu problema en pocas palabras
+                            <div className="labelForm-buildContract">Describe tu problema
                             </div>
                             <div className="inputForm">
                                 <textarea
@@ -288,7 +288,7 @@ function BuildConract() {
 
                         <div className="labelInput">
                             <div className="labelForm-buildContract">
-                                Explica a la comunidad de qué se trata y cómo esperas que lo resuelvan
+                                Escribe aquí tu test
                             </div>
                             <div className="inputForm">
                                 <textarea
@@ -302,14 +302,20 @@ function BuildConract() {
                                 />
                             </div>
                         </div>
+                        <div>
+                            <div className="labelForm-buildContract">
+                                Escribe aquí tu Personal-Access-Token:
+                            </div>
+                                <input type="text" name="Password" value={input.longdescription} />
+                            </div>
 
-                        <div className="labelInput-combo">
+                        {/*<div className="labelInput-combo">
                             <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
                             </div>
-                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="text" onChange={e => { handleInputChange(e) }} /></div>
-                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="text" onChange={e => { handleInputChange(e) }} /></div>
-                        </div>
+                            <div className="inputForm-archivo"><input name='file-c1' id='file-c1' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                            <div className="inputForm-archivo"><input name='file-c2' id='file-c2' className="seleccion-archivo" type="file" onChange={e => { handleInputChange(e) }} /></div>
+                        </div>*/}
 
                         {/* <div className="labelInput">
                             <div className="labelForm">
