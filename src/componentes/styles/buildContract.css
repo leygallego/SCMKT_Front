@@ -16,6 +16,16 @@
   text-indent: 0.5px;
 }
 
+.wraper-crear {
+  margin-top: 14%;
+}
+.modal-overlay{
+  /* background-color: yellow; */
+  max-height: 900px;
+  width: 900px;
+  margin-left: 100px;
+}
+
 .contractForm {
   width: 80%;
   background-color: #0078e7;
@@ -88,7 +98,7 @@
 }
 
 .acept-contract-disable {
-  background-color: rgb(178, 187, 186);
+  background-color: rgb(178, 187, 186) !important;
 }
 
 .acept-contract:hover {
@@ -165,6 +175,19 @@
   height: 500px;
 }
 
+.input-reach-text {
+  width: 100%;
+  border: 1px solid black;
+  padding: 2px;
+  /* min-height: 400px; */
+  font-weight: normal;
+}
+
+.input-reach-text {
+  color: black;
+  /* font-size: 12px; */
+}
+
 @media (min-width: 576px) {
   .contractComponent {
     width: 100%;
@@ -231,6 +254,6 @@
   }
 
   .buttonFormComponent input {
-    color: white;
+    color: rgb(136, 42, 42);
   }
 }

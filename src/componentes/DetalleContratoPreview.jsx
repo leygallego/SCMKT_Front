@@ -14,6 +14,8 @@ require('dotenv').config();
 
 
 
+
+
 function DetalleContratoPreview(props) {
 
   const { dataPreview, onClose } = props
@@ -23,6 +25,20 @@ function DetalleContratoPreview(props) {
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const contract = useSelector(state => state.preview)
+
+  const octokit = new Octokit({
+    // authStrategy: createOAuthAppAuth,
+    // auth: {
+    //   clientType: 'github-app',
+    //   clientId: 'd1caa78b0df97e743827',
+    //   scopes: ['user', 'public_repo', 'repo'],
+    //   onVerification(verification) {
+    //     console.log('Open %s', verification.verification_uri);
+    //     console.log('Enter code: %s', verification.user_code);
+    //   },
+    // },
+    auth: `${contract.pat}`
+  })
 
   useEffect(() => {
     dispatch(getContractsPreview(dataPreview))
@@ -63,19 +79,19 @@ function DetalleContratoPreview(props) {
     }
 
   async function createRepo() {
-    const octokit = new Octokit({
-      // authStrategy: createOAuthAppAuth,
-      // auth: {
-      //   clientType: 'github-app',
-      //   clientId: 'd1caa78b0df97e743827',
-      //   scopes: ['user', 'public_repo', 'repo'],
-      //   onVerification(verification) {
-      //     console.log('Open %s', verification.verification_uri);
-      //     console.log('Enter code: %s', verification.user_code);
-      //   },
-      // },
-      auth: `${contract.pat}`
-    })
+    // const octokit = new Octokit({
+    //   // authStrategy: createOAuthAppAuth,
+    //   // auth: {
+    //   //   clientType: 'github-app',
+    //   //   clientId: 'd1caa78b0df97e743827',
+    //   //   scopes: ['user', 'public_repo', 'repo'],
+    //   //   onVerification(verification) {
+    //   //     console.log('Open %s', verification.verification_uri);
+    //   //     console.log('Enter code: %s', verification.user_code);
+    //   //   },
+    //   // },
+    //   auth: `${contract.pat}`
+    // })
     // let owner = `${user.username}`
     // let name = `${contract.name}`
     // let file = `${contract.longdescription}`
@@ -85,28 +101,24 @@ function DetalleContratoPreview(props) {
         name: `${contract.name}`
     }).then(console.log, console.log);
 
+    setTimeout(createTest, 3000)
+
   }
 
   async function createTest() {
-    const octokit = new Octokit({
-      // authStrategy: createOAuthAppAuth,
-      // auth: {
-      //   clientType: 'github-app',
-      //   clientId: 'd1caa78b0df97e743827',
-      //   scopes: ['user', 'public_repo', 'repo'],
-      //   onVerification(verification) {
-      //     console.log('Open %s', verification.verification_uri);
-      //     console.log('Enter code: %s', verification.user_code);
-      //   },
-      // },
-      auth: `${contract.pat}`
-    })
+    
     let owner = `${user.username}`
+    console.log(user.username)
     let name = `${contract.name}`
+    console.log(contract.name)
     let file = `${contract.longdescription}`
-    let contentEncoded = Base64.encode(file)
+    console.log(contract.longdescription)
 
-    octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+    let contentEncoded = Base64.encode(file)
+    console.log(contentEncoded)
+
+
+    await octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
           owner: owner,
           repo: name,
           message: "feat: Added test.js from SCMKT",
@@ -125,7 +137,8 @@ function DetalleContratoPreview(props) {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(createContract(nweC))
-        createRepo().then(createTest())
+        createRepo()
+        // createTest()
 
         Swal.fire('Guardado correctamente', '', 'success')
           .then((result) => {

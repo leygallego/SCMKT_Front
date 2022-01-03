@@ -194,7 +194,7 @@ function Profile() {
                     </Button>
                     </div>
                         
-                    <div className="boton-wallet">
+                    {/*<div className="boton-wallet">
                         <Button
                             className="busca-wallet"
                             variant="contained"
@@ -204,7 +204,7 @@ function Profile() {
                             Crear Repositorio
                         </Button>
                         
-                    </div>
+                    </div>*/}
                         
                     <div className="datos-personales" >
                         <Button
