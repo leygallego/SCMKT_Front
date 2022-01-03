@@ -302,8 +302,9 @@ nav{
   .login-button button{
     border-radius: 30px;
     font-size: 12px;
-    margin-left: 0%;
+    margin-left: -55%;
     width: 150px;
+    margin-top: 15%;
   }
 
   /* .logout-button{
@@ -311,7 +312,7 @@ nav{
   } */
 
   .logout-button button{
-    margin-top: 190%;
+    margin-top: 170%;
     background-color: #0078E7;
     border: none;
     height: 25px;

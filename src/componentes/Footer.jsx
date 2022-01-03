@@ -37,8 +37,9 @@ function Footer() {
                             </div>
                         )
                             : (
-                                <div>
-                                    <li>
+                                <div className='boton-registrarse'>
+                                    <li >
+                                    {/* <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} onClick={loginWithRedirect}>Regístrate</NavLink> */}
                                         {/* <NavLink to="/registro">Regístrate</NavLink> */}
                                         <button className={({ isActive }) => (isActive ? "active" : "noActive")} onClick={loginWithRedirect} >Regístrate</button>
                                     </li>
