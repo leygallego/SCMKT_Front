@@ -4,10 +4,10 @@
     justify-content: space-evenly;
     align-items: center;
 }
-img{
+/* img{
     width: 10px;
     height: 10px;
-}
+} */
 .logos-footer{
     display: flex;
     justify-content: space-evenly;
@@ -79,14 +79,14 @@ img{
 
 .active{
     text-decoration: none;
-    color: black;
+    color: var(--blanco);
     font-weight: bold;
   }
   
   .noActive{
     text-decoration: none;
-    color: #0078E7;
-  }
+    color: var(--azulTerciario);
+}
 
   @media (max-width:600px) {
     .home-derecha{
