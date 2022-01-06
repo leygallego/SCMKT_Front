@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import '../componentes/styles/NavBar.css';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import CloseIcon from '@mui/icons-material/Close';
@@ -43,6 +43,7 @@ function NavBar() {
         <>
           {(toggleMenu || screenWidth > 500) && (
             <ul className="list">
+              
               <li className="items" onClick={toggleNav}>
                 <NavLink className="navLink" to="/contratos">Contratos</NavLink>
               </li>
@@ -61,10 +62,11 @@ function NavBar() {
               }
               }>Cerrar Sesión
               </li>
+              <div className='userAvatarNav' > <UserAvatar /> </div>
             </ul>
           )}
 
-          <button onClick={toggleNav} className="btn">BTN</button>
+          <button onClick={toggleNav} className="btn"> { toggleMenu ? <CloseIcon /> :  <ReorderIcon /> } </button>
           <h1 className='title'><NavLink className="navLink" to="/">SmartContracts</NavLink></h1>
           {/* <h1 className='title'>SmartContracts</h1> */}
         </>

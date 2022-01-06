@@ -2,18 +2,21 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 50px;
-  background: linear-gradient(45deg, rgb(14, 52, 156), rgb(159, 159, 230));
-}
+  height: 100px;
+  background: linear-gradient(45deg, var(--azulPrimario), var(--azulSecundario));
+  z-index: 99;
+  }
 
 .list {
   list-style-type: none;
-  background: linear-gradient(45deg, rgb(14, 52, 156), rgb(159, 159, 230));
+  /* background: linear-gradient(45deg, rgb(14, 52, 156), rgb(159, 159, 230)); */
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   position: relative;
+  margin-left: 300px;
+  margin-top: 25px;
 }
 
 .items {
@@ -21,13 +24,13 @@ nav {
   font-size: 20px;
   /* text-transform: uppercase; */
   text-decoration: none;
-  color: white;
+  color: var(--blanco);
   cursor: pointer;
 }
 
 .navLink {
   text-decoration: none;
-  color: white;
+  color: var(--blanco);
 }
 
 .btn {
@@ -41,19 +44,31 @@ nav {
 }
 
 .title {
-  display: none;
+  /* display: none; */
   position: absolute;
   left: 10px;
   top: -10px;
   padding: 0px;
-  color: white;
-  font-size: 28px;
+  color: var(--blanco);
+  font-size: 32px;
+  background-color: var(--transparente);
+
 }
 
 @media screen and (max-width: 500px){
+
+  nav {
+    
+    height: 60px;
+   
+    }
+
   .list {
       flex-direction: column;
       height: auto;
+      margin-left: -50px;
+      margin-top: 0px;
+
   }
   .items:nth-child(1){
       border-top: 1px solid rgba(255, 255, 255, 0.555);
@@ -65,11 +80,20 @@ nav {
       text-align: center;
       margin-right: 0px;
       padding: 20px 0;
+      background-color: var(--azulPrimario);
+
   }
   .btn {
       display: block;
+      background-color: transparent;
+      border: none;
+      color: var(--blanco);
   }
   .title {
       display: block;
+      font-size: 28px;
+  }
+  .avatarNavImage{
+    display: none;
   }
 }
