@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './DetalleContrato.css';
+import './styles/DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';

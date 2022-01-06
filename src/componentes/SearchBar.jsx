@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux";
-import './SearchBar.css'
+import './styles/SearchBar.css'
 import { 
     getContracts,
     setFilterType,

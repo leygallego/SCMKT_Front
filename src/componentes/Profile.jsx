@@ -7,7 +7,7 @@ import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
-import './Profile.css';
+import './styles/Profile.css';
 import Spinner from './Spinner';
 import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';

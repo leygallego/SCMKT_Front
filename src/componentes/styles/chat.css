@@ -1,4 +1,4 @@
-.chatComponent{
+/* .chatComponent{
     width: 50%;
     height: 50%;
     position: fixed;
@@ -22,15 +22,11 @@
 .chatBody {
     display: flex;
     flex-direction: row;
-    /* background-color: yellow; */
     height: 100%;
 }
 
 .chatLeft {
     width: 20%;
-    /* height: 100px;
-    background: url('../imagenes/decorative.png'); */
-    /* background-color: blue; */
 }
 
 .chatCenter {
@@ -45,7 +41,6 @@
     border: solid;
     border-radius: 5px;
     border-width: 1px;
-    /* background-color: rgb(195, 208, 238); */
     background: url('../imagenes/FondoPF.jpeg');
 
     overflow-y: scroll;
@@ -54,7 +49,6 @@
 .chatRight {
     width: 20%;
     height: 100%;
-    /* background-image: url('decorative.png'); */
 }
 
 .messageComponent {
@@ -146,7 +140,6 @@ border-radius: 50%;
   background-color: black;
 }
 
-/* Div alineado a la derecha... el que envía el mensaje */
 .messageDivFrom {
   display: flex;
   flex-direction: row;
@@ -161,7 +154,6 @@ border-radius: 50%;
   font-size: 14px;
 }
 
-/* Div donde vá el mensaje... */
 .messageDataFrom {
   display: flex;
   width: fit-content;
@@ -188,7 +180,6 @@ border-radius: 50%;
 }
 
 
-/* Div alineado a la izquierda... el que recibe el mensaje */
 .messageDivTo {
   display: flex;
   flex-direction: row;
@@ -201,7 +192,6 @@ border-radius: 50%;
   margin-left: 15px
 }
 
-/* Div donde vá el mensaje... */
 .messageDataTo {
   display: flex;
   width: fit-content;
@@ -253,7 +243,6 @@ border-radius: 50%;
   color: white;
   background-color: #0078E7;
   border-radius: 20px;
-  /* width: 1px; */
   height: 25px;
 }
 
@@ -278,4 +267,4 @@ border-radius: 50%;
     width: auto;
     margin-left: 10%;
   }
-}
+} */
