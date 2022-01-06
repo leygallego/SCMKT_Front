@@ -3,7 +3,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading, createrepo } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
@@ -13,8 +13,28 @@ import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
-
 import useMetaMask from '../hooks/useMetaMask'
+import { Octokit } from "octokit";
+
+const { Base64 } = require("js-base64")
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+
+const octokit = new Octokit({
+    // authStrategy: createOAuthAppAuth,
+    // auth: {
+    //   clientType: 'github-app',
+    //   clientId: 'd1caa78b0df97e743827',
+    //   scopes: ['user', 'public_repo', 'repo'],
+    //   onVerification(verification) {
+    //     console.log('Open %s', verification.verification_uri);
+    //     console.log('Enter code: %s', verification.user_code);
+    //   },
+    // },
+    auth: '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'
+    
+})
+
 
 toast.configure()
 
@@ -38,18 +58,76 @@ function Profile() {
         dispatch(setLoading(false))
         dispatch(eraseMessage([]));
     }, [dispatch])
-
+    
+    
     const {
         getAccessTokenSilently,
     } = useAuth0();
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
+        
         try {
-            dispatch(sendLogin(token))
+            await dispatch(sendLogin(token))
         } catch (error) {
             console.log('Error en el perfil ', error)
         }
+    }
+
+    async function getRepo() {
+        try {
+            let owner = 'zzzNitro'
+            let name = 'prueba-tests1'
+            let collab = 'pmarchionno'
+            let file = 'value sacado del state'
+
+            // //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
+            // //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
+            // const contentEncoded = Base64.encode(file)
+
+            octokit.request(`PUT /repos/${owner}/${name}/collaborators/${collab}`, {
+                owner: owner,
+                repo: name,
+                username: `${collab}`,
+                permission: 'push'
+            }).then(console.log, console.log)
+
+            // octokit.request('POST /user/repos', {
+            //     name: name
+            // }).then(console.log, console.log);
+
+            // octokit.request('GET /user')
+            //     .then(console.log, console.log);
+
+            // const { data } = await octokit.repos.createOrUpdateFileContents({
+            //     owner: owner,
+            //       repo: "octokit-create-file-example",
+            //       path: "OUTPUT.md",
+            //       message: "feat: Added OUTPUT.md programatically",
+            //       content: file,
+            //       committer: {
+            //         name: owner,
+            //         email: 'pablo.benito@rocketmail.com',
+            //       },
+            //       author: {
+            //         name: owner,
+            //         email: 'pablo.benito@rocketmail.com',
+            //       },
+            //     });
+            //     console.log(data)
+            // octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+            //     owner: owner,
+            //     repo: name,
+            //     message: "feat: Added test.js programatically",
+            //     content: contentEncoded,
+            // }).then(console.log, console.log);
+
+
+        } catch(err) {
+            console.log(err)
+        }
+        
+      
     }
 
     const handleOnChange = (e) => {
@@ -113,7 +191,19 @@ function Profile() {
                         {isActive ? 'Desconectar' : 'Conectar Wallet'}
                     </Button>
                     </div>
-
+                        
+                    {/*<div className="boton-wallet">
+                        <Button
+                            className="busca-wallet"
+                            variant="contained"
+                            startIcon={<AccountBalanceWalletIcon />}
+                            //user.username, 'repo-prueba-00'
+                            onClick={getRepo}>
+                            Crear Repositorio
+                        </Button>
+                        
+                    </div>*/}
+                        
                     <div className="datos-personales" >
                         <Button
                             className="busca-datos"

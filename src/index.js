@@ -45,7 +45,7 @@ ReactDOM.render(
   }
   //response_type='id_token token'
   audience="SCMKT"
-  scope="openid profile email"
+  scope="openid profile email repo"
   prompt= {call_prompt()}
   > 
     <Web3ReactProvider getLibrary={getLibrary}>
