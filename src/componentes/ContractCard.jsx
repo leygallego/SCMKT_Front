@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contratos.css';
+import './styles/Contratos.css';
 import { NavLink } from 'react-router-dom';
 
 

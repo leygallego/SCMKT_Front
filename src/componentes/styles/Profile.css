@@ -184,8 +184,7 @@
 .imagenbutton {
     width: 100px;
     height: 100px;
-    background-image: url("../icons/upload.png");
-    /* background-color: yellow; */
+    /* background-image: url("../../icons/upload.png"); */
 }
 
 .imageCircle {
@@ -400,7 +399,7 @@
     .imagenbutton {
         width: 100px;
         height: 100px;
-        background-image: url("../icons/upload.png");
+        /* background-image: url("../icons/upload.png"); */
         /* background-color: yellow; */
     }
     
@@ -626,7 +625,7 @@
     .imagenbutton {
         width: 100px;
         height: 100px;
-        background-image: url("../icons/upload.png");
+        /* background-image: url("../icons/upload.png"); */
         /* background-color: yellow; */
     }
     

@@ -1,10 +1,8 @@
-/* Works on Firefox */
-* {
+/* * {
     scrollbar-width: thin;
     scrollbar-color: blue whitesmoke;
   }
   
-  /* Works on Chrome, Edge, and Safari */
   *::-webkit-scrollbar {
     width: 12px;
   }
@@ -19,8 +17,7 @@
     border: 3px solid whitesmoke;
   }
 
-
   .contractscard {
     display: flex;
     flex-direction: row;
-  }
+  } */

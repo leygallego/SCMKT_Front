@@ -1,5 +1,5 @@
 import React from 'react';
-import './DetalleContrato.css';
+import './styles/DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 

@@ -1,7 +1,6 @@
 .App {
   text-align: center;
   overflow: hidden;
-  /* margin-top: 5%; */
 }
 
 .App-logo {
@@ -41,8 +40,6 @@
 
 body{
   background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./componentes/imagenes/FondoPF.jpeg')no-repeat center center fixed ; 
-  /* background-size: 100%; */
-  /* min-height: 100%; */
   -webkit-background-size: repeat;
   -moz-background-size: repeat;
   -o-background-size: repeat;
@@ -52,4 +49,9 @@ body{
 
 html {
   height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }

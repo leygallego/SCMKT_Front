@@ -14,9 +14,6 @@
   margin-top: 14%;
   margin-left: -80px;
 }
-/* .main-detalle{
-  background-color: yellow;
-} */
 
 .group-button-preview{
   display: flex;
@@ -52,10 +49,7 @@
     margin-top: 14%;
     margin-left: 40px;
   }
-  /* .main-detalle{
-    background-color: yellow;
-  } */
-  
+
   .group-button-preview{
     display: flex;
     justify-content: space-between;

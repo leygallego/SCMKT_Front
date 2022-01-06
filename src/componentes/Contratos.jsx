@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './Contratos.css';
+// import './styles/Contratos.css';
+import '../componentes/styles/Contratos.css';
 import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import { NavLink } from 'react-router-dom';

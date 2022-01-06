@@ -1,5 +1,5 @@
 import React from 'react';
-import './AboutUs.css';
+import './styles/AboutUs.css';
 import { useDispatch } from 'react-redux';
 import { setChat, configChannel, eraseMessage } from '../actions';
 

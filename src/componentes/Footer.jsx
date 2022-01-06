@@ -1,13 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import './Footer.css';
+import './styles/Footer.css';
 
 function Footer() {
     const { loginWithRedirect, isAuthenticated } = useAuth0()
     
     return (
-        <div className="footer-home">
+        <div className="footerComponent">
+                                <div className='divisor-home'></div>
+
+            <div className="row">
             <div className="home-izquierda">
                 <h5>SmartContracts</h5>
                 <div className="logos-footer">
@@ -39,8 +42,6 @@ function Footer() {
                             : (
                                 <div className='boton-registrarse'>
                                     <li >
-                                    {/* <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} onClick={loginWithRedirect}>Regístrate</NavLink> */}
-                                        {/* <NavLink to="/registro">Regístrate</NavLink> */}
                                         <button className={({ isActive }) => (isActive ? "active" : "noActive")} onClick={loginWithRedirect} >Regístrate</button>
                                     </li>
                                 </div>
@@ -48,8 +49,7 @@ function Footer() {
                     }
 
                 </ul>
-
-            </div>
+                </div> </div>
         </div>
     )
 }

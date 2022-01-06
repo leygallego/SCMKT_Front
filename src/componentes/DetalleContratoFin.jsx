@@ -1,5 +1,5 @@
 import React from 'react';
-import './DetalleContrato.css';
+import './styles/DetalleContrato.css';
 import Button from '@mui/material/Button';
 import { useHistory } from 'react-router-dom';
 
@@ -13,12 +13,10 @@ const Detallecontratofin = () => {
         history.push("perfil");
     }
 
-
     return (
         <>
             <div><h1>Detalle Contrato</h1></div>
             <div className="main-detalle">
-
                 <div className="detalle-card">
                     <div className="xButton">
                         <Button
@@ -35,6 +33,5 @@ const Detallecontratofin = () => {
         </>
     )
 }
-
 
 export default Detallecontratofin;
