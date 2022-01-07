@@ -55,7 +55,29 @@ nav {
 
 }
 
-@media screen and (max-width: 500px){
+.userAvatarNav{
+  margin-top: -115px;
+  margin-right: 15px;
+  float: right;
+}
+
+@media screen and (max-width: 992px) {
+.list{
+  margin-left: 300px;
+  /* background-color: yellow; */
+}
+.items{
+  font-size: 14px;
+}
+
+.avatarNavImage{
+  display: none;
+}
+
+  
+}
+
+@media screen and (max-width: 600px){
 
   nav {
     

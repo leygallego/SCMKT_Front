@@ -1,15 +1,9 @@
 import React from 'react';
 import './styles/AboutUs.css';
-import { useDispatch } from 'react-redux';
-import { setChat, configChannel, eraseMessage } from '../actions';
+
 
 function AboutUs() {
 
-    const dispatch = useDispatch();
-
-    dispatch(setChat(false));
-    // dispatch(configChannel(""));
-    dispatch(eraseMessage([]));
 
 
 

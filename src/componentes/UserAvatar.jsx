@@ -9,13 +9,13 @@ export default function UserAvatar() {
 
     return (
         <div>
-            <div className="contenedorAvatarNav">
-                <div className="cajaAvatar">
+            
+                
                     <div className="boxAvatar">
                     <img className='avatarNavImage' src={user.image} alt="usuario" />
                     </div>
-                </div>
-            </div>
+                
+            
         </div>
     )
 }
