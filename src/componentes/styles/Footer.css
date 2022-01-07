@@ -1,120 +1,120 @@
-.footerComponent {
+footer {
+
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-}
-/* img{
-    width: 10px;
-    height: 10px;
-} */
-.logos-footer{
-    display: flex;
-    justify-content: space-evenly;
-}
-.logos-footer img {
-    width: 30px;
-    height: 30px;
-  }
-.boton-registrarse button{
-    color: #0078E7;
-    border: none;
-    background-color: transparent;
-    /* font-family: 'Poppins', sans-serif; */
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 70px;
+    background: linear-gradient(45deg, var(--azulSecundario), var(--azulPrimario));
+    color: var(--blanco);
+
+    }
+
+    .footer-titulo{
+        margin-left: 15px;
+    }
+
+    .divisor-home {
+        margin-top: 0;
+        width: 100%;
+        height: 2em;
+        background-color: black;
+      }
+
+      .logos-footer img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .logos-footer{
+        display: flex;
+        justify-content: baseline;
+        margin-top: 15px;
+    }
+    .logos-footer a{
+           
+        margin-left: 10px;
+    }
+
+    .home-izquierda{
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+    }
+
+    .home-derecha{
+        /* width: 30%; */
+        margin-right: 10px;
+        text-align: right;
+        
+        /* text-decoration: none; */
+    }
+    .home-derecha li{
+        list-style-type: none;
+        text-decoration: none;
 
 
+    }
 
-
-}
-
-.divisor-home {
-    margin-top: 0;
-    width: 100%;
-    height: 2em;
-    background-color: black;
-  }
-
-    .footer-home{
+    .contenedor-footerItems{
+        /* display: flex;
+        flex-direction: column; */
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        background-color: #FFFFFF;
-        font-family: 'Poppins', sans-serif;
+        grid-template: 
+        "home-izquierda home-derecha" 
+        ;
+    }
+
+    .active{
+        color: white;
         font-weight: bold;
-        font-size: 15px;
-        margin-top: 1rem;
-        padding: 1rem;
-        /* position: fixed; */
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        position: relative;
-    }
-
-    .footer-home h5{
-        margin-top: 1px;
-        margin-bottom: 25px;
-        font-size: 26px;
-        color: #0078E7;
-    }
-
-.home-izquierda{
-    width: 70%;
-}
-.home-derecha{
-    width: 30%;
-    margin-left: 55%;
-    text-align: right;
-    font-size: 15px;
-    /* color: #0078E7; */
-}
-
-.home-derecha li{
-    /* color: #0078E7; */
-    text-decoration: none;
-
-}
-
-.active{
-    text-decoration: none;
-    color: var(--blanco);
-    font-weight: bold;
-  }
-  
-  .noActive{
-    text-decoration: none;
-    color: var(--azulTerciario);
-}
-
-  @media (max-width:600px) {
-    .home-derecha{
-        margin-left: -10%;
-        width: 300px;
-        font-size: 7px;
-
-    }
-  }
-
-  @media (max-width:800px) {
-    .home-derecha{
-        margin-left: -50%;
-        width: 350px;
-
-        font-size: 10px;
-    }
-    .footer-home h5{
+        text-decoration: none;
         
-        font-size: 18px;
+    }
+    
+    .noActive{
+        color: var(--blanco);
+        text-decoration: none;
+    
     }
 
     .boton-registrarse button{
-        
-        font-size: 10.5px;
-        margin-left: 253px;
-    
-    
-    
+        background-color: transparent;
+        border: none;
+        /* font-family: 'Poppins', sans-serif; */
+        color: var(--blanco);
+        font-size: medium;
     }
-  }
+
+    @media (min-width: 992px){
+
+        .logos-footer img {
+            width: 40px;
+            height: 40px;
+          }
+
+         /* .logos-footer a{
+             margin-left: 15px;
+         }  */
+        
+         .home-izquierda{
+          
+            margin-left: 10px;
+            font-size: 22px;
+        }
+
+        .home-derecha{
+            margin-right: 30px;
+          
+        } 
+        
+        
+        .logos-footer a{
+           
+            margin-left: 15px;
+        }
+    }

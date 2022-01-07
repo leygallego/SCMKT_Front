@@ -88,7 +88,7 @@ function NavBar() {
             </ul>
           )}
 
-          <button onClick={toggleNav} className="btn">BTN</button>
+<button onClick={toggleNav} className="btn"> { toggleMenu ? <CloseIcon /> :  <ReorderIcon /> } </button>
           <h1 className='title'><NavLink className="navLink" to="/">SmartContracts</NavLink></h1>
           {/* <h1 className='title'>SmartContracts</h1> */}
 

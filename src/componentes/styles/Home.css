@@ -18,8 +18,9 @@
 }
 
 .texto-motivador{
-  margin-top: 50px;
+  margin-top: 0px;
   font-size: 10px;
+  margin-bottom: 200px;
 }
 
 .wrapperImages {
@@ -45,6 +46,10 @@
 iframe {
   /* width: 100%;*/
   height: 150px; 
+}
+
+.videoComponent{
+  margin-top: 0px;
 }
 
 
