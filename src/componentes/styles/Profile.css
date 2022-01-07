@@ -3,8 +3,9 @@
 }
 
 .main-perfil{
+    margin-top: 80px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    /* background-color: var(--blanco); */
+    background-color: var(--blanco);
     color: var(--negro);
     font-family: 'Poppins', sans-serif;
     width: 85%;
@@ -13,7 +14,6 @@
     margin-bottom: 2%;
     border-radius: 12px;
     padding: 10px;
-    margin-top: 60px; 
     display: grid;
     gap: 10px;
     grid-template:
@@ -59,29 +59,63 @@
     font-size: 16px;
 }
 
+
+/* Contenedor Azul Oscuro de los contratos Publicados */
 .contratos-publicados{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: var(--azulPrimario);
-    color: var(--blanco);
+    color: var(--blanco);   
     font-size: 22px;
     font-family: 'Poppins', sans-serif;
     width: 100%;
     border-radius: 12px;
     padding-top: 1px;
-    overflow: scroll;
 }
+
+.activeContracts {
+    margin: 5px;
+  }
 
 .info-contrato{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+    text-align: left;
     max-height: 35px;
     color: var(--negro);
     background-color: var(--blanco);
+    font-weight: bold;
+    border-radius: 5px;
     margin-top: 10px;
     height: 55px;
+    width: 100%;
 }
 
+.datoContrato {
+    font-size: 12px;
+}
+
+.datoContratoName {
+    width: 50%;
+}
+
+.datoContratoAmount {
+    background-color: var(--transparente);
+}
+
+.datoContratoLink {
+    background-color: var(--transparente);
+}
+
+.scrolling {
+    max-height: 189px;
+    overflow-y: scroll;
+}
+
+
+
+/* Contenedor Azul Claro de los Borradores */
 .contratos-borradores{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     background-color: var(--azulSecundario);
@@ -90,13 +124,20 @@
     font-family: 'Poppins', sans-serif;;
     width: auto;
     margin-left: 1%;
-    margin-bottom: 2%;
+    /* margin-bottom: 2%; */
     border-radius: 12px;
     padding: 10px;
-    height: auto;
 }
 
 .borradoresContracts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Borradores con la Canasta */
+.borradoresRow {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -158,46 +199,44 @@
     overflow: hidden;
 }
 
+/* Pantalla Mediana Tablet */
+@media (min-width: 500px) {
+    .main-perfil{
+        margin-top: 150px;
+    }
+}
+
 @media (min-width: 600px) {
     .main-perfil{
+        margin-top: 150px;
         justify-content: space-around;
+        height: 800px;
+        max-height: fit-content;
         grid-template:
+        "perfil-title ." 70px
         "perfil-card area-perfil" 400px
         /
         50% 40%;
     }    
+
+    .imageCircle {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        margin-top: -20px;
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Pantalla Grande Pc */
 @media (min-width: 992px){
     .main-perfil{
-        margin-top: 100px;
+        margin-top: 150px;
         justify-content: space-around;
-        height: auto;
-        overflow: hidden;
-
+        height: 800px;
+        max-height: fit-content;
         grid-template:
         "perfil-title ." 70px
         "perfil-card area-perfil" 400px
@@ -237,7 +276,7 @@
 
     .datos-personales {
         margin-top: 15px;
-        height: 200px;
+        height: 300px;
         width: 100%;
         background-color: var(--negro);
         color: var(--blanco);

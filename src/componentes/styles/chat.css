@@ -219,10 +219,7 @@ border-radius: 50%;
   border-right: 0px solid transparent;
 }
 
-.activeContracts {
-  display: flex;
-  flex-direction: row;
-}
+
 
 .chatIcon {
   width: 60px;

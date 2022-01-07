@@ -3,7 +3,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading, createrepo } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, eraseMessage, setLoading, getUsers } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
@@ -33,7 +33,6 @@ const octokit = new Octokit({
     //   },
     // },
     auth: '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'
-    
 })
 
 
@@ -52,6 +51,7 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getUsers());
         dispatch(setLoading(true))
         dispatch(callProtectedApi)
         dispatch(setChat(false));
@@ -59,15 +59,15 @@ function Profile() {
         dispatch(setLoading(false))
         dispatch(eraseMessage([]));
     }, [dispatch])
-    
-    
+
+
     const {
         getAccessTokenSilently,
     } = useAuth0();
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
-        
+
         try {
             await dispatch(sendLogin(token))
         } catch (error) {
@@ -124,11 +124,11 @@ function Profile() {
             // }).then(console.log, console.log);
 
 
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
-        
-      
+
+
     }
 
     const handleOnChange = (e) => {
@@ -150,7 +150,7 @@ function Profile() {
             last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
             country: `${registro['country'] ? registro.country : user.country}`,
             wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
-            image: `${profileImage}`
+            image: `${user.image}`
         }
         dispatch(editUser(user.id, registro2));
         handleEdition();
@@ -167,13 +167,11 @@ function Profile() {
                 ? <Loader />
                 : <div className="main-perfil">
                     <div className='perfil-title'>
-                        <h2>Bienvenido {user.name}</h2>
+                        <h2>Hola {user.name}</h2>
                     </div>
                     <div className="perfil-card">
                         <div className="contratos-publicados2">
-                            <ContractsList
-                                contratos={contracts}
-                            />
+                            <ContractsList />
                         </div>
                     </div>
 
@@ -203,11 +201,11 @@ function Profile() {
                             </Button>
                             {edicionPerfil ? <div className="profileDataView">
                                 <br />
-                                <div>Email: {user.email}                                        </div>
-                                <div>Usuario: {user.username}                                   </div>
-                                <div>Nombre: {user.name} {user.last_name}                       </div>
-                                <div>Wallet: {isActive ? account : 'MetaMask Desconectada'}  </div>
-                                <div>País Residencia: {user.country}                            </div><br />
+                                <div>Email: {user.email} </div>
+                                <div>Usuario: {user.username} </div>
+                                <div>Nombre: {user.name} {user.last_name} </div>
+                                <div>Wallet: {isActive ? account : 'MetaMask Desconectada'} </div>
+                                <div>País Residencia: {user.country} </div><br />
                             </div> :
                                 <form onSubmit={e => { handleOnSubmit(e) }}>
                                     <div className="registro1">
