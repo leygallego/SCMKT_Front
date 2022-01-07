@@ -7,17 +7,17 @@ import UploadIcon from '@mui/icons-material/Upload';
 import Button from '@mui/material/Button';
 
 
-
-
 const Uploadimage = (props) => {
 
     const inputFileRef = useRef();
     const uploadButton = useRef();
     const { profileImage } = useSelector(state => state);
     const dispatch = useDispatch();
+
     const handleBtnClick = () => {
         inputFileRef.current.click();
     }
+
     const formHandler = (e) => {
         e.preventDefault();
         const file = e.target[0].files[0];
@@ -41,28 +41,33 @@ const Uploadimage = (props) => {
                         }
                         dispatch(editUser(props.user.id, newImage));
                         dispatch(setSpinner());
-                    })
+                    }
+                    )
             }
         )
     };
 
     function handelFileChange(e) {
         dispatch(setSpinner());
-
         uploadButton.current.click();
     }
 
     return (
         <div>
-            <div className="imageCircle">
-                {props.image ? <img className="imageCircle" src={profileImage} alt="imagen de silueta" /> : <img className="imageCircle" src={props.user.image} alt="imagen de silueta" />}
-                <Button
-                    variant="error"
-                    startIcon={<UploadIcon />}
-                    onClick={handleBtnClick}
-                />
-                {/* <input type="button" className='imagenbutton' onClick={handleBtnClick} ></input> */}
+            <div className='imageProfileContainer'>
+                <div className="imageCircle">
+                    {props.image ? <img className="imageCircle" src={profileImage} alt="imagen de silueta" /> : <img className="imageCircle" src={props.user.image} alt="imagen de silueta" />}
+                    <div className='buttonProfileContainer'>
+                    <Button
+                        variant="error"
+                        startIcon={<UploadIcon />}
+                        onClick={handleBtnClick}
+                    />
+                    </div>
+                   
+                </div>
             </div>
+
             <form onSubmit={formHandler}>
                 <input className="avatarInput" type="file" accept="image/png,image/jpeg" ref={inputFileRef}
                     onChange={(e) => { handelFileChange(e) }} />

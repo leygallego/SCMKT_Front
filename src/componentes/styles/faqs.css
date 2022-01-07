@@ -1,0 +1,46 @@
+.faqsComponent {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.faqComponent {
+    margin-bottom: 15px;
+}
+
+.faqQuestionCompoent {
+    font-size: 20px;
+    font-weight: bold;
+    align-items: left;
+}
+
+.justifiedQuestion {
+    /* text-align: left;     */
+    text-decoration: none;
+    text-overflow: "[...]";
+    padding-right: 20px;
+}
+
+.justifiedText {
+    text-align: justify;
+    padding-right: 20px;
+}
+
+@media (min-width: 600px) {
+    .justifiedText {
+        text-align: justify;
+        padding-right: 40px;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    .justifiedText {
+        text-align: justify;
+        padding-right: 40px;
+    }
+    
+}

@@ -8,14 +8,13 @@ const Faq = (props) => {
         setBool(!bool)
     }
 
-
     return (
         <div className='faqComponent'>
             <div className='faqQuestionCompoent'>
-                <a href='#' onClick={handleOnClick}>{props.question}</a>
+                <a className='justifiedQuestion' href='#' onClick={handleOnClick}>{props.question}</a>
             </div>
             { bool ? <div className='faqAnswerComponent'>
-                <p>{props.answer}</p>
+                <p className='justifiedText'>{props.answer}</p>
             </div> : <></>}
         </div>
     );

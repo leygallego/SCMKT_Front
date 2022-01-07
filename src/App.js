@@ -12,7 +12,7 @@ import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
 import Footer from './componentes/Footer';
 import { useAuth0 } from '@auth0/auth0-react';
-// import Faqs from './componentes/Faqs';
+import Faqs from './componentes/Faqs';
 
 import '../src/componentes/styles/chat.css';
 import Chat from './componentes/Chat';
@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/contratos" component={Contratos}></Route>
           <Route exact path="/aboutus" component={AboutUs}></Route>
-          {/* <Route exact path="/preguntas" component={Faqs}></Route>           */}
+          <Route exact path="/questions" component={Faqs}></Route>          
           <Route exact path="/detalle/:id" render={({ match }) => <DetalleContrato id={match.params.id} />}></Route>
           <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
           <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
