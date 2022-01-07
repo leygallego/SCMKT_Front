@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import Button from '@mui/material/Button';
 import '../componentes/styles/NavBar.css';
 import ReorderIcon from '@mui/icons-material/Reorder';
@@ -62,9 +62,9 @@ function NavBar() {
               }
               }>Cerrar Sesión
               </li>
-              <div className='userAvatarNav' > <UserAvatar /> </div>
             </ul>
           )}
+        <div className='userAvatarNav' > <UserAvatar /> </div>
 
           <button onClick={toggleNav} className="btn"> { toggleMenu ? <CloseIcon /> :  <ReorderIcon /> } </button>
           <h1 className='title'><NavLink className="navLink" to="/">SmartContracts</NavLink></h1>
