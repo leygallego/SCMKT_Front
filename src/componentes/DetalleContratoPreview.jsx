@@ -6,10 +6,18 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
 import useMetaMask from '../hooks/useMetaMask';
+
+import { Octokit } from "octokit";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import { ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+const { Base64 } = require("js-base64")
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+
+
+
 
 function DetalleContratoPreview(props) {
 
@@ -20,6 +28,22 @@ function DetalleContratoPreview(props) {
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
   const contract = useSelector(state => state.preview)
+
+
+  const octokit = new Octokit({
+    // authStrategy: createOAuthAppAuth,
+    // auth: {
+    //   clientType: 'github-app',
+    //   clientId: 'd1caa78b0df97e743827',
+    //   scopes: ['user', 'public_repo', 'repo'],
+    //   onVerification(verification) {
+    //     console.log('Open %s', verification.verification_uri);
+    //     console.log('Enter code: %s', verification.user_code);
+    //   },
+    // },
+    // auth: `${contract.pat}`
+    auth: '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'
+  })
 
   let html = `${contract?.shortdescription ? contract?.shortdescription : '<div></div>'}`
   let contentBlock = htmlToDraft(html);
@@ -86,6 +110,55 @@ function DetalleContratoPreview(props) {
       ownerId: user.id
     }
 
+  async function createRepo() {
+    // const octokit = new Octokit({
+    //   // authStrategy: createOAuthAppAuth,
+    //   // auth: {
+    //   //   clientType: 'github-app',
+    //   //   clientId: 'd1caa78b0df97e743827',
+    //   //   scopes: ['user', 'public_repo', 'repo'],
+    //   //   onVerification(verification) {
+    //   //     console.log('Open %s', verification.verification_uri);
+    //   //     console.log('Enter code: %s', verification.user_code);
+    //   //   },
+    //   // },
+    //   auth: `${contract.pat}`
+    // })
+    // let owner = `${user.username}`
+    // let name = `${contract.name}`
+    // let file = `${contract.longdescription}`
+    // const contentEncoded = Base64.encode(file)
+
+    octokit.request('POST /user/repos', {
+        name: `${contract.name}`
+    }).then(console.log, console.log);
+
+    setTimeout(createTest, 5000)
+
+  }
+
+  async function createTest() {
+    
+    let owner = `${user.username}`
+    console.log(user.username)
+    let name = `${contract.name}`
+    console.log(contract.name)
+    let file = `${contract.longdescription}`
+    console.log(contract.longdescription)
+
+    let contentEncoded = Base64.encode(file)
+    console.log(contentEncoded)
+
+
+    await octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+          owner: owner,
+          repo: name,
+          message: "feat: Added test.js from SCMKT",
+          content: contentEncoded,
+      }).then(console.log, console.log);
+  }
+
+
     Swal.fire({
       title: 'Deseas guardar los cambios?',
       showDenyButton: true,
@@ -96,6 +169,8 @@ function DetalleContratoPreview(props) {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         dispatch(createContract(nweC))
+        createRepo()
+        // createTest()
 
         Swal.fire('Guardado correctamente', '', 'success')
           .then((result) => {
@@ -108,6 +183,8 @@ function DetalleContratoPreview(props) {
         Swal.fire('No se ha guardado ningún cambio', '', 'info')
       }
     })
+
+    
   }
 
   return (

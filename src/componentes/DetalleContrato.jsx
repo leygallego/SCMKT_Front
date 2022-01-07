@@ -12,10 +12,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import Loader from './Loader';
 import { useModal } from 'react-hooks-use-modal';
 import ContractStepsResolve from './ContractStepsResolve';
+import { Octokit } from "octokit";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import { ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+const { Base64 } = require("js-base64")
+const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+require('dotenv').config();
+
 
 function DetalleContrato() {
     const { id } = useParams();
@@ -36,6 +41,20 @@ function DetalleContrato() {
         // closeOnOverlayClick: false
     });
 
+    const octokit = new Octokit({
+        // authStrategy: createOAuthAppAuth,
+        // auth: {
+        //   clientType: 'github-app',
+        //   clientId: 'd1caa78b0df97e743827',
+        //   scopes: ['user', 'public_repo', 'repo'],
+        //   onVerification(verification) {
+        //     console.log('Open %s', verification.verification_uri);
+        //     console.log('Enter code: %s', verification.user_code);
+        //   },
+        // },
+        // auth: `${contract.pat}`
+        auth: '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'
+      })
     let html = `${contract?.conditions?.shortdescription? contract?.conditions?.shortdescription : '<div></div>'}`
     let contentBlock = htmlToDraft(html);
     
@@ -91,14 +110,31 @@ function DetalleContrato() {
 
     function handleClick() {
         dispatch(setChat(false));
+
+
         dispatch(eraseMessage([]));
         history.push("/contratos");
+    }
+
+    function getInvite() {
+        let owner = 'zzzNitro'
+        let name = `${contract.conditions.name}`
+        let collab = `${user.username}`
+        //let file = 'value sacado del state'
+
+        octokit.request(`PUT /repos/${owner}/${name}/collaborators/${collab}`, {
+            owner: owner,
+            repo: name,
+            username: `${collab}`,
+            permission: 'push'
+        }).then(console.log, console.log)
     }
 
     function subscribe(contractId, status, clientId) {
         dispatch(setChat(false));
         dispatch(eraseMessage([]));
         dispatch(changeStatusContract(contractId, status, clientId))
+        getInvite()
     }
 
     function unsubscribe(contractId, status, previous) {

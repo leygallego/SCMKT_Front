@@ -77,18 +77,24 @@ iframe {
   .texto-home {
     width: 25em;
     margin-top: 5em;
-    margin-left: 5em;
+    margin-left: 1px;
     padding-left: 55px;
     font-family: "Poppins", sans-serif;
     font-weight: bolder;
-    font-size: 12px;
+    font-size: 22px;
+    text-align: left;
   }
   .texto-secundario {
-    width: 20em;
-    margin-left: 3em;
+    width: 35em;
+    margin-left: 1px;
     padding-left: 55px;
     font-family: "Poppins", sans-serif;
     font-family: 10px;
+    text-align: left;
+  }
+
+  .texto-motivador p{
+    font-size: 14px;
   }
 
   .button-container button {
