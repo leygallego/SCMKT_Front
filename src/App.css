@@ -1,3 +1,20 @@
+:root{
+  --negro: #000000;
+  --blanco: #FFFFFF;
+  --azulPrimario: #0078E7;
+  --azulSecundario: rgba(0, 120, 231, 0.66);
+  --azulTerciario: rgba(0, 120, 231, 0.33);
+  --transparente: transparent;
+  --bordes: 15;
+}
+
+/* La variable de color se utiliza de la siguiente manera:
+
+  background-color: var(--negro);
+  color: var(--blanco);
+
+*/
+
 .App {
   text-align: center;
   overflow: hidden;

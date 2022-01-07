@@ -27,11 +27,11 @@ const ContractsCard = (props) => {
                         size='lg'
                     /> : <></>}
                 <div className="info-contrato">
-                    <h6>{props.name}</h6>
-                    <h6>{props.amount}</h6>
+                    <h6 className='datoContrato'>{props.name}</h6>
+                    <h6 className='datoContrato'>{props.amount}</h6>
                     <NavLink to={`/detalle/${props.id}`}>
                         { console.log('enviar el dispatch')}
-                        <h6>ver detalles</h6>
+                        <h6 className='datoContrato'>ver detalles</h6>
                     </NavLink>
                 </div>
                 {check ? <input type="checkbox" name={props.id} onChange={e => { onCheck(e) }} /> : <></>}

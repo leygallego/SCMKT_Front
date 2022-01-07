@@ -1,14 +1,14 @@
 [
     {
-        "question": "Acerca de mi",
+        "question": "¿Qué es un SmartContract?",
         "answer": "     FAQ son las siglas de la expresión inglesa Frequently Asked Questions, que en español podemos traducir como 'preguntas frecuentes'. ... Las FAQ son especialmente frecuentes en el ámbito de internet, donde por lo general los sitios tienen una sección destinada precisamente a responder las dudas más comunes de los usuarios."
     },
     {
-        "question": "¿Por qué me interesa el puesto?",
+        "question": "¿Qué es Ethereum?",
         "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     },
     {
-        "question": "¿Qué se de su empresa?",
+        "question": "¿Cómo puedo hacer un contrato?",
         "answer": "     Nada, pero estoy dispuesto a investigar sobre ella, su visión, misión y valores."
     },
     {
@@ -61,61 +61,6 @@
     ,
     {
         "question": "¿Cómo me veo dentro de 5, 10 años?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Mi mayor error en mi vida como desarrollador",
-        "answer": "     No haberme actualizado hace años, aprendí que en esta nueva era digital hay que ir actualizandoce a diario."
-    }
-    ,
-    {
-        "question": "¿Estoy preparado para resolver problemas?",
-        "answer": "     Hablar sobre manejar una situación difícil"
-    }
-    ,
-    {
-        "question": "¿Cuál sería el mayor riesgo que tomaría en una empresa?",
-        "answer": "     Tomar decisiones arriesgadas y buscar soluciones nuevas."
-    }
-    ,
-    {
-        "question": "¿Por qué deberian contratarme?",
-        "answer": "     Habla de por qué puedes hacer el trabajo, alcanzar metas y adaptarte a la empresa.."
-    }
-    ,
-    {
-        "question": "¿Que si tengo alguna pregunta?",
-        "answer": "     Si, tengo muchas preguntas que me gustaría hacerles para entender cómo puedo hacer mejor mi trabajo."
-    }
-    ,
-    {
-        "question": "Etc",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Etc",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Etc",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Etc",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Etc",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "Etc",
         "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
     }
 ]
