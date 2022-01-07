@@ -54,12 +54,12 @@ function DetalleContrato() {
         // },
         // auth: `${contract.pat}`
         auth: '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'
-      })
-    let html = `${contract?.conditions?.shortdescription? contract?.conditions?.shortdescription : '<div></div>'}`
+    })
+    let html = `${contract?.conditions?.shortdescription ? contract?.conditions?.shortdescription : '<div></div>'}`
     let contentBlock = htmlToDraft(html);
-    
+
     const [contentState, setContentState] = useState(
-        contentBlock? 
+        contentBlock ?
             ContentState.createFromBlockArray(contentBlock.contentBlocks)
             : null
     )
@@ -69,10 +69,10 @@ function DetalleContrato() {
         EditorState.createWithContent(contentState)
     );
 
-    let htmlLong = `${contract?.conditions?.longdescription? contract?.conditions?.longdescription : '<div></div>'}`
+    let htmlLong = `${contract?.conditions?.longdescription ? contract?.conditions?.longdescription : '<div></div>'}`
     let contentBlockLong = htmlToDraft(htmlLong);
     const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
-        contentBlockLong? 
+        contentBlockLong ?
             ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
             : null
     )
