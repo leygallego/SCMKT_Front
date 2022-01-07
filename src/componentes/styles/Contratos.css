@@ -43,15 +43,13 @@
 }
 
 .pagination-style {
-  display: flex;
-  justify-content: center;
-  padding: 5px 0px;
+  position: fixed;
+  top: 0;
 }
+
 .pagination-estilo {
-  display: flex;
-  justify-content: center;
-  margin-top: 23%;
-  padding: 5px 0px;
+  height: 135px;
+  width: auto;
 }
 
 /* .MuiPaginationItem-root{
