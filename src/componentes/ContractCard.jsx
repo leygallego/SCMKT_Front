@@ -12,10 +12,10 @@ function ContractCard({ id, conditions }) {
             <div className="contratos-card">
                 <div className='wrapper'>
                     <NavLink to={`/detalle/${id ? id : "undefined"}`}>
-                        <h2 className='ellipsis-contract-name'>{name ? name : "undefined"}</h2>
+                        <div className='ellipsis-contract-name'>{name ? name : "undefined"}</div>
                     </NavLink>
-                    <h1><span>{amount ? amount : "undefined"}</span> </h1>
-                    <p>{shortdescription ? shortdescription : "undefined"}</p>
+                    <span className='contractAmount'>{amount ? amount : "undefined"}</span>
+                    <p className='contractShortDescription'>{shortdescription ? shortdescription : "undefined"}</p>
                 </div>
             </div>
         </>
