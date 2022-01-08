@@ -4,7 +4,7 @@ import Pagination from '@mui/material/Pagination';
 import { NavLink } from 'react-router-dom';
 import { getContracts, setChat, eraseMessage, setLoading } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
-import ContractCard from './ContractCard'
+import ContractCard from './ContractCard';
 import SearchBar from './SearchBar';
 import usePagination from './usePagination';
 import Loader from './Loader';
@@ -12,27 +12,26 @@ import Loader from './Loader';
 import './styles/Contratos.css';
 
 function Contratos() {
-    const { user, loading } = useSelector(state => state)
-    const { contracts } = useSelector(state => state)
-    let dispatch = useDispatch()
+    const { user, loading } = useSelector(state => state);
+    const { contracts } = useSelector(state => state);
+    let dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setLoading(true))
+        dispatch(setLoading(true));
         dispatch(setChat(false));
         dispatch(eraseMessage([]));
-        dispatch(getContracts({ ownerId: user.id, typeC: 'all' }))
-        dispatch(setLoading(false))
+        dispatch(getContracts({ ownerId: user.id, typeC: 'all' }));
+        dispatch(setLoading(false));
     }, [dispatch])
 
     let [page, setPage] = useState(1);
-    const PER_PAGE = 6;
+    const PER_PAGE = 8;
     const count = contracts ? Math.ceil(contracts.length / PER_PAGE) : 0;
     const _DATA = usePagination(contracts ? contracts : [], PER_PAGE);
 
     const handleChange = (e, p) => {
         setPage(p);
         _DATA.jump(p);
-        console.log('_DATA', _DATA.currentData())
     };
 
     return (
@@ -50,11 +49,12 @@ function Contratos() {
                     <Pagination
                         count={count}
                         size="small"
-                        variant="outlined"
+                        // variant="outlined"
                         shape="rounded"
                         page={page}
                         className={'pagination-estilo'}
                         onChange={handleChange}
+                        color='standard'
                     />
                 </div>
                 {loading
