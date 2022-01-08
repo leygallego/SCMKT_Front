@@ -7,7 +7,7 @@ const Faqs = () => {
     
     return (
         <div className='faqsComponent'>
-            <h3>En esta sección encontraras respuestas a las preguntas más frecuentes que nos han que hemos contestado</h3>
+            <h2>En esta sección encontraras respuestas a las preguntas más frecuentes que nos han que hemos contestado</h2>
             {Qa ? Qa.map((qa, ind) => {
                 return (
                     <Faq 
