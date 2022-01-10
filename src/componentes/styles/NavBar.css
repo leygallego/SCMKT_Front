@@ -10,7 +10,7 @@ nav {
 .list {
   list-style-type: none;
   /* background: linear-gradient(45deg, rgb(14, 52, 156), rgb(159, 159, 230)); */
-  height: 100%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: left;
@@ -56,7 +56,7 @@ nav {
 }
 
 .userAvatarNav{
-  margin-top: -115px;
+  margin-top: -50px;
   margin-right: 15px;
   float: right;
 }

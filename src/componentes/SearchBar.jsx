@@ -1,9 +1,5 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux";
-
-import './styles/Contratos.css';
-
-
 import {
     getContracts,
     setFilterType,
@@ -50,13 +46,14 @@ function SearchBar() {
                 <div className="search-contrato">
                     <input className="searchTerm" placeholder="Busca contrato" onChange={search} />
                 </div>
-                <div className="select-type">
+                {/* NO BORRAR, COMENTADO TEMPORALMENTE */}
+                {/* <div className="select-type">
                     <select className="select-tipo" onChange={filterByType}>
                         <option value="" label="Filtro por tipo"></option>
                         <option value="Desafío" label="Desafío"></option>
                         <option value="Solución" label="Solución"></option>
                     </select>
-                </div>
+                </div> */}
                 <div className="select-category">
                     <select className="select-categoria" onChange={filterByCategory}>
                         <option value="" label="Filtro por categoría"></option>

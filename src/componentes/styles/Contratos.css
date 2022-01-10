@@ -1,3 +1,7 @@
+.container-contratos {
+  background-color: yellow;
+}
+
 .main-contratos {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -137,12 +141,14 @@
   }
 
   /* Contenedor de filtros */
-  .wraper-filtros {
+  /* .wraper-filtros {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-  }
+    padding-left: 10px;
+    padding-right: 10px;
+  } */
 
   /* Search Bar */
   .search-contrato {
@@ -164,12 +170,28 @@
 .crea-contrato button{
   width: 20%;
 }
+.wraper-filtros {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 }
 
 @media screen and (min-width: 790px){
   
   .main-contratos {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .wraper-filtros {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -183,8 +205,10 @@
   .wraper-filtros {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   /* Search Bar */
@@ -206,6 +230,8 @@
 /* Botón Crear Contrato */
 .crea-contrato button{
   width: 20%;
+  text-decoration: none;
+
 }
 
 }

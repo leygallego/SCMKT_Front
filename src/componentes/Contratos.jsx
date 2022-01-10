@@ -35,14 +35,13 @@ function Contratos() {
     };
 
     return (
-        <>
             <div className='container-contratos'>
                 <div className='contratos-wraper'>
                     <div>
                         <SearchBar />
                     </div>
                     <div className="crea-contrato">
-                        <NavLink to="/creacontrato"><Button variant="contained">Crear Contrato</Button></NavLink>
+                        <NavLink to="/creacontrato"  className="crea-contrato"><Button  className="crea-contrato" variant="contained">Crear Contrato</Button></NavLink>
                     </div>
                 </div>
                 <div className='pagination-style'>
@@ -68,7 +67,6 @@ function Contratos() {
                     </div>
                 }
             </div>
-        </>
     )
 }
 
