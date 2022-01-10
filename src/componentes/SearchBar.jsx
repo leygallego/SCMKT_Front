@@ -2,7 +2,7 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux";
 import {
     getContracts,
-    setFilterType,
+    // setFilterType,
     setFilterCategory,
     setName,
     setAuthor,
@@ -22,11 +22,11 @@ function SearchBar() {
 
     const dispatch = useDispatch()
 
-    const filterByType = (e) => {
-        dispatch(setFilterType(e.target.value))
-        dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
-        dispatch(setLoading(false))
-    }
+    // const filterByType = (e) => {
+    //     dispatch(setFilterType(e.target.value))
+    //     dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
+    //     dispatch(setLoading(false))
+    // }
 
     const filterByCategory = (e) => {
         dispatch(setFilterCategory(e.target.value))

@@ -18,7 +18,7 @@ const ContractsList = () => {
     useEffect(() => {
         dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
         dispatch(setLoading(false))
-    }, [dispatch])
+    }, [dispatch, user.id])
 
     const borraContratos = () => {
         Swal.fire({
@@ -45,7 +45,7 @@ const ContractsList = () => {
         if (e.target.checked) {
             er.push(e.target.name)
         } else {
-            er = er.filter(element => element != e.target.name)
+            er = er.filter(element => element !== e.target.name)
         }
         setEraser(er)
     }

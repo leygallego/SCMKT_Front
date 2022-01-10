@@ -58,13 +58,13 @@ export function EditContract() {
 
     const [errors, setErrors] = useState({});
     const [modalIsOpen] = useState(false);
-    const [Modal, open, close, isOpen] = useModal('root', {
+    const [Modal, open, close] = useModal('root', {
         // preventScroll: true,
         closeOnOverlayClick: false
     });
 
-    let _contentState = ContentState.createFromText(`${input.shortdescription}`);
-    let raw = convertToRaw(_contentState)
+    // let _contentState = ContentState.createFromText(`${input.shortdescription}`);
+    // let raw = convertToRaw(_contentState)
     const html = `${input.shortdescription}`
     const contentBlock = htmlToDraft(html);
 
