@@ -14,7 +14,7 @@ const ContractsCard = (props) => {
                     <div className='datoContrato datoContratoName'>{props.name}  </div>
                     <div className='datoContrato datoContratoAmount'>{props.amount}</div>
                     <NavLink to={`/detalle/${props.id}`}>
-                    <div className='datoContrato datoContratoLink'>ver detalles  </div>
+                    <div className='datoContrato datoContratoLink'>detalles</div>
                     </NavLink>
                 </div>
                 {check ? <input type="checkbox" name={props.id} onChange={e => { onCheck(e) }} /> : <></>}

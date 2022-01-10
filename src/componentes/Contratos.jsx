@@ -22,7 +22,7 @@ function Contratos() {
         dispatch(eraseMessage([]));
         dispatch(getContracts({ ownerId: user.id, typeC: 'all' }));
         dispatch(setLoading(false));
-    }, [dispatch])
+    }, [dispatch, user.id])
 
     let [page, setPage] = useState(1);
     const PER_PAGE = 8;

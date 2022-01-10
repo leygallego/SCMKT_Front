@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
-import { createContract, getContractsByID, updateContract } from "../actions/index"
+import { getContractsByID, updateContract } from "../actions/index"
 import { useDispatch, useSelector } from 'react-redux';
-import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
-import { Contactless } from '@mui/icons-material';
 
 function ContractStepsResolve(props) {
   const { id, onClose } = props
@@ -16,7 +14,7 @@ function ContractStepsResolve(props) {
 
   useEffect(() => {
     dispatch(getContractsByID(id))
-  }, [dispatch])
+  }, [dispatch, id])
 
   const handleInputChange = (e) => {
     setInput({

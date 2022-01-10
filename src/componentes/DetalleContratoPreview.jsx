@@ -13,7 +13,7 @@ import { EditorState } from "draft-js";
 import { ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
 const { Base64 } = require("js-base64")
-const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
+// const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
 
 
@@ -23,7 +23,7 @@ function DetalleContratoPreview(props) {
 
   const { dataPreview, onClose } = props
   const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
-  const { connect, disconnect, isActive, account, shouldDisable } = useMetaMask()
+  const { isActive, account  } = useMetaMask()
 
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
@@ -74,8 +74,7 @@ function DetalleContratoPreview(props) {
 
   useEffect(() => {
     dispatch(getContractsPreview(dataPreview))
-    console.log('contract', contract)
-  }, [dispatch])
+  }, [dispatch, dataPreview])
 
   const handleOnSubmit = (e) => {
     e.preventDefault()

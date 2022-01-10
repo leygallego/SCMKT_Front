@@ -4,16 +4,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: yellow;
+  margin-top: 30px;
 }
-.titulo-detalle h1{
-  font-size: 14px;
+.titulo-detalle{
+  font-size: 16px;
+  font-weight: bold;
   text-align: center;
 }
 
 .detalle-card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  background-color: white;
   color: black;
   font-size: 10px;
   font-family: "Poppins", sans-serif;
@@ -26,7 +26,10 @@
 }
 
 .bodyCard { 
+  
+    height: 80%;
     overflow: scroll;
+
 }
 
 
@@ -47,13 +50,22 @@
   text-align: end;
 }
 
+.daysAmount {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
 
+.amountText {
+  display: flex;
+  flex-direction: row;
+}
 
 .input-reach-text-disabled {
   border: transparent;
   color: black;
-  padding: 2px;
-  /* min-height: 400px; */
+  padding: 10px;
   font-weight: normal;  
 }
 
@@ -61,8 +73,6 @@
   border: transparent;
   color:black;
   padding: 2px;
-  /* min-height: 400px; */
-  /* font-weight: normal; */
 }
 
 
@@ -104,7 +114,6 @@
     width: 600px;
     height: 350px;
     margin-bottom: 15px;
-background-color: thistle;
   }
   
   .wraper-detalle{
@@ -118,10 +127,9 @@ background-color: thistle;
     font-size: 24px;
     margin-bottom: 10px;
   }
-  .bodyCard { 
-    background-color: wheat;
+  /* .bodyCard { 
     height: 80%;
     overflow: scroll;
 
-}
+} */
 } 

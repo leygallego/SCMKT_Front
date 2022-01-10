@@ -1,4 +1,3 @@
-import react from "react";
 import '../LoadFile/LoadFile.css';
 
 const LoadFile = (props) => {
