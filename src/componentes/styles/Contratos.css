@@ -46,7 +46,6 @@
   position: inherit;
   background-color: transparent;
   color: var(--blanco);
-
 }
 
 .ellipsis-contract-name {
@@ -69,10 +68,10 @@
 .search-contrato {
   display: flex;
   flex-direction: column;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
 
 .select-tipo {
   width: 100%;
@@ -102,7 +101,7 @@
 }
 
 /* Botón Crear Contrato */
-.crea-contrato button{
+.crea-contrato button {
   border-radius: 7px;
   text-decoration-line: none;
   width: 80%;
@@ -119,7 +118,7 @@
 }
 
 .searchTerm {
-  border: 3px solid #0078E7;
+  border: 3px solid #0078e7;
   padding: 5px;
   height: 24px;
   border-radius: 5px;
@@ -129,13 +128,16 @@
   font-size: inherit;
 }
 
-.searchTerm:focus{
+.searchTerm:focus {
   color: black;
 }
 
+.MuiPagination-root {
+  /* https://mui.com/api/pagination/ */
+  background: transparent;
+}
 
-
-@media screen and (min-width: 600px){
+@media screen and (min-width: 600px) {
   .main-contratos {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -157,31 +159,30 @@
     width: 20%;
   }
 
-.select-tipo {
-  width: 250px;
+  .select-tipo {
+    width: 250px;
+  }
+
+  .select-categoria {
+    width: 250px;
+    margin-top: 0px;
+  }
+
+  /* Botón Crear Contrato */
+  .crea-contrato button {
+    width: 20%;
+  }
+  .wraper-filtros {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
-.select-categoria {
-  width: 250px;
-  margin-top: 0px;
-}
-
-/* Botón Crear Contrato */
-.crea-contrato button{
-  width: 20%;
-}
-.wraper-filtros {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-}
-
-@media screen and (min-width: 790px){
-  
+@media screen and (min-width: 790px) {
   .main-contratos {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -195,8 +196,7 @@
   }
 }
 
-@media screen and (min-width: 992px){
-  
+@media screen and (min-width: 992px) {
   .main-contratos {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -218,20 +218,18 @@
     width: 20%;
   }
 
-.select-tipo {
-  width: 250px;
-}
+  .select-tipo {
+    width: 250px;
+  }
 
-.select-categoria {
-  width: 250px;
-  margin-top: 0px;
-}
+  .select-categoria {
+    width: 250px;
+    margin-top: 0px;
+  }
 
-/* Botón Crear Contrato */
-.crea-contrato button{
-  width: 20%;
-  text-decoration: none;
-
-}
-
+  /* Botón Crear Contrato */
+  .crea-contrato button {
+    width: 20%;
+    text-decoration: none;
+  }
 }
