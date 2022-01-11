@@ -266,10 +266,19 @@ export function BuildConract() {
                                     wrapperClassName="wrapperClassName"
                                 />
                             </div>
+
+
+                            <div>
+                                <div className="labelForm-buildContract">
+                                    Escribe aquí tu Personal-Access-Token:
+                                </div>
+                                <input type="text" name="pat" onChange={e => { handleInputChange(e) }} />
+
                         </div>
                         <div className="labelInput">
                             <div className="labelForm-buildContract">
                                 Escribe aquí tu test
+
                             </div>
                             <div className='input-reach-text'>
                                 <Editor

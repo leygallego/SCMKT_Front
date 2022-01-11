@@ -11,30 +11,20 @@ import Spinner from './Spinner';
 import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import Loader from './Loader';
+
 import useMetaMask from '../hooks/useMetaMask'
 import './styles/Profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 import { Octokit } from "octokit";
+import Web3 from 'web3'
+import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
+import useMetaMask, { MetaMaskContext, MetaMaskProvider } from '../hooks/useMetaMask'
 
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
-
-const octokit = new Octokit({
-    // authStrategy: createOAuthAppAuth,
-    // auth: {
-    //   clientType: 'github-app',
-    //   clientId: 'd1caa78b0df97e743827',
-    //   scopes: ['user', 'public_repo', 'repo'],
-    //   onVerification(verification) {
-    //     console.log('Open %s', verification.verification_uri);
-    //     console.log('Enter code: %s', verification.user_code);
-    //   },
-    // },
-    auth: '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'
-})
-
 
 toast.configure()
 
@@ -75,61 +65,60 @@ function Profile() {
         }
     }
 
-    async function getRepo() {
-        try {
-            let owner = 'zzzNitro'
-            let name = 'prueba-tests1'
-            let collab = 'pmarchionno'
-            let file = 'value sacado del state'
+    // async function getRepo() {
+    //     try {
+    //         let owner = 'zzzNitro'
+    //         let name = 'prueba-tests1'
+    //         let collab = 'pmarchionno'
+    //         let file = 'value sacado del state'
 
-            // //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
-            // //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
-            // const contentEncoded = Base64.encode(file)
+    //         // //const content = "empty string for testing"//fs.readFileSync('./models.js', 'utf-8')
+    //         // //const content = fetch("https://firebasestorage.googleapis.com/v0/b/henryfrontimages.appspot.com/o/documents%2F1fd73620-8885-462f-ba8b-8e7525b0b87d%2Fmodels.js?alt=media&token=03d99b70-98f3-4263-a0d0-b535d01b7940").then((r)=>{r.text().then((d)=>{let CONTENT = d})})
+    //         // const contentEncoded = Base64.encode(file)
 
-            octokit.request(`PUT /repos/${owner}/${name}/collaborators/${collab}`, {
-                owner: owner,
-                repo: name,
-                username: `${collab}`,
-                permission: 'push'
-            }).then(console.log, console.log)
+    //         octokit.request(`PUT /repos/${owner}/${name}/collaborators/${collab}`, {
+    //             owner: owner,
+    //             repo: name,
+    //             username: `${collab}`,
+    //             permission: 'push'
+    //         }).then(console.log, console.log)
 
-            // octokit.request('POST /user/repos', {
-            //     name: name
-            // }).then(console.log, console.log);
+    //         // octokit.request('POST /user/repos', {
+    //         //     name: name
+    //         // }).then(console.log, console.log);
 
-            // octokit.request('GET /user')
-            //     .then(console.log, console.log);
+    //         // octokit.request('GET /user')
+    //         //     .then(console.log, console.log);
 
-            // const { data } = await octokit.repos.createOrUpdateFileContents({
-            //     owner: owner,
-            //       repo: "octokit-create-file-example",
-            //       path: "OUTPUT.md",
-            //       message: "feat: Added OUTPUT.md programatically",
-            //       content: file,
-            //       committer: {
-            //         name: owner,
-            //         email: 'pablo.benito@rocketmail.com',
-            //       },
-            //       author: {
-            //         name: owner,
-            //         email: 'pablo.benito@rocketmail.com',
-            //       },
-            //     });
-            //     console.log(data)
-            // octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
-            //     owner: owner,
-            //     repo: name,
-            //     message: "feat: Added test.js programatically",
-            //     content: contentEncoded,
-            // }).then(console.log, console.log);
+    //         // const { data } = await octokit.repos.createOrUpdateFileContents({
+    //         //     owner: owner,
+    //         //       repo: "octokit-create-file-example",
+    //         //       path: "OUTPUT.md",
+    //         //       message: "feat: Added OUTPUT.md programatically",
+    //         //       content: file,
+    //         //       committer: {
+    //         //         name: owner,
+    //         //         email: 'pablo.benito@rocketmail.com',
+    //         //       },
+    //         //       author: {
+    //         //         name: owner,
+    //         //         email: 'pablo.benito@rocketmail.com',
+    //         //       },
+    //         //     });
+    //         //     console.log(data)
+    //         // octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+    //         //     owner: owner,
+    //         //     repo: name,
+    //         //     message: "feat: Added test.js programatically",
+    //         //     content: contentEncoded,
+    //         // }).then(console.log, console.log);
+    //     } catch(err) {
+    //         console.log(err)
+    //     }
+        
+      
+    // }
 
-
-        } catch (err) {
-            console.log(err)
-        }
-
-
-    }
 
     const handleOnChange = (e) => {
         setRegistro({
@@ -157,11 +146,20 @@ function Profile() {
 
         toast('Has editado tus datos')
     }
+    let metaMaskMessage = 'Debes instalar MetaMask para ver tu dirección de wallet'
+    if (typeof window.ethereum !== 'undefined') {
+        metaMaskMessage = 'MetaMask is installed!'
+    }
+
+    function getLibrary(provider, connector) {
+        return new Web3(provider)
+      }
 
 
     return (
         <>
-
+        <Web3ReactProvider getLibrary={getLibrary}>
+            <MetaMaskProvider>
 
             {loading
                 ? <Loader />
@@ -243,8 +241,12 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            }
-        </>
+            </div>
+			}
+            </MetaMaskProvider>
+        </Web3ReactProvider>
+    </>
+
     )
 }
 
