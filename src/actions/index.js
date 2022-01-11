@@ -48,6 +48,7 @@ export const SET_LOADING = 'SET_LOADING';
 export const GET_USER_SUSCRIBED = 'GET_USER_SUSCRIBED';
 export const SEARCH_SUSCRIBED = "SEARCH_SUSCRIBED";
 export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
+export const SORT_CONTRACTS = 'SORT_CONTRACTS'
 
 const database = getDatabase();
 
@@ -576,3 +577,10 @@ export const setLoading = (payload) => {
         }, 0);
     }
 }
+
+export const sortContracts = function (payload) {
+    return {
+      type: SORT_CONTRACTS,
+      payload
+    }
+  }
