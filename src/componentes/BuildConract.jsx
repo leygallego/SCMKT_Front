@@ -16,7 +16,7 @@ import ethLogo from './imagenes/eth.png';
 import './styles/buildContract.css';
 
 
-export function BuildConract() {
+export function BuildContract() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user)
 
@@ -358,6 +358,6 @@ export function BuildConract() {
     )
 }
 
-export default BuildConract;
+export default BuildContract;
 
 // 483 líneas antes de la depuración
