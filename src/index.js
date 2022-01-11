@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import store from './store';
 import queryString from 'query-string';
+import { Provider } from 'react-redux';
+import { Auth0Provider } from '@auth0/auth0-react';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 import './index.css';
 

@@ -15,12 +15,10 @@ import Loader from './Loader';
 import useMetaMask from '../hooks/useMetaMask'
 import './styles/Profile.css';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 import { Octokit } from "octokit";
 import Web3 from 'web3'
 import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
-import useMetaMask, { MetaMaskContext, MetaMaskProvider } from '../hooks/useMetaMask'
+import { MetaMaskContext, MetaMaskProvider } from '../hooks/useMetaMask'
 
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
@@ -241,8 +239,7 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-            </div>
-			}
+            }
             </MetaMaskProvider>
         </Web3ReactProvider>
     </>
