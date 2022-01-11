@@ -11,14 +11,11 @@ import Spinner from './Spinner';
 import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
 import Loader from './Loader';
-
-import useMetaMask from '../hooks/useMetaMask'
+//import useMetaMask from '../hooks/useMetaMask'
 import './styles/Profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { Octokit } from "octokit";
-import Web3 from 'web3'
-import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
-import { MetaMaskContext, MetaMaskProvider } from '../hooks/useMetaMask'
+import useMetaMask from '../hooks/useMetaMask'
 
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
@@ -149,15 +146,9 @@ function Profile() {
         metaMaskMessage = 'MetaMask is installed!'
     }
 
-    function getLibrary(provider, connector) {
-        return new Web3(provider)
-      }
-
-
     return (
         <>
-        <Web3ReactProvider getLibrary={getLibrary}>
-            <MetaMaskProvider>
+        
 
             {loading
                 ? <Loader />
@@ -240,8 +231,6 @@ function Profile() {
                     </div>
                 </div>
             }
-            </MetaMaskProvider>
-        </Web3ReactProvider>
     </>
 
     )
