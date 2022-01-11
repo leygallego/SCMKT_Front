@@ -382,6 +382,37 @@ export function EditContract() {
                                     onContentStateChange={setContentState}
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="wrapperClassName"
+                                    toolbar={{
+                                        inline: {
+                                            options: ['bold', 'italic', 'underline']
+                                        },
+                                        blockType: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        fontSize: { className: 'demo-option-custom-medium' },
+                                        list: {
+                                            options: ['unordered', 'ordered'],
+                                        },
+                                        textAlign: {
+                                            left: { className: 'demo-option-custom' },
+                                            center: { className: 'demo-option-custom' },
+                                            right: { className: 'demo-option-custom' },
+                                            justify: { className: 'demo-option-custom' },
+                                        },
+                                        fontFamily: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        link: {
+                                            popupClassName: 'demo-popup-custom',
+                                            link: { className: 'demo-option-custom' },
+                                            unlink: { className: 'demo-option-custom' },
+                                        },
+                                        emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        embedded: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        image: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        remove: { className: 'demo-option-custom' },
+                                        history: {
+                                            undo: { className: 'demo-option-custom' },
+                                            redo: { className: 'demo-option-custom' },
+                                        },
+                                        options: ['blockType', 'fontSize', 'inline', 'list', 'fontFamily', 'link', 'remove', 'history']
+                                    }}
                                 />
                             </div>
                         </div>
@@ -412,6 +443,37 @@ export function EditContract() {
                                     onContentStateChange={setContentStateLong}
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="wrapperClassName"
+                                    toolbar={{
+                                        inline: {
+                                            options: ['bold', 'italic', 'underline']
+                                        },
+                                        blockType: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        fontSize: { className: 'demo-option-custom-medium' },
+                                        list: {
+                                            options: ['unordered', 'ordered'],
+                                        },
+                                        textAlign: {
+                                            left: { className: 'demo-option-custom' },
+                                            center: { className: 'demo-option-custom' },
+                                            right: { className: 'demo-option-custom' },
+                                            justify: { className: 'demo-option-custom' },
+                                        },
+                                        fontFamily: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        link: {
+                                            popupClassName: 'demo-popup-custom',
+                                            link: { className: 'demo-option-custom' },
+                                            unlink: { className: 'demo-option-custom' },
+                                        },
+                                        emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        embedded: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        image: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        remove: { className: 'demo-option-custom' },
+                                        history: {
+                                            undo: { className: 'demo-option-custom' },
+                                            redo: { className: 'demo-option-custom' },
+                                        },
+                                        options: ['blockType', 'fontSize', 'inline', 'list', 'fontFamily', 'link', 'remove', 'history']
+                                    }}
                                 />
                             </div>
                         </div>
