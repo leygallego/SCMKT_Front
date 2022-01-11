@@ -5,10 +5,10 @@ import { EditorState } from "draft-js";
 import { ContentState } from 'draft-js';
 import { useHistory, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { getContractsByID, removeContract, sendLogin, changeStatusContract, setChat, eraseMessage, setLoading, getUserSuscribed, searchSuscribed, choosedUser } from "../actions";
+import { getContractsByID, removeContract, changeStatusContract, setChat, eraseMessage, setLoading, getUserSuscribed, searchSuscribed, choosedUser } from "../actions";
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth0 } from '@auth0/auth0-react';
-import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
+// import { useAuth0 } from '@auth0/auth0-react';
+// import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config.js';
 import { useModal } from 'react-hooks-use-modal';
 import './styles/DetalleContrato.css';
 import Button from '@mui/material/Button';
@@ -29,9 +29,9 @@ function DetalleContrato() {
     const loading = useSelector(state => state.loading);
 
     const suscribed = useSelector(state => state.userSuscribed);
-    const { getAccessTokenSilently } = useAuth0();
+    // const { getAccessTokenSilently } = useAuth0();
 
-    const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
+    // const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`;
 
     const [modalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {
@@ -76,7 +76,7 @@ function DetalleContrato() {
         return () => {
             dispatch(removeContract())
         }
-    }, [dispatch])
+    }, [dispatch, contract.clientId, id])
 
     const openChat = () => {
         dispatch(setChat(true));
@@ -196,9 +196,25 @@ function DetalleContrato() {
                                 <div className='bodyCard'>
                                     <h2>{contract.conditions.name}</h2>
                                     <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
-                                    <p>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? contract.conditions.duration : ''}</p>
+                                    {/* Adición de las palabras días y ETH y encapsulado en un div row */}
+                                    <div className='daysAmount'>
+                                        {/* <div>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? `Tiempo estimado: ${contract.conditions.duration} días` : ''}</div> */}
+
+                                        <div className='amountText'>
+                                            <div> {`${'Tiempo estimado:'} `} </div>
+                                            <div><b>{`${contract.conditions.duration}`}</b>{`${' días'}`}</div>
+                                        </div>
+
+                                        <div className='amountText'>{`${'Recompensa: '}`} <div><b>{contract.conditions.amount}</b>{`${' ETH'}`}</div>
+                                        </div>
+                                    </div>
+
+
                                     <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
                                     {/* <p>{contract.conditions.shortdescription}</p> */}
+
+
+                                    
                                     <div className='input-reach-text-disabled'>
                                         <Editor
                                             toolbarHidden
@@ -226,7 +242,6 @@ function DetalleContrato() {
                                             toolbarClassName="toolbar-class"
                                         />
                                     </div>
-                                    <h1><span>{contract.conditions.amount}</span> </h1>
 
                                     <div className={isOpen ? '' : ''} visible={isOpen}>
                                         <Modal
@@ -245,54 +260,54 @@ function DetalleContrato() {
 
                                 </div>
                                 <div className="group-button-build">
-                                        <Button
-                                            className="aceptar-contratos"
-                                            variant="contained"
-                                            onClick={handleClick}
-                                        >Regresar</Button>
+                                    <Button
+                                        className="aceptar-contratos"
+                                        variant="contained"
+                                        onClick={handleClick}
+                                    >Regresar</Button>
 
-                                        {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
-                                            ? <div>
-                                                <div className="aceptar-contratos">
-                                                    <NavLink to={`/editcontrato/${id}`}><Button variant="contained">Editar</Button></NavLink>
-                                                </div>
-
+                                    {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
+                                        ? <div>
+                                            <div className="aceptar-contratos">
+                                                <NavLink to={`/editcontrato/${id}`}><Button variant="contained">Editar</Button></NavLink>
                                             </div>
-                                            : <></>
-                                        }
 
-                                        {(contract.status === 'taken' && ((contract.clientId && contract.clientId === user.id) || contract.owner.id === user.id))
-                                            ? <div>
-                                                <Button
-                                                    className="aceptar-contratos"
-                                                    variant="contained"
-                                                    onClick={open}
-                                                >Resolver</Button>
-                                            </div>
-                                            : <></>
-                                        }
+                                        </div>
+                                        : <></>
+                                    }
 
-                                        {(contract.status === 'complete' || (contract.clientId && contract.clientId !== user.id) || contract.owner.id === user.id)
-                                            ? <></>
-                                            : contract.status === 'taken'
-                                                ? <Button
-                                                    className="aceptar-contratos"
-                                                    variant="contained"
-                                                    onClick={() => unsubscribe(contract.id, 'published', user.id)}
-                                                >Desuscribir</Button>
-                                                : <Button
-                                                    className="aceptar-contratos"
-                                                    variant="contained"
-                                                    onClick={() => subscribe(contract.id, 'taken', user.id)}
-                                                >Suscribirse</Button>
-                                        }
-                                    </div>
+                                    {(contract.status === 'taken' && ((contract.clientId && contract.clientId === user.id) || contract.owner.id === user.id))
+                                        ? <div>
+                                            <Button
+                                                className="aceptar-contratos"
+                                                variant="contained"
+                                                onClick={open}
+                                            >Resolver</Button>
+                                        </div>
+                                        : <></>
+                                    }
+
+                                    {(contract.status === 'complete' || (contract.clientId && contract.clientId !== user.id) || contract.owner.id === user.id)
+                                        ? <></>
+                                        : contract.status === 'taken'
+                                            ? <Button
+                                                className="aceptar-contratos"
+                                                variant="contained"
+                                                onClick={() => unsubscribe(contract.id, 'published', user.id)}
+                                            >Desuscribir</Button>
+                                            : <Button
+                                                className="aceptar-contratos"
+                                                variant="contained"
+                                                onClick={() => subscribe(contract.id, 'taken', user.id)}
+                                            >Suscribirse</Button>
+                                    }
+                                </div>
                             </div>
                             :
                             <div>Cargando...</div>
                         }
                     </div>
-                    
+
                 </div>
             }
         </>

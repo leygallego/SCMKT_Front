@@ -35,7 +35,7 @@ function SearchBar() {
         dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterAmount, filterType: e.target.value, filterCategory, filterDurationH, filterDurationL }))
         dispatch(setLoading(false))
     }
-
+    
     const filterByCategory = (e) => {
         dispatch(setFilterCategory(e.target.value))
         dispatch(getContracts({ page, name, author, ownerId: 1, typeC: 'all', filterAmount, filterType, filterCategory: e.target.value, filterDurationH, filterDurationL }))

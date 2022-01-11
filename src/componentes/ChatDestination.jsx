@@ -13,7 +13,7 @@ const Chatdestination = () => {
 
        channel ? dispatch(getMessages(channel)): console.log('');    
     
-    }, [channel]);
+    }, [dispatch, channel]);
 
     console.log('ChatDestination::::: channel', channel)
 

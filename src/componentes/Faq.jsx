@@ -11,7 +11,7 @@ const Faq = (props) => {
     return (
         <div className='faqComponent'>
             <div className='faqQuestionComponent'>
-                <a className='justifiedQuestion' href='#' onClick={handleOnClick}>{props.question}</a>
+                <div className='justifiedQuestion' onClick={handleOnClick}>{props.question}</div>
             </div>
             { bool ? <div className='faqAnswerComponent'>
                 <p className='justifiedText'>{props.answer}</p>
