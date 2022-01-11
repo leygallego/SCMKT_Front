@@ -27,7 +27,8 @@ import {
     ERASE_MESSAGE,
     CONFIG_CHANNEL,
     SET_LOADING,
-    GET_USER_SUSCRIBED
+    GET_USER_SUSCRIBED,
+    SET_FILTER_AMOUNT
 } from "../actions";
 
 const initialState = {
@@ -157,6 +158,12 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 filterState: action.payload
+            }
+
+        case SET_FILTER_AMOUNT:
+            return {
+                ...state,
+                filterAmount: action.payload
             }
 
         case SET_FILTER_TYPE:

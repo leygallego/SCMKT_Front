@@ -12,7 +12,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-
+import ethLogo from './imagenes/eth.png';
 import './styles/buildContract.css';
 
 
@@ -37,7 +37,7 @@ export function BuildConract() {
         c2: '',
         status: 'unpublished',
         ownerId: user.id,
-        pat:''
+        pat: ''
     })
 
     const [errors, setErrors] = useState({});
@@ -166,178 +166,185 @@ export function BuildConract() {
     }
 
     return (
-            <div className='wraper-crear' >
-                <div className="contractComponent">
-                    <div className="contractForm">
-                        <form className='contractForm-form' onSubmit={handleOnSubmit}>
-                            <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
+        <div className='wraper-crear' >
+            <div className="contractComponent">
+                <div className="contractForm">
+                    <form className='contractForm-form' onSubmit={handleOnSubmit}>
+                        <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
+                        <div className="labelInput">
+                            <div className="labelForm-buildContract">Nombre del Contrato</div>
+                            <div className="inputForm">
+                                <input
+                                    className="inputFormCComponent"
+                                    type="text"
+                                    name="name"
+                                    onChange={e => { handleInputChange(e) }}
+                                    onBlur={(e) => validate(e.target.name)}
+                                />
+                            </div>
+                        </div>
+                        <div className='combo'>
+                            <div>
+                                <div className="labelForm-buildContract">Tipo</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="type">
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'type') }} ></option>
+                                        <option value="Desafio" name='Desafio' onChange={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solucion" name='Solucion' onChange={e => { onChangeValue(e, 'type') }}>Solución</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Nombre del Contrato</div>
+                                <div className="labelForm-buildContract">Tiempo (días)</div>
                                 <div className="inputForm">
                                     <input
                                         className="inputFormCComponent"
                                         type="text"
-                                        name="name"
+                                        name="duration"
+                                        value={input.duration}
+                                        min="0"
+                                        onChange={onChangeDuration}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <div className="labelForm-buildContract">Categoría</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="category">
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'category') }} ></option>
+                                        <option value="Principiante" name='Principiante' onChange={e => { onChangeValue(e, 'category') }}>Principiante</option>
+                                        <option value="Intermedio" name='Intermedio' onChange={e => { onChangeValue(e, 'category') }}>Intermedio</option>
+                                        <option value="Avanzado" name='Avanzado' onChange={e => { onChangeValue(e, 'category') }}>Avanzado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='combo'>
+                            <div>
+                                <div className="labelForm-buildContract">Recompensa
+                                        <img
+                                            src={ethLogo}
+                                            alt='eth'
+                                            width="10%"
+                                            height="10%"
+                                        />
+                                </div>
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormReward"
+                                        type="number"
+                                        min="0.00000001"
+                                        max="100"
+                                        step="0.00000001"
+                                        name="amount"
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
                                 </div>
                             </div>
-                            <div className='combo'>
-                                <div>
-                                    <div className="labelForm-buildContract">Tipo</div>
-                                    <div className="inputForm">
-                                        <select className="inputFormCoin" name="type">
-                                            <option value="" name='' onChange={e => { onChangeValue(e, 'type') }} ></option>
-                                            <option value="Desafío" name='Desafío' onChange={e => { onChangeValue(e, 'type') }}>Desafío</option>
-                                            <option value="Solución" name='Solución' onChange={e => { onChangeValue(e, 'type') }}>Solución</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div className="labelInput">
-                                    <div className="labelForm-buildContract">Tiempo</div>
-                                    <div className="inputForm">
-                                        <input
-                                            className="inputFormCComponent"
-                                            type="text"
-                                            name="duration"
-                                            value={input.duration}
-                                            min="0"
-                                            onChange={onChangeDuration}
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="labelForm-buildContract">Categoría</div>
-                                    <div className="inputForm">
-                                        <select className="inputFormCoin" name="category">
-                                            <option value="" name='' onChange={e => { onChangeValue(e, 'category') }} ></option>
-                                            <option value="Principiante" name='Principiante' onChange={e => { onChangeValue(e, 'category') }}>Principiante</option>
-                                            <option value="Intermedio" name='Intermedio' onChange={e => { onChangeValue(e, 'category') }}>Intermedio</option>
-                                            <option value="Avanzado" name='Avanzado' onChange={e => { onChangeValue(e, 'category') }}>Avanzado</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='combo'>
-                                <div>
-                                    <div className="labelForm-buildContract">Recompensa</div>
-                                    <div className="inputForm">
-                                        <input
-                                            className="inputFormReward"
-                                            type="number"
-                                            min="0.00000001"
-                                            max="100"
-                                            step="0.00000001"
-                                            name="amount"
-                                            onChange={e => { handleInputChange(e) }}
-                                            onBlur={(e) => validate(e.target.name)}
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <div className="labelForm-buildContract">Moneda</div>
-                                    <div className="inputForm">
-                                        <select className="inputFormCoin" name="coin" onChange={e => { onChangeValue(e, 'coin') }}>
-                                            <option value="" name='' onChange={e => { onChangeValue(e, 'coin') }}></option>
-                                            <option value="ETH" name='ETH' onChange={e => { onChangeValue(e, 'coin') }}>ETH</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="labelInput">
-                                <div className="labelForm-buildContract">Describe tu problema
-
-                                </div>
-                                <div className='input-reach-text'>
-                                    <Editor
-                                        editorState={editorState}
-                                        onEditorStateChange={setEditorState}
-                                        defaultContentState={contentState}
-                                        onContentStateChange={setContentState}
-                                        toolbarClassName="toolbarClassName"
-                                        wrapperClassName="wrapperClassName"
-                                    />
-                                </div>
-                            </div>
-                            <div className="labelInput">
-                                <div className="labelForm-buildContract">
-                                    Escribe aquí tu test
-                                </div>
-                                <div className='input-reach-text'>
-                                    <Editor
-                                        editorState={editorStateLong}
-                                        onEditorStateChange={setEditorStateLong}
-                                        defaultContentState={contentStateLong}
-                                        onContentStateChange={setContentStateLong}
-                                        toolbarClassName="toolbarClassName"
-                                        wrapperClassName="wrapperClassName"
-                                    />
-                                </div>
-                            </div>
                             <div>
-                                <div className="labelForm-buildContract">
-                                    Escribe aquí tu Personal-Access-Token:
+                                <div className="labelForm-buildContract">Moneda</div>
+                                <div className="inputForm">
+                                    <select className="inputFormCoin" name="coin" onChange={e => { onChangeValue(e, 'coin') }}>
+                                        <option value="" name='' onChange={e => { onChangeValue(e, 'coin') }}></option>
+                                        <option value="ETH" name='ETH' onChange={e => { onChangeValue(e, 'coin') }}>ETH</option>
+                                    </select>
                                 </div>
-                                <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
                             </div>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        checked={checked}
-                                        size='medium'
-                                        inputProps={{ 'aria-label': 'Checkbox A' }}
-                                        color="default"
-                                        onChange={() => setChecked(!checked)}
-                                    />
+                        </div>
+                        <div className="labelInput">
+                            <div className="labelForm-buildContract">Describe tu problema
+
+                            </div>
+                            <div className='input-reach-text'>
+                                <Editor
+                                    editorState={editorState}
+                                    onEditorStateChange={setEditorState}
+                                    defaultContentState={contentState}
+                                    onContentStateChange={setContentState}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                />
+                            </div>
+                        </div>
+                        <div className="labelInput">
+                            <div className="labelForm-buildContract">
+                                Escribe aquí tu test
+                            </div>
+                            <div className='input-reach-text'>
+                                <Editor
+                                    editorState={editorStateLong}
+                                    onEditorStateChange={setEditorStateLong}
+                                    defaultContentState={contentStateLong}
+                                    onContentStateChange={setContentStateLong}
+                                    toolbarClassName="toolbarClassName"
+                                    wrapperClassName="wrapperClassName"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="labelForm-buildContract">
+                                Escribe aquí tu Personal-Access-Token:
+                            </div>
+                            <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
+                        </div>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={checked}
+                                    size='medium'
+                                    inputProps={{ 'aria-label': 'Checkbox A' }}
+                                    color="default"
+                                    onChange={() => setChecked(!checked)}
+                                />
+                            }
+                            label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
+                        />
+                        <div className='group-button-build'>
+                            <button
+                                type='submit'
+                                className={
+                                    input.name === "" ||
+                                        input.shortdescription === "" ||
+                                        input.longdescription === "" ||
+                                        input.amount === "" ||
+                                        input.coin === "" ||
+                                        !checked
+                                        ? "acept-contract acept-contract-disable"
+                                        : "acept-contract"
                                 }
-                                label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
-                            />
-                            <div className='group-button-build'>
-                                <button
-                                    type='submit'
-                                    className={
-                                        input.name === "" ||
-                                            input.shortdescription === "" ||
-                                            input.longdescription === "" ||
-                                            input.amount === "" ||
-                                            input.coin === "" ||
-                                            !checked
-                                            ? "acept-contract acept-contract-disable"
-                                            : "acept-contract"
-                                    }
-                                    onClick={showPrevious}
-                                    disabled={
-                                        input.name === "" ||
-                                            input.shortdescription === "" ||
-                                            input.longdescription === "" ||
-                                            input.amount === "" ||
-                                            input.coin === "" ||
-                                            !checked
-                                            ? true
-                                            : false
-                                    }
-                                >Previsualizar</button>
-                                <button
-                                    className="acept-contract"
-                                    onClick={cancelPublished}>Cancelar</button>
-                            </div>
-                            <div className={isOpen ? '' : ''} visible={isOpen}>
-                                <Modal
-                                    visible={modalIsOpen}>
-                                    <div className='modal-overlay'>
-                                        <DetalleContratoPreview
-                                            visible={close}
-                                            onClose={close}
-                                            dataPreview={input}
-                                        />
-                                    </div>
-                                </Modal>
-                            </div>
-                        </form>
-                    </div>
+                                onClick={showPrevious}
+                                disabled={
+                                    input.name === "" ||
+                                        input.shortdescription === "" ||
+                                        input.longdescription === "" ||
+                                        input.amount === "" ||
+                                        input.coin === "" ||
+                                        !checked
+                                        ? true
+                                        : false
+                                }
+                            >Previsualizar</button>
+                            <button
+                                className="acept-contract"
+                                onClick={cancelPublished}>Cancelar</button>
+                        </div>
+                        <div className={isOpen ? '' : ''} visible={isOpen}>
+                            <Modal
+                                visible={modalIsOpen}>
+                                <div className='modal-overlay'>
+                                    <DetalleContratoPreview
+                                        visible={close}
+                                        onClose={close}
+                                        dataPreview={input}
+                                    />
+                                </div>
+                            </Modal>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
     )
 }
 
