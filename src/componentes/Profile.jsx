@@ -3,16 +3,20 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import Button from '@mui/material/Button';
 import CreateIcon from '@mui/icons-material/Create';
 import { useSelector, useDispatch } from 'react-redux';
-import { editUser, sendLogin, getContracts, setChat, configChannel, eraseMessage, setLoading, createrepo } from '../actions';
+import { editUser, sendLogin, getContracts, setChat, eraseMessage, setLoading, getUsers } from '../actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import Countries from './countries';
 import Uploadimage from './UploadImage';
-import './Profile.css';
 import Spinner from './Spinner';
 import ContractsList from './ContractsList';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Loader from './Loader';
+
+import useMetaMask from '../hooks/useMetaMask'
+import './styles/Profile.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import { Octokit } from "octokit";
 import Web3 from 'web3'
 import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
@@ -21,22 +25,6 @@ import useMetaMask, { MetaMaskContext, MetaMaskProvider } from '../hooks/useMeta
 const { Base64 } = require("js-base64")
 const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
-
-// const octokit = new Octokit({
-//     // authStrategy: createOAuthAppAuth,
-//     // auth: {
-//     //   clientType: 'github-app',
-//     //   clientId: 'd1caa78b0df97e743827',
-//     //   scopes: ['user', 'public_repo', 'repo'],
-//     //   onVerification(verification) {
-//     //     console.log('Open %s', verification.verification_uri);
-//     //     console.log('Enter code: %s', verification.user_code);
-//     //   },
-//     // },
-//     auth: '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'
-    
-// })
-
 
 toast.configure()
 
@@ -53,6 +41,7 @@ function Profile() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getUsers());
         dispatch(setLoading(true))
         dispatch(callProtectedApi)
         dispatch(setChat(false));
@@ -60,15 +49,15 @@ function Profile() {
         dispatch(setLoading(false))
         dispatch(eraseMessage([]));
     }, [dispatch])
-    
-    
+
+
     const {
         getAccessTokenSilently,
     } = useAuth0();
 
     async function callProtectedApi() {
         const token = await getAccessTokenSilently();
-        
+
         try {
             await dispatch(sendLogin(token))
         } catch (error) {
@@ -123,14 +112,13 @@ function Profile() {
     //         //     message: "feat: Added test.js programatically",
     //         //     content: contentEncoded,
     //         // }).then(console.log, console.log);
-
-
     //     } catch(err) {
     //         console.log(err)
     //     }
         
       
     // }
+
 
     const handleOnChange = (e) => {
         setRegistro({
@@ -151,7 +139,7 @@ function Profile() {
             last_name: `${registro['last_name'] ? registro.last_name : user.last_name}`,
             country: `${registro['country'] ? registro.country : user.country}`,
             wallet: `${registro['wallet'] ? registro.wallet : user.wallet}`,
-            image: `${profileImage}`
+            image: `${user.image}`
         }
         dispatch(editUser(user.id, registro2));
         handleEdition();
@@ -172,100 +160,85 @@ function Profile() {
         <>
         <Web3ReactProvider getLibrary={getLibrary}>
             <MetaMaskProvider>
+
             {loading
-            ? <Loader />
-            :<div className="main-perfil">
-                <div className="perfil-card">
-                    <h2>Hola {user.name}</h2>
-
-                    <div className="contratos-publicados2">
-                        <ContractsList
-                            contratos={contracts}
-                        />
+                ? <Loader />
+                : <div className="main-perfil">
+                    <div className='perfil-title'>
+                        <h2>Hola {user.name}</h2>
                     </div>
-                </div>
-
-                <div className="area-perfil">
-                    {spinner ? <Uploadimage
-                        image={profileImage}
-                        id={user.id}
-                        user={user}
-                    /> : <Spinner />}
-
-                    <br />
-
-                    <div className="boton-wallet">
-                    <Button
-                        className="busca-wallet"
-                        variant="contained"
-                        startIcon={<AccountBalanceWalletIcon />}
-                        onClick={isActive ? disconnect : connect}>
-                        {isActive ? 'Desconectar' : 'Conectar Wallet'}
-                    </Button>
+                    <div className="perfil-card">
+                        <div className="contratos-publicados2">
+                            <ContractsList />
+                        </div>
                     </div>
-                        
-                    {/*<div className="boton-wallet">
-                        <Button
-                            className="busca-wallet"
-                            variant="contained"
-                            startIcon={<AccountBalanceWalletIcon />}
-                            //user.username, 'repo-prueba-00'
-                            onClick={getRepo}>
-                            Crear Repositorio
-                        </Button>
-                        
-                    </div>*/}
-                        
-                    <div className="datos-personales" >
-                        <Button
-                            className="busca-datos"
-                            variant="contained"
-                            startIcon={<CreateIcon />}
-                            onClick={handleEdition}>
-                            Datos Personales
-                        </Button>
-                        {edicionPerfil ? <div className="profileDataView">
-                            <br /><h4>Nombre: {user.name} {user.last_name}</h4> <br />
-                            <h4>Usuario: {user.username}</h4><br />
-                            <h4>Email: {user.email}</h4><br />
-                            <h4>Nº Wallet: {isActive ? account : 'MetaMask Desconectada'}</h4><br />
-                            <h4>País Residencia: {user.country}</h4><br />
-                        </div> :
-                            <form onSubmit={e => { handleOnSubmit(e) }}>
-                                <div className="registro1">
-                                    <div className="labelInput">
-                                        <div className="labelForm">Nombre</div>
-                                        <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} placeholder={user.name} /></div>
-                                    </div>
-                                    <div className="labelInput">
-                                        <div className="labelForm">Apellido</div>
-                                        <div className="inputForm"><input className="inputFormComponent" type="text" name="last_name" onChange={e => { handleOnChange(e) }} placeholder={user.last_name} /></div>
-                                    </div>
-                                    <div className="labelInput">
-                                        <div className="labelForm">País</div>
-                                        <div className="selectPais">
-                                            <select className="inputFormComponent" name="country" onChange={e => { handleOnChange(e) }} defaultValue={user.country}  >
-                                                {Countries.map((element, index) => {
-                                                    return (
-                                                        <option key={index}>{element}</option>
-                                                    )
-                                                })
-                                                }
-                                            </select></div>
-                                    </div>
-                                    {
-                                        user.wallet === null || user.wallet === 'undefined' || user.wallet?.length <= 0 ? <div className="labelInput">
-                                            <div className="labelForm">Wallet</div>
-                                            <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet} /></div>
+
+                    <div className="area-perfil">
+                        {spinner ? <Uploadimage
+                            image={profileImage}
+                            id={user.id}
+                            user={user}
+                        /> : <Spinner />}
+                        <br />
+                        <div className="boton-wallet">
+                            <Button
+                                className="busca-wallet"
+                                variant="contained"
+                                startIcon={<AccountBalanceWalletIcon />}
+                                onClick={isActive ? disconnect : connect}>
+                                {isActive ? 'Desconectar' : 'Conectar Wallet'}
+                            </Button>
+                        </div>
+                        <div className="datos-personales" >
+                            <Button
+                                className="busca-datos"
+                                variant="contained"
+                                startIcon={<CreateIcon />}
+                                onClick={handleEdition}>
+                                Datos Personales
+                            </Button>
+                            {edicionPerfil ? <div className="profileDataView">
+                                <br />
+                                <div>Email: {user.email} </div>
+                                <div>Usuario: {user.username} </div>
+                                <div>Nombre: {user.name} {user.last_name} </div>
+                                <div>Wallet: {isActive ? account : 'MetaMask Desconectada'} </div>
+                                <div>País Residencia: {user.country} </div><br />
+                            </div> :
+                                <form onSubmit={e => { handleOnSubmit(e) }}>
+                                    <div className="registro1">
+                                        <div className="labelInput">
+                                            <div className="labelForm">Nombre</div>
+                                            <div className="inputForm"><input className="inputFormComponent" type="text" name="name" onChange={e => { handleOnChange(e) }} placeholder={user.name} /></div>
                                         </div>
-                                            : <div></div>
-                                    }
-
-                                    <div className="buttonFormComponent"><input className="botonEditar" type="submit" value="Editar" /></div>
-                                </div>
-
-                            </form>
-                        }
+                                        <div className="labelInput">
+                                            <div className="labelForm">Apellido</div>
+                                            <div className="inputForm"><input className="inputFormComponent" type="text" name="last_name" onChange={e => { handleOnChange(e) }} placeholder={user.last_name} /></div>
+                                        </div>
+                                        <div className="labelInput">
+                                            <div className="labelForm">País</div>
+                                            <div className="selectPais">
+                                                <select className="inputFormComponent" name="country" onChange={e => { handleOnChange(e) }} defaultValue={user.country}  >
+                                                    {Countries.map((element, index) => {
+                                                        return (
+                                                            <option key={index}>{element}</option>
+                                                        )
+                                                    })
+                                                    }
+                                                </select></div>
+                                        </div>
+                                        {
+                                            user.wallet === null || user.wallet === 'undefined' || user.wallet?.length <= 0 ? <div className="labelInput">
+                                                <div className="labelForm">Wallet</div>
+                                                <div className="inputForm"><input className="inputFormComponent" type="text" name="wallet" onChange={e => { handleOnChange(e) }} placeholder={user.wallet} /></div>
+                                            </div>
+                                                : <div></div>
+                                        }
+                                        <div className="buttonFormComponent"><input className="botonEditar" type="submit" value="Editar" /></div>
+                                    </div>
+                                </form>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -273,6 +246,7 @@ function Profile() {
             </MetaMaskProvider>
         </Web3ReactProvider>
     </>
+
     )
 }
 

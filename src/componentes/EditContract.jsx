@@ -58,13 +58,13 @@ export function EditContract() {
 
     const [errors, setErrors] = useState({});
     const [modalIsOpen] = useState(false);
-    const [Modal, open, close, isOpen] = useModal('root', {
+    const [Modal, open, close] = useModal('root', {
         // preventScroll: true,
         closeOnOverlayClick: false
     });
 
-    let _contentState = ContentState.createFromText(`${input.shortdescription}`);
-    let raw = convertToRaw(_contentState)
+    // let _contentState = ContentState.createFromText(`${input.shortdescription}`);
+    // let raw = convertToRaw(_contentState)
     const html = `${input.shortdescription}`
     const contentBlock = htmlToDraft(html);
 
@@ -326,8 +326,8 @@ export function EditContract() {
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="type" value={input.type}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'type') }} ></option>
-                                        <option value="Desafío" name='Desafío' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
-                                        <option value="Solución" name='Solución' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
+                                        <option value="Desafio" name='Desafio' onClick={e => { onChangeValue(e, 'type') }}>Desafío</option>
+                                        <option value="Solucion" name='Solucion' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
                             </div>

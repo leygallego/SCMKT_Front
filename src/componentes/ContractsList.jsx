@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContractsCard from './ContractsCard';
-import { deleteContract, getContracts, setChat, setLoading } from '../actions';
+import { deleteContract, getContracts, setLoading } from '../actions';
 import Button from '@mui/material/Button';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 
-const ContractsList = (props) => {
-    const { contratos } = props
+const ContractsList = () => {
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user)
@@ -17,10 +16,9 @@ const ContractsList = (props) => {
     const [eraser, setEraser] = useState([]);
 
     useEffect(() => {
-        // dispatch(callProtectedApi)
         dispatch(getContracts({ ownerId: user.id, typeC: 'owner' }))
         dispatch(setLoading(false))
-    }, [dispatch])
+    }, [dispatch, user.id])
 
     const borraContratos = () => {
         Swal.fire({
@@ -29,7 +27,6 @@ const ContractsList = (props) => {
             confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 if (eraser.length > 0) {
                     let resto = contracts.filter(element => !eraser.includes(element.id))
@@ -39,9 +36,7 @@ const ContractsList = (props) => {
                     dispatch(setLoading(false))
                 }
                 Swal.fire(`${eraser.length} contrato(s) ha(n) sido borrado(s)`, '', 'success')
-            } //else if (result.isDenied) {
-            //  Swal.fire('Changes are not saved', '', 'info')
-            // }
+            }
         })
     }
 
@@ -50,11 +45,11 @@ const ContractsList = (props) => {
         if (e.target.checked) {
             er.push(e.target.name)
         } else {
-            er = er.filter(element => element != e.target.name)
+            er = er.filter(element => element !== e.target.name)
         }
         setEraser(er)
     }
-    // console.log("contractsList", contracts)
+    
     return (
         <div className='contractsCardComponent'>
             <div className="contratos-publicados">
@@ -72,7 +67,6 @@ const ContractsList = (props) => {
                                         id={element.id}
                                         image={element.image}
                                         check={false}
-                                        chat={false}
                                         client={element.clientId}
                                     />
                                     : <></>}
@@ -80,6 +74,7 @@ const ContractsList = (props) => {
                     }) : <></>}
                 </div>
             </div>
+            <br />
 
             <div className="contratos-borradores">
                 <div className='borradoresRow'>
@@ -111,6 +106,7 @@ const ContractsList = (props) => {
                     }) : <></>}
                 </div>
             </div>
+            <br />
 
             <div className="contratos-finalizados">
                 <h5>Contratos Finalizados</h5>

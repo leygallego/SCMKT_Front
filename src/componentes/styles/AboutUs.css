@@ -1,0 +1,55 @@
+.about-container{
+    display: grid;
+    margin-top: 55px;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--azulPrimario);
+    gap: 10px;
+    grid-template:
+    "decorative-about" auto
+    "texto-about" auto /
+    100%;
+}
+
+.decorative-about {
+    grid-area: decorative-about;
+}
+
+.texto-about {
+    grid-area: texto-about;
+}
+
+.texto-about{
+    display: flex;
+    flex-direction: column;
+    background-color: #C4C4C4;
+    height: auto;
+    width: auto;
+    border-radius: 12px;
+    margin: 15px;
+    text-align: justify;    
+    padding: 2% 5% 5% 5%;
+}
+
+.texto-about p{
+    color: #000000;
+    font-size: 18px;     
+}
+
+
+@media (min-width: 992px){
+    .about-container{
+        margin-top: 155px;
+        grid-template:
+        "decorative-about texto-about" auto /
+        50% 50%;
+    }
+
+    .decorative-about {
+        display: flex;
+        justify-content: right;    }
+
+    .texto-about{
+        width: 70%;
+        height: auto;
+    }
+}

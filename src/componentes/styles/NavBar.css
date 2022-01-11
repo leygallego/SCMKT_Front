@@ -1,0 +1,121 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(45deg, var(--azulPrimario), var(--azulSecundario));
+  z-index: 99;
+  }
+
+.list {
+  list-style-type: none;
+  /* background: linear-gradient(45deg, rgb(14, 52, 156), rgb(159, 159, 230)); */
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  position: relative;
+  margin-left: 300px;
+  margin-top: 25px;
+}
+
+.items {
+  margin-right: 20px;
+  font-size: 20px;
+  /* text-transform: uppercase; */
+  text-decoration: none;
+  color: var(--blanco);
+  cursor: pointer;
+}
+
+.navLink {
+  text-decoration: none;
+  color: var(--blanco);
+}
+
+.btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  padding: 5px;
+  color: #000;
+  font-size: 18px;
+}
+
+.title {
+  /* display: none; */
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  padding: 0px;
+  color: var(--blanco);
+  font-size: 32px;
+  background-color: var(--transparente);
+
+}
+
+.userAvatarNav{
+  margin-top: -50px;
+  margin-right: 15px;
+  float: right;
+}
+
+@media screen and (max-width: 992px) {
+.list{
+  margin-left: 300px;
+  /* background-color: yellow; */
+}
+.items{
+  font-size: 14px;
+}
+
+.avatarNavImage{
+  display: none;
+}
+
+  
+}
+
+@media screen and (max-width: 600px){
+
+  nav {
+    
+    height: 60px;
+   
+    }
+
+  .list {
+      flex-direction: column;
+      height: auto;
+      margin-left: -50px;
+      margin-top: 0px;
+
+  }
+  .items:nth-child(1){
+      border-top: 1px solid rgba(255, 255, 255, 0.555);
+      margin-top: 50px;
+  }
+  .items {
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.555);
+      text-align: center;
+      margin-right: 0px;
+      padding: 20px 0;
+      background-color: var(--azulPrimario);
+
+  }
+  .btn {
+      display: block;
+      background-color: transparent;
+      border: none;
+      color: var(--blanco);
+  }
+  .title {
+      display: block;
+      font-size: 28px;
+  }
+  .avatarNavImage{
+    display: none;
+  }
+}

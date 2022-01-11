@@ -1,0 +1,66 @@
+[
+    {
+        "question": "¿Qué es un SmartContract?",
+        "answer": "     FAQ son las siglas de la expresión inglesa Frequently Asked Questions, que en español podemos traducir como 'preguntas frecuentes'. ... Las FAQ son especialmente frecuentes en el ámbito de internet, donde por lo general los sitios tienen una sección destinada precisamente a responder las dudas más comunes de los usuarios."
+    },
+    {
+        "question": "¿Qué es Ethereum?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+        "question": "¿Cómo puedo hacer un contrato?",
+        "answer": "     Nada, pero estoy dispuesto a investigar sobre ella, su visión, misión y valores."
+    },
+    {
+        "question": "¿Qué me gusta hacer en mi tiempo libre?",
+        "answer": "     Mi tiempo libre lo dedico a la familia, a compartir con mis amigos y a estudiar."
+    },
+    {
+        "question": "¿Cual es mi meta?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    },
+    {
+        "question": "¿Por qué dejé mi anterior empleo o quieres cambiar?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Cómo podría darle solución a un problema?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Cómo maneja la presión?",
+        "answer": "     Se enfoca en evaluar tu inteligencia emocional, habla de acciones prácticas: tomarte un tiempo a solas para pensar, pedir ayuda, organizar tus tareas clave, etc.."
+    }
+    ,
+    {
+        "question": "¿Cuales son mis pretenciones salariales?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Qué tipo de trabajo estoy buscando?",
+        "answer": "     Trabajo remoto, donde pueda recrear mi propio ambiente de trabajo para estar más relajado y concentrado en las actividades propias de la empresa."
+    }
+    ,
+    {
+        "question": "¿Cuál es mi mayor debilidad o defecto?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Cómo describiría mi trabajo ideal?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Qué tanto respeto mis compromisos?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+    ,
+    {
+        "question": "¿Cómo me veo dentro de 5, 10 años?",
+        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    }
+]

@@ -1,7 +1,26 @@
+:root{
+  --negro: #000000;
+  --blanco: #FFFFFF;
+  --azulPrimario: #0078E7;
+  --azulSecundario: rgba(0, 120, 231, 0.66);
+  --azulTerciario: rgba(0, 120, 231, 0.33);
+  --transparente: transparent;
+}
+
+/* La variable de color se utiliza de la siguiente manera:
+
+  background-color: var(--negro);
+  color: var(--blanco);
+
+*/
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 .App {
   text-align: center;
   overflow: hidden;
-  /* margin-top: 5%; */
 }
 
 .App-logo {
@@ -41,8 +60,6 @@
 
 body{
   background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('./componentes/imagenes/FondoPF.jpeg')no-repeat center center fixed ; 
-  /* background-size: 100%; */
-  /* min-height: 100%; */
   -webkit-background-size: repeat;
   -moz-background-size: repeat;
   -o-background-size: repeat;
@@ -52,4 +69,9 @@ body{
 
 html {
   height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
 }

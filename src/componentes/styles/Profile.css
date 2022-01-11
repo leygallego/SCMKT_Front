@@ -1,0 +1,291 @@
+.contratos-wraper{
+    margin-top: 14%;
+}
+
+.main-perfil{
+    margin-top: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: var(--blanco);
+    color: var(--negro);
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    margin-left: 7%;
+    margin-right: 5%;
+    margin-bottom: 2%;
+    border-radius: 12px;
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template:
+    "perfil-title" 70px
+    "area-perfil" auto
+    "perfil-card" auto
+    /
+    100%;
+}
+
+.perfil-title {
+    grid-area: perfil-title;
+    /* background-color: blue; */
+}
+
+
+/* Perfil con foto */
+.perfil-card{
+    grid-area: perfil-card;
+    /* background-color: beige; */
+    color: var(--negro);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.area-perfil{
+    grid-area: area-perfil;
+    color: var(--negro);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.profileDataView {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: start;
+    margin-left: 25px;
+    font-size: 16px;
+}
+
+
+/* Contenedor Azul Oscuro de los contratos Publicados */
+.contratos-publicados{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: var(--azulPrimario);
+    color: var(--blanco);   
+    font-size: 22px;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    border-radius: 12px;
+    padding-top: 1px;
+}
+
+.activeContracts {
+    margin: 5px;
+  }
+
+.info-contrato{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: left;
+    max-height: 35px;
+    color: var(--negro);
+    background-color: var(--blanco);
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    height: 55px;
+    width: 100%;
+}
+
+.datoContrato {
+    font-size: 12px;
+}
+
+.datoContratoName {
+    width: 50%;
+}
+
+.datoContratoAmount {
+    background-color: var(--transparente);
+}
+
+.datoContratoLink {
+    background-color: var(--transparente);
+}
+
+.scrolling {
+    max-height: 189px;
+    overflow-y: scroll;
+}
+
+
+
+/* Contenedor Azul Claro de los Borradores */
+.contratos-borradores{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: var(--azulSecundario);
+    color: var(--blanco);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;;
+    width: auto;
+    margin-left: 1%;
+    /* margin-bottom: 2%; */
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.borradoresContracts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Borradores con la Canasta */
+.borradoresRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.contratos-finalizados{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: var(--azulTerciario);
+    color: var(--blanco);
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;;
+    width: auto;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    border-radius: 12px;
+    padding: 10px;
+    height: auto;
+}
+
+
+.imageCircle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.avatarInput {
+    display: none;
+}
+
+.imageProfileContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.buttonProfileContainer {
+    display: flex;
+    justify-content: end;
+    margin-top: 80px;
+    width: 30px;
+}
+
+
+
+
+.datos-personales {
+    margin-top: 15px;
+    height: 250px;
+    width: 100%;
+    background-color: var(--negro);
+    color: var(--blanco);
+    font-weight: bold;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Pantalla Mediana Tablet */
+@media (min-width: 500px) {
+    .main-perfil{
+        margin-top: 150px;
+    }
+}
+
+@media (min-width: 600px) {
+    .main-perfil{
+        margin-top: 150px;
+        justify-content: space-around;
+        height: 800px;
+        max-height: fit-content;
+        grid-template:
+        "perfil-title ." 70px
+        "perfil-card area-perfil" 400px
+        /
+        50% 40%;
+    }    
+
+    .imageCircle {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        margin-top: -20px;
+    }
+}
+
+/* Pantalla Grande Pc */
+@media (min-width: 992px){
+    .main-perfil{
+        margin-top: 150px;
+        justify-content: space-around;
+        height: 800px;
+        max-height: fit-content;
+        grid-template:
+        "perfil-title ." 70px
+        "perfil-card area-perfil" 400px
+        /
+        40% 30%;
+    }    
+
+    .perfil-title {
+        text-align: left;
+        margin-left: 50px;
+    }
+
+    /* Componentes del Contratos del Perfil */
+
+
+    /* Componentes del Perfil del Perfil */
+    /* Foto del Perfil y botón Upload */
+    .imageCircle {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        margin-top: -20px;
+    }
+
+    /* Botón Upload de la Imagen del Perfil */
+    .buttonProfileContainer {
+        display: flex;
+        justify-content: end;
+        margin-top: 160px;
+        width: 30px;
+    }
+
+
+
+    .datos-personales {
+        margin-top: 15px;
+        height: 300px;
+        width: 100%;
+        background-color: var(--negro);
+        color: var(--blanco);
+        font-weight: bold;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+}
+
+
+
+

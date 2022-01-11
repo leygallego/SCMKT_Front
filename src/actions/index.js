@@ -2,9 +2,9 @@ import axios from 'axios';
 import '../firebase';
 import { getDatabase, ref, onValue, set, push, get, child } from 'firebase/database';
 import { NODE_ENV, urlProduction1, urlProduction, urlDevelop, port1 } from '../config/app.config.js';
-import { Octokit } from 'octokit';
+// import { Octokit } from 'octokit';
 //import {createOAuthAppAuth} from '@octokit/auth-oauth-app';
-const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
+// const { createOAuthAppAuth } = require('@octokit/auth-oauth-app');
 
 
 export const GET_USERS = 'GET_USERS'
@@ -21,9 +21,10 @@ export const REMOVE_CONTRACT = 'REMOVE_CONTRACT'
 export const CREATE_CONTRACT = 'CREATE_CONTRACT'
 export const SET_FILTER_DURATIONH = 'SET_FILTER_DURATIONH'
 export const SET_FILTER_DURATIONL = 'SET_FILTER_DURATIONL'
+export const SET_FILTER_AMOUNT = 'SET_FILTER_AMOUNT'
+export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_FILTER_CATEGORY = 'SET_FILTER_CATEGORY'
 export const SET_FILTER_STATE = 'SET_FILTER_STATE'
-export const SET_FILTER_TYPE = 'SET_FILTER_TYPE'
 export const SET_AUTHOR = 'SET_AUTHOR'
 export const SET_NAME = 'SET_NAME'
 export const SET_PAGE = 'SET_PAGE'
@@ -51,8 +52,10 @@ export const SET_CHANNEL_SUSCRIBED = "SET_CHANNEL_SUSCRIBED";
 const database = getDatabase();
 
 let chatUser = "";
-//const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
+
+// const urlWork = NODE_ENV === 'production1' ? urlProduction1 : `${urlDevelop}:${port1}` // Front de localhost 
 const urlWork = NODE_ENV === 'production' ? urlProduction1 : `${urlDevelop}:${port1}` // Deployy
+
 
 export const configChannel = (channelId) => {
     return {
@@ -167,7 +170,7 @@ export const setChannel = (channel) => {
 
 export const setChannelSuscribed = (channel) => {
     const { id1, id2 } = channel;
-    console.log("setChannelSuscribed:  id1---------->", id1, "id2----------->" , id2);
+    console.log("setChannelSuscribed:  id1---------->", id1, "id2----------->", id2);
     return (dispatch) => {
         const db = getDatabase();
         const list = ref(db, 'smartChatChannels');
@@ -309,10 +312,14 @@ export const postSingUp = (userRegisterObject) => {
 export const getUsers = () => {
     return async dispatch => {
         return await axios.get(`${urlWork}/user`)
-            .then(response => dispatch({
-                type: GET_USERS,
-                payload: response.data
-            }))
+            .then(response => {
+                dispatch({
+                    type: GET_USERS,
+                    payload: response.data
+                }
+                )
+            }
+            )
     }
 }
 
@@ -344,15 +351,15 @@ export const getUserSuscribed = (id) => {
     }
 }
 
-export function getContracts({ name, author, ownerId, typeC, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
+export function getContracts({ name, author, ownerId, typeC, filterAmount, filterType, filterCategory, filterDurationH, filterDurationL, filterState }) {
     return async (dispatch) => {
         try {
-            const response = await axios.get(`${urlWork}/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
-            const contratos = response.data.filter(contrato => (contrato.clientId === null || (contrato.clientId === ownerId && contrato.status === 'taken') ));
+            const response = await axios.get(`${urlWork}/contract?name=${name ? name : ''}&author=${author ? author : ''}&ownerId=${ownerId ? ownerId : ''}&typeC=${typeC ? typeC : ''}&filterAmount=${filterAmount ? filterAmount : ''}&filterType=${filterType ? filterType : ''}&filterCategory=${filterCategory ? filterCategory : ''}&filterDurationH=${filterDurationH ? filterDurationH : ''}&filterDurationL=${filterDurationL ? filterDurationL : ''}&filterState=${filterState ? filterState : ''}`)
+            const contratos = response.data.filter(contrato => (contrato.clientId === null || (contrato.clientId === ownerId && contrato.status === 'taken')));
 
 
             // const contratos = response.data.filter(contrato => (contrato.clientId === null || (contrato.clientId == ownerId && contrato.status === 'taken') || (contrato.clientId == ownerId && contrato.status === 'taken') || contrato.owner.id == ownerId ))
-            console.log("Contratos:::", contratos)
+            // console.log("Contratos:::", contratos)
             return dispatch({
                 type: GET_CONTRACTS,
                 payload: contratos
@@ -443,6 +450,7 @@ export const removeContract = (borrar) => {
 }
 
 export const editUser = (id, user) => {
+    console.log('EDIT_USER____', user)
     return async (dispatch) => {
         dispatch({
             type: EDIT_USER,
@@ -463,6 +471,13 @@ export const setName = (name) => {
     return {
         type: SET_NAME,
         payload: name
+    }
+}
+
+export const setFilterAmount = (filterAmount) => {
+    return {
+        type: SET_FILTER_AMOUNT,
+        payload: filterAmount
     }
 }
 
@@ -522,7 +537,7 @@ export const updateContract = (contract) => {
             payload: contract
         });
         await window.sessionStorage.setItem('user', JSON.stringify(contract.ownerId.id))
-        
+
         await axios.put(`${urlWork}/contract/edit/${contract.id}`, contract)
             .then(() => {
                 // console.log("registrado correctamente", response);

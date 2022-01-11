@@ -1,37 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import ChatIcon from '@mui/icons-material/Chat';
-import { useDispatch } from 'react-redux';
-import { setChat } from '../actions';
+
 
 import './styles/contractscard.css';
 
 const ContractsCard = (props) => {
-    console.log('PROPS:::::::::::', props.client)
-    const { check, onCheck, id, chat } = props
-    const dispatch = useDispatch();
-    const openChat = () => {
-        dispatch(setChat(true));
-    }
+    const { check, onCheck } = props
 
     return (
         <div className='contractsCardComponent'>
             <div className={check ? 'borradoresContracts' : 'activeContracts'}>
-                {chat ?
-                    <Button
-                        className="chatIcon"
-                        variant="error"
-                        startIcon={<ChatIcon />}
-                        onClick={openChat}
-                        size='lg'
-                    /> : <></>}
                 <div className="info-contrato">
-                    <h6>{props.name}</h6>
-                    <h6>{props.amount}</h6>
+                    <div className='datoContrato datoContratoName'>{props.name}  </div>
+                    <div className='datoContrato datoContratoAmount'>{props.amount}</div>
                     <NavLink to={`/detalle/${props.id}`}>
-                        { console.log('enviar el dispatch')}
-                        <h6>ver detalles</h6>
+                    <div className='datoContrato datoContratoLink'>detalles</div>
                     </NavLink>
                 </div>
                 {check ? <input type="checkbox" name={props.id} onChange={e => { onCheck(e) }} /> : <></>}

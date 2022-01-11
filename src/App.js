@@ -5,16 +5,14 @@ import Home from './componentes/Home';
 import Contratos from './componentes/Contratos';
 import AboutUs from './componentes/AboutUs';
 import DetalleContrato from './componentes/DetalleContrato';
-import DetalleView from './componentes/DetalleView';
 import Profile from './componentes/Profile';
-// import Ingreso from './componentes/Ingreso';
-//import IngresoUser from './componentes/IngresoUser';
 import BuildContract from './componentes/BuildConract';
 import DetalleContratoPub from './componentes/DetalleContratoPub';
 import DetalleContratoBor from './componentes/DetalleContratoBor';
 import DetalleContratoFin from './componentes/DetalleContratoFin';
 import Footer from './componentes/Footer';
 import { useAuth0 } from '@auth0/auth0-react';
+import Faqs from './componentes/Faqs';
 
 import '../src/componentes/styles/chat.css';
 import Chat from './componentes/Chat';
@@ -29,11 +27,11 @@ function App() {
     <div className="App">
       <Router>
         <Route path="/" component={NavBar}></Route>
-
         <Switch>
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/contratos" component={Contratos}></Route>
           <Route exact path="/aboutus" component={AboutUs}></Route>
+          <Route exact path="/questions" component={Faqs}></Route>          
           <Route exact path="/detalle/:id" render={({ match }) => <DetalleContrato id={match.params.id} />}></Route>
           <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
           <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
@@ -46,15 +44,13 @@ function App() {
                 <Route exact path="/perfil" component={Home}></Route>
               )
           }
-          {/* <Route exact path="/registro" component={Ingreso}></Route>/ */}
           <Route exact path="/login" component={Home}></Route>
           <Route exact path="/creacontrato" component={BuildContract}></Route>
-          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id}/>}></Route>
+          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id} />}></Route>
         </Switch>
-
         <Footer />
       </Router>
-          <Chat />
+      <Chat />
     </div>
   );
 }

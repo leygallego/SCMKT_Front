@@ -1,144 +1,100 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import './NavBar.css';
+// import Button from '@mui/material/Button';
+import '../componentes/styles/NavBar.css';
 import ReorderIcon from '@mui/icons-material/Reorder';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth0 } from "@auth0/auth0-react";
 import UserAvatar from './UserAvatar';
-import Loader from './Loader';
-// import axios from 'axios';
-// import { useDispatch} from 'react-redux';
-// import { sendLogin } from '../actions';
 
 function NavBar() {
-  // const [showLinks, setShowLinks] = useState(false);
+
+  const [toggleMenu, setToggleMenu] = useState(false)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
   const {
     loginWithRedirect,
     logout,
-    //user,
     isAuthenticated,
-    //getAccessTokenSilently,
   } = useAuth0();
 
-  const loading = useSelector((state) => state.loading);
-  const [clicked, setClicked] = useState(false);
-  const handleClick = () => {
-    setClicked(!clicked)
+  const toggleNav = () => {
+    setToggleMenu(!toggleMenu)
   }
 
-  const login = () => {
+  useEffect(() => {
 
-  }
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', changeWidth)
+
+    return () => {
+      window.removeEventListener('resize', changeWidth)
+    }
+
+  }, [])
 
 
   return (
     <nav>
-
-      <div className="logo-smartcontracts">
-
-        <NavLink to="/"><span>SmartContracts</span> </NavLink>
-
-      </div>
-      <div className="menu-icon" onClick={handleClick}>
-        {clicked ? <CloseIcon /> : <ReorderIcon />}
-      </div>
-
-        {
-                isAuthenticated ?
-                  (
-                    // <ul className={clicked ? "menu-list" : "menu-list close"}>
-                    <ul className={clicked ? "menu-list" : "menu-list close"}>
-                    <li>
-                      <NavLink onClick={handleClick} className={({ active }) => (active ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
-                    </li>
-                    <li>
-                      <NavLink onClick={handleClick} className={({ active }) => (active ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
-                    </li>
-
-                        
-                         <li onClick={handleClick} ><NavLink className={({ active }) => (active ? "active" : "noActive")} to="/perfil">Perfil</NavLink></li> 
-                        
-
-                        <div onClick={handleClick} className="logout-button">
-                        
-                          <button className="logout-boton" onClick={logout}> <span>Cerrar Sesión</span> </button>
-                        
-                        </div>
-                        <li className="profile-image">
-                          <UserAvatar/>
-                        </li>
-
-                      
-                    </ul>
-                  )
-                  : (
-
-                    <ul className={clicked ? "menu-list" : "menu-list close"}>
-                    <li onClick={handleClick} >
-                      <NavLink className={({ active }) => (active ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
-                    </li>
-                    <li onClick={handleClick}>
-                      <NavLink className={({ active }) => (active ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
-                    </li>
-                    <div onClick={handleClick} className="login-button">
-                      
-                          <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
-                        
-                    </div>
-
-                    </ul>
-                  )
+      {isAuthenticated ? (
+        <>
+          {(toggleMenu || screenWidth > 500) && (
+            <ul className="list">
+              
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/contratos">Contratos</NavLink>
+              </li>
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/aboutus">Quienes Somos</NavLink>
+              </li>
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/questions">FAQs</NavLink>
+              </li>
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/perfil">Perfil</NavLink>
+              </li>
+              <li className="items"  onClick={() => {
+                toggleNav();
+                logout();
               }
-      
-      {/*
-        isAuthenticated ?
-          (
-            // <ul className={clicked ? "menu-list" : "menu-list close"}>
-            <ul className={clicked ? "menu-list" : "menu-list close"}>
-              <li>
-                <NavLink onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+              }>Cerrar Sesión
               </li>
-              <li>
-                <NavLink onClick={handleClick} className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
-              </li>
-
-
-              <li onClick={handleClick} ><NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/perfil">Perfil</NavLink></li>
-
-
-              <div onClick={handleClick} className="logout-button">
-
-                <button className="logout-button" onClick={logout}> <span>Cerrar Sesión</span> </button>
-
-              </div>
-              <li className="profile-image">
-                <UserAvatar />
-              </li>
-
-
             </ul>
-          )
-          : (
+          )}
+        <div className='userAvatarNav' > <UserAvatar /> </div>
 
-            <ul className={clicked ? "menu-list" : "menu-list close"}>
-              <li onClick={handleClick} >
-                <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/contratos">Contratos</NavLink>
+          <button onClick={toggleNav} className="btn"> { toggleMenu ? <CloseIcon /> :  <ReorderIcon /> } </button>
+          <h1 className='title'><NavLink className="navLink" to="/">SmartContracts</NavLink></h1>
+          {/* <h1 className='title'>SmartContracts</h1> */}
+        </>
+      ) : (
+        <>
+          {(toggleMenu || screenWidth > 500) && (
+            <ul className="list">
+              <li className="items" onClick={toggleNav}>Contratos</li>
+              <li className="items" onClick={toggleNav}>Quienes Somos</li>
+              <li className="items" onClick={toggleNav}>FAQs</li>
+              <li className="items" onClick={toggleNav}>Perfil</li>
+              <li className="items" onClick={() => {
+                toggleNav();
+                loginWithRedirect();
+              }
+              }>Iniciar Sesión
+                {/* <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button> */}
               </li>
-              <li onClick={handleClick}>
-                <NavLink className={({ isActive }) => (isActive ? "active" : "noActive")} to="/aboutus">Quienes Somos</NavLink>
-              </li>
-              <div onClick={handleClick} className="login-button">
-
-                <Button variant='contained' onClick={loginWithRedirect} >Iniciar Sesión</Button>
-
-              </div>
-
             </ul>
-          )
-          */}
+          )}
+
+<button onClick={toggleNav} className="btn"> { toggleMenu ? <CloseIcon /> :  <ReorderIcon /> } </button>
+          <h1 className='title'><NavLink className="navLink" to="/">SmartContracts</NavLink></h1>
+          {/* <h1 className='title'>SmartContracts</h1> */}
+
+        </>
+      )
+      }
 
 
     </nav>
