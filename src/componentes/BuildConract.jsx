@@ -350,6 +350,7 @@ export function BuildConract() {
                                 </div>
                             </Modal>
                         </div>
+                        </div>
                     </form>
                 </div>
             </div>
