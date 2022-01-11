@@ -53,7 +53,7 @@ function DetalleContrato() {
         //   },
         // },
         // auth: `${contract.pat}`
-        auth: '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'
+        auth: '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'
       })
     let html = `${contract?.conditions?.shortdescription? contract?.conditions?.shortdescription : '<div></div>'}`
     let contentBlock = htmlToDraft(html);

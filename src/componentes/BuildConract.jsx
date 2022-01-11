@@ -370,7 +370,7 @@ export function BuildConract() {
                                 <div className="labelForm-buildContract">
                                     Escribe aquí tu Personal-Access-Token:
                                 </div>
-                                <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
+                                <input type="text" name="pat" onChange={e => { handleInputChange(e) }} />
                             </div>
 
                             {/*<div className="labelInput-combo">

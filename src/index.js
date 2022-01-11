@@ -8,10 +8,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import queryString from 'query-string';
 import { NODE_ENV, urlProduction, urlDevelop, port2 } from './config/app.config.js';
 
-import Web3 from 'web3'
 
-import { Web3ReactProvider, WebReactProvider } from '@web3-react/core'
-import { MetaMaskContext, MetaMaskProvider } from './hooks/useMetaMask'
 
 /*
 async function prompt() {
@@ -53,9 +50,7 @@ else {
 
 //console.log(window.sessionStorage.getItem('prompt'));
 
-function getLibrary(provider, connector) {
-  return new Web3(provider)
-}
+
 
 ReactDOM.render(
   <Provider store={store}>
@@ -71,12 +66,8 @@ ReactDOM.render(
   audience="SCMKT"
   scope="openid profile email repo"
   prompt= {call_prompt()}
-  > 
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <MetaMaskProvider>
-        <App /> 
-      </MetaMaskProvider>
-    </Web3ReactProvider>
+  >
+    <App /> 
   </Auth0Provider>
 </Provider>,
   document.getElementById('root')
