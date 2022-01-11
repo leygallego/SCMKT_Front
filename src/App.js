@@ -45,6 +45,9 @@ function App() {
           <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
           <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
           <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
+          <Route exact path="/login" component={Home}></Route>
+          <Route exact path="/creacontrato" component={BuildContract}></Route>
+          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id} />}></Route>
             <Web3ReactProvider getLibrary={getLibrary}>
               <MetaMaskProvider>
               {
@@ -57,9 +60,7 @@ function App() {
               }
             </MetaMaskProvider>
           </Web3ReactProvider>
-          <Route exact path="/login" component={Home}></Route>
-          <Route exact path="/creacontrato" component={BuildContract}></Route>
-          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id} />}></Route>
+          
         </Switch>
         <Footer />
       </Router>
