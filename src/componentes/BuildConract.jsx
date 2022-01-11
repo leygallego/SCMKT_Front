@@ -222,12 +222,12 @@ export function BuildContract() {
                         <div className='combo'>
                             <div>
                                 <div className="labelForm-buildContract">Recompensa
-                                        <img
-                                            src={ethLogo}
-                                            alt='eth'
-                                            width="10%"
-                                            height="10%"
-                                        />
+                                    <img
+                                        src={ethLogo}
+                                        alt='eth'
+                                        width="10%"
+                                        height="10%"
+                                    />
                                 </div>
                                 <div className="inputForm">
                                     <input
@@ -257,6 +257,7 @@ export function BuildContract() {
 
                             </div>
                             <div className='input-reach-text'>
+                            {/* https://github.com/jpuri/react-draft-wysiwyg/blob/master/stories/ControlledSelectedOptions/index.js */}
                                 <Editor
                                     editorState={editorState}
                                     onEditorStateChange={setEditorState}
@@ -264,6 +265,37 @@ export function BuildContract() {
                                     onContentStateChange={setContentState}
                                     toolbarClassName="toolbarClassName"
                                     wrapperClassName="wrapperClassName"
+                                    toolbar={{
+                                        inline: {
+                                            options: ['bold', 'italic', 'underline']
+                                        },
+                                        blockType: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        fontSize: { className: 'demo-option-custom-medium' },
+                                        list: {
+                                            options: ['unordered', 'ordered'],
+                                        },
+                                        textAlign: {
+                                            left: { className: 'demo-option-custom' },
+                                            center: { className: 'demo-option-custom' },
+                                            right: { className: 'demo-option-custom' },
+                                            justify: { className: 'demo-option-custom' },
+                                        },
+                                        fontFamily: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                        link: {
+                                            popupClassName: 'demo-popup-custom',
+                                            link: { className: 'demo-option-custom' },
+                                            unlink: { className: 'demo-option-custom' },
+                                        },
+                                        emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        embedded: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        image: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                        remove: { className: 'demo-option-custom' },
+                                        history: {
+                                            undo: { className: 'demo-option-custom' },
+                                            redo: { className: 'demo-option-custom' },
+                                        },
+                                        options: ['blockType', 'fontSize', 'inline', 'list', 'fontFamily', 'link', 'remove', 'history']
+                                    }}
                                 />
                             </div>
 
@@ -274,82 +306,113 @@ export function BuildContract() {
                                 </div>
                                 <input type="text" name="pat" onChange={e => { handleInputChange(e) }} />
 
-                        </div>
-                        <div className="labelInput">
-                            <div className="labelForm-buildContract">
-                                Escribe aquí tu test
+                            </div>
+                            <div className="labelInput">
+                                <div className="labelForm-buildContract">
+                                    Escribe aquí tu test
 
-                            </div>
-                            <div className='input-reach-text'>
-                                <Editor
-                                    editorState={editorStateLong}
-                                    onEditorStateChange={setEditorStateLong}
-                                    defaultContentState={contentStateLong}
-                                    onContentStateChange={setContentStateLong}
-                                    toolbarClassName="toolbarClassName"
-                                    wrapperClassName="wrapperClassName"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <div className="labelForm-buildContract">
-                                Escribe aquí tu Personal-Access-Token:
-                            </div>
-                            <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
-                        </div>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    checked={checked}
-                                    size='medium'
-                                    inputProps={{ 'aria-label': 'Checkbox A' }}
-                                    color="default"
-                                    onChange={() => setChecked(!checked)}
-                                />
-                            }
-                            label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
-                        />
-                        <div className='group-button-build'>
-                            <button
-                                type='submit'
-                                className={
-                                    input.name === "" ||
-                                        input.shortdescription === "" ||
-                                        input.longdescription === "" ||
-                                        input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
-                                        ? "acept-contract acept-contract-disable"
-                                        : "acept-contract"
-                                }
-                                onClick={showPrevious}
-                                disabled={
-                                    input.name === "" ||
-                                        input.shortdescription === "" ||
-                                        input.longdescription === "" ||
-                                        input.amount === "" ||
-                                        input.coin === "" ||
-                                        !checked
-                                        ? true
-                                        : false
-                                }
-                            >Previsualizar</button>
-                            <button
-                                className="acept-contract"
-                                onClick={cancelPublished}>Cancelar</button>
-                        </div>
-                        <div className={isOpen ? '' : ''} visible={isOpen}>
-                            <Modal
-                                visible={modalIsOpen}>
-                                <div className='modal-overlay'>
-                                    <DetalleContratoPreview
-                                        visible={close}
-                                        onClose={close}
-                                        dataPreview={input}
+                                </div>
+                                <div className='input-reach-text'>
+                                    <Editor
+                                        editorState={editorStateLong}
+                                        onEditorStateChange={setEditorStateLong}
+                                        defaultContentState={contentStateLong}
+                                        onContentStateChange={setContentStateLong}
+                                        toolbarClassName="toolbarClassName"
+                                        wrapperClassName="wrapperClassName"
+                                        toolbar={{
+                                            inline: {
+                                                options: ['bold', 'italic', 'underline']
+                                            },
+                                            blockType: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                            fontSize: { className: 'demo-option-custom-medium' },
+                                            list: {
+                                                options: ['unordered', 'ordered'],
+                                            },
+                                            textAlign: {
+                                                left: { className: 'demo-option-custom' },
+                                                center: { className: 'demo-option-custom' },
+                                                right: { className: 'demo-option-custom' },
+                                                justify: { className: 'demo-option-custom' },
+                                            },
+                                            fontFamily: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
+                                            link: {
+                                                popupClassName: 'demo-popup-custom',
+                                                link: { className: 'demo-option-custom' },
+                                                unlink: { className: 'demo-option-custom' },
+                                            },
+                                            emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                            embedded: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                            image: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+                                            remove: { className: 'demo-option-custom' },
+                                            history: {
+                                                undo: { className: 'demo-option-custom' },
+                                                redo: { className: 'demo-option-custom' },
+                                            },
+                                            options: ['blockType', 'fontSize', 'inline', 'list', 'fontFamily', 'link', 'remove', 'history']
+                                        }}
                                     />
                                 </div>
-                            </Modal>
-                        </div>
+                            </div>
+                            <div>
+                                <div className="labelForm-buildContract">
+                                    Escribe aquí tu Personal-Access-Token:
+                                </div>
+                                <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
+                            </div>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={checked}
+                                        size='medium'
+                                        inputProps={{ 'aria-label': 'Checkbox A' }}
+                                        color="default"
+                                        onChange={() => setChecked(!checked)}
+                                    />
+                                }
+                                label="Declaro que los datos ingresados son correctos y que los fondos serán transferidos a quien suba un archivo capaz de resolver los tests adjuntos en este formulario"
+                            />
+                            <div className='group-button-build'>
+                                <button
+                                    type='submit'
+                                    className={
+                                        input.name === "" ||
+                                            input.shortdescription === "" ||
+                                            input.longdescription === "" ||
+                                            input.amount === "" ||
+                                            input.coin === "" ||
+                                            !checked
+                                            ? "acept-contract acept-contract-disable"
+                                            : "acept-contract"
+                                    }
+                                    onClick={showPrevious}
+                                    disabled={
+                                        input.name === "" ||
+                                            input.shortdescription === "" ||
+                                            input.longdescription === "" ||
+                                            input.amount === "" ||
+                                            input.coin === "" ||
+                                            !checked
+                                            ? true
+                                            : false
+                                    }
+                                >Previsualizar</button>
+                                <button
+                                    className="acept-contract"
+                                    onClick={cancelPublished}>Cancelar</button>
+                            </div>
+                            <div className={isOpen ? '' : ''} visible={isOpen}>
+                                <Modal
+                                    visible={modalIsOpen}>
+                                    <div className='modal-overlay'>
+                                        <DetalleContratoPreview
+                                            visible={close}
+                                            onClose={close}
+                                            dataPreview={input}
+                                        />
+                                    </div>
+                                </Modal>
+                            </div>
                         </div>
                     </form>
                 </div>

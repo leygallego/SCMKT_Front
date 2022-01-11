@@ -62,7 +62,6 @@ function SearchBar() {
 
                 <div className="select-type">
                     <select className="select-tipo" onChange={setOrderBy}>
-                        <option value="" label="Ordenamiento"></option>
                         <option value="REC_ASC" label="Recompensa de menor a mayor "></option>
                         <option value="REC_DESC" label="Recompensa de mayor a menor "></option>
                         <option value="DUR_ASC" label="Duración de menor a mayor "></option>
