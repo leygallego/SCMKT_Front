@@ -74,10 +74,18 @@ function NavBar() {
         <>
           {(toggleMenu || screenWidth > 500) && (
             <ul className="list">
-              <li className="items" onClick={toggleNav}>Contratos</li>
-              <li className="items" onClick={toggleNav}>Quienes Somos</li>
-              <li className="items" onClick={toggleNav}>FAQs</li>
-              <li className="items" onClick={toggleNav}>Perfil</li>
+              
+              {/* <li className="items" onClick={toggleNav}>Contratos</li> */}
+
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/aboutus">Quienes Somos</NavLink>
+              </li>
+              <li className="items" onClick={toggleNav}>
+                <NavLink className="navLink" to="/questions">FAQs</NavLink>
+              </li>
+              
+              {/* <li className="items" onClick={toggleNav}>Perfil</li> */}
+              
               <li className="items" onClick={() => {
                 toggleNav();
                 loginWithRedirect();
