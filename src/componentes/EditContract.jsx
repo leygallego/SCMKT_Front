@@ -65,7 +65,7 @@ export function EditContract() {
 
     // let _contentState = ContentState.createFromText(`${input.shortdescription}`);
     // let raw = convertToRaw(_contentState)
-    const html = `${input.shortdescription}`
+    const html = `${contract.conditions.shortdescription}`
     const contentBlock = htmlToDraft(html);
 
     const [contentState, setContentState] = useState(
@@ -82,13 +82,13 @@ export function EditContract() {
     const htmlLong = `${input.longdescription}`
     const contentBlockLong = htmlToDraft(htmlLong);
 
-    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+    const [contentStateLong, setContentStateLong] = useState(
         contentBlockLong ?
             ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
             : null
     )
 
-    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+    const [editorStateLong, setEditorStateLong] = useState(() =>
         // EditorState.createEmpty()
         EditorState.createWithContent(contentStateLong)
     );
@@ -296,7 +296,7 @@ export function EditContract() {
 
                         <div className='combo'>
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Tiempo</div>
+                                <div className="labelForm-buildContract">Tiempo (días)</div>
                                 <div className="inputForm">
                                     <input
                                         className="inputFormCComponent"
@@ -309,7 +309,7 @@ export function EditContract() {
                                 </div>
                             </div>
 
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="category" value={input.category}>
@@ -319,9 +319,9 @@ export function EditContract() {
                                         <option value="Avanzado" name='Avanzado' onClick={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Tipo</div>
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="type" value={input.type}>
@@ -330,7 +330,7 @@ export function EditContract() {
                                         <option value="Solucion" name='Solucion' onClick={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className='combo'>
@@ -348,16 +348,15 @@ export function EditContract() {
                                     />
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
-                                    {/* <input className="inputFormCoin" type="text" name="name" onChange={e => { handleInputChange(e) }} /> */}
                                     <select className="inputFormCoin" name="coin" value={input.coin}>
                                         <option value="" name='' onClick={e => { onChangeValue(e, 'coin') }} ></option>
                                         <option value="ETH" name='ETH' onClick={e => { onChangeValue(e, 'coin') }}>ETH</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="labelInput">
