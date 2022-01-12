@@ -143,7 +143,7 @@ function DetalleContratoPreview(props) {
     Swal.fire({
       title: 'Deseas guardar los cambios?',
       showDenyButton: true,
-      showCancelButton: true,
+      // showCancelButton: true,
       confirmButtonText: 'Guardar',
       denyButtonText: `Cancelar`,
     }).then((result) => {

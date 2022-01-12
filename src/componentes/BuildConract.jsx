@@ -129,7 +129,7 @@ export function BuildContract() {
         Swal.fire({
             title: '¿Está seguro de salir sin guardar el contrato ?',
             showDenyButton: true,
-            showCancelButton: true,
+            // showCancelButton: true,
             confirmButtonText: 'Sí',
             denyButtonText: `No`,
         }).then((result) => {
