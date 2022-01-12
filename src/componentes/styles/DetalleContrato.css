@@ -61,6 +61,13 @@
   display: flex;
   flex-direction: row;
 }
+.amountText span{
+  color: transparent
+}
+
+.unEspacio span{
+  color: transparent;
+}
 
 .input-reach-text-disabled {
   border: transparent;
