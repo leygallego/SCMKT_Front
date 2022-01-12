@@ -1,38 +1,158 @@
+/* Todo el componente */
+.wraper-crear {
+  margin-top: 55px;
+}
+
 .contractComponent {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* align-items: center; */
+  /* text-align: center; */
   color: white;
-  margin-top: 20px;
-  margin-bottom: 20px;
   font-family: Poppins;
-  font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  line-height: 36px;
-  text-indent: 0.5px;
 }
 
-.wraper-crear {
-  margin-top: 14%;
-}
 .modal-overlay{
   max-height: 900px;
   width: 900px;
   margin-left: 100px;
 }
 
+/* Card Azul */
 .contractForm {
-  width: 80%;
-  background-color: #0078e7;
-  padding: 10px 30px 20px;
-  border-radius: 30px;
+  width: 90%;
+  background-color: var(--azulSecundario);
+  padding: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 }
 
-.combo {
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  width: 100%;
+  /* background-color: black; */
+  margin-top: 10px;
+}
+
+.labelContract {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.inputForm {
+  width: 100%;
+}
+
+.inputFormComponent {
+  width: 95%;
+  height: 35px;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 7px;
+}
+
+.tiempoRecompensa {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.inputFormComponentTr {
+  width: 35%;
+  height: 35px;
+  font-family: Poppins;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 5px;
+  border-radius: 7px;
+}
+
+.group-button-build {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.acept-contract {
+  background-color: white;
+  cursor: pointer;
+  border: 0;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  min-width: 64px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: rgb(0, 105, 242);
+}
+
+.acept-contract-disable {
+  background-color: rgb(178, 187, 186) !important;
+}
+
+.acept-contract:hover {
+  box-shadow: 3px 0px 30px rgb(115, 175, 253);
+}
+
+@media (min-width: 600px){
+
+  /* Todo el componente */
+.wraper-crear {
+  margin-top: 5px;
+}
+
+  /* Card Azul */
+.contractForm {
+  width: 50%;
+}
+
+}
+
+@media (min-width: 992px){
+
+  /* Todo el componente */
+.wraper-crear {
+  margin-top: 5px;
+}
+
+  /* Card Azul */
+.contractForm {
+  width: 60%;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .combo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -43,17 +163,10 @@
   margin-right: 1%;
   margin-left: 1%;
   width: 100%;
-}
+} */
 
-.labelForm-buildContract {
-  text-align: left;
-  background-color: transparent;
-  margin-right: 1%;
-  width: 100%;
-  font-size: 24px;
-  padding-top: 10px;
-}
 
+/* 
 .terms {
   font-size: 12px;
 }
@@ -204,6 +317,7 @@
   }
 
   .contractForm-form {
+    background-color: yellow;
     width: 95%;
   }
 
@@ -243,7 +357,4 @@
     font-family: "Poppins", sans-serif;
   }
 
-  /* .buttonFormComponent input {
-    color: rgb(136, 42, 42);
-  } */
-}
+} */

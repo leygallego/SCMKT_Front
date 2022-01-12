@@ -13,6 +13,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import ethLogo from './imagenes/eth.png';
+
 import './styles/buildContract.css';
 
 
@@ -166,11 +167,16 @@ export function BuildContract() {
                 <div className="contractForm">
                     <form className='contractForm-form' onSubmit={handleOnSubmit}>
                         <a className='labelForm-buildContract'>Crea un contrato para comenzar a buscar desarrolladores que puedan resolver tus pruebas.</a>
+                        <hr />
+
+
+
                         <div className="labelInput">
-                            <div className="labelForm-buildContract">Nombre del Contrato</div>
+                            <div className="labelContract">Nombre del Contrato</div>
+
                             <div className="inputForm">
                                 <input
-                                    className="inputFormCComponent"
+                                    className="inputFormComponent"
                                     type="text"
                                     name="name"
                                     onChange={e => { handleInputChange(e) }}
@@ -178,6 +184,62 @@ export function BuildContract() {
                                 />
                             </div>
                         </div>
+
+
+
+
+                        <div className='tiempoRecompensa'>
+                            <div className="labelInput">
+                                <div className="labelContract">Tiempo</div>
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormComponentTr"
+                                        type="text"
+                                        name="duration"
+                                        value={input.duration}
+                                        min="0"
+                                        onChange={onChangeDuration}
+                                    />
+                                    días
+                                </div>
+                            </div>
+
+                            <div className="labelInput">
+                                <div className="labelContract">Recompensa
+                                    {/* <img
+                                        src={ethLogo}
+                                        alt='eth'
+                                        width="10%"
+                                        height="10%"
+                                    /> */}
+                                </div>
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormComponentTr"
+                                        type="number"
+                                        min="0.00000001"
+                                        max="100"
+                                        step="0.00000001"
+                                        name="amount"
+                                        onChange={e => { handleInputChange(e) }}
+                                        onBlur={(e) => validate(e.target.name)}
+                                    />
+                                    ETH
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
                         <div className='combo'>
                             {/* <div>
                                 <div className="labelForm-buildContract">Tipo</div>
@@ -190,19 +252,7 @@ export function BuildContract() {
                                 </div>
                             </div> */}
 
-                            <div className="labelInput">
-                                <div className="labelForm-buildContract">Tiempo (días)</div>
-                                <div className="inputForm">
-                                    <input
-                                        className="inputFormCComponent"
-                                        type="text"
-                                        name="duration"
-                                        value={input.duration}
-                                        min="0"
-                                        onChange={onChangeDuration}
-                                    />
-                                </div>
-                            </div>
+
                             {/* <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
@@ -216,28 +266,7 @@ export function BuildContract() {
                             </div> */}
                         </div>
                         <div className='combo'>
-                            <div>
-                                <div className="labelForm-buildContract">Recompensa
-                                    <img
-                                        src={ethLogo}
-                                        alt='eth'
-                                        width="10%"
-                                        height="10%"
-                                    />
-                                </div>
-                                <div className="inputForm">
-                                    <input
-                                        className="inputFormReward"
-                                        type="number"
-                                        min="0.00000001"
-                                        max="100"
-                                        step="0.00000001"
-                                        name="amount"
-                                        onChange={e => { handleInputChange(e) }}
-                                        onBlur={(e) => validate(e.target.name)}
-                                    />
-                                </div>
-                            </div>
+
                             {/* <div>
                                 <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
@@ -249,11 +278,11 @@ export function BuildContract() {
                             </div> */}
                         </div>
                         <div className="labelInput">
-                            <div className="labelForm-buildContract">Describe tu problema
+                            <div className="labelContract">Describe tu problema
 
                             </div>
                             <div className='input-reach-text'>
-                            {/* https://github.com/jpuri/react-draft-wysiwyg/blob/master/stories/ControlledSelectedOptions/index.js */}
+                                {/* https://github.com/jpuri/react-draft-wysiwyg/blob/master/stories/ControlledSelectedOptions/index.js */}
                                 <Editor
                                     editorState={editorState}
                                     onEditorStateChange={setEditorState}
@@ -304,9 +333,8 @@ export function BuildContract() {
 
                             </div> */}
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">
+                                <div className="labelContract">
                                     Escribe aquí tu test
-
                                 </div>
                                 <div className='input-reach-text'>
                                     <Editor
@@ -358,22 +386,22 @@ export function BuildContract() {
                             </div> */}
 
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Escribe aquí tu Personal-Access-Token:</div>
+                                <div className="labelContract">Personal-Access-Token:</div>
                                 <div className="inputForm">
                                     <input
-                                        className="inputFormCComponent"
+                                        className="inputFormComponent"
                                         type="text"
                                         name="pat"
                                         onChange={handleInputChange}
                                     />
                                 </div>
                             </div>
-
+                            <br />
                             <FormControlLabel
                                 control={
                                     <Checkbox
                                         checked={checked}
-                                        size='medium'
+                                        // size='small'
                                         inputProps={{ 'aria-label': 'Checkbox A' }}
                                         color="default"
                                         onChange={() => setChecked(!checked)}
@@ -433,3 +461,5 @@ export function BuildContract() {
 export default BuildContract;
 
 // 483 líneas antes de la depuración
+
+// editorClassName="demo-editor-custom"
