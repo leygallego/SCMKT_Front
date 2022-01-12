@@ -183,11 +183,11 @@ function DetalleContrato() {
                                         {/* <div>{contract.conditions.duration && contract.conditions.duration !== 'undefined' ? `Tiempo estimado: ${contract.conditions.duration} días` : ''}</div> */}
 
                                         <div className='amountText'>
-                                            <div> {`${'Tiempo estimado:'} `} </div>
+                                            <div className='unEspacio'> {`${'Tiempo estimado:'} `} <span className='espacio' >_</span> </div>
                                             <div><b>{`${contract.conditions.duration}`}</b>{`${' días'}`}</div>
                                         </div>
 
-                                        <div className='amountText'>{`${'Recompensa: '}`} <div><b>{contract.conditions.amount}</b>{`${' ETH'}`}</div>
+                                        <div className='amountText'>{`${'Recompensa:'}`} <span className='espacio' >_</span>  <div className='unEspacio' ><b>{contract.conditions.amount}</b><span className='espacio' >_</span>{`${' ETH'}`}</div>
                                         </div>
                                     </div>
 
@@ -247,7 +247,13 @@ function DetalleContrato() {
                                     {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
                                         ? <div>
                                             <div className="aceptar-contratos">
-                                                <NavLink to={`/editcontrato/${id}`}><Button variant="contained">Editar</Button></NavLink>
+                                                <NavLink to={`/editcontrato/${id}`}><Button 
+                                                variant="contained"
+                                                style={{
+                                                    backgroundColor: "#0078E7",
+                                                    color: "#FFFFFF"
+                                                }}
+                                                >Editar</Button></NavLink>
                                             </div>
 
                                         </div>
