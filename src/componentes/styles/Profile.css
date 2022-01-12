@@ -199,6 +199,12 @@
     overflow: hidden;
 }
 
+.botonEditar{
+    background-color: var(--azulPrimario);
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
 /* Pantalla Mediana Tablet */
 @media (min-width: 500px) {
     .main-perfil{
@@ -228,6 +234,13 @@
         border-radius: 50%;
         margin-top: -20px;
     }
+
+    .botonEditar{
+        width: 100px;
+        color: var(--blanco);
+    
+    }
+
 }
 
 /* Pantalla Grande Pc */
@@ -283,6 +296,13 @@
         font-weight: bold;
         border-radius: 12px;
         overflow: hidden;
+    }
+
+    .botonEditar{
+        width: 120px;
+        height: 35px;
+        font-size: 16px;
+    
     }
 }
 

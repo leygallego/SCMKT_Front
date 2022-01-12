@@ -6,7 +6,7 @@ import { NODE_ENV, urlProduction, urlDevelop, port2 } from '../config/app.config
 import Swal from 'sweetalert2';
 import './styles/DetalleContratoPreview.css';
 import useMetaMask from '../hooks/useMetaMask';
-
+import CloseIcon from '@mui/icons-material/Close';
 import { Octokit } from "octokit";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
@@ -15,6 +15,7 @@ import htmlToDraft from 'html-to-draftjs';
 const { Base64 } = require("js-base64")
 // const { createOAuthAppAuth, createOAuthDeviceAuth, createOAuthUserAuth } = require('@octokit/auth-oauth-app');
 require('dotenv').config();
+
 
 
 
@@ -194,13 +195,8 @@ function DetalleContratoPreview(props) {
           // contract?.name ?
           <div className="detalle-card">
             <div className="xButton">
-              <Button
-                variant="contained"
-                onClick={onClose}
-              >
-                X
-              </Button>
-            </div>
+                                        <CloseIcon onClick={onClose} />
+                                    </div>
             <h2>{contract.name}</h2>
             <p>{contract.type}</p>
             <p>{contract.duration}</p>

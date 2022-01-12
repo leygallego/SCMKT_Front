@@ -61,3 +61,16 @@
   }
 
 }
+
+@media (min-width:600px){
+  .main-detalle{
+    margin-top: 0px;
+  }
+
+  .group-button-preview button{
+    margin-top: 0px
+  }
+  .detalle-card{
+    margin-top: 0px;
+  }
+}

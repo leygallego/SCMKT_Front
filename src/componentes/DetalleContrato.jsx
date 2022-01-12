@@ -184,13 +184,7 @@ function DetalleContrato() {
                                         />}
                                     </div>
                                     <div className="xButton">
-                                        <Button
-                                            variant="contained"
-                                            onClick={handleClick}
-                                            startIcon={<CloseIcon />}
-                                        >
-
-                                        </Button>
+                                        <CloseIcon onClick={handleClick} />
                                     </div>
                                 </div>
                                 <div className='bodyCard'>
@@ -264,6 +258,10 @@ function DetalleContrato() {
                                         className="aceptar-contratos"
                                         variant="contained"
                                         onClick={handleClick}
+                                        style={{
+                                            backgroundColor: "#0078E7",
+                                            color: "#FFFFFF"
+                                        }}
                                     >Regresar</Button>
 
                                     {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
@@ -282,6 +280,10 @@ function DetalleContrato() {
                                                 className="aceptar-contratos"
                                                 variant="contained"
                                                 onClick={open}
+                                                style={{
+                                                    backgroundColor: "#0078E7",
+                                                    color: "#FFFFFF"
+                                                }}
                                             >Resolver</Button>
                                         </div>
                                         : <></>
@@ -292,11 +294,19 @@ function DetalleContrato() {
                                         : contract.status === 'taken'
                                             ? <Button
                                                 className="aceptar-contratos"
+                                                style={{
+                                                    backgroundColor: "#0078E7",
+                                                    color: "#FFFFFF"
+                                                }}
                                                 variant="contained"
                                                 onClick={() => unsubscribe(contract.id, 'published', user.id)}
                                             >Desuscribir</Button>
                                             : <Button
                                                 className="aceptar-contratos"
+                                                style={{
+                                                    backgroundColor: "#0078E7",
+                                                    color: "#FFFFFF"
+                                                }}
                                                 variant="contained"
                                                 onClick={() => subscribe(contract.id, 'taken', user.id)}
                                             >Suscribirse</Button>
