@@ -40,26 +40,24 @@ function App() {
           <Route exact path="/" component={Home}></Route>
           <Route exact path="/contratos" component={Contratos}></Route>
           <Route exact path="/aboutus" component={AboutUs}></Route>
-          <Route exact path="/questions" component={Faqs}></Route>          
+          <Route exact path="/questions" component={Faqs}></Route>
+          <Route exact path="/login" component={Home}></Route>          
           <Route exact path="/detalle/:id" render={({ match }) => <DetalleContrato id={match.params.id} />}></Route>
-          <Route exact path="/detallecontratospub" component={DetalleContratoPub}></Route>
-          <Route exact path="/detallecontratosbor" component={DetalleContratoBor}></Route>
-          <Route exact path="/detallecontratosfin" component={DetalleContratoFin}></Route>
-          <Route exact path="/login" component={Home}></Route>
-          <Route exact path="/creacontrato" component={BuildContract}></Route>
-          <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id} />}></Route>
-            <Web3ReactProvider getLibrary={getLibrary}>
-              <MetaMaskProvider>
-              {
-                isAuthenticated ? (
-                  <Route exact path="/perfil" component={Profile}></Route>
+          
+          <Web3ReactProvider getLibrary={getLibrary}>
+            <MetaMaskProvider>
+              <Route exact path="/creacontrato" component={BuildContract}></Route>
+              <Route exact path="/editcontrato/:id" render={({ match }) => <EditContract id={match.params.id} />}></Route>
+            {
+              isAuthenticated ? (
+                <Route exact path="/perfil" component={Profile}></Route>
+              )
+                : (
+                  <Route exact path="/perfil" component={Home}></Route>
                 )
-                  : (
-                    <Route exact path="/perfil" component={Home}></Route>
-                  )
-              }
-            </MetaMaskProvider>
-          </Web3ReactProvider>
+            }
+          </MetaMaskProvider>
+        </Web3ReactProvider>
           
         </Switch>
         <Footer />
