@@ -57,9 +57,26 @@ function ContractStepsResolve(props) {
 
   return (
     <div className='preview-content'>
-      <div><h1>{contract.conditions.name}</h1></div>
+      {/*<div><h1>{contract.conditions.name}</h1></div>*/}
       <div className="main-detalle">
-        {
+        <div className="xButton">
+          <Button
+            variant="contained"
+            onClick={onClose}
+          >
+            X
+          </Button>
+        </div>
+      <div className="labelForm-buildContract">
+              <h3>Instrucciones para Resolver el Contrato</h3>
+              <p className='code'>
+                En estos momentos la resolución está siendo validada y pronto recibiras el pago en tu wallet, ya puedes cerrar ventana
+              </p>
+      </div>
+            
+
+        
+        {/*
           // contract?.name ?
           <div className="detalle-card">
             <div className="xButton">
@@ -101,7 +118,7 @@ function ContractStepsResolve(props) {
               >Cancelar</Button>
             </div>
           </div>
-        }
+        */}
       </div>
     </div>
   )

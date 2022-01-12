@@ -1,66 +1,26 @@
 [
     {
         "question": "¿Qué es un SmartContract?",
-        "answer": "     FAQ son las siglas de la expresión inglesa Frequently Asked Questions, que en español podemos traducir como 'preguntas frecuentes'. ... Las FAQ son especialmente frecuentes en el ámbito de internet, donde por lo general los sitios tienen una sección destinada precisamente a responder las dudas más comunes de los usuarios."
+        "answer": "     Los SmartContracts son programas ineditables que existen dentro un blockchain, estos pueden usarse para garantizar, de forma automatica y descentralizada, el intercambio de bienes y servicios entre 2 o más personas (naturales o juridicas)."
     },
     {
         "question": "¿Qué es Ethereum?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "answer": "     Ethereum es una plataforma digital que adopta la tecnología de cadena de bloques (blockchain) y expande su uso a una gran variedad de aplicaciones. Ether, su criptomoneda nativa, es la segunda más grande del mercado."
     },
     {
-        "question": "¿Cómo puedo hacer un contrato?",
-        "answer": "     Nada, pero estoy dispuesto a investigar sobre ella, su visión, misión y valores."
+        "question": "¿Qué es TestDriven?",
+        "answer": "     TestDriven es una metodologia de trabajo para la creación de codigo que dictamina crear los tests para el codigo antes de empezar a escribirlo, esta metodologia ha recibido criticas y elogios debido a generar un inicio más lento al empezar un proyecto pero significar un gran aporte a la mantención y escalabilidad de los mismos."
     },
     {
-        "question": "¿Qué me gusta hacer en mi tiempo libre?",
-        "answer": "     Mi tiempo libre lo dedico a la familia, a compartir con mis amigos y a estudiar."
+        "question": "¿Qué es MetaMask y deberia tener una cuenta?",
+        "answer": "     MetaMask es una wallet de BitCoin, Ethereum y ERC20 Tokens, para crear un contrato en esta aplicacion, pagar y recibir pagos es necesario que conectes tu cuenta, de todas formas los unicos permisos que solicitamos son de lectura de tu direccion de wallet ya que los pagos los aprobaras directo en la extension."
     },
     {
-        "question": "¿Cual es mi meta?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "question": "¿Cómo obtengo un personal access token en GitHub y porqué lo piden?",
+        "answer": "     Esto es solo temporal pero puedes crear uno en Settings -> Developer Settings -> Personal Access Token -> Generate token. Nuestra recomendacion es generarlo con permisos para repo solamente."
     },
     {
-        "question": "¿Por qué dejé mi anterior empleo o quieres cambiar?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Cómo podría darle solución a un problema?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Cómo maneja la presión?",
-        "answer": "     Se enfoca en evaluar tu inteligencia emocional, habla de acciones prácticas: tomarte un tiempo a solas para pensar, pedir ayuda, organizar tus tareas clave, etc.."
-    }
-    ,
-    {
-        "question": "¿Cuales son mis pretenciones salariales?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Qué tipo de trabajo estoy buscando?",
-        "answer": "     Trabajo remoto, donde pueda recrear mi propio ambiente de trabajo para estar más relajado y concentrado en las actividades propias de la empresa."
-    }
-    ,
-    {
-        "question": "¿Cuál es mi mayor debilidad o defecto?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Cómo describiría mi trabajo ideal?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Qué tanto respeto mis compromisos?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-    }
-    ,
-    {
-        "question": "¿Cómo me veo dentro de 5, 10 años?",
-        "answer": "     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "question": "¿Qué necesito para que me paguen?",
+        "answer": "     Resuelve los contratos a los que estés suscrito y deberias ver el pago en tu cuenta dentro de pocos minutos."
     }
 ]
