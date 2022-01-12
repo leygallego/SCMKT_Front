@@ -41,31 +41,6 @@ function DetalleContrato() {
 
         auth: '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'
     })
-    let html = `${contract?.conditions?.shortdescription ? contract?.conditions?.shortdescription : '<div></div>'}`
-
-    let contentBlock = htmlToDraft(html);
-
-    const [contentState, setContentState] = useState(
-        contentBlock ?
-            ContentState.createFromBlockArray(contentBlock.contentBlocks)
-            : null
-    )
-
-    const [editorState, setEditorState] = useState(() =>
-        EditorState.createWithContent(contentState)
-    );
-
-    let htmlLong = `${contract?.conditions?.longdescription ? contract?.conditions?.longdescription : '<div></div>'}`
-    let contentBlockLong = htmlToDraft(htmlLong);
-    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
-        contentBlockLong ?
-            ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
-            : null
-    )
-
-    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
-        EditorState.createWithContent(contentStateLong)
-    );
 
     useEffect(() => {
         dispatch(setLoading(true))
@@ -75,24 +50,35 @@ function DetalleContrato() {
         if (contract.clientId) {
             dispatch(getUserSuscribed(contract.clientId));
         }
+
         return () => {
             dispatch(removeContract())
         }
     }, [dispatch, contract.clientId, id])
 
+    let html = `${contract?.conditions?.shortdescription ? contract?.conditions?.shortdescription : '<div></div>'}`
+    let contentBlock = htmlToDraft(html);
+    const { contentBlocks, entityMap } = contentBlock;
+    const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    const editorState = EditorState.createWithContent(contentState);
+
+    // const htmlToDraftBlocks = (html) => {
+    //     const blocksFromHtml = htmlToDraft(html);
+    //     const { contentBlocks, entityMap } = blocksFromHtml;
+    //     const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+    //     const editorState = EditorState.createWithContent(contentState);
+    //     return editorState;
+    // }
+
+    let htmlLong = `${contract?.conditions?.longdescription ? contract?.conditions?.longdescription : '<div></div>'}`
+    let contentBlockLong = htmlToDraft(htmlLong);
+    const { contentBlocks: contentBlocksLong, entityMap: entityMapLong } = contentBlockLong;
+    const contentStateLong = ContentState.createFromBlockArray(contentBlocksLong, entityMapLong);
+    const editorStateLong = EditorState.createWithContent(contentStateLong);
+
     const openChat = () => {
         dispatch(setChat(true));
     }
-
-    // async function callProtectedApi() {
-    //     const token = await getAccessTokenSilently();
-    //     try {
-    //         await (dispatch(sendLogin(token)))
-
-    //     } catch (error) {
-    //         console.log('Error en el Detalle de Contratos ', error)
-    //     }
-    // }
 
     function handleClick() {
         dispatch(setChat(false));
@@ -213,32 +199,25 @@ function DetalleContrato() {
 
 
                                     <p>{contract.conditions.category && contract.conditions.category !== 'undefined' ? contract.conditions.category : ''}</p>
-                                    {/* <p>{contract.conditions.shortdescription}</p> */}
 
-
-                                    
                                     <div className='input-reach-text-disabled'>
                                         <Editor
                                             toolbarHidden
                                             readOnly={true}
                                             editorState={editorState}
-                                            onEditorStateChange={setEditorState}
                                             defaultContentState={contentState}
-                                            onContentStateChange={setContentState}
                                             wrapperClassName="wrapper-class"
                                             editorClassName="editor-class"
                                             toolbarClassName="toolbar-class"
                                         />
                                     </div>
-                                    {/* <p>{contract.conditions.longdescription}</p> */}
+
                                     <div className='input-reach-text-disabled' >
                                         <Editor
                                             toolbarHidden
                                             readOnly={true}
                                             editorState={editorStateLong}
-                                            onEditorStateChange={setEditorStateLong}
                                             defaultContentState={contentStateLong}
-                                            onContentStateChange={setContentStateLong}
                                             wrapperClassName="wrapper-class"
                                             editorClassName="editor-class"
                                             toolbarClassName="toolbar-class"
@@ -258,9 +237,8 @@ function DetalleContrato() {
                                             </div>
                                         </Modal>
                                     </div>
-
-
                                 </div>
+
                                 <div className="group-button-build">
                                     <Button
                                         className="aceptar-contratos"

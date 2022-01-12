@@ -32,7 +32,7 @@ export function BuildContract() {
         shortdescription: '',
         longdescription: '',
         amount: '0.00000001',
-        coin: '',
+        coin: 'ETH',
         c1: '',
         c2: '',
         status: 'unpublished',
@@ -43,11 +43,6 @@ export function BuildContract() {
     const [errors, setErrors] = useState({});
     const [modalIsOpen] = useState(false);
     const [Modal, open, close, isOpen] = useModal('root', {});
-
-    const [modalIsOpenFile = modalIsOpen] = useState(false);
-    const [ModalFile = Modal, openFile = open, closeFile = close, isOpenFile = isOpen] = useModal('root', {
-        closeOnOverlayClick: false
-    });
 
     const html = `${input.shortdescription}`
     const contentBlock = htmlToDraft(html);
@@ -65,13 +60,13 @@ export function BuildContract() {
     const htmlLong = `${input.longdescription}`
     const contentBlockLong = htmlToDraft(htmlLong);
 
-    const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
+    const [contentStateLong, setContentStateLong] = useState(
         contentBlockLong ?
             ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
             : null
     )
 
-    const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
+    const [editorStateLong, setEditorStateLong] = useState(() =>
         EditorState.createWithContent(contentStateLong)
     );
 
@@ -184,7 +179,7 @@ export function BuildContract() {
                             </div>
                         </div>
                         <div className='combo'>
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Tipo</div>
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="type">
@@ -193,7 +188,8 @@ export function BuildContract() {
                                         <option value="Solucion" name='Solucion' onChange={e => { onChangeValue(e, 'type') }}>Solución</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
+
                             <div className="labelInput">
                                 <div className="labelForm-buildContract">Tiempo (días)</div>
                                 <div className="inputForm">
@@ -207,7 +203,7 @@ export function BuildContract() {
                                     />
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="category">
@@ -217,7 +213,7 @@ export function BuildContract() {
                                         <option value="Avanzado" name='Avanzado' onChange={e => { onChangeValue(e, 'category') }}>Avanzado</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className='combo'>
                             <div>
@@ -242,7 +238,7 @@ export function BuildContract() {
                                     />
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">Moneda</div>
                                 <div className="inputForm">
                                     <select className="inputFormCoin" name="coin" onChange={e => { onChangeValue(e, 'coin') }}>
@@ -250,7 +246,7 @@ export function BuildContract() {
                                         <option value="ETH" name='ETH' onChange={e => { onChangeValue(e, 'coin') }}>ETH</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div className="labelInput">
                             <div className="labelForm-buildContract">Describe tu problema
@@ -300,13 +296,13 @@ export function BuildContract() {
                             </div>
 
 
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">
                                     Escribe aquí tu Personal-Access-Token:
                                 </div>
                                 <input type="text" name="pat" onChange={e => { handleInputChange(e) }} />
 
-                            </div>
+                            </div> */}
                             <div className="labelInput">
                                 <div className="labelForm-buildContract">
                                     Escribe aquí tu test
@@ -354,12 +350,25 @@ export function BuildContract() {
                                     />
                                 </div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <div className="labelForm-buildContract">
                                     Escribe aquí tu Personal-Access-Token:
                                 </div>
-                                <input type="password" name="pat" onChange={e => { handleInputChange(e) }} />
+                                <input type="text" name="pat" onChange={e => { handleInputChange(e) }} />
+                            </div> */}
+
+                            <div className="labelInput">
+                                <div className="labelForm-buildContract">Escribe aquí tu Personal-Access-Token:</div>
+                                <div className="inputForm">
+                                    <input
+                                        className="inputFormCComponent"
+                                        type="text"
+                                        name="pat"
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
                             </div>
+
                             <FormControlLabel
                                 control={
                                     <Checkbox
