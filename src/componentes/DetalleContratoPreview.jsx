@@ -17,14 +17,11 @@ const { Base64 } = require("js-base64")
 require('dotenv').config();
 
 
-
-
-
 function DetalleContratoPreview(props) {
 
   const { dataPreview, onClose } = props
   const urlWork = NODE_ENV === 'production' ? urlProduction : `${urlDevelop}:${port2}`
-  const { isActive, account  } = useMetaMask()
+  const { isActive, account } = useMetaMask()
 
   let dispatch = useDispatch()
   const user = useSelector(state => state.user)
@@ -43,35 +40,20 @@ function DetalleContratoPreview(props) {
     //   },
     // },
     // auth: `${contract.pat}`
-    auth: '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'
+    auth: `${contract.pat}`
   })
 
   let html = `${contract?.shortdescription ? contract?.shortdescription : '<div></div>'}`
   let contentBlock = htmlToDraft(html);
-
-  const [contentState, setContentState] = useState(
-    contentBlock ?
-      ContentState.createFromBlockArray(contentBlock.contentBlocks)
-      : null
-  )
-
-  const [editorState, setEditorState] = useState(() =>
-    //EditorState.createEmpty()
-    EditorState.createWithContent(contentState)
-  );
+  const { contentBlocks, entityMap } = contentBlock;
+  const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+  const editorState = EditorState.createWithContent(contentState);
 
   let htmlLong = `${contract?.longdescription ? contract?.longdescription : '<div></div>'}`
   let contentBlockLong = htmlToDraft(htmlLong);
-  const [contentStateLong = contentState, setContentStateLong = setContentState] = useState(
-    contentBlockLong ?
-      ContentState.createFromBlockArray(contentBlockLong.contentBlocks)
-      : null
-  )
-
-  const [editorStateLong = editorState, setEditorStateLong = setEditorState] = useState(() =>
-    //EditorState.createEmpty()
-    EditorState.createWithContent(contentStateLong)
-  );
+  const { contentBlocks: contentBlocksLong, entityMap: entityMapLong } = contentBlockLong;
+  const contentStateLong = ContentState.createFromBlockArray(contentBlocksLong, entityMapLong);
+  const editorStateLong = EditorState.createWithContent(contentStateLong);
 
   useEffect(() => {
     dispatch(getContractsPreview(dataPreview))
@@ -110,53 +92,53 @@ function DetalleContratoPreview(props) {
       ownerId: user.id
     }
 
-  async function createRepo() {
-    // const octokit = new Octokit({
-    //   // authStrategy: createOAuthAppAuth,
-    //   // auth: {
-    //   //   clientType: 'github-app',
-    //   //   clientId: 'd1caa78b0df97e743827',
-    //   //   scopes: ['user', 'public_repo', 'repo'],
-    //   //   onVerification(verification) {
-    //   //     console.log('Open %s', verification.verification_uri);
-    //   //     console.log('Enter code: %s', verification.user_code);
-    //   //   },
-    //   // },
-    //   auth: `${contract.pat}`
-    // })
-    // let owner = `${user.username}`
-    // let name = `${contract.name}`
-    // let file = `${contract.longdescription}`
-    // const contentEncoded = Base64.encode(file)
+    async function createRepo() {
+      // const octokit = new Octokit({
+      //   // authStrategy: createOAuthAppAuth,
+      //   // auth: {
+      //   //   clientType: 'github-app',
+      //   //   clientId: 'd1caa78b0df97e743827',
+      //   //   scopes: ['user', 'public_repo', 'repo'],
+      //   //   onVerification(verification) {
+      //   //     console.log('Open %s', verification.verification_uri);
+      //   //     console.log('Enter code: %s', verification.user_code);
+      //   //   },
+      //   // },
+      //   auth: `${contract.pat}`
+      // })
+      // let owner = `${user.username}`
+      // let name = `${contract.name}`
+      // let file = `${contract.longdescription}`
+      // const contentEncoded = Base64.encode(file)
 
-    octokit.request('POST /user/repos', {
+      octokit.request('POST /user/repos', {
         name: `${contract.name}`
-    }).then(console.log, console.log);
-
-    setTimeout(createTest, 5000)
-
-  }
-
-  async function createTest() {
-    
-    let owner = `${user.username}`
-    console.log(user.username)
-    let name = `${contract.name}`
-    console.log(contract.name)
-    let file = `${contract.longdescription}`
-    console.log(contract.longdescription)
-
-    let contentEncoded = Base64.encode(file)
-    console.log(contentEncoded)
-
-
-    await octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
-          owner: owner,
-          repo: name,
-          message: "feat: Added test.js from SCMKT",
-          content: contentEncoded,
       }).then(console.log, console.log);
-  }
+
+      setTimeout(createTest, 5000)
+
+    }
+
+    async function createTest() {
+
+      let owner = `${user.username}`
+      console.log(user.username)
+      let name = `${contract.name}`
+      console.log(contract.name)
+      let file = `${contract.longdescription}`
+      console.log(contract.longdescription)
+
+      let contentEncoded = Base64.encode(file)
+      console.log(contentEncoded)
+
+
+      await octokit.request(`PUT /repos/${owner}/${name}/contents/tests/test.js`, {
+        owner: owner,
+        repo: name,
+        message: "feat: Added test.js from SCMKT",
+        content: contentEncoded,
+      }).then(console.log, console.log);
+    }
 
 
     Swal.fire({
@@ -184,12 +166,12 @@ function DetalleContratoPreview(props) {
       }
     })
 
-    
+
   }
 
   return (
     <div className='preview-content'>
-      
+
       <div className="main-detalle">
         {
           // contract?.name ?
@@ -207,9 +189,7 @@ function DetalleContratoPreview(props) {
                 toolbarHidden
                 readOnly={true}
                 editorState={editorState}
-                onEditorStateChange={setEditorState}
                 defaultContentState={contentState}
-                onContentStateChange={setContentState}
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
@@ -221,9 +201,7 @@ function DetalleContratoPreview(props) {
                 toolbarHidden
                 readOnly={true}
                 editorState={editorStateLong}
-                onEditorStateChange={setEditorStateLong}
                 defaultContentState={contentStateLong}
-                onContentStateChange={setContentStateLong}
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"

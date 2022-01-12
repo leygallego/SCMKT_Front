@@ -7,7 +7,8 @@ import {
     setFilterCategory,
     setName,
     setAuthor,
-    setLoading
+    setLoading,
+    sortContracts
 } from "../actions"
 
 function SearchBar() {
@@ -49,6 +50,10 @@ function SearchBar() {
         dispatch(setLoading(false))
     }
 
+    const setOrderBy = (e) => {
+        dispatch(sortContracts(e.target.value))
+    }
+
     return (
             <div className="wraper-filtros" >
                 <div className="search-contrato">
@@ -56,6 +61,15 @@ function SearchBar() {
                 </div>
 
                 <div className="select-type">
+                    <select className="select-tipo" onChange={setOrderBy}>
+                        <option value="REC_ASC" label="Recompensa de menor a mayor "></option>
+                        <option value="REC_DESC" label="Recompensa de mayor a menor "></option>
+                        <option value="DUR_ASC" label="Duración de menor a mayor "></option>
+                        <option value="DUR_DESC" label="Duración de mayor a menor "></option>
+                    </select>
+                </div>
+                
+                {/* <div className="select-type">
                     <select className="select-tipo" onChange={filterByAmount}>
                         <option value="" label="Filtro por Recompensa"></option>
                         <option value="0.00000000-|-0.00000005" label="[0.00000000 - 0.00000005]"></option>
@@ -64,25 +78,25 @@ function SearchBar() {
                         <option value="0.00000051-|-0.00000100" label="[0.00000051 - 0.00000100]"></option>
                         <option value="0.00000101" label="> 0.00000100"></option>
                     </select>
-                </div>
+                </div> */}
 
                 {/* NO BORRAR, COMENTADO TEMPORALMENTE */}
-                <div className="select-type">
+                {/* <div className="select-type">
                     <select className="select-tipo" onChange={filterByType}>
                         <option value="" label="Filtro por tipo"></option>
                         <option value="Desafio" label="Desafío"></option>
                         <option value="Solucion" label="Solución"></option>
                     </select>
-                </div>
+                </div> */}
 
-                <div className="select-category">
+                {/* <div className="select-category">
                     <select className="select-categoria" onChange={filterByCategory}>
                         <option value="" label="Filtro por categoría"></option>
                         <option value="Principiante" label="Principiante"></option>
                         <option value="Intermedio" label="Intermedio"></option>
                         <option value="Avanzado" label="Avanzado"></option>
                     </select>
-                </div>
+                </div> */}
             </div>
     )
 }

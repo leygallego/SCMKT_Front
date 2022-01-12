@@ -28,7 +28,8 @@ import {
     CONFIG_CHANNEL,
     SET_LOADING,
     GET_USER_SUSCRIBED,
-    SET_FILTER_AMOUNT
+    SET_FILTER_AMOUNT,
+    SORT_CONTRACTS
 } from "../actions";
 
 const initialState = {
@@ -236,6 +237,22 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: action.payload
+            }
+
+        case SORT_CONTRACTS:
+            const orderType = action.payload;
+            let order = (orderType === 'REC_ASC' || orderType === 'DUR_ASC') ? 1 : -1;
+
+            if (orderType.slice(0, 3) === 'REC') {
+                return {
+                    ...state,
+                    contracts: [...state.contracts].sort((a, b) => (((a['conditions']['amount'] === b['conditions']['amount']) && (a['conditions']['name'].toLowerCase() > b['conditions']['name'].toLowerCase())) || (a['conditions']['amount'] > b['conditions']['amount'])) ? order : order * (-1)),
+                }
+            } else {
+                return {
+                    ...state,
+                    contracts: [...state.contracts].sort((a, b) => (((a['conditions']['duration'] === b['conditions']['duration']) && (a['conditions']['name'].toLowerCase() > b['conditions']['name'].toLowerCase())) || (a['conditions']['duration'] > b['conditions']['duration'])) ? order : order * (-1)),
+                }
             }
 
         default: return state
