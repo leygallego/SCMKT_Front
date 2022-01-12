@@ -83,7 +83,7 @@
 }
 
 .group-button-build button{
-  background-color: yellow;
+  background-color: var(--blanco);
 }
 
 /* @media (min-width:600px){

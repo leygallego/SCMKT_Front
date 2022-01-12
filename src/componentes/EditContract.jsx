@@ -294,18 +294,19 @@ export function EditContract() {
                             </div>
                         </div>
 
-                        <div className='combo'>
+                        <div className='tiempoRecompensa'>
                             <div className="labelInput">
-                                <div className="labelForm-buildContract">Tiempo (días)</div>
+                                <div className="labelContract">Tiempo</div>
                                 <div className="inputForm">
                                     <input
-                                        className="inputFormCComponent"
+                                        className="inputFormComponentTr"
                                         type="text"
                                         name="duration"
                                         value={input.duration}
                                         min="0"
                                         onChange={onChangeDuration}
                                     />
+                                    días
                                 </div>
                             </div>
 
@@ -333,12 +334,12 @@ export function EditContract() {
                             </div> */}
                         </div>
 
-                        <div className='combo'>
+                        <div className='labelInput'>
                             <div>
-                                <div className="labelForm-buildContract">Recompensa</div>
+                                <div className="labelContract">Recompensa</div>
                                 <div className="inputForm">
                                     <input
-                                        className="inputFormReward"
+                                        className="inputFormComponentTr"
                                         type="number"
                                         step="0.00000001"
                                         name="amount"
@@ -346,6 +347,7 @@ export function EditContract() {
                                         onChange={e => { handleInputChange(e) }}
                                         onBlur={(e) => validate(e.target.name)}
                                     />
+                                    ETH
                                 </div>
                             </div>
                             {/* <div>
@@ -478,11 +480,11 @@ export function EditContract() {
                         </div>
 
                         <div className="labelInput-combo">
-                            <div className="labelForm-archivoTest">
+                            {/* <div className="labelForm-archivoTest">
                                 Sube tu archivo de test.js
-                            </div>
+                            </div> */}
 
-                            <div className='file-group-contract'>
+                            {/* <div className='file-group-contract'>
                                 <div class="input__row uploader">
                                     <label for="file-c1"></label>
                                     <input name='file-c1' id="file-c1" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
@@ -496,7 +498,7 @@ export function EditContract() {
                                     :
                                     <div></div>
                                 }
-                            </div>
+                            </div> */}
 
                             <Modal
                                 visible={modalIsOpen}>
@@ -505,7 +507,7 @@ export function EditContract() {
                                 </div>
                             </Modal>
 
-                            <div className='file-group-contract'>
+                            {/* <div className='file-group-contract'>
                                 <div class="input__row uploader">
                                     <label for="file-c2"></label>
                                     <input name='file-c2' id="file-c2" class="upload" type="file" onChange={e => { handleInputChange(e) }} />
@@ -519,7 +521,7 @@ export function EditContract() {
                                     :
                                     <div></div>
                                 }
-                            </div>
+                            </div> */}
 
                             {showFile1 || showFile2
                                 ? <div className='iframes-test-contract'>
