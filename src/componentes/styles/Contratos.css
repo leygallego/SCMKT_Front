@@ -1,6 +1,6 @@
-.container-contratos {
-  /* background-color: yellow; */
-}
+/* .container-contratos {
+  background-color: yellow;
+} */
 
 .main-contratos {
   display: grid;
@@ -24,6 +24,9 @@
 .wrapper {
   padding-top: 20px;
   padding-bottom: 20px;
+}
+.wraper-filtros {
+ margin-top: 20px;
 }
 
 .wrapper:focus {
@@ -68,10 +71,14 @@
 .search-contrato {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 70px;
   margin-bottom: 20px;
   width: 100%;
 }
+.select-type{
+  margin-top: 35px;
+}
+
 
 .select-tipo {
   width: 100%;
@@ -157,10 +164,11 @@
     display: flex;
     flex-direction: column;
     width: 20%;
+    margin-top: 15px;
   }
 
-  .select-tipo {
-    width: 250px;
+  .select-type {
+    margin-top: 0px;
   }
 
   .select-categoria {
@@ -216,10 +224,11 @@
     display: flex;
     flex-direction: column;
     width: 20%;
+    margin-top: -50px;
   }
 
-  .select-tipo {
-    width: 250px;
+  .select-type {
+    margin-top: -80px;
   }
 
   .select-categoria {
