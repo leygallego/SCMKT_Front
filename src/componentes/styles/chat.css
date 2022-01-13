@@ -10,6 +10,11 @@
     z-index: 9999;
      }
 
+     .xbotonChat {
+       margin-right: 15px;
+       margin-top: 10px;
+     }
+
 .chatPannel { 
         display: flex;
         flex-direction: row;

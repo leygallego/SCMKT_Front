@@ -81,6 +81,8 @@ function DetalleContrato() {
         if (id1 !== id2) {
             dispatch(setChat(true));
         }
+        dispatch(setChat(true));
+
     }
 
     function handleClick() {
@@ -116,7 +118,7 @@ function DetalleContrato() {
         dispatch(changeStatusContract(contractId, status, null, previous))
     }
 
-    const chatSuscribed = (id1, id2) => {
+    const chatSuscribed = (id1, id2, imagen, nombre) => {
         console.log("Chat privado...", id1, id2)
         console.log('chatSuscribed', suscribed)
         dispatch(getUserSuscribed(id2));
@@ -128,14 +130,14 @@ function DetalleContrato() {
         ));
         dispatch(choosedUser(
             {
-                "name": suscribed.name,
-                "id": suscribed.id,
-                "image": suscribed.image
+                "name": nombre,
+                "id": id2,
+                "image": imagen
             },
         ));
         openChat(id1, id2);
     }
-    console.log(contract)
+    console.log('CONTRATO...........', contract)
     return (
         <>
             {loading
@@ -159,27 +161,30 @@ function DetalleContrato() {
                                                         <img src={suscribed.image}
                                                             width="60"
                                                             alt='suscrito'
-                                                            onClick={() => { chatSuscribed(user.id, contract.clientId) }}
-                                                        />                    </div>
+                                                            onClick={() => { chatSuscribed(user.id, contract.owner.id, contract.owner.image, contract.owner.name) }}
+                                                            // onClick={() => { chatSuscribed(user.id, contract.clientId) }}
+                                                        />
+                                                    </div>
                                                 </div>
                                                 <h5>Suscrito</h5>
 
                                             </div>
 
-                                        </div> : 
-                                        <Button
-                                            className="chatIcon"
-                                            variant="error"
-                                            startIcon={ user.id !== contract.clientId ? <ChatIcon /> : <></>}
-                                            onClick={() => {openChat(user.id, contract.owner.id)}}
-                                            size='lg'
-                                        />}
+                                        </div> :
+                                            <Button
+                                                className="chatIcon"
+                                                variant="error"
+                                                startIcon={<ChatIcon />}
+                                                // startIcon={user.id !== contract.clientId ? <ChatIcon /> : <></>}
+                                                onClick={() => { openChat(user.id, contract.owner.id ) }}
+                                                size='lg'
+                                            />}
                                     </div>
                                     <div className="xButton">
                                         <CloseIcon onClick={handleClick} />
                                     </div>
                                 </div>
-                                
+
                                 <div className='bodyCard'>
                                     <h2>{contract.conditions.name}</h2>
                                     <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
@@ -252,12 +257,12 @@ function DetalleContrato() {
                                     {(contract.status !== 'complete' && contract.status !== 'delete' && contract.owner.id === user.id)
                                         ? <div>
                                             <div className="aceptar-contratos">
-                                                <NavLink to={`/editcontrato/${id}`}><Button 
-                                                variant="contained"
-                                                style={{
-                                                    backgroundColor: "#0078E7",
-                                                    color: "#FFFFFF"
-                                                }}
+                                                <NavLink to={`/editcontrato/${id}`}><Button
+                                                    variant="contained"
+                                                    style={{
+                                                        backgroundColor: "#0078E7",
+                                                        color: "#FFFFFF"
+                                                    }}
                                                 >Editar</Button></NavLink>
                                             </div>
 

@@ -35,11 +35,15 @@ const Chat = () => {
                                 <ChatDestination />
                                 <UserDetail />
                             </div>
-                            <Button
+                            <CloseIcon 
+                                className="xbotonChat"
+                                onClick={closeChat}
+                            />
+                            {/* <Button
                                 variant="outlined"
                                 startIcon={<CloseIcon />}
                                 onClick={closeChat}
-                            />
+                            /> */}
                         </div>
                         <div className='chatBody'>
                             <div className='chatLeft'></div>
