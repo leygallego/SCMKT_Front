@@ -171,19 +171,29 @@ function DetalleContratoPreview(props) {
   return (
     <div className='preview-content'>
 
-      <div className="main-detalle">
+      <div className="preview-main-detalle">
         {
           // contract?.name ?
-          <div className="detalle-card">
+          <div className="preview-detalle-card">
             <div className="xButton">
-                                        <CloseIcon onClick={onClose} />
-                                    </div>
+              <CloseIcon onClick={onClose} />
+            </div>
             <h2>{contract.name}</h2>
-            <p>{contract.type}</p>
-            <p>{contract.duration}</p>
-            <p>{contract.category}</p>
+            {/* <p>{contract.type}</p> */}
+
+            <div className='preview-daysAmount'>
+              <div className='preview-amountText'>
+                <div className='preview-unEspacio'> {`${'Tiempo estimado:'} `} <span className='preview-espacio' >_</span> </div>
+                <div><b>{`${contract.duration}`}</b>{`${' días'}`}</div>
+              </div>
+
+              <div className='amountText'>{`${'Recompensa:'}`} <span className='espacio' >_</span>  <div className='unEspacio' ><b>{contract.amount}</b><span className='espacio' >_</span>{`${' ETH'}`}</div>
+              </div>
+            </div>
+
+            {/* <p>{contract.category}</p> */}
             {/* <p>{contract.shortdescription}</p> */}
-            <div className='input-reach-text-disabled'>
+            <div className='preview-input-reach-text-disabled'>
               <Editor
                 toolbarHidden
                 readOnly={true}
@@ -195,7 +205,7 @@ function DetalleContratoPreview(props) {
               />
             </div>
             {/* <p>{contract.longdescription}</p> */}
-            <div className='input-reach-text-disabled' >
+            <div className='preview-input-reach-text-disabled' >
               <Editor
                 toolbarHidden
                 readOnly={true}
@@ -206,9 +216,9 @@ function DetalleContratoPreview(props) {
                 toolbarClassName="toolbar-class"
               />
             </div>
-            <h1><span>{contract.amount} ({contract.coin})</span> </h1>
+            {/* <h1><span>{contract.amount} ({contract.coin})</span> </h1> */}
             <div>
-              <p>Test</p>
+              {/* <p>Test</p> */}
               {contract.c1 || contract.c2
                 ? <div className='iframes-test-contract'>
                   {contract.c1
@@ -247,7 +257,7 @@ function DetalleContratoPreview(props) {
               }
             </div>
 
-            <div className='group-button-preview'>
+            <div className='preview-group-button-build'>
               <Button
                 className="aceptar-contratos"
                 variant="contained"
