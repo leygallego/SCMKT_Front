@@ -310,6 +310,9 @@ export function EditContract() {
                                 </div>
                             </div>
 
+                            
+
+
                             {/* <div>
                                 <div className="labelForm-buildContract">Categoría</div>
                                 <div className="inputForm">
