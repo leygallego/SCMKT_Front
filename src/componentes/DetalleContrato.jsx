@@ -76,8 +76,11 @@ function DetalleContrato() {
     const contentStateLong = ContentState.createFromBlockArray(contentBlocksLong, entityMapLong);
     const editorStateLong = EditorState.createWithContent(contentStateLong);
 
-    const openChat = () => {
-        dispatch(setChat(true));
+    const openChat = (id1, id2) => {
+        console.log('OPENCHAT', id1, id2)
+        if (id1 !== id2) {
+            dispatch(setChat(true));
+        }
     }
 
     function handleClick() {
@@ -130,9 +133,9 @@ function DetalleContrato() {
                 "image": suscribed.image
             },
         ));
-        openChat();
+        openChat(id1, id2);
     }
-
+    console.log(contract)
     return (
         <>
             {loading
@@ -163,11 +166,12 @@ function DetalleContrato() {
 
                                             </div>
 
-                                        </div> : <Button
+                                        </div> : 
+                                        <Button
                                             className="chatIcon"
                                             variant="error"
-                                            startIcon={<ChatIcon />}
-                                            onClick={openChat}
+                                            startIcon={ user.id !== contract.clientId ? <ChatIcon /> : <></>}
+                                            onClick={() => {openChat(user.id, contract.owner.id)}}
                                             size='lg'
                                         />}
                                     </div>
@@ -175,6 +179,7 @@ function DetalleContrato() {
                                         <CloseIcon onClick={handleClick} />
                                     </div>
                                 </div>
+                                
                                 <div className='bodyCard'>
                                     <h2>{contract.conditions.name}</h2>
                                     <p>{contract.conditions.type && contract.conditions.type !== 'undefined' ? contract.conditions.type : ''}</p>
